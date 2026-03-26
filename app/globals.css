@@ -1,0 +1,188 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── Max Market Pros Design System ── */
+:root {
+  /* Brand palette */
+  --bg: #F7FAFC;
+  --surface: #FFFFFF;
+  --ink: #0B132B;
+  --muted: #5B6B84;
+  --accent: #1677FF;
+  --accent-hover: #0D5FD9;
+  --cyan: #74D3FF;
+  --border-color: #DCE6F2;
+  --shadow-color: rgba(17, 35, 68, 0.08);
+  --shadow-strong: rgba(17, 35, 68, 0.14);
+  --glow-blue: rgba(22, 119, 255, 0.12);
+  --glow-cyan: rgba(116, 211, 255, 0.10);
+
+  /* Radius */
+  --radius-xs: 10px;
+  --radius-sm: 14px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 28px;
+  --radius-pill: 100px;
+
+  /* Spacing */
+  --section-py: 120px;
+  --section-py-sm: 80px;
+  --container-max: 1240px;
+
+  /* Tailwind / shadcn compat */
+  --background: var(--bg);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--accent);
+  --primary-foreground: #FFFFFF;
+  --secondary: #EDF2F7;
+  --secondary-foreground: var(--ink);
+  --muted-bg: #F0F4F8;
+  --muted-foreground: var(--muted);
+  --accent-bg: #EBF4FF;
+  --accent-foreground: var(--accent);
+  --destructive: #E53E3E;
+  --destructive-foreground: #FFFFFF;
+  --border: var(--border-color);
+  --input: var(--border-color);
+  --ring: var(--accent);
+  --radius: var(--radius-md);
+}
+
+@theme inline {
+  --font-sans: var(--font-outfit), 'Outfit', sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted-bg);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent-bg);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ── Keyframes ── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subtlePulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ── Base ── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted);
+  }
+}
+
+/* ── Utilities ── */
+.section-container {
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.card-surface {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 1px 3px var(--shadow-color), 0 4px 16px var(--shadow-color);
+}
+
+.card-surface-hover {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card-surface-hover:hover {
+  box-shadow: 0 2px 8px var(--shadow-color), 0 8px 32px var(--shadow-strong);
+  transform: translateY(-2px);
+}
+
+.noise-overlay {
+  background-image: url('/hero/noise.png');
+  background-repeat: repeat;
+  opacity: 0.035;
+  pointer-events: none;
+}
+
+.accent-underline {
+  position: relative;
+  display: inline-block;
+}
+.accent-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 100%;
+  height: 6px;
+  background: var(--cyan);
+  border-radius: 3px;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
