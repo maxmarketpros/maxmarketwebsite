@@ -18,7 +18,7 @@ const cards: InfraCard[] = [
   {
     pill: "Websites",
     pillColor: "#1677FF",
-    auraColor: "rgba(22,119,255,0.22)",
+    auraColor: "rgba(22,119,255,0.13)",
     iconIds: "102562",
     title: "Custom SEO Websites",
     description:
@@ -32,7 +32,7 @@ const cards: InfraCard[] = [
   {
     pill: "Local SEO",
     pillColor: "#F59E0B",
-    auraColor: "rgba(245,158,11,0.22)",
+    auraColor: "rgba(245,158,11,0.14)",
     iconIds: "32215",
     title: "Google Map Pack Dominance",
     description:
@@ -46,7 +46,7 @@ const cards: InfraCard[] = [
   {
     pill: "Lead Management",
     pillColor: "#22C55E",
-    auraColor: "rgba(34,197,94,0.22)",
+    auraColor: "rgba(34,197,94,0.14)",
     iconIds: "z9qAuS0WaMJk",
     title: "CRM & Missed Call Tracking",
     description:
@@ -60,7 +60,7 @@ const cards: InfraCard[] = [
   {
     pill: "Social Media",
     pillColor: "#EC4899",
-    auraColor: "rgba(236,72,153,0.22)",
+    auraColor: "rgba(236,72,153,0.14)",
     iconIds: ["118497", "32323", "118640", "17949"],
     title: "Complete Social Media Management",
     description:

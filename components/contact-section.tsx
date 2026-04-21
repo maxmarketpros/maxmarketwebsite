@@ -43,7 +43,7 @@ export function ContactSection() {
           className="absolute top-[-10%] left-[50%] translate-x-[-50%] w-[900px] h-[600px] rounded-full"
           style={{
             background:
-              "radial-gradient(circle, rgba(22,119,255,0.06) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(22,119,255,0.04) 0%, transparent 70%)",
           }}
         />
         <div className="absolute inset-0 noise-overlay" />
@@ -66,7 +66,7 @@ export function ContactSection() {
             className="pointer-events-none absolute left-0 top-0 w-[70%] h-[55%]"
             style={{
               background:
-                "radial-gradient(ellipse 80% 100% at 20% 20%, rgba(22,119,255,0.10) 0%, transparent 70%)",
+                "radial-gradient(ellipse 80% 100% at 20% 20%, rgba(22,119,255,0.07) 0%, transparent 70%)",
             }}
           />
 

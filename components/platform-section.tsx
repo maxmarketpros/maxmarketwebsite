@@ -30,7 +30,7 @@ const cards: PlatformCard[] = [
   {
     pill: "Local Search",
     pillColor: "#F59E0B",
-    auraColor: "rgba(245,158,11,0.14)",
+    auraColor: "rgba(245,158,11,0.09)",
     iconId: "tXg90mCMJpUq",
     title: "Dominate the Map Pack",
     description:
@@ -54,7 +54,7 @@ const cards: PlatformCard[] = [
   {
     pill: "Speed",
     pillColor: "#EF4444",
-    auraColor: "rgba(239,68,68,0.12)",
+    auraColor: "rgba(239,68,68,0.08)",
     iconId: "12995",
     title: "Built to Convert",
     description:
@@ -71,19 +71,24 @@ const cards: PlatformCard[] = [
   {
     pill: "Reviews",
     pillColor: "#EAB308",
-    auraColor: "rgba(234,179,8,0.14)",
+    auraColor: "rgba(234,179,8,0.09)",
     iconId: "19417",
     title: "Automated Reviews",
     description:
       "Automatically request and collect 5‑star reviews after every job to build unstoppable social proof and higher rankings.",
-    chips: ["SMS review requests", "Review monitoring", "Auto‑responses"],
+    bullets: [
+      "SMS review requests",
+      "Review monitoring",
+      "Auto‑responses",
+      "Multi‑platform collection",
+    ],
     spanMd: "md:col-span-1",
     spanLg: "lg:col-span-2",
   },
   {
     pill: "Lead Operations",
     pillColor: "#0EA5E9",
-    auraColor: "rgba(14,165,233,0.12)",
+    auraColor: "rgba(14,165,233,0.08)",
     iconId: "SROvvC91x7DL",
     title: "Your Growth Engine CRM",
     description:
@@ -108,7 +113,7 @@ const cards: PlatformCard[] = [
   {
     pill: "Inbox",
     pillColor: "#1677FF",
-    auraColor: "rgba(22,119,255,0.12)",
+    auraColor: "rgba(22,119,255,0.08)",
     iconId: "108780",
     title: "Unified Inbox",
     description:
@@ -120,7 +125,7 @@ const cards: PlatformCard[] = [
   {
     pill: "Callback",
     pillColor: "#14B8A6",
-    auraColor: "rgba(20,184,166,0.12)",
+    auraColor: "rgba(20,184,166,0.08)",
     iconId: "13512",
     title: "Missed Call Recovery",
     description:
@@ -169,7 +174,7 @@ export function PlatformSection() {
 function BentoCard({ card }: { card: PlatformCard }) {
   return (
     <div
-      className={`${card.spanMd} ${card.spanLg} card-surface card-surface-hover relative overflow-hidden p-5`}
+      className={`${card.spanMd} ${card.spanLg} card-surface card-surface-hover relative overflow-hidden p-6`}
     >
       {/* Aura — from top-left corner behind icon */}
       <div
@@ -192,7 +197,7 @@ function BentoCard({ card }: { card: PlatformCard }) {
             className="w-[52px] h-[52px] object-contain shrink-0"
           />
           <span
-            className="self-center inline-block text-[10px] font-semibold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full"
+            className="self-center inline-block text-[11.5px] font-semibold uppercase tracking-[0.1em] px-3 py-1 rounded-full"
             style={{
               background: `${card.pillColor}1A`,
               color: card.pillColor,
@@ -204,7 +209,7 @@ function BentoCard({ card }: { card: PlatformCard }) {
 
         {/* Title */}
         <h3
-          className="mt-3 text-[18px] sm:text-[20px] font-bold leading-[1.2] tracking-[-0.01em]"
+          className="mt-4 text-[20px] sm:text-[22px] font-bold leading-[1.2] tracking-[-0.01em]"
           style={{ color: "var(--ink)" }}
         >
           {card.title}
@@ -212,7 +217,7 @@ function BentoCard({ card }: { card: PlatformCard }) {
 
         {/* Description */}
         <p
-          className="mt-1.5 text-[13.5px] leading-[1.5]"
+          className="mt-2 text-[15px] leading-[1.55]"
           style={{ color: "var(--muted)" }}
         >
           {card.description}
@@ -220,21 +225,21 @@ function BentoCard({ card }: { card: PlatformCard }) {
 
         {/* Bullets */}
         {card.bullets && (
-          <ul className="mt-3 space-y-1.5">
+          <ul className="mt-4 space-y-2">
             {card.bullets.map((b) => (
               <li
                 key={b}
-                className="flex items-center gap-2 text-[13px]"
+                className="flex items-center gap-2.5 text-[14.5px]"
                 style={{ color: "var(--ink)" }}
               >
                 <span
-                  className="w-4 h-4 rounded-full flex items-center justify-center shrink-0"
+                  className="w-[18px] h-[18px] rounded-full flex items-center justify-center shrink-0"
                   style={{
                     background: "var(--accent-bg)",
                     color: "var(--accent)",
                   }}
                 >
-                  <Check className="w-2.5 h-2.5" strokeWidth={3} />
+                  <Check className="w-3 h-3" strokeWidth={3} />
                 </span>
                 {b}
               </li>
@@ -244,11 +249,11 @@ function BentoCard({ card }: { card: PlatformCard }) {
 
         {/* Chips */}
         {card.chips && (
-          <div className="mt-3 flex flex-wrap gap-1.5">
+          <div className="mt-4 flex flex-wrap gap-2">
             {card.chips.map((c) => (
               <span
                 key={c}
-                className="inline-block px-2.5 py-0.5 text-[11px] font-medium rounded-full"
+                className="inline-block px-3 py-1 text-[12.5px] font-medium rounded-full"
                 style={{
                   background: "var(--surface)",
                   color: "var(--muted)",
@@ -264,17 +269,17 @@ function BentoCard({ card }: { card: PlatformCard }) {
         {/* Chart visualization (CRM only) */}
         {card.chart && (
           <div
-            className="mt-3 rounded-[var(--radius-sm)] px-3 py-2.5 bg-white border relative overflow-hidden"
+            className="mt-4 rounded-[var(--radius-sm)] px-3.5 py-3 bg-white border relative overflow-hidden"
             style={{ borderColor: "var(--border-color)" }}
           >
-            <div className="flex items-center gap-1 mb-1.5">
+            <div className="flex items-center gap-1 mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E5E7EB]" />
               <span className="w-1.5 h-1.5 rounded-full bg-[#E5E7EB]" />
               <span className="w-1.5 h-1.5 rounded-full bg-[#E5E7EB]" />
             </div>
             <svg
               viewBox="0 0 300 50"
-              className="w-full h-[44px]"
+              className="w-full h-[48px]"
               preserveAspectRatio="none"
               aria-hidden
             >
@@ -302,38 +307,38 @@ function BentoCard({ card }: { card: PlatformCard }) {
         {/* Sub-cards */}
         {card.subCards && card.subCards.length > 0 && (
           <div
-            className={`mt-3 grid gap-2 ${
+            className={`mt-4 grid gap-2.5 ${
               card.subCards.length > 1 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1"
             }`}
           >
             {card.subCards.map((s) => (
               <div
                 key={s.title}
-                className="rounded-[var(--radius-sm)] p-2.5 bg-white border flex items-center gap-2.5"
+                className="rounded-[var(--radius-sm)] p-3 bg-white border flex items-center gap-3"
                 style={{ borderColor: "var(--border-color)" }}
               >
                 <div
-                  className="w-8 h-8 rounded-[var(--radius-xs)] flex items-center justify-center shrink-0"
+                  className="w-9 h-9 rounded-[var(--radius-xs)] flex items-center justify-center shrink-0"
                   style={{ background: "var(--accent-bg)" }}
                 >
                   <img
                     src={icons8Url(s.iconId, 64)}
                     alt=""
-                    width={20}
-                    height={20}
+                    width={22}
+                    height={22}
                     loading="lazy"
-                    className="w-5 h-5 object-contain"
+                    className="w-[22px] h-[22px] object-contain"
                   />
                 </div>
                 <div className="min-w-0 leading-tight">
                   <div
-                    className="text-[12px] font-semibold"
+                    className="text-[13.5px] font-semibold"
                     style={{ color: "var(--ink)" }}
                   >
                     {s.title}
                   </div>
                   <div
-                    className="text-[11px] mt-0.5"
+                    className="text-[12.5px] mt-1 leading-[1.4]"
                     style={{ color: "var(--muted)" }}
                   >
                     {s.description}
