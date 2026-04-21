@@ -46,20 +46,22 @@ export function HeroSection() {
             {/* Pill */}
             <Pill>
               <Sparkles className="w-3.5 h-3.5" />
-              Trusted by 500+ local service businesses
+              <span className="sm:hidden">Trusted by 500+ businesses</span>
+              <span className="hidden sm:inline">Trusted by 500+ local service businesses</span>
             </Pill>
 
             {/* H1 */}
             <h1
-              className="mt-7 text-[48px] sm:text-[56px] lg:text-[68px] font-bold leading-[1.05] tracking-[-0.03em]"
+              className="mt-6 text-[34px] xs:text-[40px] sm:text-[52px] lg:text-[68px] font-bold leading-[1.1] sm:leading-[1.05] tracking-[-0.02em] sm:tracking-[-0.03em] text-balance"
               style={{ color: 'var(--ink)' }}
             >
-              Grow on{' '}
-              <span className="accent-underline">Google</span>.
-              <br />
-              Get more calls
-              <br />
-              & booked jobs.
+              <span className="whitespace-nowrap">
+                Grow on <span className="accent-underline">Google</span>.
+              </span>
+              <br className="hidden sm:inline" />{' '}
+              Get more calls{' '}
+              <br className="hidden sm:inline" />
+              &amp; booked jobs.
             </h1>
 
             {/* Paragraph */}

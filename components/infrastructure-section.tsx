@@ -1,25 +1,77 @@
 "use client"
 
+import { Check } from "lucide-react"
 import { SectionHeader } from "./ui/section-header"
-import { FeatureCard } from "./ui/feature-card"
-import {
-  Globe,
-  MapPin,
-  Headphones,
-  Share2,
-  Palette,
-  Search,
-  Server,
-  BarChart3,
-  Zap,
-  Target,
-  Building2,
-  Inbox,
-  Bot,
-  PieChart,
-  Users,
-  Megaphone,
-} from "lucide-react"
+import { icons8Url } from "@/lib/icons8"
+
+type InfraCard = {
+  pill: string
+  pillColor: string
+  auraColor: string
+  iconIds: string | string[]
+  title: string
+  description: string
+  bullets: string[]
+}
+
+const cards: InfraCard[] = [
+  {
+    pill: "Websites",
+    pillColor: "#1677FF",
+    auraColor: "rgba(22,119,255,0.22)",
+    iconIds: "102562",
+    title: "Custom SEO Websites",
+    description:
+      "Fast, mobile‑first sites engineered to turn local search traffic into booked jobs.",
+    bullets: [
+      "High‑conversion design",
+      "On‑page technical SEO",
+      "Premium managed hosting",
+    ],
+  },
+  {
+    pill: "Local SEO",
+    pillColor: "#F59E0B",
+    auraColor: "rgba(245,158,11,0.22)",
+    iconIds: "32215",
+    title: "Google Map Pack Dominance",
+    description:
+      "Claim top map‑pack positions where local customers are ready to call.",
+    bullets: [
+      "Keyword rank tracking",
+      "Weekly profile updates",
+      "Local citation building",
+    ],
+  },
+  {
+    pill: "Lead Management",
+    pillColor: "#22C55E",
+    auraColor: "rgba(34,197,94,0.22)",
+    iconIds: "z9qAuS0WaMJk",
+    title: "CRM & Missed Call Tracking",
+    description:
+      "Auto‑text missed calls and track every lead — never lose a job again.",
+    bullets: [
+      "Unified communications inbox",
+      "Automated lead follow‑up",
+      "ROI & pipeline tracking",
+    ],
+  },
+  {
+    pill: "Social Media",
+    pillColor: "#EC4899",
+    auraColor: "rgba(236,72,153,0.22)",
+    iconIds: ["118497", "32323", "118640", "17949"],
+    title: "Complete Social Media Management",
+    description:
+      "Fully managed social presence that builds authority, brand awareness, and local engagement.",
+    bullets: [
+      "Custom branded content",
+      "Proactive engagement",
+      "Audience targeting & brand authority",
+    ],
+  },
+]
 
 export function InfrastructureSection() {
   return (
@@ -27,8 +79,13 @@ export function InfrastructureSection() {
       {/* Subtle noise */}
       <div className="absolute inset-0 noise-overlay" />
 
-      <div className="section-container relative z-10" style={{ paddingTop: 'var(--section-py)', paddingBottom: 'var(--section-py)' }}>
-        {/* Section intro */}
+      <div
+        className="section-container relative z-10"
+        style={{
+          paddingTop: "var(--section-py)",
+          paddingBottom: "var(--section-py)",
+        }}
+      >
         <SectionHeader
           pill="Our Digital Infrastructure"
           heading={
@@ -41,122 +98,108 @@ export function InfrastructureSection() {
           paragraph="We provide the complete marketing engine required to dominate local search and capture every lead across your territory."
         />
 
-        {/* Three feature cards */}
         <div
-          className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6"
-          style={{ animation: 'fadeInUp 0.7s ease-out both' }}
+          className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-6"
+          style={{ animation: "fadeInUp 0.7s ease-out both" }}
         >
-          <FeatureCard
-            icon={<Globe className="w-6 h-6" />}
-            title="Custom SEO Websites"
-            description="Fast, mobile‑first, high‑converting websites designed to turn local search traffic into booked jobs."
-            bullets={[
-              "High‑conversion design",
-              "On‑page technical SEO",
-              "Fully managed premium hosting",
-            ]}
-          />
-          <FeatureCard
-            icon={<MapPin className="w-6 h-6" />}
-            title="Google Map Pack Dominance"
-            description="Secure top positions in the map pack where targeted local customers are ready to call."
-            bullets={[
-              "Keyword rank tracking",
-              "Weekly profile updates",
-              "Local citation building",
-            ]}
-          />
-          <FeatureCard
-            icon={<Headphones className="w-6 h-6" />}
-            title="CRM & Missed Call Tracking"
-            description="Track every lead and automatically text back when a call is missed — never lose a job again."
-            bullets={[
-              "Unified communications inbox",
-              "Automated lead follow‑up",
-              "ROI & pipeline tracking",
-            ]}
-          />
-        </div>
-
-        {/* Wide social media card */}
-        <div className="mt-6" style={{ animation: 'fadeInUp 0.7s ease-out 0.15s both' }}>
-          <div className="card-surface card-surface-hover overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-              {/* Left — illustration area */}
+          {cards.map((card) => (
+            <div
+              key={card.title}
+              className="card-surface card-surface-hover relative overflow-hidden p-7 md:p-8"
+            >
+              {/* Aura — mobile/tablet: top */}
               <div
-                className="p-8 lg:p-10 flex items-center justify-center"
+                aria-hidden
+                className="pointer-events-none absolute left-0 top-0 w-full h-[55%] lg:hidden"
                 style={{
-                  background: 'linear-gradient(135deg, var(--accent-bg) 0%, var(--bg) 100%)',
+                  background: `radial-gradient(ellipse 70% 100% at 50% 30%, ${card.auraColor} 0%, transparent 70%)`,
                 }}
-              >
-                <div className="grid grid-cols-2 gap-4 max-w-[320px] w-full">
-                  {[
-                    { icon: <Palette className="w-6 h-6" />, label: "Content" },
-                    { icon: <Target className="w-6 h-6" />, label: "Targeting" },
-                    { icon: <Users className="w-6 h-6" />, label: "Engagement" },
-                    { icon: <Megaphone className="w-6 h-6" />, label: "Authority" },
-                  ].map((item) => (
-                    <div
-                      key={item.label}
-                      className="card-surface rounded-[var(--radius-sm)] p-5 flex flex-col items-center gap-3 text-center"
-                    >
-                      <div
-                        className="w-11 h-11 rounded-[var(--radius-xs)] flex items-center justify-center"
-                        style={{ background: 'var(--accent-bg)', color: 'var(--accent)' }}
-                      >
-                        {item.icon}
-                      </div>
-                      <span className="text-[13px] font-semibold" style={{ color: 'var(--ink)' }}>
-                        {item.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              />
+              {/* Aura — desktop: right */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute right-0 top-0 h-full w-[60%] hidden lg:block"
+                style={{
+                  background: `radial-gradient(ellipse 70% 70% at 75% 50%, ${card.auraColor} 0%, transparent 70%)`,
+                }}
+              />
 
-              {/* Right — content */}
-              <div className="p-8 lg:p-10 flex flex-col justify-center">
-                <div
-                  className="w-12 h-12 rounded-[var(--radius-xs)] flex items-center justify-center mb-5"
-                  style={{ background: 'var(--accent-bg)', color: 'var(--accent)' }}
-                >
-                  <Share2 className="w-6 h-6" />
+              <div className="relative flex flex-col gap-6 lg:grid lg:grid-cols-[1fr_auto] lg:items-center">
+                {/* Icon — top on mobile/tablet, right on desktop */}
+                <div className="order-1 lg:order-2 flex items-center justify-center shrink-0 w-full lg:w-[200px] h-[180px] lg:h-[200px]">
+                  {Array.isArray(card.iconIds) ? (
+                    <div className="grid grid-cols-2 gap-4">
+                      {card.iconIds.map((id) => (
+                        <img
+                          key={id}
+                          src={icons8Url(id, 128)}
+                          alt=""
+                          width={80}
+                          height={80}
+                          loading="lazy"
+                          className="w-20 h-20 object-contain"
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <img
+                      src={icons8Url(card.iconIds, 200)}
+                      alt=""
+                      width={176}
+                      height={176}
+                      loading="lazy"
+                      className="w-[176px] h-[176px] object-contain"
+                    />
+                  )}
                 </div>
-                <h3
-                  className="text-[24px] sm:text-[28px] font-bold leading-[1.2] tracking-[-0.01em]"
-                  style={{ color: 'var(--ink)' }}
-                >
-                  Complete Social Media Management
-                </h3>
-                <p
-                  className="mt-3 text-[16px] leading-[1.6] mb-6"
-                  style={{ color: 'var(--muted)' }}
-                >
-                  Build authority and stay top of mind with a fully managed social presence that drives brand awareness and local engagement.
-                </p>
-                <ul className="space-y-3">
-                  {[
-                    "Custom branded content",
-                    "Local audience targeting",
-                    "Proactive engagement",
-                    "Brand authority building",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-[15px]" style={{ color: 'var(--ink)' }}>
-                      <span
-                        className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
-                        style={{ background: 'var(--accent-bg)', color: 'var(--accent)' }}
+
+                {/* Text */}
+                <div className="order-2 lg:order-1 min-w-0 w-full">
+                  <span
+                    className="inline-block text-[11px] font-semibold uppercase tracking-[0.12em] px-3 py-1 rounded-full"
+                    style={{
+                      background: `${card.pillColor}1A`,
+                      color: card.pillColor,
+                    }}
+                  >
+                    {card.pill}
+                  </span>
+                  <h3
+                    className="mt-4 text-[22px] sm:text-[24px] font-bold leading-[1.2] tracking-[-0.01em]"
+                    style={{ color: "var(--ink)" }}
+                  >
+                    {card.title}
+                  </h3>
+                  <p
+                    className="mt-2 text-[15px] leading-[1.55]"
+                    style={{ color: "var(--muted)" }}
+                  >
+                    {card.description}
+                  </p>
+                  <ul className="mt-5 space-y-2.5">
+                    {card.bullets.map((b) => (
+                      <li
+                        key={b}
+                        className="flex items-start gap-2.5 text-[14px]"
+                        style={{ color: "var(--ink)" }}
                       >
-                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      </span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                        <span
+                          className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+                          style={{
+                            background: "var(--accent-bg)",
+                            color: "var(--accent)",
+                          }}
+                        >
+                          <Check className="w-3 h-3" strokeWidth={2.5} />
+                        </span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
