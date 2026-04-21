@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { Outfit } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { ContactSection } from '@/components/contact-section'
+import { Footer } from '@/components/footer'
 import './globals.css'
 
 const outfit = Outfit({
@@ -46,6 +48,8 @@ export default function RootLayout({
     <html lang="en" className={outfit.variable}>
       <body className="font-sans antialiased">
         {children}
+        <ContactSection />
+        <Footer />
         <Analytics />
       </body>
     </html>

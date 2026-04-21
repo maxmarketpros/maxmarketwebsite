@@ -1,5 +1,4 @@
 ﻿import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
 import { UnderConstruction } from "@/components/under-construction"
 
 export const metadata = {
@@ -17,7 +16,6 @@ export default function Page() {
         backHref="/solutions"
         backLabel="Back to Solutions"
       />
-      <Footer />
     </main>
   )
 }
