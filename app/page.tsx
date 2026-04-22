@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
-import { PartnerLogos } from "@/components/partner-logos"
 import { InfrastructureSection } from "@/components/infrastructure-section"
 import { SeoSerpTakeover } from "@/components/seo/seo-serp-takeover"
 import { PlatformSection } from "@/components/platform-section"
@@ -12,7 +11,6 @@ export default function Home() {
     <main>
       <Navbar />
       <HeroSection />
-      <PartnerLogos />
       <InfrastructureSection />
       <SeoSerpTakeover
         heading={

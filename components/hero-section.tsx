@@ -4,6 +4,7 @@ import { Pill } from "./ui/pill"
 import { PrimaryButton } from "./ui/primary-button"
 import { SecondaryButton } from "./ui/secondary-button"
 import { MockupPanel } from "./ui/mockup-panel"
+import { TrustStrip } from "./trust-strip"
 import { Shield, Sparkles, Wrench } from "lucide-react"
 
 export function HeroSection() {
@@ -36,7 +37,7 @@ export function HeroSection() {
         <div className="absolute inset-0 noise-overlay" />
       </div>
 
-      <div className="section-container relative z-10 py-16 sm:py-20 lg:py-28">
+      <div className="section-container relative z-10 pt-16 sm:pt-20 lg:pt-28 pb-10 sm:pb-12 lg:pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left side - Content */}
           <div
@@ -112,6 +113,9 @@ export function HeroSection() {
             <MockupPanel />
           </div>
         </div>
+
+        {/* Trust strip — full content width, below the grid */}
+        <TrustStrip />
       </div>
     </section>
   )
