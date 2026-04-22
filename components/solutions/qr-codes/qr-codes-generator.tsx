@@ -21,9 +21,15 @@ export function QRCodesGenerator() {
       margin: 2,
       color: { dark: "#0B132B", light: "#FFFFFF" },
       errorCorrectionLevel: "M",
-    }).catch(() => {
-      // swallow — rare invalid input; canvas keeps previous frame
     })
+      .then(() => {
+        // qrcode sets inline width/height on the canvas; clear them so our Tailwind classes win
+        canvas.style.width = ""
+        canvas.style.height = ""
+      })
+      .catch(() => {
+        // swallow — rare invalid input; canvas keeps previous frame
+      })
   }, [url])
 
   const handleDownload = () => {
@@ -197,14 +203,11 @@ export function QRCodesGenerator() {
 
             <div className="flex flex-col items-center">
               <div
-                className="rounded-[var(--radius-lg)]"
+                className="inline-block w-fit rounded-[var(--radius-lg)] p-3"
                 style={{
                   background: "#fff",
                   border: "1px solid var(--border-color)",
                   boxShadow: "0 1px 3px rgba(17,35,68,0.05), 0 10px 30px rgba(17,35,68,0.08)",
-                  padding: 12,
-                  width: "fit-content",
-                  maxWidth: "100%",
                 }}
               >
                 <canvas
@@ -213,11 +216,8 @@ export function QRCodesGenerator() {
                   height={512}
                   aria-label="QR code preview"
                   role="img"
-                  style={{
-                    display: "block",
-                    width: "clamp(170px, 48vw, 260px)",
-                    height: "clamp(170px, 48vw, 260px)",
-                  }}
+                  style={{ display: "block" }}
+                  className="w-44 h-44 sm:w-56 sm:h-56 lg:w-64 lg:h-64"
                 />
               </div>
               <p
