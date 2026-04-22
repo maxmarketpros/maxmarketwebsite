@@ -76,8 +76,9 @@ export function QRCodesGenerator() {
 
   return (
     <section
+      id="qr-generator"
       aria-labelledby="qr-codes-generator-heading"
-      className="relative overflow-hidden"
+      className="relative overflow-hidden scroll-mt-20"
       style={{ background: "var(--bg)" }}
     >
       <div

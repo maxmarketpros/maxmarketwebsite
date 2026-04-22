@@ -57,8 +57,8 @@ export function QRCodesHero() {
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <PrimaryButton size="lg" asLink href="#contact">
-                Request a free sample QR
+              <PrimaryButton size="lg" asLink href="#qr-generator">
+                Generate a Free QR Code
               </PrimaryButton>
               <SecondaryButton asLink href="#qr-codes-features">
                 See the features
@@ -103,6 +103,12 @@ export function QRCodesHero() {
   )
 }
 
+const topLocations = [
+  { city: "Irvine, CA", count: 48, pct: 100 },
+  { city: "Tustin, CA", count: 32, pct: 67 },
+  { city: "Orange, CA", count: 28, pct: 58 },
+]
+
 function QRStatsMockup() {
   return (
     <div
@@ -112,15 +118,38 @@ function QRStatsMockup() {
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
-        style={{ background: "radial-gradient(ellipse 80% 70% at 50% 20%, rgba(22,119,255,0.10) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse 75% 65% at 85% 15%, rgba(22,119,255,0.12) 0%, transparent 70%)" }}
       />
 
-      <div className="relative flex flex-col sm:flex-row items-center sm:items-start gap-5">
-        {/* QR code */}
-        <div className="shrink-0 flex flex-col items-center">
+      {/* Header */}
+      <div className="relative flex items-center justify-between pb-4 border-b" style={{ borderColor: "var(--border-color)" }}>
+        <div>
+          <div className="text-[10.5px] font-bold uppercase tracking-[0.08em]" style={{ color: "var(--muted)" }}>
+            QR Scan Analytics
+          </div>
+          <div className="mt-0.5 text-[14.5px] font-bold leading-tight" style={{ color: "var(--ink)" }}>
+            Yard-Sign Campaign · Spring
+          </div>
+        </div>
+        <span
+          className="inline-flex items-center gap-1.5 text-[10.5px] font-semibold px-2.5 py-1 rounded-full"
+          style={{ background: "#22C55E14", color: "#16A34A" }}
+        >
+          <span className="relative flex w-1.5 h-1.5">
+            <span className="absolute inset-0 rounded-full opacity-70" style={{ background: "#22C55E", animation: "subtlePulse 2s ease-in-out infinite" }} />
+            <span className="relative w-1.5 h-1.5 rounded-full" style={{ background: "#22C55E" }} />
+          </span>
+          Live
+        </span>
+      </div>
+
+      {/* Main grid: QR + stats */}
+      <div className="relative mt-5 grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-5 sm:gap-6 items-start">
+        {/* QR column */}
+        <div className="flex flex-col items-center justify-self-center sm:justify-self-start">
           <MiniQR color="#1677FF" size={160} />
           <div
-            className="mt-2 inline-flex items-center gap-1.5 text-[10.5px] font-bold uppercase tracking-[0.08em] px-2 py-0.5 rounded-full"
+            className="mt-2.5 inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.08em] px-2 py-0.5 rounded-full"
             style={{ background: "var(--accent-bg)", color: "var(--accent)" }}
           >
             <Smartphone className="w-2.5 h-2.5" strokeWidth={2.5} />
@@ -128,80 +157,99 @@ function QRStatsMockup() {
           </div>
         </div>
 
-        {/* Stats panel */}
-        <div className="flex-1 min-w-0 w-full">
-          <div className="flex items-center justify-between pb-3 border-b" style={{ borderColor: "var(--border-color)" }}>
-            <div>
-              <div className="text-[10.5px] font-bold uppercase tracking-[0.08em]" style={{ color: "var(--muted)" }}>
-                QR Scan Analytics
+        {/* Stats column */}
+        <div className="min-w-0 w-full">
+          {/* Hero stat */}
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-[0.08em]" style={{ color: "var(--muted)" }}>
+              Scans · Last 7 days
+            </div>
+            <div className="mt-1 flex items-baseline gap-2.5">
+              <div
+                className="text-[40px] sm:text-[44px] font-bold leading-none tracking-[-0.03em]"
+                style={{
+                  background: "linear-gradient(180deg, var(--ink) 0%, var(--accent) 130%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                142
               </div>
-              <div className="text-[14px] font-bold" style={{ color: "var(--ink)" }}>
-                Yard-Sign Campaign · Spring
+              <div className="inline-flex items-center gap-1 text-[12px] font-bold" style={{ color: "#16A34A" }}>
+                <TrendingUp className="w-3.5 h-3.5" strokeWidth={2.75} />
+                +31%
               </div>
             </div>
-            <span
-              className="inline-flex items-center gap-1 text-[10.5px] font-semibold px-2 py-0.5 rounded-full"
-              style={{ background: "#22C55E14", color: "#16A34A" }}
-            >
-              Live
-            </span>
           </div>
 
-          {/* KPI tiles */}
-          <div className="mt-3 grid grid-cols-2 gap-2">
-            <KpiTile label="Total scans" value="142" delta="+31% wk" color="#1677FF" />
-            <KpiTile label="Unique users" value="118" delta="83% new" color="#22C55E" />
-            <KpiTile label="Book rate" value="38%" delta="best yet" color="#F59E0B" />
-            <KpiTile label="Revenue" value="$4.2K" delta="↑ climbing" color="#8B5CF6" />
-          </div>
-
-          {/* Mini scan log */}
-          <div
-            className="mt-3 rounded-[var(--radius-md)] border p-3"
-            style={{ background: "var(--bg)", borderColor: "var(--border-color)" }}
+          {/* Sparkline */}
+          <svg
+            viewBox="0 0 100 30"
+            preserveAspectRatio="none"
+            className="mt-2 w-full h-[36px] block"
+            aria-hidden
           >
-            <div className="text-[10px] font-bold uppercase tracking-[0.08em] mb-2" style={{ color: "var(--muted)" }}>
-              Recent scans
+            <defs>
+              <linearGradient id="qr-hero-spark-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#1677FF" stopOpacity="0.28" />
+                <stop offset="100%" stopColor="#1677FF" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M 0 22 L 12 18 L 24 21 L 36 14 L 48 16 L 60 10 L 72 12 L 84 6 L 100 3 L 100 30 L 0 30 Z"
+              fill="url(#qr-hero-spark-fill)"
+            />
+            <path
+              d="M 0 22 L 12 18 L 24 21 L 36 14 L 48 16 L 60 10 L 72 12 L 84 6 L 100 3"
+              stroke="#1677FF"
+              strokeWidth="1.5"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              vectorEffect="non-scaling-stroke"
+            />
+            <circle cx="100" cy="3" r="2.4" fill="#fff" stroke="#1677FF" strokeWidth="1.5" />
+          </svg>
+
+          {/* Top locations */}
+          <div className="mt-4 pt-4 border-t" style={{ borderColor: "var(--border-color)" }}>
+            <div className="text-[10px] font-bold uppercase tracking-[0.08em] mb-2.5" style={{ color: "var(--muted)" }}>
+              Top locations
             </div>
-            <ul className="space-y-1.5">
-              {[
-                { time: "2 min ago", city: "Irvine, CA", device: "iPhone" },
-                { time: "14 min ago", city: "Tustin, CA", device: "Android" },
-                { time: "47 min ago", city: "Orange, CA", device: "iPhone" },
-              ].map((s, i) => (
-                <li key={i} className="flex items-center gap-2 text-[11px]">
-                  <MapPin className="w-2.5 h-2.5 shrink-0" style={{ color: "#1677FF" }} strokeWidth={2.5} />
-                  <span className="font-semibold truncate" style={{ color: "var(--ink)" }}>{s.city}</span>
-                  <span style={{ color: "var(--muted)" }}>·</span>
-                  <span style={{ color: "var(--muted)" }}>{s.device}</span>
-                  <span className="ml-auto text-[10px] shrink-0" style={{ color: "var(--muted)" }}>{s.time}</span>
+            <ul className="space-y-2">
+              {topLocations.map((s) => (
+                <li key={s.city} className="flex items-center gap-2.5 text-[11.5px]">
+                  <MapPin className="w-3 h-3 shrink-0" style={{ color: "#1677FF" }} strokeWidth={2.75} />
+                  <span
+                    className="font-semibold shrink-0"
+                    style={{ color: "var(--ink)", minWidth: 78 }}
+                  >
+                    {s.city}
+                  </span>
+                  <div
+                    className="flex-1 h-1.5 rounded-full overflow-hidden"
+                    style={{ background: "var(--border-color)" }}
+                  >
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        background: "linear-gradient(90deg, #1677FF, #3B9FFF)",
+                        width: `${s.pct}%`,
+                      }}
+                    />
+                  </div>
+                  <span
+                    className="font-bold tabular-nums shrink-0"
+                    style={{ color: "var(--ink)", minWidth: 22, textAlign: "right" }}
+                  >
+                    {s.count}
+                  </span>
                 </li>
               ))}
             </ul>
           </div>
         </div>
-      </div>
-    </div>
-  )
-}
-
-function KpiTile({ label, value, delta, color }: { label: string; value: string; delta: string; color: string }) {
-  return (
-    <div
-      className="rounded-[var(--radius-sm)] border p-2.5"
-      style={{ background: "var(--bg)", borderColor: "var(--border-color)" }}
-    >
-      <div className="flex items-center gap-1.5">
-        <div className="w-1 h-3.5 rounded-full" style={{ background: color }} />
-        <div className="text-[9.5px] font-bold uppercase tracking-[0.08em]" style={{ color: "var(--muted)" }}>
-          {label}
-        </div>
-      </div>
-      <div className="mt-1 text-[17px] font-bold tracking-[-0.02em] leading-none" style={{ color: "var(--ink)" }}>
-        {value}
-      </div>
-      <div className="mt-0.5 text-[10px] font-bold" style={{ color }}>
-        {delta}
       </div>
     </div>
   )
