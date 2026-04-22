@@ -7,6 +7,21 @@ import {
   Search,
   Gauge,
   Star,
+  ArrowLeft,
+  ArrowRight,
+  RotateCw,
+  Lock,
+  Wrench,
+  Droplet,
+  Clock,
+  Phone,
+  ShieldCheck,
+  MapPin,
+  Calendar,
+  Menu,
+  Signal,
+  Wifi,
+  BatteryFull,
 } from "lucide-react"
 
 const trustItems = [
@@ -147,12 +162,19 @@ export function WebHero() {
             </ul>
           </div>
 
-          {/* Right: browser chrome mockup */}
+          {/* Right: mockup — phone on mobile, browser on desktop */}
           <div
             className="relative"
             style={{ animation: "fadeInUp 0.8s ease-out 0.1s both" }}
           >
-            <BrowserMockup />
+            {/* Phone mockup (mobile only) */}
+            <div className="sm:hidden flex justify-center">
+              <PhoneMockup />
+            </div>
+            {/* Browser mockup (tablet+ desktop) */}
+            <div className="hidden sm:block">
+              <BrowserMockup />
+            </div>
 
             {/* Decorative floating badge */}
             <div
@@ -200,130 +222,720 @@ function HeroPill({
   )
 }
 
+/* =========================================================================
+   Phone mockup — shown on mobile only
+   ========================================================================= */
+
+function PhoneMockup() {
+  return (
+    <div className="relative">
+      {/* Phone frame */}
+      <div
+        className="relative w-[260px] aspect-[9/19.5] rounded-[40px] p-[6px]"
+        style={{
+          background: "linear-gradient(180deg, #1A2541 0%, #0B132B 100%)",
+          boxShadow:
+            "0 10px 30px rgba(11,19,43,0.30), 0 30px 80px -20px rgba(11,19,43,0.35), inset 0 0 0 1px rgba(255,255,255,0.08)",
+        }}
+      >
+        {/* Screen */}
+        <div
+          className="relative w-full h-full rounded-[34px] overflow-hidden flex flex-col"
+          style={{
+            background: "linear-gradient(180deg, #FFFFFF 0%, #F4F8FF 100%)",
+          }}
+        >
+          {/* Notch */}
+          <div
+            className="absolute top-1.5 left-1/2 -translate-x-1/2 w-[72px] h-[18px] rounded-b-[14px] z-20"
+            style={{ background: "#0B132B" }}
+          />
+
+          {/* Status bar */}
+          <div className="relative flex items-center justify-between px-5 pt-2 pb-1.5 text-[9px] font-semibold z-10"
+               style={{ color: "var(--ink)" }}>
+            <span>9:41</span>
+            <div className="flex items-center gap-[3px]">
+              <Signal className="w-2.5 h-2.5" strokeWidth={2.5} />
+              <Wifi className="w-2.5 h-2.5" strokeWidth={2.5} />
+              <BatteryFull className="w-3 h-3" strokeWidth={2.25} />
+            </div>
+          </div>
+
+          {/* App top nav */}
+          <div
+            className="flex items-center justify-between px-3.5 py-2 border-b"
+            style={{ borderColor: "var(--border-color)" }}
+          >
+            <div className="flex items-center gap-1.5">
+              <div
+                className="w-5 h-5 rounded-md flex items-center justify-center"
+                style={{
+                  background: "linear-gradient(135deg, var(--accent), #0EA5E9)",
+                  boxShadow: "0 1px 3px rgba(22,119,255,0.30)",
+                }}
+              >
+                <Wrench className="w-2.5 h-2.5 text-white" strokeWidth={2.75} />
+              </div>
+              <div
+                className="h-2 w-[54px] rounded-full"
+                style={{
+                  background: "linear-gradient(90deg, #0B132B 0%, #1A2541 100%)",
+                }}
+              />
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div
+                className="w-5 h-5 rounded-md flex items-center justify-center"
+                style={{ background: "#10B98114", color: "#10B981" }}
+              >
+                <Phone className="w-2.5 h-2.5" strokeWidth={2.5} />
+              </div>
+              <Menu className="w-3.5 h-3.5" strokeWidth={2.5} style={{ color: "var(--ink)" }} />
+            </div>
+          </div>
+
+          {/* Scrollable body */}
+          <div className="relative flex-1 overflow-hidden px-3.5 pt-3 pb-2">
+            {/* Trust pill */}
+            <div
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full mb-2 border"
+              style={{ background: "#FFFBEB", borderColor: "#FCE8A8" }}
+            >
+              <Star
+                className="w-2 h-2"
+                style={{ color: "#F59E0B" }}
+                fill="#F59E0B"
+                strokeWidth={0}
+              />
+              <span className="text-[8px] font-bold" style={{ color: "#B45309" }}>
+                4.9 · 214 reviews
+              </span>
+            </div>
+
+            {/* Headline bars */}
+            <div
+              className="h-[14px] w-[92%] rounded-md mb-1"
+              style={{
+                background: "linear-gradient(90deg, #0B132B 0%, #1A2541 100%)",
+              }}
+            />
+            <div
+              className="h-[14px] w-[62%] rounded-md mb-2"
+              style={{
+                background:
+                  "linear-gradient(90deg, #1A2541 0%, #1A2541 50%, rgba(22,119,255,0.75) 100%)",
+              }}
+            />
+            {/* Body lines */}
+            <div className="h-[5px] w-full rounded-full mb-0.5" style={{ background: "#DEE6F0" }} />
+            <div className="h-[5px] w-[82%] rounded-full mb-2.5" style={{ background: "#E5ECF4" }} />
+
+            {/* Hero image card — short */}
+            <div
+              className="relative overflow-hidden rounded-[var(--radius-sm)] aspect-[16/9] mb-2.5"
+              style={{
+                background:
+                  "linear-gradient(135deg, #1677FF 0%, #0EA5E9 45%, #0B6FE0 100%)",
+                boxShadow: "0 4px 12px -4px rgba(22,119,255,0.35)",
+              }}
+            >
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 80% 60% at 30% 25%, rgba(255,255,255,0.30) 0%, transparent 60%)",
+                }}
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 opacity-25"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)",
+                  backgroundSize: "16px 16px",
+                  maskImage:
+                    "linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 85%)",
+                  WebkitMaskImage:
+                    "linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 85%)",
+                }}
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div
+                  className="w-11 h-11 rounded-full flex items-center justify-center"
+                  style={{
+                    background: "rgba(255,255,255,0.22)",
+                    boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.4)",
+                  }}
+                >
+                  <Wrench className="w-5 h-5 text-white" strokeWidth={2.25} />
+                </div>
+              </div>
+              <div
+                className="absolute top-1.5 left-1.5 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full"
+                style={{
+                  background: "rgba(255,255,255,0.92)",
+                  boxShadow: "0 1px 3px rgba(11,19,43,0.18)",
+                }}
+              >
+                <ShieldCheck
+                  className="w-2 h-2"
+                  strokeWidth={3}
+                  style={{ color: "#10B981" }}
+                />
+                <span
+                  className="text-[7.5px] font-bold"
+                  style={{ color: "#1A2541" }}
+                >
+                  Licensed
+                </span>
+              </div>
+            </div>
+
+            {/* Full-width CTAs */}
+            <div
+              className="h-8 rounded-md flex items-center justify-center gap-1.5 mb-1.5"
+              style={{
+                background: "linear-gradient(180deg, #2B8AFF 0%, var(--accent) 100%)",
+                boxShadow: "0 2px 6px rgba(22,119,255,0.30)",
+              }}
+            >
+              <span
+                className="h-[6px] w-[88px] rounded-full"
+                style={{ background: "rgba(255,255,255,0.95)" }}
+              />
+              <ArrowRight className="w-2.5 h-2.5 text-white" strokeWidth={3} />
+            </div>
+            <div
+              className="h-8 rounded-md flex items-center justify-center gap-1.5 border"
+              style={{
+                borderColor: "var(--border-color)",
+                background: "#fff",
+              }}
+            >
+              <Phone
+                className="w-3 h-3"
+                strokeWidth={2.75}
+                style={{ color: "#10B981" }}
+              />
+              <span
+                className="h-[6px] w-[70px] rounded-full"
+                style={{ background: "var(--ink)" }}
+              />
+            </div>
+
+            {/* Trust row */}
+            <div className="mt-2.5 flex items-center justify-between">
+              <div className="flex items-center gap-1">
+                <ShieldCheck
+                  className="w-2.5 h-2.5"
+                  strokeWidth={2.5}
+                  style={{ color: "#10B981" }}
+                />
+                <span className="h-[5px] w-10 rounded-full" style={{ background: "#C9D4E3" }} />
+              </div>
+              <div className="flex items-center gap-1">
+                <MapPin
+                  className="w-2.5 h-2.5"
+                  strokeWidth={2.5}
+                  style={{ color: "#1677FF" }}
+                />
+                <span className="h-[5px] w-12 rounded-full" style={{ background: "#C9D4E3" }} />
+              </div>
+              <div className="flex items-center gap-1">
+                <Clock
+                  className="w-2.5 h-2.5"
+                  strokeWidth={2.5}
+                  style={{ color: "#F59E0B" }}
+                />
+                <span className="h-[5px] w-8 rounded-full" style={{ background: "#C9D4E3" }} />
+              </div>
+            </div>
+          </div>
+
+          {/* Home indicator */}
+          <div className="pb-1.5 flex justify-center">
+            <div
+              className="h-[3px] w-[72px] rounded-full"
+              style={{ background: "rgba(11,19,43,0.35)" }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Floating "Available today" pill */}
+      <div
+        className="absolute -top-2 -right-2 inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white border text-[10.5px] font-semibold shadow-[0_4px_16px_rgba(11,19,43,0.12)]"
+        style={{ borderColor: "var(--border-color)", color: "var(--ink)" }}
+      >
+        <span className="relative flex w-1.5 h-1.5">
+          <span
+            className="absolute inset-0 rounded-full opacity-60"
+            style={{
+              background: "#10B981",
+              animation: "subtlePulse 2s ease-in-out infinite",
+            }}
+          />
+          <span
+            className="relative w-1.5 h-1.5 rounded-full"
+            style={{ background: "#10B981" }}
+          />
+        </span>
+        Available today
+      </div>
+    </div>
+  )
+}
+
+/* =========================================================================
+   Browser mockup — shown on tablet/desktop
+   ========================================================================= */
+
 function BrowserMockup() {
+  const services = [
+    { Icon: Wrench, color: "#1677FF", label: "Repair" },
+    { Icon: Droplet, color: "#0EA5E9", label: "Installation" },
+    { Icon: Clock, color: "#10B981", label: "24/7 Service" },
+  ]
+
   return (
     <div
       className="card-surface relative overflow-hidden"
       style={{
         borderRadius: "var(--radius-xl)",
         boxShadow:
-          "0 1px 2px rgba(17,35,68,0.06), 0 20px 60px rgba(11,19,43,0.12)",
+          "0 1px 2px rgba(17,35,68,0.04), 0 24px 60px -20px rgba(17,35,68,0.18), 0 40px 100px -40px rgba(22,119,255,0.18)",
       }}
     >
       {/* Chrome bar */}
       <div
-        className="flex items-center gap-2 px-4 py-3 border-b"
+        className="flex items-center gap-2.5 px-3.5 py-2.5 border-b"
         style={{
-          background: "linear-gradient(180deg, #F4F7FB 0%, #E9EEF4 100%)",
+          background: "linear-gradient(180deg, #F6F8FC 0%, #ECF1F8 100%)",
           borderColor: "var(--border-color)",
         }}
       >
-        <div className="flex gap-1.5">
-          <span className="w-3 h-3 rounded-full" style={{ background: "#FF6057" }} />
-          <span className="w-3 h-3 rounded-full" style={{ background: "#FFBD2E" }} />
-          <span className="w-3 h-3 rounded-full" style={{ background: "#27C93F" }} />
+        {/* Traffic lights */}
+        <div className="flex gap-1.5 shrink-0">
+          <span
+            className="w-[11px] h-[11px] rounded-full"
+            style={{ background: "#FF6057", boxShadow: "inset 0 0 0 0.5px rgba(0,0,0,0.08)" }}
+          />
+          <span
+            className="w-[11px] h-[11px] rounded-full"
+            style={{ background: "#FFBD2E", boxShadow: "inset 0 0 0 0.5px rgba(0,0,0,0.08)" }}
+          />
+          <span
+            className="w-[11px] h-[11px] rounded-full"
+            style={{ background: "#27C93F", boxShadow: "inset 0 0 0 0.5px rgba(0,0,0,0.08)" }}
+          />
         </div>
+        {/* Browser nav icons */}
+        <div className="hidden sm:flex items-center gap-1 ml-1.5" style={{ color: "#8A97AA" }}>
+          <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2.25} />
+          <ArrowRight className="w-3.5 h-3.5 opacity-40" strokeWidth={2.25} />
+          <RotateCw className="w-3 h-3 ml-0.5" strokeWidth={2.25} />
+        </div>
+        {/* URL bar */}
         <div
-          className="ml-3 flex-1 h-6 rounded-md flex items-center px-3 text-[11px] font-medium"
+          className="ml-1 sm:ml-2 flex-1 h-6 rounded-md flex items-center gap-1.5 px-2.5 text-[10.5px] sm:text-[11px] font-medium"
           style={{
             background: "#fff",
             border: "1px solid var(--border-color)",
             color: "var(--muted)",
           }}
         >
-          <span
-            className="inline-block w-3 h-3 rounded-full mr-2"
-            style={{ background: "#10B981" }}
-            aria-hidden
-          />
-          yourbrand.com
+          <Lock className="w-3 h-3 shrink-0" strokeWidth={2.25} style={{ color: "#10B981" }} />
+          <span style={{ color: "var(--ink)" }}>yourbrand.com</span>
+          <span className="ml-auto hidden sm:inline text-[10px]" style={{ color: "#B8C3D4" }}>
+            ⌘R
+          </span>
+        </div>
+        {/* Right-side profile dot */}
+        <div
+          className="hidden sm:flex w-5 h-5 rounded-full items-center justify-center shrink-0 text-[9px] font-bold text-white"
+          style={{
+            background: "linear-gradient(135deg, #8B5CF6, #EC4899)",
+          }}
+        >
+          Y
         </div>
       </div>
 
       {/* Page body */}
       <div
-        className="relative p-5 sm:p-6"
+        className="relative p-4 sm:p-5"
         style={{
-          background:
-            "linear-gradient(180deg, #FFFFFF 0%, #F7FAFF 100%)",
+          background: "linear-gradient(180deg, #FFFFFF 0%, #F4F8FF 100%)",
         }}
       >
-        {/* Nav */}
-        <div className="flex items-center justify-between mb-5">
-          <div
-            className="h-5 w-[60px] rounded-md"
-            style={{
-              background: "linear-gradient(135deg, var(--accent), var(--cyan))",
-            }}
-          />
-          <div className="flex gap-3">
-            <span className="h-2 w-10 rounded-full" style={{ background: "#DCE4EE" }} />
-            <span className="h-2 w-10 rounded-full" style={{ background: "#DCE4EE" }} />
-            <span className="h-2 w-10 rounded-full" style={{ background: "#DCE4EE" }} />
-            <span
-              className="h-5 w-14 rounded-full"
-              style={{
-                background: "var(--accent)",
-              }}
-            />
-          </div>
-        </div>
+        {/* Dot-grid pattern overlay */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.5]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, #D8E2F0 1px, transparent 1px)",
+            backgroundSize: "18px 18px",
+            maskImage:
+              "radial-gradient(ellipse 100% 80% at 50% 30%, #000 0%, transparent 75%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 100% 80% at 50% 30%, #000 0%, transparent 75%)",
+          }}
+        />
+        {/* Soft blue aura behind hero */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-0 right-0 w-[55%] h-[55%]"
+          style={{
+            background:
+              "radial-gradient(ellipse 100% 100% at 100% 0%, rgba(22,119,255,0.10) 0%, transparent 70%)",
+          }}
+        />
 
-        {/* Hero block */}
-        <div className="mb-5">
-          <div
-            className="h-6 w-[85%] rounded-md mb-2.5"
-            style={{ background: "#1A2541" }}
-          />
-          <div
-            className="h-6 w-[60%] rounded-md mb-4"
-            style={{ background: "#1A2541" }}
-          />
-          <div className="h-2 w-full rounded-full mb-1.5" style={{ background: "#E4EAF2" }} />
-          <div className="h-2 w-[90%] rounded-full mb-1.5" style={{ background: "#E4EAF2" }} />
-          <div className="h-2 w-[75%] rounded-full mb-4" style={{ background: "#E4EAF2" }} />
-          <div className="flex gap-2">
-            <span
-              className="h-8 w-[110px] rounded-md"
-              style={{
-                background: "linear-gradient(135deg, var(--accent), var(--cyan))",
-              }}
-            />
-            <span
-              className="h-8 w-[90px] rounded-md border"
-              style={{
-                borderColor: "var(--border-color)",
-                background: "#fff",
-              }}
-            />
-          </div>
-        </div>
-
-        {/* Feature row */}
-        <div className="grid grid-cols-3 gap-2.5">
-          {[0, 1, 2].map((i) => (
+        {/* Top nav */}
+        <div className="relative flex items-center justify-between mb-4 sm:mb-5">
+          <div className="flex items-center gap-1.5">
             <div
-              key={i}
-              className="rounded-[var(--radius-sm)] p-3 border"
+              className="w-6 h-6 rounded-md flex items-center justify-center shrink-0"
+              style={{
+                background: "linear-gradient(135deg, var(--accent), #0EA5E9)",
+                boxShadow: "0 2px 6px rgba(22,119,255,0.30)",
+              }}
+            >
+              <Wrench className="w-3 h-3 text-white" strokeWidth={2.75} />
+            </div>
+            <div
+              className="h-2.5 w-[84px] rounded-full"
+              style={{
+                background: "linear-gradient(90deg, #0B132B 0%, #1A2541 100%)",
+              }}
+            />
+          </div>
+          <div className="flex items-center gap-2.5">
+            {/* Phone chip — clickable look */}
+            <span
+              className="hidden xs:flex h-6 items-center gap-1 px-2 rounded-md border"
               style={{
                 borderColor: "var(--border-color)",
                 background: "#fff",
               }}
             >
-              <div
-                className="w-6 h-6 rounded-md mb-2"
+              <Phone
+                className="w-2.5 h-2.5"
+                strokeWidth={2.5}
+                style={{ color: "#10B981" }}
+              />
+              <span
+                className="h-[6px] w-10 rounded-full"
+                style={{ background: "#1A2541" }}
+              />
+            </span>
+            {/* Primary CTA — "Book Now" */}
+            <span
+              className="h-6 px-3 rounded-md flex items-center gap-1"
+              style={{
+                background: "linear-gradient(180deg, #2B8AFF 0%, var(--accent) 100%)",
+                boxShadow: "0 2px 6px rgba(22,119,255,0.30)",
+              }}
+            >
+              <Calendar className="w-2.5 h-2.5 text-white" strokeWidth={2.75} />
+              <span
+                className="h-[6px] w-10 rounded-full"
+                style={{ background: "rgba(255,255,255,0.9)" }}
+              />
+            </span>
+          </div>
+        </div>
+
+        {/* Hero split: copy + service visual */}
+        <div className="relative grid grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] gap-3 sm:gap-4 mb-4 sm:mb-5">
+          {/* Left: copy */}
+          <div>
+            {/* Trust pill */}
+            <div
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full mb-2.5 border"
+              style={{
+                background: "#FFFBEB",
+                borderColor: "#FCE8A8",
+              }}
+            >
+              <Star
+                className="w-2 h-2"
+                style={{ color: "#F59E0B" }}
+                fill="#F59E0B"
+                strokeWidth={0}
+              />
+              <span
+                className="text-[8.5px] font-bold"
+                style={{ color: "#B45309" }}
+              >
+                4.9
+              </span>
+              <span
+                className="h-[5px] w-8 rounded-full"
+                style={{ background: "#E5BE6D" }}
+              />
+            </div>
+            {/* Headline bars */}
+            <div
+              className="h-[18px] w-[92%] rounded-md mb-1.5"
+              style={{
+                background:
+                  "linear-gradient(90deg, #0B132B 0%, #1A2541 100%)",
+              }}
+            />
+            <div
+              className="h-[18px] w-[68%] rounded-md mb-3"
+              style={{
+                background:
+                  "linear-gradient(90deg, #1A2541 0%, #1A2541 60%, rgba(22,119,255,0.65) 100%)",
+              }}
+            />
+            {/* Body lines */}
+            <div className="h-[6px] w-full rounded-full mb-1" style={{ background: "#DEE6F0" }} />
+            <div className="h-[6px] w-[88%] rounded-full mb-1" style={{ background: "#DEE6F0" }} />
+            <div className="h-[6px] w-[60%] rounded-full mb-3.5" style={{ background: "#E5ECF4" }} />
+            {/* CTA buttons */}
+            <div className="flex gap-2 items-center">
+              {/* Primary: Get a Free Quote */}
+              <span
+                className="relative h-7 px-3 rounded-md flex items-center gap-1.5"
                 style={{
-                  background: `${["#1677FF", "#10B981", "#F59E0B"][i]}1A`,
+                  background:
+                    "linear-gradient(180deg, #2B8AFF 0%, var(--accent) 100%)",
+                  boxShadow: "0 2px 6px rgba(22,119,255,0.30)",
+                }}
+              >
+                <span
+                  className="h-[6px] w-14 rounded-full"
+                  style={{ background: "rgba(255,255,255,0.95)" }}
+                />
+                <ArrowRight className="w-2.5 h-2.5 text-white" strokeWidth={3} />
+              </span>
+              {/* Secondary: Call now */}
+              <span
+                className="h-7 px-3 rounded-md border flex items-center gap-1.5"
+                style={{
+                  borderColor: "var(--border-color)",
+                  background: "#fff",
+                }}
+              >
+                <Phone
+                  className="w-2.5 h-2.5"
+                  strokeWidth={2.75}
+                  style={{ color: "#10B981" }}
+                />
+                <span
+                  className="h-[6px] w-10 rounded-full"
+                  style={{ background: "var(--ink)" }}
+                />
+              </span>
+            </div>
+            {/* Trust row */}
+            <div className="mt-3 flex items-center gap-2.5 flex-wrap">
+              <div className="flex items-center gap-1">
+                <ShieldCheck
+                  className="w-3 h-3"
+                  strokeWidth={2.5}
+                  style={{ color: "#10B981" }}
+                />
+                <span
+                  className="h-[6px] w-12 rounded-full"
+                  style={{ background: "#C9D4E3" }}
+                />
+              </div>
+              <div className="flex items-center gap-1">
+                <MapPin
+                  className="w-3 h-3"
+                  strokeWidth={2.5}
+                  style={{ color: "#1677FF" }}
+                />
+                <span
+                  className="h-[6px] w-14 rounded-full"
+                  style={{ background: "#C9D4E3" }}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Right: service visual card */}
+          <div className="relative">
+            {/* Photo-style gradient card */}
+            <div
+              className="relative overflow-hidden rounded-[var(--radius-md)] aspect-[4/3.6]"
+              style={{
+                background:
+                  "linear-gradient(135deg, #1677FF 0%, #0EA5E9 45%, #0B6FE0 100%)",
+                boxShadow:
+                  "0 1px 3px rgba(17,35,68,0.04), 0 8px 20px -8px rgba(22,119,255,0.35)",
+              }}
+            >
+              {/* soft glow */}
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 80% 60% at 30% 20%, rgba(255,255,255,0.35) 0%, transparent 60%), radial-gradient(ellipse 90% 70% at 80% 90%, rgba(11,19,43,0.25) 0%, transparent 60%)",
+                }}
+              />
+              {/* Grid pattern */}
+              <div
+                aria-hidden
+                className="absolute inset-0 opacity-20"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(rgba(255,255,255,0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.35) 1px, transparent 1px)",
+                  backgroundSize: "22px 22px",
+                  maskImage:
+                    "linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 80%)",
+                  WebkitMaskImage:
+                    "linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 80%)",
+                }}
+              />
+              {/* Big wrench icon as "service scene" */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div
+                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center"
+                  style={{
+                    background: "rgba(255,255,255,0.18)",
+                    boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.35)",
+                    backdropFilter: "blur(6px)",
+                  }}
+                >
+                  <Wrench
+                    className="w-7 h-7 sm:w-9 sm:h-9 text-white"
+                    strokeWidth={2.25}
+                  />
+                </div>
+              </div>
+              {/* Top badge: "Licensed & Insured" */}
+              <div
+                className="absolute top-2 left-2 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full"
+                style={{
+                  background: "rgba(255,255,255,0.9)",
+                  boxShadow: "0 1px 4px rgba(11,19,43,0.15)",
+                }}
+              >
+                <ShieldCheck
+                  className="w-2 h-2"
+                  strokeWidth={3}
+                  style={{ color: "#10B981" }}
+                />
+                <span
+                  className="h-[5px] w-8 rounded-full"
+                  style={{ background: "#1A2541" }}
+                />
+              </div>
+              {/* Floating review card (bottom-right) */}
+              <div
+                className="absolute bottom-2 right-2 flex items-center gap-1.5 px-2 py-1.5 rounded-md"
+                style={{
+                  background: "#fff",
+                  boxShadow: "0 4px 12px rgba(11,19,43,0.18)",
+                }}
+              >
+                <div
+                  className="w-5 h-5 rounded-full flex items-center justify-center"
+                  style={{
+                    background: "linear-gradient(135deg, #F59E0B, #EF4444)",
+                  }}
+                >
+                  <Star
+                    className="w-2.5 h-2.5 text-white"
+                    fill="#fff"
+                    strokeWidth={0}
+                  />
+                </div>
+                <div>
+                  <div className="flex gap-[1.5px] mb-0.5">
+                    {[0, 1, 2, 3, 4].map((i) => (
+                      <Star
+                        key={i}
+                        className="w-1.5 h-1.5"
+                        style={{ color: "#F59E0B" }}
+                        fill="#F59E0B"
+                        strokeWidth={0}
+                      />
+                    ))}
+                  </div>
+                  <div
+                    className="h-[5px] w-12 rounded-full"
+                    style={{ background: "#C9D4E3" }}
+                  />
+                </div>
+              </div>
+            </div>
+            {/* "Available today" pill floating above card */}
+            <div
+              className="absolute -top-2 -right-1 inline-flex items-center gap-1 px-2 py-1 rounded-full"
+              style={{
+                background: "#fff",
+                boxShadow: "0 2px 8px rgba(11,19,43,0.12)",
+                border: "1px solid var(--border-color)",
+              }}
+            >
+              <span
+                className="relative flex w-1.5 h-1.5"
+              >
+                <span
+                  className="absolute inset-0 rounded-full opacity-60"
+                  style={{
+                    background: "#10B981",
+                    animation: "subtlePulse 2s ease-in-out infinite",
+                  }}
+                />
+                <span
+                  className="relative w-1.5 h-1.5 rounded-full"
+                  style={{ background: "#10B981" }}
+                />
+              </span>
+              <span
+                className="h-[5px] w-12 rounded-full"
+                style={{ background: "#1A2541" }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Services row */}
+        <div className="relative grid grid-cols-3 gap-2 sm:gap-2.5">
+          {services.map(({ Icon, color, label }) => (
+            <div
+              key={label}
+              className="relative overflow-hidden rounded-[var(--radius-sm)] p-2.5 border flex items-center gap-2"
+              style={{
+                borderColor: "var(--border-color)",
+                background: "#fff",
+                boxShadow: "0 1px 2px rgba(17,35,68,0.03)",
+              }}
+            >
+              <div
+                aria-hidden
+                className="pointer-events-none absolute right-[-12px] top-[-12px] w-[40px] h-[40px]"
+                style={{
+                  background: `radial-gradient(circle, ${color}26 0%, transparent 70%)`,
                 }}
               />
               <div
-                className="h-2 w-full rounded-full mb-1"
-                style={{ background: "#DCE4EE" }}
-              />
-              <div
-                className="h-2 w-[70%] rounded-full"
-                style={{ background: "#E8EDF4" }}
-              />
+                className="relative w-7 h-7 rounded-md flex items-center justify-center shrink-0"
+                style={{ background: `${color}14`, color }}
+              >
+                <Icon className="w-3.5 h-3.5" strokeWidth={2.5} />
+              </div>
+              <div className="relative flex-1 min-w-0">
+                <div
+                  className="h-[7px] w-[80%] rounded-full mb-1"
+                  style={{ background: "#1A2541" }}
+                />
+                <div
+                  className="h-[5px] w-[55%] rounded-full"
+                  style={{ background: "#C9D4E3" }}
+                />
+              </div>
+              <span className="sr-only">{label}</span>
             </div>
           ))}
         </div>
