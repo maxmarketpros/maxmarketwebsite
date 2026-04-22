@@ -143,6 +143,18 @@
   padding-right: 24px;
 }
 
+/* Mobile-first vertical section padding: 80px default, 120px at lg+ */
+.section-y {
+  padding-top: var(--section-py-sm);
+  padding-bottom: var(--section-py-sm);
+}
+@media (min-width: 1024px) {
+  .section-y {
+    padding-top: var(--section-py);
+    padding-bottom: var(--section-py);
+  }
+}
+
 .card-surface {
   background: var(--surface);
   border: 1px solid var(--border-color);

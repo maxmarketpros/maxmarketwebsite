@@ -1,7 +1,5 @@
 "use client"
 
-import Image from "next/image"
-
 const partners = [
   { name: "Google", src: "/partners/google-logo.webp" },
   { name: "Google My Business", src: "/partners/google-my-business-logo.webp" },
@@ -33,18 +31,14 @@ export function PartnerLogos() {
       <div className="relative w-full overflow-hidden">
         <div className="flex items-center gap-14 animate-scroll whitespace-nowrap w-max">
           {doubled.map((partner, i) => (
-            <div
+            <img
               key={`${partner.name}-${i}`}
-              className="relative h-8 sm:h-9 w-auto shrink-0"
-            >
-              <Image
-                src={partner.src}
-                alt={partner.name}
-                width={120}
-                height={36}
-                className="h-full w-auto object-contain"
-              />
-            </div>
+              src={partner.src}
+              alt={partner.name}
+              loading="lazy"
+              decoding="async"
+              className="h-8 sm:h-9 w-auto shrink-0 object-contain"
+            />
           ))}
         </div>
       </div>

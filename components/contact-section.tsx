@@ -49,13 +49,7 @@ export function ContactSection() {
         <div className="absolute inset-0 noise-overlay" />
       </div>
 
-      <div
-        className="section-container relative z-10"
-        style={{
-          paddingTop: "var(--section-py)",
-          paddingBottom: "var(--section-py)",
-        }}
-      >
+      <div className="section-container section-y relative z-10">
         <div
           className="card-surface card-surface-hover relative overflow-hidden"
           style={{ borderRadius: "var(--radius-xl)" }}
@@ -86,12 +80,14 @@ export function ContactSection() {
 
               {/* Heading */}
               <h2
-                className="mt-5 text-[32px] sm:text-[40px] lg:text-[46px] font-bold leading-[1.1] tracking-[-0.02em]"
+                className="mt-5 text-[32px] sm:text-[40px] lg:text-[48px] font-bold leading-[1.1] tracking-[-0.02em] text-balance"
                 style={{ color: "var(--ink)" }}
               >
                 Ready to grow your
                 <br />
-                <span className="accent-underline">local market</span>?
+                <span className="whitespace-nowrap">
+                  <span className="accent-underline">local market</span>?
+                </span>
               </h2>
 
               {/* Description */}
@@ -124,6 +120,7 @@ export function ContactSection() {
                           width={24}
                           height={24}
                           loading="lazy"
+                          decoding="async"
                           className="w-6 h-6 object-contain"
                         />
                       </div>

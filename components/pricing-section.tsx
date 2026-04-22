@@ -65,10 +65,7 @@ export function PricingSection() {
         <div className="absolute inset-0 noise-overlay" />
       </div>
 
-      <div
-        className="section-container relative z-10"
-        style={{ paddingTop: 'var(--section-py)', paddingBottom: 'var(--section-py)' }}
-      >
+      <div className="section-container section-y relative z-10">
         {/* Section heading */}
         <SectionHeader
           heading={

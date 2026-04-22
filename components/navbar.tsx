@@ -28,7 +28,10 @@ export function Navbar() {
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10)
+    const handleScroll = () => {
+      const next = window.scrollY > 10
+      setScrolled((prev) => (prev === next ? prev : next))
+    }
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -93,7 +96,8 @@ export function Navbar() {
               alt="Max Market Pros"
               width={160}
               height={40}
-              className="h-9 w-auto"
+              sizes="160px"
+              style={{ width: "auto", height: "36px" }}
               priority
             />
           </Link>

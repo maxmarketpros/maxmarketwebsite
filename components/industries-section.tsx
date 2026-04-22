@@ -73,19 +73,13 @@ const HOVER_TINT = "rgba(22, 119, 255, 0.03)"
 export function IndustriesSection() {
   return (
     <section className="relative" id="industries">
-      <div
-        className="section-container"
-        style={{
-          paddingTop: "calc(var(--section-py) + 20px)",
-          paddingBottom: "calc(var(--section-py) + 20px)",
-        }}
-      >
+      <div className="section-container section-y">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left — heading block */}
           <div className="lg:col-span-5 lg:pt-4">
             <Pill>Industries we serve</Pill>
             <h2
-              className="mt-5 text-[36px] sm:text-[40px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] max-w-[520px]"
+              className="mt-5 text-[32px] sm:text-[40px] lg:text-[48px] font-bold leading-[1.1] tracking-[-0.02em] text-balance max-w-[520px]"
               style={{ color: "var(--ink)" }}
             >
               Different industries.
@@ -96,7 +90,7 @@ export function IndustriesSection() {
               </span>
             </h2>
             <p
-              className="mt-6 text-[16px] sm:text-[17px] leading-[1.65] max-w-[420px]"
+              className="mt-6 text-[17px] sm:text-[19px] leading-[1.65] max-w-[420px]"
               style={{ color: "var(--muted)" }}
             >
               From HVAC emergencies to dinner reservations, every industry has its own rhythm.

@@ -79,20 +79,17 @@ export function InfrastructureSection() {
       {/* Subtle noise */}
       <div className="absolute inset-0 noise-overlay" />
 
-      <div
-        className="section-container relative z-10"
-        style={{
-          paddingTop: "var(--section-py)",
-          paddingBottom: "var(--section-py)",
-        }}
-      >
+      <div className="section-container section-y relative z-10">
         <SectionHeader
           pill="Our Digital Infrastructure"
           heading={
             <>
               Built to rank.
               <br />
-              Engineered to <span className="accent-underline">close</span>.
+              Engineered to{" "}
+              <span className="whitespace-nowrap">
+                <span className="accent-underline">close</span>.
+              </span>
             </>
           }
           paragraph="We provide the complete marketing engine required to dominate local search and capture every lead across your territory."
@@ -126,9 +123,9 @@ export function InfrastructureSection() {
 
               <div className="relative flex flex-col gap-6 lg:grid lg:grid-cols-[1fr_auto] lg:items-center">
                 {/* Icon — top on mobile/tablet, right on desktop */}
-                <div className="order-1 lg:order-2 flex items-center justify-center shrink-0 w-full lg:w-[200px] h-[180px] lg:h-[200px]">
+                <div className="order-1 lg:order-2 flex items-center justify-center shrink-0 w-full lg:w-[200px] h-[140px] lg:h-[200px]">
                   {Array.isArray(card.iconIds) ? (
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
                       {card.iconIds.map((id) => (
                         <img
                           key={id}
@@ -137,7 +134,8 @@ export function InfrastructureSection() {
                           width={80}
                           height={80}
                           loading="lazy"
-                          className="w-20 h-20 object-contain"
+                          decoding="async"
+                          className="w-[64px] h-[64px] sm:w-20 sm:h-20 object-contain"
                         />
                       ))}
                     </div>
@@ -148,7 +146,8 @@ export function InfrastructureSection() {
                       width={176}
                       height={176}
                       loading="lazy"
-                      className="w-[176px] h-[176px] object-contain"
+                      decoding="async"
+                      className="w-[120px] h-[120px] sm:w-[176px] sm:h-[176px] object-contain"
                     />
                   )}
                 </div>

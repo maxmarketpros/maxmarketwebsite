@@ -13,21 +13,21 @@ export function HeroSection() {
       <div className="absolute inset-0 pointer-events-none">
         {/* Strong right-side blue glow */}
         <div
-          className="absolute top-[-10%] right-[-5%] w-[900px] h-[900px] rounded-full"
+          className="absolute top-[-10%] right-[-5%] w-[520px] h-[520px] sm:w-[900px] sm:h-[900px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(22,119,255,0.18) 0%, rgba(22,119,255,0.06) 40%, transparent 70%)',
           }}
         />
         {/* Secondary cyan glow right */}
         <div
-          className="absolute top-[20%] right-[5%] w-[600px] h-[600px] rounded-full"
+          className="absolute top-[20%] right-[5%] w-[360px] h-[360px] sm:w-[600px] sm:h-[600px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(116,211,255,0.15) 0%, transparent 60%)',
           }}
         />
         {/* Subtle left glow */}
         <div
-          className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full"
+          className="absolute bottom-[-20%] left-[-10%] w-[320px] h-[320px] sm:w-[500px] sm:h-[500px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(22,119,255,0.05) 0%, transparent 70%)',
           }}
@@ -52,21 +52,19 @@ export function HeroSection() {
 
             {/* H1 */}
             <h1
-              className="mt-6 text-[34px] xs:text-[40px] sm:text-[52px] lg:text-[68px] font-bold leading-[1.1] sm:leading-[1.05] tracking-[-0.02em] sm:tracking-[-0.03em] text-balance"
+              className="mt-6 text-[42px] xs:text-[46px] sm:text-[54px] lg:text-[64px] font-bold leading-[1.05] tracking-[-0.025em] sm:tracking-[-0.03em] text-balance"
               style={{ color: 'var(--ink)' }}
             >
               <span className="whitespace-nowrap">
                 Grow on <span className="accent-underline">Google</span>.
-              </span>
-              <br className="hidden sm:inline" />{' '}
-              Get more calls{' '}
-              <br className="hidden sm:inline" />
-              &amp; booked jobs.
+              </span>{' '}
+              Get more calls &amp;{' '}
+              <span className="whitespace-nowrap">booked jobs.</span>
             </h1>
 
             {/* Paragraph */}
             <p
-              className="mt-6 text-[18px] sm:text-[20px] leading-[1.65] max-w-[480px]"
+              className="mt-6 text-[17px] sm:text-[19px] leading-[1.65] max-w-[480px]"
               style={{ color: 'var(--muted)' }}
             >
               Done‑for‑you local SEO, web design, and lead generation built for service businesses.
@@ -105,7 +103,7 @@ export function HeroSection() {
           {/* Right side - Mockup */}
           <div
             className="flex justify-center lg:justify-end"
-            style={{ animation: 'fadeInUp 0.8s ease-out 0.2s both' }}
+            style={{ animation: 'fadeInUp 0.8s ease-out 0.1s both' }}
           >
             <MockupPanel />
           </div>

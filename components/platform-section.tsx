@@ -139,20 +139,15 @@ const cards: PlatformCard[] = [
 export function PlatformSection() {
   return (
     <section className="relative">
-      <div
-        className="section-container"
-        style={{
-          paddingTop: "var(--section-py)",
-          paddingBottom: "var(--section-py)",
-        }}
-      >
+      <div className="section-container section-y">
         <SectionHeader
           pill="The Platform"
           heading={
             <>
               An unfair <span className="accent-underline">advantage</span>
               <br />
-              for your local business.
+              for your{" "}
+              <span className="whitespace-nowrap">local business.</span>
             </>
           }
           paragraph="Everything you need to dominate local search and turn web traffic into booked jobs — all completely managed for you."
@@ -194,6 +189,7 @@ function BentoCard({ card }: { card: PlatformCard }) {
             width={52}
             height={52}
             loading="lazy"
+            decoding="async"
             className="w-[52px] h-[52px] object-contain shrink-0"
           />
           <span
@@ -327,6 +323,7 @@ function BentoCard({ card }: { card: PlatformCard }) {
                     width={22}
                     height={22}
                     loading="lazy"
+                    decoding="async"
                     className="w-[22px] h-[22px] object-contain"
                   />
                 </div>

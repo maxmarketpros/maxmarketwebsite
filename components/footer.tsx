@@ -81,7 +81,9 @@ export function Footer() {
               alt="Max Market Pros"
               width={160}
               height={40}
-              className="h-9 w-auto mb-5"
+              sizes="160px"
+              style={{ width: "auto", height: "36px" }}
+              className="mb-5"
             />
             <p
               className="text-[14px] leading-[1.65] max-w-[300px]"
