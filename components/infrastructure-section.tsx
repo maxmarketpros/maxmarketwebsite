@@ -1,6 +1,6 @@
 "use client"
 
-import { Check } from "lucide-react"
+import { ArrowRight, Check } from "lucide-react"
 import { SectionHeader } from "./ui/section-header"
 import { icons8Url } from "@/lib/icons8"
 
@@ -12,6 +12,8 @@ type InfraCard = {
   title: string
   description: string
   bullets: string[]
+  href: string
+  ctaLabel: string
 }
 
 const cards: InfraCard[] = [
@@ -28,6 +30,8 @@ const cards: InfraCard[] = [
       "On‑page technical SEO",
       "Premium managed hosting",
     ],
+    href: "/services/web-design",
+    ctaLabel: "Explore Web Design",
   },
   {
     pill: "Local SEO",
@@ -42,6 +46,8 @@ const cards: InfraCard[] = [
       "Weekly profile updates",
       "Local citation building",
     ],
+    href: "/services/seo",
+    ctaLabel: "Explore SEO",
   },
   {
     pill: "Lead Management",
@@ -56,6 +62,8 @@ const cards: InfraCard[] = [
       "Automated lead follow‑up",
       "ROI & pipeline tracking",
     ],
+    href: "/solutions",
+    ctaLabel: "Explore Solutions",
   },
   {
     pill: "Social Media",
@@ -70,6 +78,8 @@ const cards: InfraCard[] = [
       "Proactive engagement",
       "Audience targeting & brand authority",
     ],
+    href: "/services/social-media",
+    ctaLabel: "Explore Social Media",
   },
 ]
 
@@ -100,9 +110,11 @@ export function InfrastructureSection() {
           style={{ animation: "fadeInUp 0.7s ease-out both" }}
         >
           {cards.map((card) => (
-            <div
+            <a
               key={card.title}
-              className="card-surface card-surface-hover relative overflow-hidden p-7 md:p-8"
+              href={card.href}
+              aria-label={`${card.ctaLabel} — ${card.title}`}
+              className="card-surface card-surface-hover relative overflow-hidden p-7 md:p-8 group block"
             >
               {/* Aura — mobile/tablet: top */}
               <div
@@ -121,9 +133,9 @@ export function InfrastructureSection() {
                 }}
               />
 
-              <div className="relative flex flex-col gap-6 lg:grid lg:grid-cols-[1fr_auto] lg:items-center">
+              <div className="relative flex flex-col gap-6 lg:grid lg:grid-cols-[1fr_auto] lg:h-full">
                 {/* Icon — top on mobile/tablet, right on desktop */}
-                <div className="order-1 lg:order-2 flex items-center justify-center shrink-0 w-full lg:w-[200px] h-[140px] lg:h-[200px]">
+                <div className="order-1 lg:order-2 flex items-center justify-center shrink-0 w-full lg:w-[200px] h-[140px] lg:h-[200px] lg:self-center">
                   {Array.isArray(card.iconIds) ? (
                     <div className="grid grid-cols-2 gap-3 sm:gap-4">
                       {card.iconIds.map((id) => (
@@ -153,7 +165,7 @@ export function InfrastructureSection() {
                 </div>
 
                 {/* Text */}
-                <div className="order-2 lg:order-1 min-w-0 w-full">
+                <div className="order-2 lg:order-1 min-w-0 w-full lg:h-full lg:flex lg:flex-col">
                   <span
                     className="inline-block text-[11px] font-semibold uppercase tracking-[0.12em] px-3 py-1 rounded-full"
                     style={{
@@ -195,9 +207,20 @@ export function InfrastructureSection() {
                       </li>
                     ))}
                   </ul>
+
+                  <div
+                    className="mt-6 lg:mt-auto lg:pt-6 inline-flex items-center gap-1.5 text-[14.5px] font-semibold"
+                    style={{ color: card.pillColor }}
+                  >
+                    {card.ctaLabel}
+                    <ArrowRight
+                      className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+                      strokeWidth={2.5}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
