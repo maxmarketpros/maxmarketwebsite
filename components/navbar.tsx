@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { PrimaryButton } from "./ui/primary-button"
 import { Menu, X, ChevronDown, ChevronRight, ExternalLink } from "lucide-react"
 import {
@@ -19,6 +20,7 @@ import {
    ───────────────────────────────────────────── */
 
 export function Navbar() {
+  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
@@ -90,7 +92,18 @@ export function Navbar() {
       >
         <div className="section-container flex items-center justify-between h-[72px]">
           {/* Logo */}
-          <Link href="/" className="shrink-0">
+          <Link
+            href="/"
+            className="shrink-0"
+            aria-label="Max Market Pros — home"
+            onClick={(e) => {
+              if (pathname === "/") {
+                e.preventDefault()
+                window.scrollTo({ top: 0, behavior: "smooth" })
+              }
+              setMobileOpen(false)
+            }}
+          >
             <Image
               src="/brand/logo.png"
               alt="Max Market Pros"
