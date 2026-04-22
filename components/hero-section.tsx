@@ -52,14 +52,18 @@ export function HeroSection() {
 
             {/* H1 */}
             <h1
-              className="mt-6 text-[42px] xs:text-[46px] sm:text-[54px] lg:text-[64px] font-bold leading-[1.05] tracking-[-0.025em] sm:tracking-[-0.03em] text-balance"
+              className="mt-6 text-[42px] xs:text-[46px] sm:text-[54px] lg:text-[64px] font-bold leading-[1.05] tracking-[-0.025em] sm:tracking-[-0.03em] sm:text-balance"
               style={{ color: 'var(--ink)' }}
             >
               <span className="whitespace-nowrap">
                 Grow on <span className="accent-underline">Google</span>.
-              </span>{' '}
-              Get more calls &amp;{' '}
-              <span className="whitespace-nowrap">booked jobs.</span>
+              </span>
+              <br className="sm:hidden" />
+              {' '}
+              <span className="whitespace-nowrap">Get more calls</span>
+              <br className="sm:hidden" />
+              {' '}
+              <span className="whitespace-nowrap">&amp; booked jobs.</span>
             </h1>
 
             {/* Paragraph */}
