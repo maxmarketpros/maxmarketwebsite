@@ -2,8 +2,10 @@ import type { Metadata } from "next"
 import { Navbar } from "@/components/navbar"
 import { SeoHero } from "@/components/seo/seo-hero"
 import { SeoStatsStrip } from "@/components/seo/seo-stats-strip"
+import { SeoSerpTakeover } from "@/components/seo/seo-serp-takeover"
 import { SeoServicesBento } from "@/components/seo/seo-services-bento"
 import { SeoProcess } from "@/components/seo/seo-process"
+import { SeoRankTracking } from "@/components/seo/seo-rank-tracking"
 import { SeoResultsStrip } from "@/components/seo/seo-results-strip"
 import { SeoIndustries } from "@/components/seo/seo-industries"
 import { SeoFaq } from "@/components/seo/seo-faq"
@@ -210,8 +212,10 @@ export default function Page() {
       <Navbar />
       <SeoHero />
       <SeoStatsStrip />
+      <SeoSerpTakeover />
       <SeoServicesBento />
       <SeoProcess />
+      <SeoRankTracking />
       <SeoResultsStrip />
       <SeoIndustries />
       <SeoFaq />
