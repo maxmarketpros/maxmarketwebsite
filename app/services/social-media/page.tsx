@@ -12,23 +12,55 @@ import { SocialFinalCta } from "@/components/social-media/social-final-cta"
 import { socialFaqs } from "@/components/social-media/social-faq-data"
 
 export const metadata: Metadata = {
-  title:
-    "Social Media Marketing — Grow Instagram, TikTok & YouTube | Max Market Pros",
+  title: "Social Media Marketing Services | Max Market Pros",
   description:
-    "Instagram, TikTok, YouTube & Facebook marketing done-for-you. Content creation, social media management, video editing, and drone for service businesses.",
+    "Done-for-you Instagram, TikTok & YouTube marketing for service businesses. Content creation, social media management, video editing, and drone videography.",
+  keywords: [
+    "social media marketing",
+    "Instagram marketing",
+    "TikTok marketing",
+    "YouTube marketing",
+    "social media management",
+    "content creation",
+    "video editing",
+    "graphic design",
+    "drone videography",
+    "review generation",
+  ],
   alternates: { canonical: "/services/social-media" },
   openGraph: {
-    title: "Social Media Marketing | Max Market Pros",
+    title: "Social Media Marketing Services | Max Market Pros",
     description:
-      "Done-for-you social media marketing. Instagram, TikTok, YouTube content creation, management, video editing, graphic design, and drone videography.",
+      "Done-for-you Instagram, TikTok, YouTube content creation, management, video editing, graphic design, and drone videography for service businesses.",
     type: "website",
     url: "/services/social-media",
+    siteName: "Max Market Pros",
+    locale: "en_US",
+    images: [
+      {
+        url: "/services/social-media.png",
+        width: 1200,
+        height: 630,
+        alt: "Max Market Pros social media marketing — Instagram, TikTok, YouTube",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Social Media Marketing | Max Market Pros",
+    title: "Social Media Marketing Services | Max Market Pros",
     description:
       "Grow on Instagram, TikTok, YouTube & more. Full-service content creation and social media management for service businesses.",
+    images: ["/services/social-media.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 }
 

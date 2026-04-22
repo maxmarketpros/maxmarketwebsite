@@ -61,6 +61,7 @@ export function SeoStatsStrip() {
                 <img
                   src={icons8Url(s.iconId, 128)}
                   alt=""
+                  aria-hidden="true"
                   width={52}
                   height={52}
                   loading="lazy"

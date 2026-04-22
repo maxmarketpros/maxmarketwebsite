@@ -12,6 +12,7 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://maxmarketpros.com'),
   title: 'Max Market Pros — Grow on Google. Get More Calls & Booked Jobs.',
   description:
     'Done-for-you local SEO, web design, and lead generation built for service businesses. Track every call, form, and booked job with clear monthly reporting.',

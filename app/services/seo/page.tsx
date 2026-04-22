@@ -13,7 +13,19 @@ import { SeoFinalCta } from "@/components/seo/seo-final-cta"
 export const metadata: Metadata = {
   title: "SEO Services — Rank #1 on Google | Max Market Pros",
   description:
-    "Local, technical, on-page, and AI search SEO for service businesses. Done-for-you strategies that drive calls, bookings, and revenue. Get a free audit.",
+    "Local, technical, on-page, off-page & AI search SEO for service businesses. Done-for-you strategies that drive calls, bookings, and revenue. Free audit.",
+  keywords: [
+    "SEO services",
+    "local SEO",
+    "technical SEO",
+    "on-page SEO",
+    "off-page SEO",
+    "AI search optimization",
+    "Google rankings",
+    "search engine optimization",
+    "backlinks",
+    "press releases",
+  ],
   alternates: { canonical: "/services/seo" },
   openGraph: {
     title: "SEO Services — Rank #1 on Google | Max Market Pros",
@@ -21,12 +33,33 @@ export const metadata: Metadata = {
       "Local, technical, on-page, off-page, backlinks, AI search and press releases — done-for-you by an SEO agency built for service businesses.",
     type: "website",
     url: "/services/seo",
+    siteName: "Max Market Pros",
+    locale: "en_US",
+    images: [
+      {
+        url: "/services/seo-websites.png",
+        width: 1200,
+        height: 630,
+        alt: "Max Market Pros SEO services — rank #1 on Google",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "SEO Services — Rank #1 on Google | Max Market Pros",
     description:
       "Done-for-you SEO built for local service businesses. Free audit, transparent reporting, measurable ROI.",
+    images: ["/services/seo-websites.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 }
 
