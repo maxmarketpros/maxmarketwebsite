@@ -151,11 +151,10 @@ function SolutionCard({ solution }: { solution: Solution }) {
       className="group card-surface card-surface-hover relative block overflow-hidden transition-all"
     >
       <div
-        className="relative flex items-center justify-center overflow-hidden border-b"
+        className="relative flex items-center justify-center overflow-hidden border-b px-5 py-8 sm:px-7 sm:py-10"
         style={{
           background: "var(--bg)",
           borderColor: "var(--border-color)",
-          height: "340px",
         }}
       >
         <div
@@ -163,10 +162,7 @@ function SolutionCard({ solution }: { solution: Solution }) {
           className="pointer-events-none absolute inset-0"
           style={{ background: `radial-gradient(ellipse 70% 60% at 50% 50%, ${solution.accent}14 0%, transparent 70%)` }}
         />
-        <div
-          className="pointer-events-none relative w-full max-w-[440px] px-5"
-          style={{ transform: "scale(0.78)", transformOrigin: "center" }}
-        >
+        <div className="pointer-events-none relative w-full max-w-[440px]">
           <Mockup />
         </div>
       </div>
