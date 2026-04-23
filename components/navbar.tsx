@@ -496,25 +496,35 @@ function MobileAccordion({
           {hasSubSections
             ? category.sections!.map((section) => (
                 <div key={section.label}>
-                  <button
-                    className="w-full flex items-center justify-between px-3 py-2 text-[13px] font-semibold uppercase tracking-[0.04em] cursor-pointer"
-                    style={{ color: "var(--accent)" }}
-                    onClick={() => onSubToggle(section.label)}
-                  >
-                    <span className="flex items-center gap-2">
+                  <div className="flex items-stretch">
+                    <Link
+                      href={section.href}
+                      onClick={onClose}
+                      className="flex-1 flex items-center gap-2 px-3 py-2 text-[13px] font-semibold uppercase tracking-[0.04em]"
+                      style={{ color: "var(--accent)" }}
+                    >
                       <section.icon className="w-3.5 h-3.5" />
                       {section.label}
-                    </span>
-                    <ChevronDown
-                      className="w-3.5 h-3.5 transition-transform duration-200"
-                      style={{
-                        transform:
-                          subExpanded === section.label
-                            ? "rotate(180deg)"
-                            : "rotate(0deg)",
-                      }}
-                    />
-                  </button>
+                    </Link>
+                    <button
+                      type="button"
+                      aria-label={`Toggle ${section.label} submenu`}
+                      aria-expanded={subExpanded === section.label}
+                      className="flex items-center justify-center px-3 cursor-pointer"
+                      onClick={() => onSubToggle(section.label)}
+                    >
+                      <ChevronDown
+                        className="w-3.5 h-3.5 transition-transform duration-200"
+                        style={{
+                          color: "var(--accent)",
+                          transform:
+                            subExpanded === section.label
+                              ? "rotate(180deg)"
+                              : "rotate(0deg)",
+                        }}
+                      />
+                    </button>
+                  </div>
                   {subExpanded === section.label &&
                     section.children?.map((child) => (
                       <Link
