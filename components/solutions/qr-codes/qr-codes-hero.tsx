@@ -109,7 +109,7 @@ const topLocations = [
   { city: "Orange, CA", count: 28, pct: 58 },
 ]
 
-function QRStatsMockup() {
+export function QRStatsMockup() {
   return (
     <div
       className="card-surface relative overflow-hidden p-5 sm:p-6"

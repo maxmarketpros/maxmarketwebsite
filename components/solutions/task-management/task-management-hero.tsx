@@ -118,7 +118,7 @@ const workflowNodes: WorkflowNode[] = [
   { kind: "action", title: "Action", caption: "Assign to rep", color: "#14B8A6", icon: UserRound },
 ]
 
-function WorkflowMockup() {
+export function WorkflowMockup() {
   return (
     <div
       className="card-surface relative overflow-hidden p-4 sm:p-5"

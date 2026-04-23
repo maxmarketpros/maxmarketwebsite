@@ -103,7 +103,7 @@ export function AnalyticsHero() {
   )
 }
 
-function HeroDashboard() {
+export function HeroDashboard() {
   return (
     <div
       className="card-surface relative overflow-hidden p-4 sm:p-5"

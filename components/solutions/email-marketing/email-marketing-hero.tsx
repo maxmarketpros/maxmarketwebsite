@@ -106,7 +106,7 @@ export function EmailMarketingHero() {
   )
 }
 
-function InboxSequenceMockup() {
+export function InboxSequenceMockup() {
   return (
     <div
       className="card-surface relative overflow-hidden p-4 sm:p-5"

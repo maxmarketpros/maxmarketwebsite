@@ -134,7 +134,7 @@ const timeSlots: TimeSlotData[] = [
   { time: "2:30 PM", state: "open" },
 ]
 
-function BookingMockup() {
+export function BookingMockup() {
   return (
     <div
       className="card-surface relative overflow-hidden p-5 sm:p-6"

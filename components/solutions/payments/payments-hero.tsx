@@ -103,7 +103,7 @@ export function PaymentsHero() {
   )
 }
 
-function InvoiceMockup() {
+export function InvoiceMockup() {
   return (
     <div
       className="card-surface relative overflow-hidden p-4 sm:p-5"

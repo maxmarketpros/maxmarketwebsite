@@ -99,7 +99,7 @@ export function DocumentSigningHero() {
   )
 }
 
-function ContractMockup() {
+export function ContractMockup() {
   return (
     <div
       className="card-surface relative overflow-hidden p-4 sm:p-5"

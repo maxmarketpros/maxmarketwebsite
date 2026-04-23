@@ -133,7 +133,7 @@ const transcript: Msg[] = [
   { role: "ai", text: "Locked in. I just texted you the confirmation + tech's ETA.", time: "11:44 PM" },
 ]
 
-function ChatTranscriptMockup() {
+export function ChatTranscriptMockup() {
   return (
     <div
       className="card-surface relative overflow-hidden p-4 sm:p-5"

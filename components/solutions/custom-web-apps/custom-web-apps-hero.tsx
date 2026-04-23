@@ -98,7 +98,7 @@ export function CustomWebAppsHero() {
   )
 }
 
-function AdminMockup() {
+export function AdminMockup() {
   return (
     <div
       className="card-surface relative overflow-hidden p-3 sm:p-4"

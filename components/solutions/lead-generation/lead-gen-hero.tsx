@@ -274,7 +274,7 @@ const sourceIconMap: Record<
   facebook: { Icon: Facebook, color: "#1877F2", label: "FB Ad" },
 }
 
-function PipelineMockup() {
+export function PipelineMockup() {
   return (
     <div
       className="card-surface relative overflow-hidden p-4 sm:p-5"
