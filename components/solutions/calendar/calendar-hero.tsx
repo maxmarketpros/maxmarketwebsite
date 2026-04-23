@@ -3,7 +3,7 @@
 import { Pill } from "@/components/ui/pill"
 import { PrimaryButton } from "@/components/ui/primary-button"
 import { SecondaryButton } from "@/components/ui/secondary-button"
-import { Star, Sparkles, Check, ChevronLeft, ChevronRight } from "lucide-react"
+import { Star, Sparkles, Check, ArrowRight, Wrench, Globe } from "lucide-react"
 
 const trustItems = [
   { label: "Book in 60 seconds" },
@@ -111,155 +111,253 @@ export function CalendarHero() {
   )
 }
 
-type BookingSlot = {
-  time: string
-  name: string
-  initials: string
-  service: string
-  duration: string
-  color: string
-}
+type WeekDay = { day: string; date: number; booked?: boolean; selected?: boolean }
 
-const slots: BookingSlot[] = [
-  { time: "9:00 AM", name: "Maria R.", initials: "MR", service: "AC tune-up", duration: "60 min", color: "#1677FF" },
-  { time: "10:30 AM", name: "Jordan D.", initials: "JD", service: "Consultation", duration: "30 min", color: "#22C55E" },
-  { time: "1:00 PM", name: "Sarah K.", initials: "SK", service: "Emergency visit", duration: "90 min", color: "#F59E0B" },
+const weekDays: WeekDay[] = [
+  { day: "Mon", date: 14 },
+  { day: "Tue", date: 15, booked: true },
+  { day: "Wed", date: 16, booked: true },
+  { day: "Thu", date: 17, booked: true },
+  { day: "Fri", date: 18, selected: true },
+  { day: "Sat", date: 19 },
+  { day: "Sun", date: 20 },
+]
+
+type SlotState = "open" | "taken" | "selected"
+type TimeSlotData = { time: string; state: SlotState }
+const timeSlots: TimeSlotData[] = [
+  { time: "8:30 AM", state: "taken" },
+  { time: "9:00 AM", state: "open" },
+  { time: "10:30 AM", state: "selected" },
+  { time: "11:15 AM", state: "taken" },
+  { time: "1:00 PM", state: "open" },
+  { time: "2:30 PM", state: "open" },
 ]
 
 function BookingMockup() {
-  const days = [
-    { n: 14, booked: false }, { n: 15, booked: true }, { n: 16, booked: true }, { n: 17, booked: false, today: true },
-    { n: 18, booked: true }, { n: 19, booked: false }, { n: 20, booked: false },
-    { n: 21, booked: false }, { n: 22, booked: true }, { n: 23, booked: false }, { n: 24, booked: true },
-    { n: 25, booked: false }, { n: 26, booked: false }, { n: 27, booked: false },
-  ]
-
   return (
     <div
-      className="card-surface relative overflow-hidden p-4 sm:p-5"
+      className="card-surface relative overflow-hidden p-5 sm:p-6"
       style={{ borderRadius: "var(--radius-xl)" }}
     >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
-        style={{ background: "radial-gradient(ellipse 80% 70% at 50% 20%, rgba(22,119,255,0.10) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse 80% 65% at 80% 10%, rgba(22,119,255,0.12) 0%, transparent 70%)" }}
       />
-      <div className="relative grid grid-cols-1 sm:grid-cols-[1.1fr_1fr] gap-3 sm:gap-4">
-        {/* Calendar month */}
-        <div
-          className="rounded-[var(--radius-md)] border p-3 sm:p-4"
-          style={{ background: "var(--bg)", borderColor: "var(--border-color)" }}
-        >
-          <div className="flex items-center justify-between pb-2">
-            <div className="flex items-center gap-1">
-              <button className="w-5 h-5 rounded flex items-center justify-center" style={{ color: "var(--muted)" }}>
-                <ChevronLeft className="w-3 h-3" strokeWidth={2.5} />
-              </button>
-              <span className="text-[11.5px] sm:text-[12.5px] font-bold" style={{ color: "var(--ink)" }}>
-                April 2026
-              </span>
-              <button className="w-5 h-5 rounded flex items-center justify-center" style={{ color: "var(--muted)" }}>
-                <ChevronRight className="w-3 h-3" strokeWidth={2.5} />
-              </button>
-            </div>
-          </div>
-          <div className="grid grid-cols-7 gap-1">
-            {["M", "T", "W", "T", "F", "S", "S"].map((l, i) => (
-              <div key={`lbl-${i}`} className="text-center text-[9px] font-semibold" style={{ color: "var(--muted)" }}>
-                {l}
-              </div>
-            ))}
-            {days.map((d) => (
-              <div
-                key={d.n}
-                className="aspect-square rounded flex items-center justify-center text-[10.5px] font-bold relative"
-                style={{
-                  background: d.today ? "#1677FF" : d.booked ? "rgba(22,119,255,0.12)" : "transparent",
-                  color: d.today ? "#fff" : d.booked ? "#1677FF" : "var(--ink)",
-                  border: d.today ? "none" : d.booked ? "1px solid rgba(22,119,255,0.22)" : "none",
-                }}
-              >
-                {d.n}
-                {d.booked && !d.today && (
-                  <span
-                    className="absolute bottom-0.5 w-1 h-1 rounded-full"
-                    style={{ background: "#22C55E" }}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
 
-          <div className="mt-3 flex items-center gap-2 text-[9.5px] font-semibold" style={{ color: "var(--muted)" }}>
-            <span className="inline-flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#22C55E" }} />
-              Booked
+      {/* Business header */}
+      <div
+        className="relative flex items-center gap-3 pb-4 border-b"
+        style={{ borderColor: "var(--border-color)" }}
+      >
+        <div
+          className="w-11 h-11 rounded-[var(--radius-md)] flex items-center justify-center shrink-0"
+          style={{
+            background: "linear-gradient(135deg, #1677FF 0%, #3B9FFF 100%)",
+            boxShadow: "0 2px 8px rgba(22,119,255,0.28)",
+          }}
+        >
+          <Wrench className="w-5 h-5 text-white" strokeWidth={2.5} />
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="text-[14.5px] font-bold leading-tight" style={{ color: "var(--ink)" }}>
+            ProForma HVAC
+          </div>
+          <div className="flex items-center gap-1 text-[11px] mt-0.5" style={{ color: "var(--muted)" }}>
+            <Star
+              className="w-3 h-3"
+              style={{ color: "#F59E0B" }}
+              fill="currentColor"
+              strokeWidth={0}
+            />
+            <span className="font-semibold" style={{ color: "var(--ink)" }}>
+              4.9
             </span>
-            <span className="inline-flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full border" style={{ borderColor: "var(--border-color)" }} />
-              Open
-            </span>
+            <span>·</span>
+            <span>892 reviews</span>
           </div>
         </div>
+        <span
+          className="inline-flex items-center gap-1.5 text-[10.5px] font-semibold px-2.5 py-1 rounded-full"
+          style={{ background: "#22C55E14", color: "#16A34A" }}
+        >
+          <Globe className="w-2.5 h-2.5" strokeWidth={2.75} />
+          24/7 Booking
+        </span>
+      </div>
 
-        {/* Time-slot panel */}
+      {/* Step + week range */}
+      <div className="relative mt-4 flex items-end justify-between">
         <div>
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-[11px] font-bold uppercase tracking-[0.08em]" style={{ color: "var(--muted)" }}>
-              Friday · Apr 17
-            </span>
-            <span
-              className="inline-flex items-center gap-1 text-[9.5px] font-bold px-1.5 py-0.5 rounded-full"
-              style={{ background: "#22C55E14", color: "#22C55E" }}
-            >
-              3 booked
-            </span>
+          <div
+            className="text-[10px] font-bold uppercase tracking-[0.08em]"
+            style={{ color: "var(--muted)" }}
+          >
+            Step 2 of 3 · Pick a date
           </div>
-          <ul className="space-y-1.5 sm:space-y-2">
-            {slots.map((s) => (
-              <li
-                key={s.time}
-                className="rounded-[var(--radius-xs)] border p-2 flex items-center gap-2"
-                style={{
-                  background: "var(--surface)",
-                  borderColor: "var(--border-color)",
-                  boxShadow: "0 1px 2px rgba(17,35,68,0.04)",
-                }}
-              >
-                <div className="flex flex-col items-center shrink-0 min-w-[36px]">
-                  <div className="text-[9.5px] font-semibold" style={{ color: "var(--muted)" }}>
-                    {s.time.split(" ")[1]}
-                  </div>
-                  <div className="text-[11px] font-bold leading-tight" style={{ color: "var(--ink)" }}>
-                    {s.time.split(" ")[0]}
-                  </div>
-                </div>
-                <div
-                  className="w-[1px] h-8 shrink-0"
-                  style={{ background: "var(--border-color)" }}
-                />
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-1">
-                    <div
-                      className="w-4 h-4 rounded-full flex items-center justify-center text-[7.5px] font-bold shrink-0"
-                      style={{ background: `${s.color}22`, color: s.color }}
-                    >
-                      {s.initials}
-                    </div>
-                    <div className="text-[10.5px] font-bold truncate" style={{ color: "var(--ink)" }}>
-                      {s.name}
-                    </div>
-                  </div>
-                  <div className="text-[9px] truncate" style={{ color: "var(--muted)" }}>
-                    {s.service} · {s.duration}
-                  </div>
-                </div>
-                <Check className="w-3 h-3 shrink-0" style={{ color: "#22C55E" }} strokeWidth={3} />
-              </li>
-            ))}
-          </ul>
+          <div className="mt-1 text-[14.5px] font-bold" style={{ color: "var(--ink)" }}>
+            April 14 – 20, 2026
+          </div>
+        </div>
+        <div
+          className="text-[10px] font-semibold"
+          style={{ color: "var(--muted)" }}
+        >
+          12 slots open
         </div>
       </div>
+
+      {/* Week selector */}
+      <div className="relative mt-3 grid grid-cols-7 gap-1.5">
+        {weekDays.map((d) => (
+          <DayChip key={d.date} {...d} />
+        ))}
+      </div>
+
+      {/* Time slots */}
+      <div className="relative mt-5">
+        <div className="flex items-center justify-between mb-2">
+          <div
+            className="text-[10px] font-bold uppercase tracking-[0.08em]"
+            style={{ color: "var(--muted)" }}
+          >
+            Fri, Apr 18 · Available times
+          </div>
+          <div className="text-[10px] font-semibold" style={{ color: "var(--muted)" }}>
+            4 left
+          </div>
+        </div>
+        <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
+          {timeSlots.map((t) => (
+            <TimeSlotChip key={t.time} time={t.time} state={t.state} />
+          ))}
+        </div>
+      </div>
+
+      {/* Summary + confirm */}
+      <div
+        className="relative mt-5 pt-4 border-t"
+        style={{ borderColor: "var(--border-color)" }}
+      >
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0 flex-1">
+            <div
+              className="text-[10px] font-bold uppercase tracking-[0.08em]"
+              style={{ color: "var(--muted)" }}
+            >
+              Your appointment
+            </div>
+            <div
+              className="mt-0.5 text-[13px] font-bold leading-tight"
+              style={{ color: "var(--ink)" }}
+            >
+              AC Tune-up · 60 min
+            </div>
+            <div className="text-[11px] mt-0.5" style={{ color: "var(--muted)" }}>
+              Fri, Apr 18 · 10:30 AM
+            </div>
+          </div>
+          <div className="text-right shrink-0">
+            <div
+              className="text-[22px] font-bold leading-none tracking-[-0.02em]"
+              style={{ color: "var(--ink)" }}
+            >
+              $180
+            </div>
+            <div className="text-[10px] mt-0.5" style={{ color: "var(--muted)" }}>
+              $50 deposit
+            </div>
+          </div>
+        </div>
+        <div
+          className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 rounded-[var(--radius-sm)] text-[13px] font-bold text-white"
+          style={{
+            background: "linear-gradient(180deg, #2B8AFF 0%, var(--accent) 100%)",
+            boxShadow: "0 4px 12px rgba(22,119,255,0.3)",
+          }}
+        >
+          Confirm booking
+          <ArrowRight className="w-4 h-4" strokeWidth={2.75} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function DayChip({ day, date, booked, selected }: WeekDay) {
+  const baseStyle: React.CSSProperties = selected
+    ? {
+        background: "linear-gradient(180deg, #2B8AFF 0%, var(--accent) 100%)",
+        color: "#fff",
+        border: "1px solid var(--accent)",
+        boxShadow: "0 4px 12px rgba(22,119,255,0.28)",
+      }
+    : {
+        background: "var(--surface)",
+        color: "var(--ink)",
+        border: "1px solid var(--border-color)",
+        opacity: booked ? 0.55 : 1,
+      }
+
+  return (
+    <div
+      className="rounded-[var(--radius-sm)] flex flex-col items-center justify-center py-2"
+      style={baseStyle}
+    >
+      <div className="text-[9px] font-semibold uppercase tracking-[0.04em]">
+        {day}
+      </div>
+      <div className="mt-0.5 text-[15px] font-bold leading-none tracking-[-0.02em]">
+        {date}
+      </div>
+      <div className="mt-1 h-1">
+        {booked && !selected && (
+          <span
+            className="block w-1 h-1 rounded-full"
+            style={{ background: "var(--accent)" }}
+          />
+        )}
+        {selected && (
+          <span
+            className="block w-1 h-1 rounded-full"
+            style={{ background: "#fff" }}
+          />
+        )}
+      </div>
+    </div>
+  )
+}
+
+function TimeSlotChip({ time, state }: { time: string; state: SlotState }) {
+  const baseStyle: React.CSSProperties =
+    state === "selected"
+      ? {
+          background: "linear-gradient(180deg, #2B8AFF 0%, var(--accent) 100%)",
+          color: "#fff",
+          border: "1px solid var(--accent)",
+          boxShadow: "0 2px 8px rgba(22,119,255,0.28)",
+        }
+      : state === "taken"
+      ? {
+          background: "var(--bg)",
+          color: "var(--muted)",
+          border: "1px dashed var(--border-color)",
+          textDecoration: "line-through",
+        }
+      : {
+          background: "var(--surface)",
+          color: "var(--ink)",
+          border: "1px solid var(--border-color)",
+        }
+
+  return (
+    <div
+      className="rounded-[var(--radius-xs)] flex items-center justify-center gap-1 py-2 text-[11.5px] font-bold"
+      style={baseStyle}
+    >
+      {state === "selected" && <Check className="w-3 h-3" strokeWidth={3} />}
+      {time}
     </div>
   )
 }
