@@ -13,6 +13,9 @@ import {
   Facebook,
   Zap,
   Plus,
+  TrendingUp,
+  Flame,
+  Clock,
 } from "lucide-react"
 
 const trustItems = [
@@ -375,6 +378,81 @@ export function PipelineMockup() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Pipeline stats footer */}
+        <div
+          className="mt-4 pt-4 border-t grid grid-cols-3 gap-2"
+          style={{ borderColor: "var(--border-color)" }}
+        >
+          <PipelineStat
+            Icon={TrendingUp}
+            color="#22C55E"
+            label="Pipeline value"
+            value="$26.7K"
+            delta="+18%"
+          />
+          <PipelineStat
+            Icon={Flame}
+            color="#F97316"
+            label="HOT this week"
+            value="2"
+            delta="leads"
+          />
+          <PipelineStat
+            Icon={Clock}
+            color="#1677FF"
+            label="Avg response"
+            value="2m 14s"
+            delta="−63%"
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function PipelineStat({
+  Icon,
+  color,
+  label,
+  value,
+  delta,
+}: {
+  Icon: React.ComponentType<{ className?: string; strokeWidth?: number }>
+  color: string
+  label: string
+  value: string
+  delta: string
+}) {
+  return (
+    <div className="flex items-center gap-2 min-w-0">
+      <div
+        className="shrink-0 w-7 h-7 rounded-[var(--radius-xs)] flex items-center justify-center"
+        style={{ background: `${color}14`, color }}
+      >
+        <Icon className="w-3.5 h-3.5" strokeWidth={2.5} />
+      </div>
+      <div className="min-w-0">
+        <div
+          className="text-[9.5px] font-bold uppercase tracking-[0.08em] truncate"
+          style={{ color: "var(--muted)" }}
+        >
+          {label}
+        </div>
+        <div className="flex items-baseline gap-1.5">
+          <span
+            className="text-[13px] font-bold leading-tight tabular-nums"
+            style={{ color: "var(--ink)" }}
+          >
+            {value}
+          </span>
+          <span
+            className="text-[10px] font-semibold"
+            style={{ color }}
+          >
+            {delta}
+          </span>
         </div>
       </div>
     </div>

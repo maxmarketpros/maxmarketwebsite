@@ -25,15 +25,24 @@ type Solution = {
 }
 
 const solutions: Solution[] = [
+  // Row 1 — capture + measure (both medium)
   { slug: "lead-generation",  name: "Lead Generation",         accent: "#1677FF", Mockup: PipelineMockup,       description: "Unify every call, text, form, and Facebook lead into one auto-tagged, auto-assigned inbox." },
-  { slug: "ai-agents",        name: "AI Agents",               accent: "#8B5CF6", Mockup: ChatTranscriptMockup, description: "A 24/7 AI receptionist that answers chats, calls, SMS, and DMs — and books real appointments." },
-  { slug: "calendar",         name: "Scheduling & Booking",    accent: "#22C55E", Mockup: BookingMockup,        description: "Let clients book themselves 24/7 with deposits, reminders, and Google/Outlook sync." },
-  { slug: "payments",         name: "Payments",                accent: "#10B981", Mockup: InvoiceMockup,        description: "Text-to-pay invoicing, deposits, and recurring billing — powered by Stripe, zero app downloads." },
-  { slug: "email-marketing",  name: "Email & SMS Marketing",   accent: "#F59E0B", Mockup: InboxSequenceMockup,  description: "Drag-and-drop campaigns, drip sequences, and smart segmentation hooked into your CRM." },
   { slug: "analytics",        name: "Analytics & Attribution", accent: "#0EA5E9", Mockup: HeroDashboard,        description: "GA4, call tracking, and Looker Studio dashboards that trace every lead back to the source." },
-  { slug: "qr-codes",         name: "QR Code Generation",      accent: "#1677FF", Mockup: QRStatsMockup,        description: "Branded, editable QR codes with full scan analytics for every offline touchpoint." },
-  { slug: "document-signing", name: "Document Signing",        accent: "#6366F1", Mockup: ContractMockup,       description: "Legally binding e-signatures for proposals, contracts, and NDAs — signed from any phone." },
+
+  // Row 2 — automate (both tall)
+  { slug: "ai-agents",        name: "AI Agents",               accent: "#8B5CF6", Mockup: ChatTranscriptMockup, description: "A 24/7 AI receptionist that answers chats, calls, SMS, and DMs — and books real appointments." },
   { slug: "task-management",  name: "Workflows & Automation",  accent: "#EF4444", Mockup: WorkflowMockup,       description: "Trigger-based workflows that route leads, send follow-ups, and chase payments automatically." },
+
+  // Row 3 — engage (tall + medium-tall)
+  { slug: "calendar",         name: "Scheduling & Booking",    accent: "#22C55E", Mockup: BookingMockup,        description: "Let clients book themselves 24/7 with deposits, reminders, and Google/Outlook sync." },
+  { slug: "email-marketing",  name: "Email & SMS Marketing",   accent: "#F59E0B", Mockup: InboxSequenceMockup,  description: "Drag-and-drop campaigns, drip sequences, and smart segmentation hooked into your CRM." },
+
+  // Row 4 — transact + bridge (both short)
+  { slug: "payments",         name: "Payments",                accent: "#10B981", Mockup: InvoiceMockup,        description: "Text-to-pay invoicing, deposits, and recurring billing — powered by Stripe, zero app downloads." },
+  { slug: "qr-codes",         name: "QR Code Generation",      accent: "#1677FF", Mockup: QRStatsMockup,        description: "Branded, editable QR codes with full scan analytics for every offline touchpoint." },
+
+  // Row 5 — formalize + extend (medium + medium)
+  { slug: "document-signing", name: "Document Signing",        accent: "#6366F1", Mockup: ContractMockup,       description: "Legally binding e-signatures for proposals, contracts, and NDAs — signed from any phone." },
   { slug: "custom-web-apps",  name: "Custom Web Apps",         accent: "#8B5CF6", Mockup: AdminMockup,          description: "Internal tools, client portals, and white-label SaaS — built on Next.js + Postgres you fully own." },
 ]
 
