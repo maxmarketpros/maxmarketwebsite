@@ -453,23 +453,32 @@ function MobileAccordion({
 
   return (
     <div style={{ borderBottom: "1px solid var(--border-color)" }}>
-      <button
-        className="w-full flex items-center justify-between py-3 text-[15px] font-medium cursor-pointer"
-        style={{ color: "var(--ink)" }}
-        onClick={onToggle}
-      >
-        <span className="flex items-center gap-2">
+      <div className="flex items-stretch">
+        <Link
+          href={category.href}
+          onClick={onClose}
+          className="flex-1 flex items-center gap-2 py-3 text-[15px] font-medium"
+          style={{ color: "var(--ink)" }}
+        >
           <category.icon className="w-4 h-4" style={{ color: "var(--accent)" }} />
           {category.label}
-        </span>
-        <ChevronDown
-          className="w-4 h-4 transition-transform duration-200"
-          style={{
-            color: "var(--muted)",
-            transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
-          }}
-        />
-      </button>
+        </Link>
+        <button
+          type="button"
+          aria-label={`Toggle ${category.label} submenu`}
+          aria-expanded={isExpanded}
+          className="flex items-center justify-center px-3 cursor-pointer"
+          onClick={onToggle}
+        >
+          <ChevronDown
+            className="w-4 h-4 transition-transform duration-200"
+            style={{
+              color: "var(--muted)",
+              transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
+            }}
+          />
+        </button>
+      </div>
 
       {isExpanded && (
         <div className="pb-3 pl-2">
