@@ -43,9 +43,9 @@ export function LsvcHero() {
               className="mt-6 text-[42px] xs:text-[48px] sm:text-[58px] lg:text-[68px] font-bold leading-[1.05] tracking-[-0.025em] sm:tracking-[-0.03em] sm:text-balance"
               style={{ color: "var(--ink)" }}
             >
-              Rank on Google. Convert on{" "}
+              Local service marketing that{" "}
               <span className="whitespace-nowrap">
-                your <span className="accent-underline">own site</span>.
+                <span className="accent-underline">ranks and books</span>.
               </span>
             </h1>
 
