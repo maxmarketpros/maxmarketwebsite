@@ -93,9 +93,10 @@ export function OnPageHero() {
               className="mt-6 text-[40px] xs:text-[44px] sm:text-[52px] lg:text-[64px] font-bold leading-[1.05] tracking-[-0.03em] text-balance"
               style={{ color: "var(--ink)" }}
             >
-              On-Page SEO that makes Google{" "}
-              <span className="accent-underline">understand</span> every{" "}
-              <span className="whitespace-nowrap">page you publish.</span>
+              On-Page SEO that{" "}
+              <span className="whitespace-nowrap">
+                <span className="accent-underline">ranks</span> every page.
+              </span>
             </h1>
 
             <p
