@@ -118,8 +118,9 @@ export function TiktokHero() {
               style={{ color: "var(--ink)" }}
             >
               Done-for-you{" "}
-              <span className="accent-underline">TikTok</span> marketing
-              services for service businesses.
+              <span className="whitespace-nowrap">
+                <span className="accent-underline">TikTok</span> marketing.
+              </span>
             </h1>
 
             <p

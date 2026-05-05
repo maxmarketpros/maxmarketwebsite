@@ -105,11 +105,10 @@ export function DroneHero() {
               className="mt-6 text-[40px] xs:text-[44px] sm:text-[52px] lg:text-[64px] font-bold leading-[1.05] tracking-[-0.03em] text-balance"
               style={{ color: "var(--ink)" }}
             >
-              Cinematic{" "}
               <span className="whitespace-nowrap">
-                <span className="accent-underline">drone videography</span>
+                <span className="accent-underline">Drone videography</span>,
               </span>{" "}
-              that sells the story in 30 seconds.
+              handled.
             </h1>
 
             <p
