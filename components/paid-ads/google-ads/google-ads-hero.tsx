@@ -106,11 +106,10 @@ export function GoogleAdsHero() {
               className="mt-6 text-[40px] xs:text-[44px] sm:text-[52px] lg:text-[64px] font-bold leading-[1.05] tracking-[-0.03em] text-balance"
               style={{ color: "var(--ink)" }}
             >
-              Google Ads that book the{" "}
+              Google Ads built to{" "}
               <span className="whitespace-nowrap">
-                <span className="accent-underline">phone</span>,
-              </span>{" "}
-              not Google&rsquo;s pockets.
+                <span className="accent-underline">ring the phone</span>.
+              </span>
             </h1>
 
             <p
