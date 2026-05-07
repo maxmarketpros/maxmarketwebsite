@@ -28,9 +28,6 @@ function groupBySeverity(issues: Issue[]) {
 export function AuditResults({ result, psiStatus }: AuditResultsProps) {
   const [showPassed, setShowPassed] = useState(false)
   const grouped = groupBySeverity(result.issues)
-  const psiAnyLoading =
-    psiStatus.mobile === "loading" || psiStatus.desktop === "loading"
-  const psiAnyAvailable = !!(result.pageSpeed.mobile || result.pageSpeed.desktop)
 
   return (
     <div className="space-y-6 sm:space-y-8">
@@ -41,13 +38,11 @@ export function AuditResults({ result, psiStatus }: AuditResultsProps) {
         categoryScores={result.categoryScores}
       />
 
-      {(psiAnyLoading || psiAnyAvailable) && (
-        <VitalsCard
-          mobile={result.pageSpeed.mobile}
-          desktop={result.pageSpeed.desktop}
-          psiStatus={psiStatus}
-        />
-      )}
+      <VitalsCard
+        mobile={result.pageSpeed.mobile}
+        desktop={result.pageSpeed.desktop}
+        psiStatus={psiStatus}
+      />
 
       <AuditCtaInline
         eyebrow="Stuck on what to fix first?"
