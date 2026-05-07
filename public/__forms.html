@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hidden form definitions for Netlify</title>
+  <meta name="robots" content="noindex" />
+</head>
+<body>
+  <!--
+    Netlify scans this static file at build time to register the form below.
+    The React component at components/tools/seo-auditor/audit-cta-section.tsx
+    submits to "seo-audit-lead" via fetch('/').
+  -->
+  <form name="seo-audit-lead" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="text" name="bot-field" />
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="text" name="business" />
+    <input type="text" name="phone" />
+    <input type="url" name="website" />
+    <input type="url" name="audited-url" />
+    <input type="text" name="overall-score" />
+    <input type="text" name="performance-score" />
+    <input type="text" name="seo-score" />
+    <input type="text" name="accessibility-score" />
+    <input type="text" name="best-practices-score" />
+    <textarea name="message"></textarea>
+  </form>
+</body>
+</html>
