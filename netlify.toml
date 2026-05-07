@@ -7,7 +7,3 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-
-# Give the SEO audit endpoint enough time for two PageSpeed Insights calls (~25s typical).
-[functions."seo-audit"]
-  timeout = 60

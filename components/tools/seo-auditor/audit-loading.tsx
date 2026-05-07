@@ -4,12 +4,10 @@ import { useEffect, useState } from "react"
 import { Check, Loader2 } from "lucide-react"
 
 const STEPS = [
-  { label: "Fetching your homepage", duration: 2000 },
-  { label: "Parsing HTML & meta tags", duration: 1500 },
-  { label: "Checking robots.txt and sitemap", duration: 1500 },
-  { label: "Running Lighthouse audit on mobile", duration: 8000 },
-  { label: "Running Lighthouse audit on desktop", duration: 6000 },
-  { label: "Compiling your report", duration: 2000 },
+  { label: "Fetching your homepage", duration: 1200 },
+  { label: "Parsing HTML & meta tags", duration: 800 },
+  { label: "Checking robots.txt and sitemap", duration: 800 },
+  { label: "Compiling your report", duration: 1000 },
 ]
 
 export function AuditLoading({ url }: { url: string }) {
@@ -115,7 +113,7 @@ export function AuditLoading({ url }: { url: string }) {
         className="mt-6 sm:mt-8 text-[13px] sm:text-[13.5px]"
         style={{ color: "var(--muted)" }}
       >
-        Lighthouse audits typically take 15–25 seconds. Hang tight.
+        First results land in seconds — Lighthouse scores fill in right after.
       </p>
     </div>
   )

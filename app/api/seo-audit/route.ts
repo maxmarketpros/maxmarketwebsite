@@ -26,7 +26,6 @@ import {
   checkSitemap,
   checkFavicon,
 } from "@/lib/seo-audit/checks"
-import { runPageSpeed } from "@/lib/seo-audit/pagespeed"
 import {
   buildCategoryScores,
   overallScore,
@@ -35,12 +34,10 @@ import {
 import type { AuditResult, AuditError, Issue } from "@/lib/seo-audit/types"
 
 export const runtime = "nodejs"
-export const maxDuration = 60
 export const dynamic = "force-dynamic"
 
 // Naive in-memory rate limiter (per warm function instance).
-// Not bulletproof but blocks casual abuse.
-const RATE_LIMIT_MAX = 5
+const RATE_LIMIT_MAX = 10
 const RATE_LIMIT_WINDOW_MS = 60_000
 const ipHits = new Map<string, number[]>()
 
@@ -103,15 +100,10 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  // Parallel: fetch the page + start both PSI runs
-  const [pageResult, mobile, desktop] = await Promise.allSettled([
-    fetchPage(url),
-    runPageSpeed(url, "mobile"),
-    runPageSpeed(url, "desktop"),
-  ])
-
-  if (pageResult.status === "rejected") {
-    const err = pageResult.reason
+  let page
+  try {
+    page = await fetchPage(url)
+  } catch (err: any) {
     const isAbort = err?.name === "AbortError"
     return errorResponse(
       {
@@ -125,7 +117,6 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const page = pageResult.value
   if (page.status >= 400) {
     return errorResponse(
       {
@@ -139,7 +130,6 @@ export async function POST(req: NextRequest) {
   const $ = parseHtml(page.html)
   const meta = getMetaSummary($, page.finalUrl)
 
-  // Parallel: origin probes
   let origin = page.finalUrl
   try {
     origin = new URL(page.finalUrl).origin
@@ -151,7 +141,6 @@ export async function POST(req: NextRequest) {
     fetchOriginResource(origin, "/sitemap.xml"),
   ])
 
-  // Run all HTML checks
   const issues: Issue[] = [
     ...checkTitle($),
     ...checkMetaDescription($),
@@ -173,29 +162,10 @@ export async function POST(req: NextRequest) {
     ...checkFavicon(meta.favicon),
   ]
 
-  // Roll PSI opportunities into the issue list
-  const mobileReport = mobile.status === "fulfilled" ? mobile.value : null
-  const desktopReport = desktop.status === "fulfilled" ? desktop.value : null
-
-  for (const opp of mobileReport?.topOpportunities ?? []) {
-    issues.push({
-      id: `psi-mobile-${opp.id}`,
-      category: "performance",
-      severity: (opp.savingsMs ?? 0) > 1000 ? "warning" : "notice",
-      title: `Mobile: ${opp.title}`,
-      description: opp.description,
-      fix: opp.savingsMs
-        ? `Lighthouse estimates ~${(opp.savingsMs / 1000).toFixed(1)}s of potential savings on mobile.`
-        : "Apply Lighthouse's recommendation for this opportunity.",
-      metric: opp.savingsMs,
-    })
-  }
-
-  const categoryScores = buildCategoryScores(
-    issues,
-    mobileReport,
-    desktopReport,
-  )
+  // PageSpeed Insights now runs in the browser to avoid Netlify gateway
+  // timeouts on large sites. mobile/desktop start as null and the client
+  // merges them in via mergePsiIntoResult() once PSI returns.
+  const categoryScores = buildCategoryScores(issues, null, null)
 
   const result: AuditResult = {
     snapshot: {
@@ -214,8 +184,8 @@ export async function POST(req: NextRequest) {
     categoryScores,
     issues: sortIssues(issues),
     pageSpeed: {
-      mobile: mobileReport,
-      desktop: desktopReport,
+      mobile: null,
+      desktop: null,
     },
     generatedAt: new Date().toISOString(),
   }

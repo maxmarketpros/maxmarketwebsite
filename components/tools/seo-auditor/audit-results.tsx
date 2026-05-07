@@ -9,8 +9,11 @@ import { VitalsCard } from "./vitals-card"
 import { IssueRow } from "./issue-row"
 import { AuditCtaInline } from "./audit-cta-inline"
 
+import type { PsiStatus } from "./auditor-shell"
+
 interface AuditResultsProps {
   result: AuditResult
+  psiStatus: { mobile: PsiStatus; desktop: PsiStatus }
 }
 
 function groupBySeverity(issues: Issue[]) {
@@ -22,9 +25,12 @@ function groupBySeverity(issues: Issue[]) {
   }
 }
 
-export function AuditResults({ result }: AuditResultsProps) {
+export function AuditResults({ result, psiStatus }: AuditResultsProps) {
   const [showPassed, setShowPassed] = useState(false)
   const grouped = groupBySeverity(result.issues)
+  const psiAnyLoading =
+    psiStatus.mobile === "loading" || psiStatus.desktop === "loading"
+  const psiAnyAvailable = !!(result.pageSpeed.mobile || result.pageSpeed.desktop)
 
   return (
     <div className="space-y-6 sm:space-y-8">
@@ -35,10 +41,11 @@ export function AuditResults({ result }: AuditResultsProps) {
         categoryScores={result.categoryScores}
       />
 
-      {(result.pageSpeed.mobile || result.pageSpeed.desktop) && (
+      {(psiAnyLoading || psiAnyAvailable) && (
         <VitalsCard
           mobile={result.pageSpeed.mobile}
           desktop={result.pageSpeed.desktop}
+          psiStatus={psiStatus}
         />
       )}
 

@@ -1,4 +1,10 @@
-import type { Category, CategoryScore, Issue, PageSpeedReport } from "./types"
+import type {
+  AuditResult,
+  Category,
+  CategoryScore,
+  Issue,
+  PageSpeedReport,
+} from "./types"
 
 const SEVERITY_WEIGHT: Record<Issue["severity"], number> = {
   critical: 25,
@@ -85,6 +91,54 @@ export function overallScore(categories: CategoryScore[]): number {
     weightTotal += w
   }
   return Math.round(weightedSum / weightTotal)
+}
+
+export function psiOpportunitiesToIssues(
+  report: PageSpeedReport,
+): Issue[] {
+  return report.topOpportunities.map((opp) => ({
+    id: `psi-${report.strategy}-${opp.id}`,
+    category: "performance",
+    severity: (opp.savingsMs ?? 0) > 1000 ? "warning" : "notice",
+    title: `${report.strategy === "mobile" ? "Mobile" : "Desktop"}: ${opp.title}`,
+    description: opp.description,
+    fix: opp.savingsMs
+      ? `Lighthouse estimates ~${(opp.savingsMs / 1000).toFixed(1)}s of potential savings on ${report.strategy}.`
+      : "Apply Lighthouse's recommendation for this opportunity.",
+    metric: opp.savingsMs,
+  }))
+}
+
+/**
+ * Merges a PSI report into an existing AuditResult: stores the report, appends
+ * its opportunities to issues[], and recomputes category + overall scores.
+ * Pure function — safe to call from server or client.
+ */
+export function mergePsiIntoResult(
+  result: AuditResult,
+  strategy: "mobile" | "desktop",
+  report: PageSpeedReport | null,
+): AuditResult {
+  const pageSpeed = { ...result.pageSpeed, [strategy]: report }
+  // Drop any prior opportunities for this strategy (in case of re-run) then append fresh ones.
+  const stripped = result.issues.filter(
+    (i) => !i.id.startsWith(`psi-${strategy}-`),
+  )
+  const issues = report
+    ? [...stripped, ...psiOpportunitiesToIssues(report)]
+    : stripped
+  const categoryScores = buildCategoryScores(
+    issues,
+    pageSpeed.mobile,
+    pageSpeed.desktop,
+  )
+  return {
+    ...result,
+    pageSpeed,
+    issues: sortIssues(issues),
+    categoryScores,
+    overallScore: overallScore(categoryScores),
+  }
 }
 
 export function sortIssues(issues: Issue[]): Issue[] {

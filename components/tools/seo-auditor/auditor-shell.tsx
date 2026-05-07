@@ -8,12 +8,21 @@ import { AuditLoading } from "./audit-loading"
 import { AuditResults } from "./audit-results"
 import { AuditCtaSection } from "./audit-cta-section"
 import { AuditorIdleSections } from "./auditor-idle-sections"
+import { runPageSpeedClient } from "@/lib/seo-audit/pagespeed-client"
+import { mergePsiIntoResult } from "@/lib/seo-audit/scoring"
 import type { AuditResult, AuditError } from "@/lib/seo-audit/types"
+
+export type PsiStatus = "loading" | "done" | "failed"
 
 type State =
   | { kind: "idle" }
   | { kind: "loading"; url: string }
-  | { kind: "result"; url: string; result: AuditResult }
+  | {
+      kind: "result"
+      url: string
+      result: AuditResult
+      psiStatus: { mobile: PsiStatus; desktop: PsiStatus }
+    }
   | { kind: "error"; url: string; message: string }
 
 const TRUST_BULLETS = [
@@ -32,6 +41,8 @@ export function AuditorShell() {
         .getElementById("audit-results-anchor")
         ?.scrollIntoView({ behavior: "smooth", block: "start" })
     }, 50)
+
+    let initialResult: AuditResult
     try {
       const res = await fetch("/api/seo-audit", {
         method: "POST",
@@ -39,7 +50,9 @@ export function AuditorShell() {
         body: JSON.stringify({ url }),
       })
       if (!res.ok) {
-        const errPayload = (await res.json().catch(() => null)) as AuditError | null
+        const errPayload = (await res.json().catch(() => null)) as
+          | AuditError
+          | null
         setState({
           kind: "error",
           url,
@@ -49,14 +62,7 @@ export function AuditorShell() {
         })
         return
       }
-      const data: AuditResult = await res.json()
-      setState({ kind: "result", url, result: data })
-      // Smooth scroll to results
-      setTimeout(() => {
-        document
-          .getElementById("audit-results-anchor")
-          ?.scrollIntoView({ behavior: "smooth", block: "start" })
-      }, 50)
+      initialResult = (await res.json()) as AuditResult
     } catch {
       setState({
         kind: "error",
@@ -64,7 +70,22 @@ export function AuditorShell() {
         message:
           "Something went wrong reaching the audit service. Check your connection and try again.",
       })
+      return
     }
+
+    // Phase 1 done — render HTML audit immediately, kick off PSI in parallel.
+    setState({
+      kind: "result",
+      url,
+      result: initialResult,
+      psiStatus: { mobile: "loading", desktop: "loading" },
+    })
+
+    // Phase 2: browser-side PSI calls. Each updates state independently
+    // as it resolves, so the user sees scores fade in.
+    const finalUrl = initialResult.snapshot.finalUrl
+    void runPsiPhase(finalUrl, "mobile", url, setState)
+    void runPsiPhase(finalUrl, "desktop", url, setState)
   }
 
   return (
@@ -187,17 +208,52 @@ export function AuditorShell() {
               onRetry={() => runAudit(state.url)}
             />
           )}
-          {state.kind === "result" && <AuditResults result={state.result} />}
+          {state.kind === "result" && (
+            <AuditResults
+              result={state.result}
+              psiStatus={state.psiStatus}
+            />
+          )}
         </section>
       )}
 
-      {/* Idle-only marketing sections — disappear once audit starts */}
+      {/* Idle-only marketing sections */}
       {state.kind === "idle" && <AuditorIdleSections />}
 
-      {/* CTA section appears after results */}
+      {/* CTA section after results */}
       {state.kind === "result" && <AuditCtaSection result={state.result} />}
     </>
   )
+}
+
+async function runPsiPhase(
+  finalUrl: string,
+  strategy: "mobile" | "desktop",
+  originalUrl: string,
+  setState: React.Dispatch<React.SetStateAction<State>>,
+) {
+  let report: Awaited<ReturnType<typeof runPageSpeedClient>> = null
+  let failed = false
+  try {
+    report = await runPageSpeedClient(finalUrl, strategy)
+    if (!report) failed = true
+  } catch {
+    failed = true
+  }
+
+  setState((prev) => {
+    // Only update if we're still on the same audit
+    if (prev.kind !== "result" || prev.url !== originalUrl) return prev
+    const merged = mergePsiIntoResult(prev.result, strategy, report)
+    return {
+      ...prev,
+      result: merged,
+      psiStatus: {
+        ...prev.psiStatus,
+        [strategy]: failed ? "failed" : "done",
+      },
+    }
+  })
 }
 
 function ErrorCard({

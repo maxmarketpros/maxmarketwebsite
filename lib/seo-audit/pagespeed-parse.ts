@@ -1,14 +1,9 @@
-import type { PageSpeedReport, CoreWebVitals } from "./types"
-
-const PSI_ENDPOINT =
-  "https://www.googleapis.com/pagespeedonline/v5/runPagespeed"
-const PSI_TIMEOUT_MS = 50000
+import type { CoreWebVitals, PageSpeedReport } from "./types"
 
 function classifyMetric(
   id: string,
   value: number,
 ): "good" | "needs-improvement" | "poor" {
-  // Thresholds per web.dev / Core Web Vitals
   switch (id) {
     case "lcp":
       return value <= 2500 ? "good" : value <= 4000 ? "needs-improvement" : "poor"
@@ -48,7 +43,8 @@ function buildVitals(audits: Record<string, any> | undefined): CoreWebVitals {
   return {
     lcp: map("lcp", "largest-contentful-paint"),
     cls: map("cls", "cumulative-layout-shift"),
-    inp: map("inp", "interaction-to-next-paint") ||
+    inp:
+      map("inp", "interaction-to-next-paint") ||
       map("inp", "experimental-interaction-to-next-paint"),
     fcp: map("fcp", "first-contentful-paint"),
     tbt: map("tbt", "total-blocking-time"),
@@ -56,11 +52,15 @@ function buildVitals(audits: Record<string, any> | undefined): CoreWebVitals {
   }
 }
 
+function stripMarkdownLinks(s: string): string {
+  return s.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+}
+
 function buildOpportunities(
   audits: Record<string, any> | undefined,
 ): PageSpeedReport["topOpportunities"] {
   if (!audits) return []
-  const opps = Object.entries(audits)
+  return Object.entries(audits)
     .filter(
       ([, a]: [string, any]) =>
         a?.details?.type === "opportunity" &&
@@ -70,7 +70,8 @@ function buildOpportunities(
     .map(([id, a]: [string, any]) => ({
       id,
       title: a.title,
-      description: typeof a.description === "string" ? stripMarkdownLinks(a.description) : "",
+      description:
+        typeof a.description === "string" ? stripMarkdownLinks(a.description) : "",
       savingsMs: a.details.overallSavingsMs,
       savingsBytes:
         typeof a.details.overallSavingsBytes === "number"
@@ -79,67 +80,31 @@ function buildOpportunities(
     }))
     .sort((a, b) => (b.savingsMs ?? 0) - (a.savingsMs ?? 0))
     .slice(0, 5)
-  return opps
 }
 
-function stripMarkdownLinks(s: string): string {
-  return s.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-}
-
-export async function runPageSpeed(
-  url: string,
+export function parseLighthouseResult(
+  data: any,
   strategy: "mobile" | "desktop",
-): Promise<PageSpeedReport | null> {
-  const apiKey = process.env.PAGESPEED_API_KEY
-  if (!apiKey) {
-    console.warn("PAGESPEED_API_KEY not set — skipping Lighthouse for", strategy)
-    return null
-  }
+): PageSpeedReport {
+  const lhr = data?.lighthouseResult
+  const cats = lhr?.categories ?? {}
+  const audits = lhr?.audits
 
-  const params = new URLSearchParams({
-    url,
+  const round = (v: number | undefined | null) =>
+    typeof v === "number" ? Math.round(v * 100) : null
+
+  return {
     strategy,
-    key: apiKey,
-  })
-  // Request all four Lighthouse categories
-  for (const cat of ["performance", "accessibility", "best-practices", "seo"]) {
-    params.append("category", cat)
-  }
-
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), PSI_TIMEOUT_MS)
-
-  try {
-    const res = await fetch(`${PSI_ENDPOINT}?${params.toString()}`, {
-      signal: controller.signal,
-    })
-    if (!res.ok) {
-      console.warn(`PageSpeed (${strategy}) returned ${res.status}`)
-      return null
-    }
-    const data = await res.json()
-    const lhr = data.lighthouseResult
-    const cats = lhr?.categories ?? {}
-    const audits = lhr?.audits
-
-    const round = (v: number | undefined | null) =>
-      typeof v === "number" ? Math.round(v * 100) : null
-
-    return {
-      strategy,
-      scores: {
-        performance: round(cats.performance?.score),
-        accessibility: round(cats.accessibility?.score),
-        bestPractices: round(cats["best-practices"]?.score),
-        seo: round(cats.seo?.score),
-      },
-      vitals: buildVitals(audits),
-      topOpportunities: buildOpportunities(audits),
-    }
-  } catch (err) {
-    console.warn(`PageSpeed (${strategy}) error:`, err)
-    return null
-  } finally {
-    clearTimeout(timer)
+    scores: {
+      performance: round(cats.performance?.score),
+      accessibility: round(cats.accessibility?.score),
+      bestPractices: round(cats["best-practices"]?.score),
+      seo: round(cats.seo?.score),
+    },
+    vitals: buildVitals(audits),
+    topOpportunities: buildOpportunities(audits),
   }
 }
+
+export const PSI_ENDPOINT =
+  "https://www.googleapis.com/pagespeedonline/v5/runPagespeed"
