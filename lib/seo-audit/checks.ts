@@ -1,5 +1,10 @@
 import * as cheerio from "cheerio"
-import type { Issue } from "./types"
+import type {
+  DetectedTech,
+  HeadingNode,
+  Issue,
+  ReadabilityReport,
+} from "./types"
 
 export interface ParsedPage {
   $: cheerio.CheerioAPI
@@ -761,4 +766,427 @@ export function checkFavicon(favicon: string | null): Issue[] {
     ]
   }
   return []
+}
+
+// ─── Security headers ─────────────────────────────────────────────────────
+
+export function checkSecurityHeaders(
+  headers: Record<string, string>,
+): Issue[] {
+  const issues: Issue[] = []
+
+  const hsts = headers["strict-transport-security"]
+  if (!hsts) {
+    issues.push({
+      id: "no-hsts",
+      category: "best-practices",
+      severity: "warning",
+      title: "Missing HSTS header",
+      description:
+        "HTTP Strict Transport Security forces browsers to use HTTPS, preventing downgrade attacks. Google flags missing HSTS in security audits.",
+      fix: "Add a response header: Strict-Transport-Security: max-age=31536000; includeSubDomains",
+    })
+  } else {
+    const m = hsts.match(/max-age=(\d+)/i)
+    const maxAge = m ? parseInt(m[1], 10) : 0
+    if (maxAge < 31536000) {
+      issues.push({
+        id: "weak-hsts",
+        category: "best-practices",
+        severity: "notice",
+        title: `HSTS max-age is short (${maxAge}s)`,
+        description:
+          "HSTS is set but the max-age is below the recommended 1 year (31536000 seconds).",
+        fix: "Bump max-age to at least 31536000 and consider adding includeSubDomains.",
+        evidence: hsts,
+      })
+    } else {
+      issues.push({
+        id: "hsts-ok",
+        category: "best-practices",
+        severity: "passed",
+        title: "HSTS is configured",
+        description: `Strict-Transport-Security max-age=${maxAge}s.`,
+        fix: "",
+      })
+    }
+  }
+
+  if (!headers["content-security-policy"]) {
+    issues.push({
+      id: "no-csp",
+      category: "best-practices",
+      severity: "notice",
+      title: "No Content Security Policy header",
+      description:
+        "CSP is the strongest defense against XSS. It's not required, but every modern site should have at least a basic policy.",
+      fix: "Add a Content-Security-Policy header. Start with a report-only policy to learn what your site needs.",
+    })
+  }
+
+  const xfo = headers["x-frame-options"]?.toLowerCase()
+  if (!xfo && !headers["content-security-policy"]?.includes("frame-ancestors")) {
+    issues.push({
+      id: "no-xfo",
+      category: "best-practices",
+      severity: "notice",
+      title: "Missing clickjacking protection",
+      description:
+        "Without X-Frame-Options or a CSP frame-ancestors directive, attackers can embed your site in a hidden iframe to trick users.",
+      fix: "Add X-Frame-Options: SAMEORIGIN (or DENY) to your response headers.",
+    })
+  }
+
+  if (!headers["x-content-type-options"]) {
+    issues.push({
+      id: "no-nosniff",
+      category: "best-practices",
+      severity: "notice",
+      title: "Missing X-Content-Type-Options",
+      description:
+        "Prevents browsers from MIME-sniffing responses. A 1-line header that closes a real attack vector.",
+      fix: "Add X-Content-Type-Options: nosniff to your response headers.",
+    })
+  }
+
+  if (!headers["referrer-policy"]) {
+    issues.push({
+      id: "no-referrer-policy",
+      category: "best-practices",
+      severity: "notice",
+      title: "No Referrer-Policy header",
+      description:
+        "Without an explicit policy, browsers leak your URLs (sometimes including query parameters) to third-party sites you link to.",
+      fix: "Add Referrer-Policy: strict-origin-when-cross-origin to your response headers.",
+    })
+  }
+
+  return issues
+}
+
+// ─── Heading outline ──────────────────────────────────────────────────────
+
+export function getHeadingOutline($: cheerio.CheerioAPI): HeadingNode[] {
+  const flat: HeadingNode[] = []
+  $("h1, h2, h3, h4, h5, h6").each((_, el) => {
+    const level = parseInt(el.tagName.slice(1), 10) as HeadingNode["level"]
+    const text = $(el).text().trim().replace(/\s+/g, " ").slice(0, 200)
+    if (text) flat.push({ level, text, children: [] })
+  })
+
+  const root: HeadingNode[] = []
+  const stack: HeadingNode[] = []
+  for (const node of flat) {
+    while (stack.length && stack[stack.length - 1].level >= node.level) {
+      stack.pop()
+    }
+    if (stack.length === 0) {
+      root.push(node)
+    } else {
+      stack[stack.length - 1].children.push(node)
+    }
+    stack.push(node)
+  }
+  return root
+}
+
+export function checkHeadingHierarchy($: cheerio.CheerioAPI): Issue[] {
+  const headings = $("h1, h2, h3, h4, h5, h6")
+  const skips: string[] = []
+  let prevLevel = 0
+  headings.each((_, el) => {
+    const level = parseInt(el.tagName.slice(1), 10)
+    if (prevLevel > 0 && level - prevLevel > 1) {
+      skips.push(`h${prevLevel} → h${level}`)
+    }
+    prevLevel = level
+  })
+  if (skips.length > 0) {
+    return [
+      {
+        id: "heading-skips",
+        category: "accessibility",
+        severity: "notice",
+        title: `Heading levels skip in ${skips.length} place${skips.length > 1 ? "s" : ""}`,
+        description:
+          "Screen readers use heading levels to navigate. Jumping from H1 to H3 (skipping H2) breaks that flow.",
+        fix: "Re-order or re-tag headings so each level only steps down by one.",
+        evidence: skips.slice(0, 5).join(", "),
+        metric: skips.length,
+      },
+    ]
+  }
+  return []
+}
+
+// ─── Tech stack detection ─────────────────────────────────────────────────
+
+const TECH_PATTERNS: Array<{
+  name: DetectedTech["name"]
+  category: DetectedTech["category"]
+  patterns: RegExp[]
+}> = [
+  {
+    name: "Google Analytics 4",
+    category: "analytics",
+    patterns: [
+      /googletagmanager\.com\/gtag\/js\?id=G-[A-Z0-9]+/i,
+      /gtag\(['"]config['"]\s*,\s*['"]G-[A-Z0-9]+/i,
+    ],
+  },
+  {
+    name: "Google Analytics (Universal)",
+    category: "analytics",
+    patterns: [/google-analytics\.com\/analytics\.js/i, /UA-\d+-\d+/i],
+  },
+  {
+    name: "Google Tag Manager",
+    category: "tag-manager",
+    patterns: [/googletagmanager\.com\/gtm\.js\?id=GTM-/i, /GTM-[A-Z0-9]+/i],
+  },
+  {
+    name: "Meta (Facebook) Pixel",
+    category: "advertising",
+    patterns: [/connect\.facebook\.net\/.+\/fbevents\.js/i, /fbq\(['"]init['"]/i],
+  },
+  {
+    name: "Hotjar",
+    category: "analytics",
+    patterns: [/static\.hotjar\.com/i, /hjid:\s*\d+/i],
+  },
+  {
+    name: "Microsoft Clarity",
+    category: "analytics",
+    patterns: [/clarity\.ms\/tag\//i, /clarity\(["']set/i],
+  },
+  {
+    name: "HubSpot",
+    category: "analytics",
+    patterns: [/js\.hs-scripts\.com/i, /js\.hs-analytics\.net/i],
+  },
+  {
+    name: "Google Fonts",
+    category: "fonts",
+    patterns: [/fonts\.googleapis\.com/i, /fonts\.gstatic\.com/i],
+  },
+  {
+    name: "WordPress",
+    category: "cms",
+    patterns: [/wp-content\//i, /wp-includes\//i, /<meta name="generator" content="WordPress/i],
+  },
+  {
+    name: "Next.js",
+    category: "framework",
+    patterns: [/_next\/static/i, /__NEXT_DATA__/],
+  },
+  {
+    name: "Shopify",
+    category: "cms",
+    patterns: [/cdn\.shopify\.com/i, /Shopify\.theme/i],
+  },
+  {
+    name: "Webflow",
+    category: "cms",
+    patterns: [/data-wf-page/i, /webflow\.com/i],
+  },
+  {
+    name: "Squarespace",
+    category: "cms",
+    patterns: [/squarespace\.com/i, /Static\.SQUARESPACE_CONTEXT/i],
+  },
+  {
+    name: "Wix",
+    category: "cms",
+    patterns: [/wix\.com\/_partials/i, /static\.parastorage\.com/i],
+  },
+]
+
+export function detectTechStack(html: string): DetectedTech[] {
+  return TECH_PATTERNS.map(({ name, category, patterns }) => {
+    const match = patterns.find((p) => p.test(html))
+    return {
+      name,
+      category,
+      detected: !!match,
+      evidence: match ? match.source.slice(0, 60) : undefined,
+    }
+  })
+}
+
+export function checkTechStack(detected: DetectedTech[]): Issue[] {
+  const issues: Issue[] = []
+
+  const hasAnalytics = detected.some(
+    (t) => t.category === "analytics" && t.detected,
+  )
+  const hasTagManager = detected.some(
+    (t) => t.category === "tag-manager" && t.detected,
+  )
+
+  if (!hasAnalytics && !hasTagManager) {
+    issues.push({
+      id: "no-analytics",
+      category: "best-practices",
+      severity: "warning",
+      title: "No website analytics detected",
+      description:
+        "We didn't find Google Analytics, Microsoft Clarity, Hotjar, or HubSpot tracking on your page. You're flying blind on traffic, conversions, and user behavior.",
+      fix: "Install Google Analytics 4 (free) at minimum. Add Microsoft Clarity for free heatmaps and session recordings.",
+    })
+  } else {
+    const found = detected
+      .filter((t) => t.detected && (t.category === "analytics" || t.category === "tag-manager"))
+      .map((t) => t.name)
+    issues.push({
+      id: "analytics-ok",
+      category: "best-practices",
+      severity: "passed",
+      title: `Analytics detected: ${found.join(", ")}`,
+      description: "You're tracking visitor behavior — good.",
+      fix: "",
+    })
+  }
+
+  return issues
+}
+
+// ─── Content readability ──────────────────────────────────────────────────
+
+function countSyllables(word: string): number {
+  word = word.toLowerCase().replace(/[^a-z]/g, "")
+  if (!word) return 0
+  if (word.length <= 3) return 1
+  // Strip silent e
+  word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, "")
+  word = word.replace(/^y/, "")
+  const matches = word.match(/[aeiouy]{1,2}/g)
+  return matches ? matches.length : 1
+}
+
+export function buildReadabilityReport(
+  $: cheerio.CheerioAPI,
+): ReadabilityReport | null {
+  // Use main/article if present, else body, but exclude scripts/styles/nav/footer
+  const $clone = cheerio.load($.html())
+  $clone("script, style, nav, header, footer, aside, noscript").remove()
+  const root =
+    $clone("main").length > 0
+      ? $clone("main")
+      : $clone("article").length > 0
+        ? $clone("article")
+        : $clone("body")
+  const text = root.text().replace(/\s+/g, " ").trim()
+  if (!text) return null
+
+  const words = text.match(/\b[\w'-]+\b/g) || []
+  const wordCount = words.length
+  if (wordCount < 50) return null
+
+  const sentences = text.split(/[.!?]+\s+/).filter((s) => s.trim().length > 5)
+  const sentenceCount = Math.max(1, sentences.length)
+
+  const paragraphs: string[] = []
+  $clone("p").each((_, el) => {
+    const t = $clone(el).text().trim()
+    if (t) paragraphs.push(t)
+  })
+  const paragraphCount = Math.max(1, paragraphs.length)
+
+  const totalSyllables = words.reduce((sum, w) => sum + countSyllables(w), 0)
+
+  const avgWordsPerSentence = wordCount / sentenceCount
+  const avgWordsPerParagraph =
+    paragraphs.length > 0
+      ? paragraphs.reduce(
+          (s, p) => s + (p.match(/\b[\w'-]+\b/g) || []).length,
+          0,
+        ) / paragraphCount
+      : wordCount / paragraphCount
+  const avgSyllablesPerWord = totalSyllables / wordCount
+
+  // Flesch Reading Ease: 206.835 - 1.015*(words/sentences) - 84.6*(syllables/words)
+  const flesch = Math.round(
+    206.835 - 1.015 * avgWordsPerSentence - 84.6 * avgSyllablesPerWord,
+  )
+
+  let grade: string | null = null
+  if (flesch >= 90) grade = "Very easy (5th grade)"
+  else if (flesch >= 80) grade = "Easy (6th grade)"
+  else if (flesch >= 70) grade = "Fairly easy (7th grade)"
+  else if (flesch >= 60) grade = "Standard (8–9th grade)"
+  else if (flesch >= 50) grade = "Fairly difficult (10–12th grade)"
+  else if (flesch >= 30) grade = "Difficult (college)"
+  else grade = "Very difficult (college graduate)"
+
+  const longestParagraphWords = paragraphs.reduce(
+    (max, p) => Math.max(max, (p.match(/\b[\w'-]+\b/g) || []).length),
+    0,
+  )
+
+  return {
+    wordCount,
+    sentenceCount,
+    paragraphCount,
+    avgWordsPerSentence: Math.round(avgWordsPerSentence * 10) / 10,
+    avgWordsPerParagraph: Math.round(avgWordsPerParagraph * 10) / 10,
+    fleschReadingEase: flesch,
+    fleschGrade: grade,
+    longestParagraphWords,
+  }
+}
+
+export function checkReadability(
+  report: ReadabilityReport | null,
+): Issue[] {
+  if (!report) return []
+  const issues: Issue[] = []
+
+  if (report.fleschReadingEase !== null && report.fleschReadingEase < 50) {
+    issues.push({
+      id: "hard-to-read",
+      category: "content",
+      severity: "warning",
+      title: `Content reads at ${report.fleschGrade} level`,
+      description: `Flesch Reading Ease score: ${report.fleschReadingEase}. Most local-business audiences read most comfortably at 8th–9th grade level (60–70).`,
+      fix: "Shorten sentences, use simpler words, break dense paragraphs into bullets. Aim for an 8th-grade reading level.",
+      metric: report.fleschReadingEase,
+    })
+  } else if (report.fleschReadingEase !== null) {
+    issues.push({
+      id: "readability-ok",
+      category: "content",
+      severity: "passed",
+      title: `Content reads at ${report.fleschGrade} level`,
+      description: `Flesch Reading Ease score: ${report.fleschReadingEase}. Easy enough for most readers.`,
+      fix: "",
+    })
+  }
+
+  if (report.avgWordsPerSentence > 25) {
+    issues.push({
+      id: "long-sentences",
+      category: "content",
+      severity: "notice",
+      title: `Sentences average ${report.avgWordsPerSentence} words`,
+      description:
+        "Long sentences hurt readability and SEO snippet quality. Aim for 14–20 words on average.",
+      fix: "Break complex sentences into two. Use periods instead of commas. Cut filler phrases.",
+      metric: report.avgWordsPerSentence,
+    })
+  }
+
+  if (report.longestParagraphWords > 150) {
+    issues.push({
+      id: "wall-of-text",
+      category: "content",
+      severity: "notice",
+      title: `Longest paragraph is ${report.longestParagraphWords} words`,
+      description:
+        "Walls of text scare off mobile readers. People scan first, read second.",
+      fix: "Break long paragraphs at natural pauses. Aim for 50–80 words per paragraph max.",
+      metric: report.longestParagraphWords,
+    })
+  }
+
+  return issues
 }

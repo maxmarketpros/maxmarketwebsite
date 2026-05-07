@@ -4,10 +4,15 @@ import { useEffect, useState } from "react"
 import { Check, Loader2 } from "lucide-react"
 
 const STEPS = [
-  { label: "Fetching your homepage", duration: 1200 },
-  { label: "Parsing HTML & meta tags", duration: 800 },
+  { label: "Fetching your homepage", duration: 1100 },
+  { label: "Parsing HTML, meta & schema", duration: 900 },
+  { label: "Mapping your heading outline", duration: 700 },
+  { label: "Auditing links, images & alt text", duration: 900 },
   { label: "Checking robots.txt and sitemap", duration: 800 },
-  { label: "Compiling your report", duration: 1000 },
+  { label: "Detecting analytics & tech stack", duration: 700 },
+  { label: "Inspecting security headers", duration: 700 },
+  { label: "Scoring readability & content depth", duration: 900 },
+  { label: "Compiling your report", duration: 800 },
 ]
 
 export function AuditLoading({ url }: { url: string }) {
@@ -113,7 +118,7 @@ export function AuditLoading({ url }: { url: string }) {
         className="mt-6 sm:mt-8 text-[13px] sm:text-[13.5px]"
         style={{ color: "var(--muted)" }}
       >
-        First results land in seconds — Lighthouse scores fill in right after.
+        Running 100+ on-page checks across SEO, performance, accessibility & content. Hang tight — results in a few seconds.
       </p>
     </div>
   )

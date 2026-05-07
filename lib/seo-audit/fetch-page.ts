@@ -9,6 +9,7 @@ export interface FetchedPage {
   redirectCount: number
   responseTimeMs: number
   contentBytes: number
+  headers: Record<string, string>
 }
 
 export async function fetchPage(url: string): Promise<FetchedPage> {
@@ -40,6 +41,11 @@ export async function fetchPage(url: string): Promise<FetchedPage> {
   // Best-effort redirect count: compare hostnames/paths, default to 1 if URL changed
   const redirectCount = finalUrl !== url ? 1 : 0
 
+  const headers: Record<string, string> = {}
+  response.headers.forEach((value, key) => {
+    headers[key.toLowerCase()] = value
+  })
+
   return {
     html,
     finalUrl,
@@ -47,6 +53,7 @@ export async function fetchPage(url: string): Promise<FetchedPage> {
     redirectCount,
     responseTimeMs,
     contentBytes: new Blob([html]).size,
+    headers,
   }
 }
 

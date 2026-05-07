@@ -14,6 +14,7 @@ import {
   checkViewport,
   checkRobotsMeta,
   checkHeadings,
+  checkHeadingHierarchy,
   checkImages,
   checkLinks,
   checkOpenGraph,
@@ -25,6 +26,12 @@ import {
   checkRobotsTxt,
   checkSitemap,
   checkFavicon,
+  checkSecurityHeaders,
+  getHeadingOutline,
+  detectTechStack,
+  checkTechStack,
+  buildReadabilityReport,
+  checkReadability,
 } from "@/lib/seo-audit/checks"
 import {
   buildCategoryScores,
@@ -36,7 +43,6 @@ import type { AuditResult, AuditError, Issue } from "@/lib/seo-audit/types"
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
 
-// Naive in-memory rate limiter (per warm function instance).
 const RATE_LIMIT_MAX = 10
 const RATE_LIMIT_WINDOW_MS = 60_000
 const ipHits = new Map<string, number[]>()
@@ -129,6 +135,9 @@ export async function POST(req: NextRequest) {
 
   const $ = parseHtml(page.html)
   const meta = getMetaSummary($, page.finalUrl)
+  const headingOutline = getHeadingOutline($)
+  const techStack = detectTechStack(page.html)
+  const readability = buildReadabilityReport($)
 
   let origin = page.finalUrl
   try {
@@ -149,6 +158,7 @@ export async function POST(req: NextRequest) {
     ...checkViewport($),
     ...checkRobotsMeta($),
     ...checkHeadings($),
+    ...checkHeadingHierarchy($),
     ...checkImages($),
     ...checkLinks($, page.finalUrl),
     ...checkOpenGraph($),
@@ -160,12 +170,12 @@ export async function POST(req: NextRequest) {
     ...checkRobotsTxt(robotsRes.ok, robotsRes.body),
     ...checkSitemap(sitemapRes.ok, sitemapRes.body),
     ...checkFavicon(meta.favicon),
+    ...checkSecurityHeaders(page.headers),
+    ...checkTechStack(techStack),
+    ...checkReadability(readability),
   ]
 
-  // PageSpeed Insights now runs in the browser to avoid Netlify gateway
-  // timeouts on large sites. mobile/desktop start as null and the client
-  // merges them in via mergePsiIntoResult() once PSI returns.
-  const categoryScores = buildCategoryScores(issues, null, null)
+  const categoryScores = buildCategoryScores(issues)
 
   const result: AuditResult = {
     snapshot: {
@@ -183,10 +193,9 @@ export async function POST(req: NextRequest) {
     overallScore: overallScore(categoryScores),
     categoryScores,
     issues: sortIssues(issues),
-    pageSpeed: {
-      mobile: null,
-      desktop: null,
-    },
+    headingOutline,
+    techStack,
+    readability,
     generatedAt: new Date().toISOString(),
   }
 

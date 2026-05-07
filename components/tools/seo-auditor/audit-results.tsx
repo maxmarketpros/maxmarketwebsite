@@ -5,15 +5,14 @@ import { ChevronDown } from "lucide-react"
 import type { AuditResult, Issue } from "@/lib/seo-audit/types"
 import { SiteSnapshot } from "./site-snapshot"
 import { CategorySummary } from "./category-summary"
-import { VitalsCard } from "./vitals-card"
+import { HeadingOutlineCard } from "./heading-outline-card"
+import { TechStackCard } from "./tech-stack-card"
+import { ReadabilityCard } from "./readability-card"
 import { IssueRow } from "./issue-row"
 import { AuditCtaInline } from "./audit-cta-inline"
 
-import type { PsiStatus } from "./auditor-shell"
-
 interface AuditResultsProps {
   result: AuditResult
-  psiStatus: { mobile: PsiStatus; desktop: PsiStatus }
 }
 
 function groupBySeverity(issues: Issue[]) {
@@ -25,7 +24,7 @@ function groupBySeverity(issues: Issue[]) {
   }
 }
 
-export function AuditResults({ result, psiStatus }: AuditResultsProps) {
+export function AuditResults({ result }: AuditResultsProps) {
   const [showPassed, setShowPassed] = useState(false)
   const grouped = groupBySeverity(result.issues)
 
@@ -36,12 +35,6 @@ export function AuditResults({ result, psiStatus }: AuditResultsProps) {
       <CategorySummary
         overallScore={result.overallScore}
         categoryScores={result.categoryScores}
-      />
-
-      <VitalsCard
-        mobile={result.pageSpeed.mobile}
-        desktop={result.pageSpeed.desktop}
-        psiStatus={psiStatus}
       />
 
       <AuditCtaInline
@@ -69,6 +62,13 @@ export function AuditResults({ result, psiStatus }: AuditResultsProps) {
           issues={grouped.warning}
         />
       )}
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+        <HeadingOutlineCard outline={result.headingOutline} />
+        <TechStackCard tech={result.techStack} />
+      </div>
+
+      <ReadabilityCard report={result.readability} />
 
       <AuditCtaInline
         eyebrow="Need it done for you?"

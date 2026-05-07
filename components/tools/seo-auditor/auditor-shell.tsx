@@ -8,26 +8,17 @@ import { AuditLoading } from "./audit-loading"
 import { AuditResults } from "./audit-results"
 import { AuditCtaSection } from "./audit-cta-section"
 import { AuditorIdleSections } from "./auditor-idle-sections"
-import { runPageSpeedClient } from "@/lib/seo-audit/pagespeed-client"
-import { mergePsiIntoResult } from "@/lib/seo-audit/scoring"
 import type { AuditResult, AuditError } from "@/lib/seo-audit/types"
-
-export type PsiStatus = "loading" | "done" | "failed"
 
 type State =
   | { kind: "idle" }
   | { kind: "loading"; url: string }
-  | {
-      kind: "result"
-      url: string
-      result: AuditResult
-      psiStatus: { mobile: PsiStatus; desktop: PsiStatus }
-    }
+  | { kind: "result"; url: string; result: AuditResult }
   | { kind: "error"; url: string; message: string }
 
 const TRUST_BULLETS = [
   "100+ on-page checks",
-  "Powered by Google Lighthouse",
+  "Heading outline · readability · security headers",
   "100% free, no sign-up",
 ]
 
@@ -42,50 +33,43 @@ export function AuditorShell() {
         ?.scrollIntoView({ behavior: "smooth", block: "start" })
     }, 50)
 
-    let initialResult: AuditResult
-    try {
-      const res = await fetch("/api/seo-audit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url }),
-      })
-      if (!res.ok) {
-        const errPayload = (await res.json().catch(() => null)) as
-          | AuditError
-          | null
-        setState({
-          kind: "error",
-          url,
-          message:
-            errPayload?.error ||
-            `The audit failed (HTTP ${res.status}). Try again in a moment.`,
+    // Run the API call in parallel with a minimum loading time so the
+    // staged loading UI has time to play through (~8s).
+    const minLoadingTime = new Promise((resolve) => setTimeout(resolve, 7500))
+    const auditCall = (async () => {
+      try {
+        const res = await fetch("/api/seo-audit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url }),
         })
-        return
+        if (!res.ok) {
+          const errPayload = (await res.json().catch(() => null)) as
+            | AuditError
+            | null
+          return {
+            ok: false as const,
+            message:
+              errPayload?.error ||
+              `The audit failed (HTTP ${res.status}). Try again in a moment.`,
+          }
+        }
+        return { ok: true as const, result: (await res.json()) as AuditResult }
+      } catch {
+        return {
+          ok: false as const,
+          message:
+            "Something went wrong reaching the audit service. Check your connection and try again.",
+        }
       }
-      initialResult = (await res.json()) as AuditResult
-    } catch {
-      setState({
-        kind: "error",
-        url,
-        message:
-          "Something went wrong reaching the audit service. Check your connection and try again.",
-      })
+    })()
+
+    const [outcome] = await Promise.all([auditCall, minLoadingTime])
+    if (!outcome.ok) {
+      setState({ kind: "error", url, message: outcome.message })
       return
     }
-
-    // Phase 1 done — render HTML audit immediately, kick off PSI in parallel.
-    setState({
-      kind: "result",
-      url,
-      result: initialResult,
-      psiStatus: { mobile: "loading", desktop: "loading" },
-    })
-
-    // Phase 2: browser-side PSI calls. Each updates state independently
-    // as it resolves, so the user sees scores fade in.
-    const finalUrl = initialResult.snapshot.finalUrl
-    void runPsiPhase(finalUrl, "mobile", url, setState)
-    void runPsiPhase(finalUrl, "desktop", url, setState)
+    setState({ kind: "result", url, result: outcome.result })
   }
 
   return (
@@ -209,10 +193,7 @@ export function AuditorShell() {
             />
           )}
           {state.kind === "result" && (
-            <AuditResults
-              result={state.result}
-              psiStatus={state.psiStatus}
-            />
+            <AuditResults result={state.result} />
           )}
         </section>
       )}
@@ -224,36 +205,6 @@ export function AuditorShell() {
       {state.kind === "result" && <AuditCtaSection result={state.result} />}
     </>
   )
-}
-
-async function runPsiPhase(
-  finalUrl: string,
-  strategy: "mobile" | "desktop",
-  originalUrl: string,
-  setState: React.Dispatch<React.SetStateAction<State>>,
-) {
-  let report: Awaited<ReturnType<typeof runPageSpeedClient>> = null
-  let failed = false
-  try {
-    report = await runPageSpeedClient(finalUrl, strategy)
-    if (!report) failed = true
-  } catch {
-    failed = true
-  }
-
-  setState((prev) => {
-    // Only update if we're still on the same audit
-    if (prev.kind !== "result" || prev.url !== originalUrl) return prev
-    const merged = mergePsiIntoResult(prev.result, strategy, report)
-    return {
-      ...prev,
-      result: merged,
-      psiStatus: {
-        ...prev.psiStatus,
-        [strategy]: failed ? "failed" : "done",
-      },
-    }
-  })
 }
 
 function ErrorCard({

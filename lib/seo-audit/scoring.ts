@@ -1,10 +1,4 @@
-import type {
-  AuditResult,
-  Category,
-  CategoryScore,
-  Issue,
-  PageSpeedReport,
-} from "./types"
+import type { Category, CategoryScore, Issue } from "./types"
 
 const SEVERITY_WEIGHT: Record<Issue["severity"], number> = {
   critical: 25,
@@ -21,11 +15,6 @@ const CATEGORY_LABELS: Record<Category, string> = {
   content: "Content",
 }
 
-/**
- * Compute a 0–100 score for a single category based on its issues.
- * Each issue subtracts a penalty (capped at 100). PSI scores override
- * the equivalent category when available.
- */
 export function categoryScoreFromIssues(
   category: Category,
   issues: Issue[],
@@ -40,38 +29,19 @@ export function categoryScoreFromIssues(
   return Math.max(0, Math.min(100, 100 - penalty))
 }
 
-export function buildCategoryScores(
-  issues: Issue[],
-  mobile: PageSpeedReport | null,
-  desktop: PageSpeedReport | null,
-): CategoryScore[] {
-  const psiAvg = (k: keyof PageSpeedReport["scores"]): number | null => {
-    const m = mobile?.scores[k]
-    const d = desktop?.scores[k]
-    if (typeof m === "number" && typeof d === "number") return Math.round((m + d) / 2)
-    if (typeof m === "number") return m
-    if (typeof d === "number") return d
-    return null
-  }
-
-  const mkScore = (
-    category: Category,
-    psiKey: keyof PageSpeedReport["scores"] | null,
-  ): CategoryScore => {
-    const psi = psiKey ? psiAvg(psiKey) : null
-    const issueScore = categoryScoreFromIssues(category, issues)
-    // Blend: when PSI is available, weight it more heavily (it's authoritative)
-    const score = psi !== null ? Math.round(psi * 0.7 + issueScore * 0.3) : issueScore
-    return { category, label: CATEGORY_LABELS[category], score }
-  }
-
-  return [
-    mkScore("performance", "performance"),
-    mkScore("seo", "seo"),
-    mkScore("best-practices", "bestPractices"),
-    mkScore("accessibility", "accessibility"),
-    mkScore("content", null),
+export function buildCategoryScores(issues: Issue[]): CategoryScore[] {
+  const cats: Category[] = [
+    "performance",
+    "seo",
+    "best-practices",
+    "accessibility",
+    "content",
   ]
+  return cats.map((category) => ({
+    category,
+    label: CATEGORY_LABELS[category],
+    score: categoryScoreFromIssues(category, issues),
+  }))
 }
 
 export function overallScore(categories: CategoryScore[]): number {
@@ -91,54 +61,6 @@ export function overallScore(categories: CategoryScore[]): number {
     weightTotal += w
   }
   return Math.round(weightedSum / weightTotal)
-}
-
-export function psiOpportunitiesToIssues(
-  report: PageSpeedReport,
-): Issue[] {
-  return report.topOpportunities.map((opp) => ({
-    id: `psi-${report.strategy}-${opp.id}`,
-    category: "performance",
-    severity: (opp.savingsMs ?? 0) > 1000 ? "warning" : "notice",
-    title: `${report.strategy === "mobile" ? "Mobile" : "Desktop"}: ${opp.title}`,
-    description: opp.description,
-    fix: opp.savingsMs
-      ? `Lighthouse estimates ~${(opp.savingsMs / 1000).toFixed(1)}s of potential savings on ${report.strategy}.`
-      : "Apply Lighthouse's recommendation for this opportunity.",
-    metric: opp.savingsMs,
-  }))
-}
-
-/**
- * Merges a PSI report into an existing AuditResult: stores the report, appends
- * its opportunities to issues[], and recomputes category + overall scores.
- * Pure function — safe to call from server or client.
- */
-export function mergePsiIntoResult(
-  result: AuditResult,
-  strategy: "mobile" | "desktop",
-  report: PageSpeedReport | null,
-): AuditResult {
-  const pageSpeed = { ...result.pageSpeed, [strategy]: report }
-  // Drop any prior opportunities for this strategy (in case of re-run) then append fresh ones.
-  const stripped = result.issues.filter(
-    (i) => !i.id.startsWith(`psi-${strategy}-`),
-  )
-  const issues = report
-    ? [...stripped, ...psiOpportunitiesToIssues(report)]
-    : stripped
-  const categoryScores = buildCategoryScores(
-    issues,
-    pageSpeed.mobile,
-    pageSpeed.desktop,
-  )
-  return {
-    ...result,
-    pageSpeed,
-    issues: sortIssues(issues),
-    categoryScores,
-    overallScore: overallScore(categoryScores),
-  }
 }
 
 export function sortIssues(issues: Issue[]): Issue[] {

@@ -24,33 +24,6 @@ export interface CategoryScore {
   score: number // 0-100
 }
 
-export interface CoreWebVitals {
-  lcp: { value: number; displayValue: string; category: "good" | "needs-improvement" | "poor" } | null
-  cls: { value: number; displayValue: string; category: "good" | "needs-improvement" | "poor" } | null
-  inp: { value: number; displayValue: string; category: "good" | "needs-improvement" | "poor" } | null
-  fcp: { value: number; displayValue: string; category: "good" | "needs-improvement" | "poor" } | null
-  tbt: { value: number; displayValue: string; category: "good" | "needs-improvement" | "poor" } | null
-  si: { value: number; displayValue: string; category: "good" | "needs-improvement" | "poor" } | null
-}
-
-export interface PageSpeedReport {
-  strategy: "mobile" | "desktop"
-  scores: {
-    performance: number | null
-    accessibility: number | null
-    bestPractices: number | null
-    seo: number | null
-  }
-  vitals: CoreWebVitals
-  topOpportunities: Array<{
-    id: string
-    title: string
-    description: string
-    savingsMs?: number
-    savingsBytes?: number
-  }>
-}
-
 export interface PageSnapshot {
   inputUrl: string
   finalUrl: string
@@ -64,15 +37,38 @@ export interface PageSnapshot {
   favicon: string | null
 }
 
+export interface HeadingNode {
+  level: 1 | 2 | 3 | 4 | 5 | 6
+  text: string
+  children: HeadingNode[]
+}
+
+export interface DetectedTech {
+  name: string
+  category: "analytics" | "tag-manager" | "advertising" | "fonts" | "chat" | "cms" | "framework"
+  detected: boolean
+  evidence?: string
+}
+
+export interface ReadabilityReport {
+  wordCount: number
+  sentenceCount: number
+  paragraphCount: number
+  avgWordsPerSentence: number
+  avgWordsPerParagraph: number
+  fleschReadingEase: number | null
+  fleschGrade: string | null // e.g. "Standard / 8-9th grade"
+  longestParagraphWords: number
+}
+
 export interface AuditResult {
   snapshot: PageSnapshot
   overallScore: number
   categoryScores: CategoryScore[]
   issues: Issue[]
-  pageSpeed: {
-    mobile: PageSpeedReport | null
-    desktop: PageSpeedReport | null
-  }
+  headingOutline: HeadingNode[]
+  techStack: DetectedTech[]
+  readability: ReadabilityReport | null
   generatedAt: string
 }
 
