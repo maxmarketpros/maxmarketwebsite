@@ -7,6 +7,7 @@ import { AuditForm } from "./audit-form"
 import { AuditLoading } from "./audit-loading"
 import { AuditResults } from "./audit-results"
 import { AuditCtaSection } from "./audit-cta-section"
+import { AuditorIdleSections } from "./auditor-idle-sections"
 import type { AuditResult, AuditError } from "@/lib/seo-audit/types"
 
 type State =
@@ -172,21 +173,26 @@ export function AuditorShell() {
       </section>
 
       {/* Loading / Results / Error */}
-      <section className="section-container py-12 sm:py-16 lg:py-20">
-        <div
-          id="audit-results-anchor"
-          style={{ scrollMarginTop: 160 }}
-        />
-        {state.kind === "loading" && <AuditLoading url={state.url} />}
-        {state.kind === "error" && (
-          <ErrorCard
-            url={state.url}
-            message={state.message}
-            onRetry={() => runAudit(state.url)}
+      {state.kind !== "idle" && (
+        <section className="section-container py-12 sm:py-16 lg:py-20">
+          <div
+            id="audit-results-anchor"
+            style={{ scrollMarginTop: 160 }}
           />
-        )}
-        {state.kind === "result" && <AuditResults result={state.result} />}
-      </section>
+          {state.kind === "loading" && <AuditLoading url={state.url} />}
+          {state.kind === "error" && (
+            <ErrorCard
+              url={state.url}
+              message={state.message}
+              onRetry={() => runAudit(state.url)}
+            />
+          )}
+          {state.kind === "result" && <AuditResults result={state.result} />}
+        </section>
+      )}
+
+      {/* Idle-only marketing sections — disappear once audit starts */}
+      {state.kind === "idle" && <AuditorIdleSections />}
 
       {/* CTA section appears after results */}
       {state.kind === "result" && <AuditCtaSection result={state.result} />}
