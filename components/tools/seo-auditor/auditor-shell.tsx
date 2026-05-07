@@ -173,7 +173,10 @@ export function AuditorShell() {
 
       {/* Loading / Results / Error */}
       <section className="section-container py-12 sm:py-16 lg:py-20">
-        <div id="audit-results-anchor" />
+        <div
+          id="audit-results-anchor"
+          style={{ scrollMarginTop: 160 }}
+        />
         {state.kind === "loading" && <AuditLoading url={state.url} />}
         {state.kind === "error" && (
           <ErrorCard
