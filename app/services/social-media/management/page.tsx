@@ -13,7 +13,7 @@ import { ManagementFinalCta } from "@/components/social-media/management/managem
 
 export const metadata: Metadata = {
   title:
-    "Social Media Management Services — Done-For-You for Service Businesses | Max Market Pros",
+    "Social Media Management",
   description:
     "Done-for-you social media management for service businesses. We plan, create, post, engage and analyze across Instagram, TikTok, Facebook, LinkedIn, YouTube, X and Pinterest — replacing your in-house team for a fraction of the cost.",
   keywords: [
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/social-media/management" },
   openGraph: {
     title:
-      "Social Media Management Services — Done-For-You for Service Businesses | Max Market Pros",
+      "Social Media Management",
     description:
       "Full-service social media management — strategy, content, posting, community, and reporting across every major platform. One team, one monthly invoice.",
     type: "website",
@@ -62,20 +62,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Social Media Management Services — Done-For-You for Service Businesses | Max Market Pros",
+      "Social Media Management",
     description:
       "Done-for-you social media management. 60+ posts/mo, full content production, community management, monthly reporting.",
     images: ["/services/social-media.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

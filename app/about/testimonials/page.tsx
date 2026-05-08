@@ -12,7 +12,7 @@ import {
 } from "@/components/about/testimonials/testimonials-data"
 
 export const metadata: Metadata = {
-  title: "Testimonials — 4.7★ on Google | Max Market Pros",
+  title: "Testimonials — 4.7★ on Google",
   description:
     "275 verified Google reviews · 4.7-star average. Read what food trucks, yoga studios, gyms, florists, bookstores and more say about working with Max Market Pros.",
   keywords: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/about/testimonials" },
   openGraph: {
-    title: "Testimonials — 4.7★ on Google | Max Market Pros",
+    title: "Testimonials — 4.7★ on Google",
     description:
       "275 verified Google reviews. See unedited testimonials from real small business owners.",
     type: "website",
@@ -35,19 +35,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Testimonials — 4.7★ on Google | Max Market Pros",
+    title: "Testimonials — 4.7★ on Google",
     description:
       "275 verified Google reviews. Real small businesses, real outcomes.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

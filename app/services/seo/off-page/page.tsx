@@ -11,7 +11,7 @@ import { OffPageFinalCta } from "@/components/seo/off-page/off-page-final-cta"
 
 export const metadata: Metadata = {
   title:
-    "Off-Page SEO Services \u2014 Authority + Earned Links | Max Market Pros",
+    "Off-Page SEO Services",
   description:
     "Off-page SEO services: authority link building, digital PR, brand mentions, and citation foundation that grow your domain rating and referring domains. Free audit.",
   keywords: [
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/seo/off-page" },
   openGraph: {
     title:
-      "Off-Page SEO Services \u2014 Authority + Earned Links | Max Market Pros",
+      "Off-Page SEO Services",
     description:
       "Done-for-you off-page SEO: digital PR, authority link building, HARO, brand-mention monitoring, and citation foundation that compound into domain-rating growth.",
     type: "website",
@@ -58,20 +58,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Off-Page SEO Services \u2014 Authority + Earned Links | Max Market Pros",
+      "Off-Page SEO Services",
     description:
       "Off-page SEO that earns links Google actually trusts. Digital PR, authority link building, brand mentions, and citations. Free audit.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

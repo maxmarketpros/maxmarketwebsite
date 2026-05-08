@@ -14,7 +14,7 @@ import { GoDaddyFinalCta } from "@/components/web-design/godaddy/godaddy-final-c
 
 export const metadata: Metadata = {
   title:
-    "GoDaddy Website Design Services — Custom GoDaddy Designers | Max Market Pros",
+    "GoDaddy Website Design",
   description:
     "Custom GoDaddy website design that converts. Done-for-you Websites + Marketing and Managed WordPress builds with mobile-first layouts, on-page SEO, schema markup, Lighthouse 90+ performance, and a 14-day delivery — for service businesses that want to keep their GoDaddy domain, email, and Payments.",
   keywords: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/web-design/godaddy" },
   openGraph: {
     title:
-      "GoDaddy Website Design Services — Custom GoDaddy Designers | Max Market Pros",
+      "GoDaddy Website Design",
     description:
       "Done-for-you GoDaddy website design with mobile-first layouts, on-page SEO, schema markup, and Lighthouse 90+ performance. Live in 14 days.",
     type: "website",
@@ -61,20 +61,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "GoDaddy Website Design Services — Custom GoDaddy Designers | Max Market Pros",
+      "GoDaddy Website Design",
     description:
       "Custom GoDaddy website design that converts. Lighthouse 90+, schema markup, mobile-first layouts — live in 14 days.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

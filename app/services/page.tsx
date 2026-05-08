@@ -11,12 +11,12 @@ import { ServicesFinalCta } from "@/components/services/hub/services-final-cta"
 import { services } from "@/lib/site-map"
 
 export const metadata: Metadata = {
-  title: "Marketing Services — 24 Services Across SEO, Web, Social & Ads | Max Market Pros",
+  title: "Marketing Services",
   description:
-    "Every marketing service your business needs under one roof. SEO, web design, social media, paid ads — 24 services across 4 pillars, run by one in-house team. Bundle what you need today, expand when you're ready.",
+    "Every marketing service your business needs under one roof. SEO, web design, social media, and paid ads — 24 services across 4 pillars, one in-house team.",
   alternates: { canonical: "/services" },
   openGraph: {
-    title: "Marketing Services | Max Market Pros",
+    title: "Marketing Services",
     description:
       "Every marketing service your business needs under one roof. 24 in-house services across SEO, web design, social media, and paid ads.",
     type: "website",
@@ -26,14 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Marketing Services | Max Market Pros",
+    title: "Marketing Services",
     description:
       "SEO, web design, social media, and paid ads — 24 services across 4 pillars, run by one in-house team.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

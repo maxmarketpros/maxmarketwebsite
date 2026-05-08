@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
 import { InfrastructureSection } from "@/components/infrastructure-section"
@@ -5,10 +6,31 @@ import { SeoSerpTakeover } from "@/components/seo/seo-serp-takeover"
 import { PlatformSection } from "@/components/platform-section"
 import { IndustriesSection } from "@/components/industries-section"
 import { PricingSection } from "@/components/pricing-section"
+import { buildMetadata } from "@/lib/seo"
+import { breadcrumbSchema, jsonLd } from "@/lib/schema"
+
+const homeMeta = buildMetadata({
+  title: "Max Market Pros — Local SEO, Web Design & Lead Gen",
+  description:
+    "Done-for-you local SEO, web design, and lead generation for service businesses. Track every call, form, and booked job with clear monthly reporting.",
+  path: "/",
+  ogTitle: "Max Market Pros — Grow on Google. Get more calls and booked jobs.",
+})
+
+export const metadata: Metadata = {
+  ...homeMeta,
+  title: { absolute: "Max Market Pros — Local SEO, Web Design & Lead Gen" },
+}
+
+const homeBreadcrumb = breadcrumbSchema([{ name: "Home", path: "/" }])
 
 export default function Home() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(homeBreadcrumb) }}
+      />
       <Navbar />
       <HeroSection />
       <InfrastructureSection />

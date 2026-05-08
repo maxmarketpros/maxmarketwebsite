@@ -10,12 +10,12 @@ import { MedProof } from "@/components/industries/medical/med-proof"
 import { MedFinalCta } from "@/components/industries/medical/med-final-cta"
 
 export const metadata: Metadata = {
-  title: "Medical Marketing — Med Spa, Dermatology, Dental & Wellness | Max Market Pros",
+  title: "Medical Marketing",
   description:
     "Marketing for med spas, dermatology, dental, chiropractic, and wellness clinics — HIPAA-aware intake, compliant ads, consult booking, AI follow-up, and review generation.",
   alternates: { canonical: "/industries/medical" },
   openGraph: {
-    title: "Medical Marketing | Max Market Pros",
+    title: "Medical Marketing",
     description:
       "SEO, compliant paid ads, consult booking, AI follow-up, and review generation for med spas, dermatology, dental, chiro, and wellness clinics.",
     type: "website",
@@ -25,14 +25,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Medical Marketing | Max Market Pros",
+    title: "Medical Marketing",
     description:
       "One stack for the local medical economy — med spas, derm, dental, chiro, and wellness clinics.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

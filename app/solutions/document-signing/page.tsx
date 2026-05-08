@@ -9,7 +9,7 @@ import { docSigningFaqs } from "@/components/solutions/document-signing/document
 import { DocumentSigningFinalCta } from "@/components/solutions/document-signing/document-signing-final-cta"
 
 export const metadata: Metadata = {
-  title: "E-Signature Software for Small Business | Max Market Pros",
+  title: "E-Signature Software for Small Business",
   description:
     "Legally binding e-signatures for proposals, service agreements, and change orders. ESIGN + UETA compliant. Signed in 90 seconds on any phone.",
   keywords: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/solutions/document-signing" },
   openGraph: {
-    title: "E-Signature Software for Small Business | Max Market Pros",
+    title: "E-Signature Software for Small Business",
     description:
       "Legally binding e-signatures for contracts, proposals, and change orders — signed on any device in 90 seconds.",
     type: "website",
@@ -33,13 +33,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "E-Signature Software for Small Business | Max Market Pros",
+    title: "E-Signature Software for Small Business",
     description: "Legally binding e-signatures. Court-ready audit trail. Built for service businesses.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

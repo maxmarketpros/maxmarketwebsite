@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next"
-
-const BASE_URL = "https://maxmarketpros.com"
+import { IS_INDEXABLE, SITE_URL as BASE_URL } from "@/lib/seo"
 
 const routes: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
   { path: "", priority: 1.0, changeFrequency: "weekly" },
@@ -94,6 +93,7 @@ const routes: { path: string; priority: number; changeFrequency: MetadataRoute.S
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  if (!IS_INDEXABLE) return []
   const lastModified = new Date()
   return routes.map((r) => ({
     url: `${BASE_URL}${r.path}`,

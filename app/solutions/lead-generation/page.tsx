@@ -9,7 +9,7 @@ import { leadGenFaqs } from "@/components/solutions/lead-generation/lead-gen-faq
 import { LeadGenFinalCta } from "@/components/solutions/lead-generation/lead-gen-final-cta"
 
 export const metadata: Metadata = {
-  title: "Lead Generation & Management Software | Max Market Pros",
+  title: "Lead Generation & Management Software",
   description:
     "All-in-one lead management for service businesses. Unified inbox, missed-call text-back, lead scoring, and automated follow-up — so no inquiry slips away.",
   keywords: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/solutions/lead-generation" },
   openGraph: {
-    title: "Lead Generation & Management Software | Max Market Pros",
+    title: "Lead Generation & Management Software",
     description:
       "Unify every lead channel into one inbox. Automated follow-up, lead scoring, and a real sales pipeline built for service businesses.",
     type: "website",
@@ -34,19 +34,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lead Generation & Management Software | Max Market Pros",
+    title: "Lead Generation & Management Software",
     description:
       "Unified lead inbox. Automated follow-up. Never miss a deal again.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

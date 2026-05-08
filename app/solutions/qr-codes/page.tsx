@@ -10,7 +10,7 @@ import { qrCodesFaqs } from "@/components/solutions/qr-codes/qr-codes-faq-data"
 import { QRCodesFinalCta } from "@/components/solutions/qr-codes/qr-codes-final-cta"
 
 export const metadata: Metadata = {
-  title: "Branded QR Code Generator with Scan Analytics | Max Market Pros",
+  title: "Branded QR Code Generator with Scan Analytics",
   description:
     "Custom-branded, dynamically editable QR codes with full scan analytics — for yard signs, menus, truck wraps, business cards, and every physical marketing touchpoint.",
   keywords: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/solutions/qr-codes" },
   openGraph: {
-    title: "Branded QR Code Generator with Scan Analytics | Max Market Pros",
+    title: "Branded QR Code Generator with Scan Analytics",
     description:
       "Custom-branded QR codes + dynamic URL editing + full scan analytics. Built for offline-first service businesses.",
     type: "website",
@@ -34,13 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Branded QR Code Generator with Scan Analytics | Max Market Pros",
+    title: "Branded QR Code Generator with Scan Analytics",
     description: "Branded, editable, trackable QR codes for service businesses.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

@@ -13,7 +13,7 @@ import { WebFinalCta } from "@/components/web-design/web-final-cta"
 import { webDesignFaqs } from "@/components/web-design/web-faq-data"
 
 export const metadata: Metadata = {
-  title: "Custom Web Design Services | Max Market Pros",
+  title: "Custom Web Design Services",
   description:
     "Fast, conversion-focused web design on Webflow, WordPress, Squarespace, Wix & custom code. Built for service businesses that need more leads.",
   keywords: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/services/web-design" },
   openGraph: {
-    title: "Custom Web Design Services | Max Market Pros",
+    title: "Custom Web Design Services",
     description:
       "Conversion-focused web design on Webflow, WordPress, Squarespace, Wix, or hand-coded — built for service businesses that want phones to ring.",
     type: "website",
@@ -49,20 +49,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Custom Web Design Services | Max Market Pros",
+    title: "Custom Web Design Services",
     description:
       "Fast, conversion-focused websites on Webflow, WordPress, Squarespace, Wix & custom code for service businesses.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

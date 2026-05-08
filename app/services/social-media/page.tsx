@@ -12,7 +12,7 @@ import { SocialFinalCta } from "@/components/social-media/social-final-cta"
 import { socialFaqs } from "@/components/social-media/social-faq-data"
 
 export const metadata: Metadata = {
-  title: "Social Media Marketing Services | Max Market Pros",
+  title: "Social Media Marketing Services",
   description:
     "Done-for-you Instagram, TikTok & YouTube marketing for service businesses. Content creation, social media management, video editing, and drone videography.",
   keywords: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/services/social-media" },
   openGraph: {
-    title: "Social Media Marketing Services | Max Market Pros",
+    title: "Social Media Marketing Services",
     description:
       "Done-for-you Instagram, TikTok, YouTube content creation, management, video editing, graphic design, and drone videography for service businesses.",
     type: "website",
@@ -47,20 +47,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Social Media Marketing Services | Max Market Pros",
+    title: "Social Media Marketing Services",
     description:
       "Grow on Instagram, TikTok, YouTube & more. Full-service content creation and social media management for service businesses.",
     images: ["/services/social-media.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

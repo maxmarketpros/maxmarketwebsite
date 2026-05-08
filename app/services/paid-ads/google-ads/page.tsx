@@ -14,7 +14,7 @@ import { GoogleAdsFinalCta } from "@/components/paid-ads/google-ads/google-ads-f
 
 export const metadata: Metadata = {
   title:
-    "Google Ads Management Agency — Local Services Ads, Search & PMax | Max Market Pros",
+    "Google Ads Management",
   description:
     "Done-for-you Google Ads management for local service businesses. Local Services Ads with Google Guaranteed, Search, Performance Max, and Maps — managed to your cost-per-booked-job. Free 3-day audit.",
   keywords: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/paid-ads/google-ads" },
   openGraph: {
     title:
-      "Google Ads Management Agency — Local Services Ads, Search & PMax | Max Market Pros",
+      "Google Ads Management",
     description:
       "Done-for-you Google Ads management for local service businesses. Local Services Ads, Google Search, Performance Max — managed to your cost-per-booked-job. Free 3-day audit.",
     type: "website",
@@ -61,20 +61,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Google Ads Management Agency — Local Services Ads, Search & PMax | Max Market Pros",
+      "Google Ads Management",
     description:
       "Done-for-you Google Ads management for local service businesses. LSA, Search, Performance Max. Free 3-day audit, month-to-month.",
     images: ["/services/social-media.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

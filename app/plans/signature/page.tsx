@@ -1,10 +1,15 @@
-﻿import { Navbar } from "@/components/navbar"
+import type { Metadata } from "next"
+import { Navbar } from "@/components/navbar"
 import { UnderConstruction } from "@/components/under-construction"
+import { buildMetadata } from "@/lib/seo"
 
-export const metadata = {
-  title: "Signature Plan â€” Max Market Pros",
-  description: "Premium plan at $1,299/month for maximum growth and dedicated support.",
-}
+export const metadata: Metadata = buildMetadata({
+  title: "Signature Plan",
+  description:
+    "Premium plan at $1,299/month for maximum growth and dedicated support.",
+  path: "/plans/signature",
+  noindex: true,
+})
 
 export default function Page() {
   return (

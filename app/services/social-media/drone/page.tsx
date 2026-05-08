@@ -13,7 +13,7 @@ import { DroneFinalCta } from "@/components/social-media/drone/drone-final-cta"
 
 export const metadata: Metadata = {
   title:
-    "Drone Videography Services — FAA Part 107 Aerial Production | Max Market Pros",
+    "Drone Videography",
   description:
     "FAA-licensed drone videography and aerial photography for real estate, construction, weddings, hospitality, and brand films. Cinematic 5.1K footage edited for Reels, Shorts, and YouTube and delivered in 48 hours.",
   keywords: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/social-media/drone" },
   openGraph: {
     title:
-      "Drone Videography Services — FAA Part 107 Aerial Production | Max Market Pros",
+      "Drone Videography",
     description:
       "Cinematic drone videography that sells the property in 30 seconds. 5.1K aerial footage, edited for Reels/Shorts/YouTube, delivered in 48 hours.",
     type: "website",
@@ -61,20 +61,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Drone Videography Services — FAA Part 107 Aerial Production | Max Market Pros",
+      "Drone Videography",
     description:
       "Cinematic 5.1K drone videography for real estate, construction, weddings & brand films. Edited & delivered in 48 hours.",
     images: ["/services/social-media.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

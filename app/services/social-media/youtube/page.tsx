@@ -15,7 +15,7 @@ import { YoutubeFinalCta } from "@/components/social-media/youtube/youtube-final
 
 export const metadata: Metadata = {
   title:
-    "YouTube Marketing Services — Done-For-You YouTube Channel Management & Growth | Max Market Pros",
+    "YouTube Marketing",
   description:
     "Done-for-you YouTube marketing services. We script, shoot, edit, and optimize long-form videos plus 30+ Shorts a month — engineered for watch time, CTR, and channel SEO.",
   keywords: [
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/social-media/youtube" },
   openGraph: {
     title:
-      "YouTube Marketing Services — Done-For-You YouTube Channel Management & Growth | Max Market Pros",
+      "YouTube Marketing",
     description:
       "Full-service YouTube marketing services — channel strategy, long-form production, 30+ Shorts/mo, CTR-tested thumbnails, full channel SEO, and monthly Studio reporting. One team, one monthly invoice.",
     type: "website",
@@ -64,20 +64,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "YouTube Marketing Services — Done-For-You YouTube Channel Management & Growth | Max Market Pros",
+      "YouTube Marketing",
     description:
       "Done-for-you YouTube marketing services. 8–12 long-form/mo, 30+ Shorts/mo, three thumbnails per video, full channel SEO, monthly Studio report.",
     images: ["/services/social-media.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

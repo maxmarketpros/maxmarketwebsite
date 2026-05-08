@@ -13,7 +13,7 @@ import { AiSearchFinalCta } from "@/components/seo/ai-search/ai-search-final-cta
 
 export const metadata: Metadata = {
   title:
-    "AI Search Visibility — Get Cited by ChatGPT & AI Overviews | Max Market Pros",
+    "AI Search Visibility",
   description:
     "Be the business AI recommends. Done-for-you AI search optimization (AEO + GEO) so ChatGPT, Gemini, Perplexity, Microsoft Copilot, Claude, and Google AI Overviews cite you when customers ask. Free 25-query visibility audit.",
   keywords: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/seo/ai-search" },
   openGraph: {
     title:
-      "AI Search Visibility — Get Cited by ChatGPT & AI Overviews | Max Market Pros",
+      "AI Search Visibility",
     description:
       "Done-for-you AI search optimization. Get cited by ChatGPT, Gemini, Perplexity, Copilot, Claude and Google AI Overviews. Free 25-query visibility audit.",
     type: "website",
@@ -65,20 +65,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "AI Search Visibility — Get Cited by ChatGPT & AI Overviews | Max Market Pros",
+      "AI Search Visibility",
     description:
       "Be the answer customers see in AI. ChatGPT, Gemini, Perplexity, Copilot, Claude, AI Overviews — covered. Free visibility audit.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

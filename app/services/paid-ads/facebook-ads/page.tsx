@@ -14,7 +14,7 @@ import { FacebookAdsFinalCta } from "@/components/paid-ads/facebook-ads/facebook
 
 export const metadata: Metadata = {
   title:
-    "Facebook Ads Management Agency — Meta Ads, Reels & Retargeting | Max Market Pros",
+    "Facebook Ads Management",
   description:
     "Done-for-you Facebook Ads management for local service businesses. Reels, Feed, Stories, lead forms, and retargeting on Meta — managed to your cost-per-booked-job. Free 3-day audit.",
   keywords: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/paid-ads/facebook-ads" },
   openGraph: {
     title:
-      "Facebook Ads Management Agency — Meta Ads, Reels & Retargeting | Max Market Pros",
+      "Facebook Ads Management",
     description:
       "Done-for-you Facebook Ads management for local service businesses. Reels, Feed, Stories, lead forms, and retargeting on Meta — managed to your cost-per-booked-job. Free 3-day audit.",
     type: "website",
@@ -61,20 +61,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Facebook Ads Management Agency — Meta Ads, Reels & Retargeting | Max Market Pros",
+      "Facebook Ads Management",
     description:
       "Done-for-you Facebook Ads management for local service businesses. Reels, Feed, Stories, lead forms & retargeting on Meta. Free 3-day audit, month-to-month.",
     images: ["/services/social-media.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

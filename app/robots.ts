@@ -1,8 +1,13 @@
 import type { MetadataRoute } from "next"
-
-const BASE_URL = "https://maxmarketpros.com"
+import { IS_INDEXABLE, SITE_URL } from "@/lib/seo"
 
 export default function robots(): MetadataRoute.Robots {
+  if (!IS_INDEXABLE) {
+    return {
+      rules: [{ userAgent: "*", disallow: "/" }],
+    }
+  }
+
   return {
     rules: [
       {
@@ -11,7 +16,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/client-portal", "/api/"],
       },
     ],
-    sitemap: `${BASE_URL}/sitemap.xml`,
-    host: BASE_URL,
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   }
 }

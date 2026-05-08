@@ -4,22 +4,18 @@ import { Navbar } from "@/components/navbar"
 import { Calendar, Phone, Mail, Clock, ShieldCheck, MapPin } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Schedule a Call — Max Market Pros",
+  title: "Schedule a Call",
   description:
     "Book a free 20-minute strategy call with a senior local-marketing strategist. Pick a time that works for you — no sales pitch.",
   alternates: { canonical: "/contact/schedule" },
   openGraph: {
-    title: "Schedule a Call — Max Market Pros",
+    title: "Schedule a Call",
     description:
       "Book a free 20-minute strategy call. Pick a time that works for you.",
     type: "website",
     url: "/contact/schedule",
     siteName: "Max Market Pros",
     locale: "en_US",
-  },
-  robots: {
-    index: true,
-    follow: true,
   },
 }
 

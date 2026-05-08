@@ -13,7 +13,7 @@ import { ReviewFinalCta } from "@/components/social-media/review-generation/revi
 
 export const metadata: Metadata = {
   title:
-    "Review Generation Services — Get More 5-Star Google Reviews on Autopilot | Max Market Pros",
+    "Review Generation",
   description:
     "Automate review requests by SMS and email, route happy customers to Google, Yelp & Facebook, and stop bad reviews from going public. Done-for-you review generation for service businesses.",
   keywords: [
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/social-media/review-generation" },
   openGraph: {
     title:
-      "Review Generation — Get More 5-Star Google Reviews on Autopilot | Max Market Pros",
+      "Review Generation — Get More 5-Star Google Reviews on Autopilot",
     description:
       "Done-for-you review generation. Automated SMS + email requests, multi-platform routing, private feedback for unhappy customers, and a 30-day Map Pack ranking lift.",
     type: "website",
@@ -62,20 +62,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Review Generation — Get More 5-Star Google Reviews on Autopilot | Max Market Pros",
+      "Review Generation — Get More 5-Star Google Reviews on Autopilot",
     description:
       "Automate review requests, route happy customers to Google/Yelp/Facebook, and stop bad reviews from going public. Done-for-you reputation management.",
     images: ["/services/social-media.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

@@ -13,7 +13,7 @@ import { seoFaqs } from "@/components/seo/seo-faq-data"
 import { SeoFinalCta } from "@/components/seo/seo-final-cta"
 
 export const metadata: Metadata = {
-  title: "SEO Services — Rank #1 on Google | Max Market Pros",
+  title: "SEO Services",
   description:
     "Local, technical, on-page, off-page & AI search SEO for service businesses. Done-for-you strategies that drive calls, bookings, and revenue. Free audit.",
   keywords: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/services/seo" },
   openGraph: {
-    title: "SEO Services — Rank #1 on Google | Max Market Pros",
+    title: "SEO Services",
     description:
       "Local, technical, on-page, off-page, backlinks, AI search and press releases — done-for-you by an SEO agency built for service businesses.",
     type: "website",
@@ -48,20 +48,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SEO Services — Rank #1 on Google | Max Market Pros",
+    title: "SEO Services",
     description:
       "Done-for-you SEO built for local service businesses. Free audit, transparent reporting, measurable ROI.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

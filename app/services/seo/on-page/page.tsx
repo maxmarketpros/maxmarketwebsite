@@ -11,7 +11,7 @@ import { OnPageFinalCta } from "@/components/seo/on-page/on-page-final-cta"
 
 export const metadata: Metadata = {
   title:
-    "On-Page SEO Services \u2014 Rank Every Page You Publish | Max Market Pros",
+    "On-Page SEO Services",
   description:
     "On-page SEO services for service businesses. Title tags, meta descriptions, schema markup, internal linking, and content optimization that make Google understand every page. Free audit.",
   keywords: [
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/seo/on-page" },
   openGraph: {
     title:
-      "On-Page SEO Services \u2014 Rank Every Page You Publish | Max Market Pros",
+      "On-Page SEO Services",
     description:
       "Done-for-you on-page SEO: title tags, meta descriptions, schema markup, internal linking, and content optimization. Free 10-page audit with content-score snapshots.",
     type: "website",
@@ -58,20 +58,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "On-Page SEO Services \u2014 Rank Every Page You Publish | Max Market Pros",
+      "On-Page SEO Services",
     description:
       "On-page SEO that makes Google understand every page. Title tags, meta, schema, internal linking, content scoring. Free audit.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

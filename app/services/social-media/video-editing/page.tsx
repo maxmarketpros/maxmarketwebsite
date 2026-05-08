@@ -15,7 +15,7 @@ import { VideoEditingFinalCta } from "@/components/social-media/video-editing/vi
 
 export const metadata: Metadata = {
   title:
-    "Video Editing Services for Social Media — Reels, Shorts & TikTok | Max Market Pros",
+    "Social Media Video Editing",
   description:
     "Professional video editing services for service businesses. We edit Reels, TikToks, YouTube Shorts and ad creative with <48hr turnaround, platform-native exports, captions, color grading, and unlimited revisions.",
   keywords: [
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/social-media/video-editing" },
   openGraph: {
     title:
-      "Video Editing Services for Social Media — Reels, Shorts & TikTok | Max Market Pros",
+      "Social Media Video Editing",
     description:
       "Done-for-you video editing for service businesses — Reels, TikToks, YouTube Shorts, ad cuts and long-form. <48hr turnaround, platform-native exports, captions, color, sound design, and unlimited revisions.",
     type: "website",
@@ -68,20 +68,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Video Editing Services for Social Media — Reels, Shorts & TikTok | Max Market Pros",
+      "Social Media Video Editing",
     description:
       "Professional video editing services. Reels, TikToks, YouTube Shorts and ad creative edited in <48hr with platform-native exports, captions and unlimited revisions.",
     images: ["/services/social-media.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

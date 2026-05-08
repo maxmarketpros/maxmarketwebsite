@@ -14,7 +14,7 @@ import { InstagramAdsFinalCta } from "@/components/paid-ads/instagram-ads/instag
 
 export const metadata: Metadata = {
   title:
-    "Instagram Ads Management Agency — Reels, Stories & Influencer Whitelisting | Max Market Pros",
+    "Instagram Ads Management",
   description:
     "Done-for-you Instagram Ads management for local service businesses. Reels, Stories, Feed, Explore + influencer whitelisting on Meta — managed to your cost-per-booked-job. Free 3-day audit, month-to-month.",
   keywords: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/paid-ads/instagram-ads" },
   openGraph: {
     title:
-      "Instagram Ads Management Agency — Reels, Stories & Influencer Whitelisting | Max Market Pros",
+      "Instagram Ads Management",
     description:
       "Done-for-you Instagram Ads management for local service businesses. Reels, Stories, Feed, Explore + influencer whitelisting on Meta — managed to your cost-per-booked-job. Free 3-day audit, month-to-month.",
     type: "website",
@@ -61,20 +61,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Instagram Ads Management Agency — Reels, Stories & Influencer Whitelisting | Max Market Pros",
+      "Instagram Ads Management",
     description:
       "Done-for-you Instagram Ads management for local service businesses. Reels, Stories, Feed, Explore & influencer whitelisting on Meta. Free 3-day audit, month-to-month.",
     images: ["/services/social-media.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

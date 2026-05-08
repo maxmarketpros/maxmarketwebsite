@@ -9,7 +9,7 @@ import { analyticsFaqs } from "@/components/solutions/analytics/analytics-faq-da
 import { AnalyticsFinalCta } from "@/components/solutions/analytics/analytics-final-cta"
 
 export const metadata: Metadata = {
-  title: "Google Analytics & Reporting for Small Business | Max Market Pros",
+  title: "Google Analytics & Reporting for Small Business",
   description:
     "Full GA4 setup, dynamic call tracking, CRM-linked attribution, and live Looker Studio dashboards — built for service-business owners who need to know what's working.",
   keywords: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/solutions/analytics" },
   openGraph: {
-    title: "Google Analytics & Reporting for Small Business | Max Market Pros",
+    title: "Google Analytics & Reporting for Small Business",
     description:
       "GA4, call tracking, attribution, and live dashboards. Every lead and dollar traced to its source.",
     type: "website",
@@ -34,13 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Google Analytics & Reporting for Small Business | Max Market Pros",
+    title: "Google Analytics & Reporting for Small Business",
     description: "GA4 setup + call tracking + live dashboards. Service-business analytics done right.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

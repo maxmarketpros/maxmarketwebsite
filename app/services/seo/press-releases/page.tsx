@@ -13,9 +13,9 @@ import { PressReleasesFinalCta } from "@/components/seo/press-releases/press-rel
 
 export const metadata: Metadata = {
   title:
-    "Press Release Distribution Service — Buy Press Releases | Max Market Pros",
+    "Press Release Distribution",
   description:
-    "Buy press releases that get picked up. Done-for-you distribution to 200+ real outlets — Yahoo Finance, AP News, MarketWatch, Business Insider, Benzinga — with real dofollow backlinks, placement reporting, and 48-hour turnaround.",
+    "Done-for-you press release distribution to 200+ real outlets — Yahoo Finance, AP News, MarketWatch, Business Insider — with dofollow backlinks and 48-hour turnaround.",
   keywords: [
     "press releases",
     "buy press releases",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/seo/press-releases" },
   openGraph: {
     title:
-      "Press Release Distribution Service — Buy Press Releases | Max Market Pros",
+      "Press Release Distribution",
     description:
       "Done-for-you press release writing and distribution to 200+ real outlets. Yahoo Finance, AP News, MarketWatch, Business Insider. Real dofollow links, placement reporting, 48-hour turnaround.",
     type: "website",
@@ -63,20 +63,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Press Release Distribution Service — Buy Press Releases | Max Market Pros",
+      "Press Release Distribution",
     description:
       "Buy press releases that actually rank. 200+ real outlets, real dofollow links, placement reporting, 48-hour turnaround.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

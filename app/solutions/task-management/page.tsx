@@ -9,7 +9,7 @@ import { taskMgmtFaqs } from "@/components/solutions/task-management/task-manage
 import { TaskManagementFinalCta } from "@/components/solutions/task-management/task-management-final-cta"
 
 export const metadata: Metadata = {
-  title: "Workflow Automation Software for Small Business | Max Market Pros",
+  title: "Workflow Automation Software for Small Business",
   description:
     "No-code workflow builder for service businesses. Automate lead follow-up, missed-call text-backs, task routing, and approval chains. Save 6+ hours per person per week.",
   keywords: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/solutions/task-management" },
   openGraph: {
-    title: "Workflow Automation Software for Small Business | Max Market Pros",
+    title: "Workflow Automation Software for Small Business",
     description:
       "Build trigger-based workflows that handle the 10,000 small things your team does manually every month.",
     type: "website",
@@ -33,13 +33,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Workflow Automation Software for Small Business | Max Market Pros",
+    title: "Workflow Automation Software for Small Business",
     description: "Workflows, triggers, approvals, SMS + email automation — all no-code.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

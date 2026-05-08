@@ -4,12 +4,12 @@ import { DirectoryShell } from "@/components/tools/directory-checker/directory-s
 
 export const metadata: Metadata = {
   title:
-    "Free Directory Listing Checker — Scan 50+ Sources | Max Market Pros",
+    "Directory Listing Checker",
   description:
     "Free instant scan of your business listings across 50+ directories, GPS apps, and voice assistants. Find missing, wrong, and duplicate listings in seconds — no sign-up required.",
   alternates: { canonical: "/tools/directory-checker" },
   openGraph: {
-    title: "Free Directory Listing Checker — Scan 50+ Sources",
+    title: "Directory Listing Checker",
     description:
       "Audit your business listings across Google, Apple Maps, Yelp, Bing, Alexa, and 50+ more sources in seconds. Powered by Max Market Pros.",
     type: "website",
@@ -19,13 +19,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Directory Listing Checker — Scan 50+ Sources",
+    title: "Directory Listing Checker",
     description:
       "Audit your business listings across 50+ directories, GPS apps, and voice assistants in seconds.",
-  },
-  robots: {
-    index: true,
-    follow: true,
   },
 }
 

@@ -17,7 +17,7 @@ import { WordpressFinalCta } from "@/components/web-design/wordpress/wordpress-f
 
 export const metadata: Metadata = {
   title:
-    "WordPress Website Design Services — Custom WordPress Developers | Max Market Pros",
+    "WordPress Website Design",
   description:
     "Custom WordPress website design that ranks. Done-for-you Gutenberg, Elementor, or Divi builds with Yoast / Rank Math, WP Rocket, Wordfence, schema markup, Lighthouse 90+, and a 14-day delivery — for service businesses, ecommerce, and agencies.",
   keywords: [
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/web-design/wordpress" },
   openGraph: {
     title:
-      "WordPress Website Design Services — Custom WordPress Developers | Max Market Pros",
+      "WordPress Website Design",
     description:
       "Done-for-you WordPress website design with Gutenberg or Elementor, Yoast / Rank Math, WP Rocket, schema markup, and Lighthouse 90+ performance. Live in 14 days.",
     type: "website",
@@ -72,20 +72,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "WordPress Website Design Services — Custom WordPress Developers | Max Market Pros",
+      "WordPress Website Design",
     description:
       "Custom WordPress website design that ranks. Lighthouse 90+, schema, Yoast / Rank Math, WP Rocket — live in 14 days.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

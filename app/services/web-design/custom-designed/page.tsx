@@ -16,7 +16,7 @@ import { CustomDesignedFinalCta } from "@/components/web-design/custom-designed/
 
 export const metadata: Metadata = {
   title:
-    "Custom Website Design — Bespoke Brand-Led Web Design Agency | Max Market Pros",
+    "Custom Website Design",
   description:
     "Custom website design built around your brand — bespoke type, color, motion, and layout systems designed in Figma, then shipped on the platform that fits. Free design audit.",
   keywords: [
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/web-design/custom-designed" },
   openGraph: {
     title:
-      "Custom Website Design — Bespoke Brand-Led Web Design Agency | Max Market Pros",
+      "Custom Website Design",
     description:
       "Bespoke custom website design — type system, color tokens, motion language, and pixel-perfect layouts at every breakpoint. Built in Figma, shipped on the platform that fits.",
     type: "website",
@@ -68,20 +68,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Custom Website Design — Bespoke Brand-Led Web Design Agency | Max Market Pros",
+      "Custom Website Design",
     description:
       "Custom website design — bespoke type, color, motion, and layout systems. Designed in Figma, built on the platform that fits your team.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

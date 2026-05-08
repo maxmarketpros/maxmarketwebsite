@@ -9,7 +9,7 @@ import { paymentsFaqs } from "@/components/solutions/payments/payments-faq-data"
 import { PaymentsFinalCta } from "@/components/solutions/payments/payments-final-cta"
 
 export const metadata: Metadata = {
-  title: "Accept Payments & Send Invoices Online | Max Market Pros",
+  title: "Accept Payments & Send Invoices Online",
   description:
     "Text-to-pay invoicing, recurring billing, deposits, and estimates — all powered by Stripe and wired into your CRM. Collect invoices 59% faster.",
   keywords: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/solutions/payments" },
   openGraph: {
-    title: "Accept Payments & Send Invoices Online | Max Market Pros",
+    title: "Accept Payments & Send Invoices Online",
     description:
       "Text-to-pay invoicing, recurring billing, deposits, and estimates — powered by Stripe, wired into your CRM.",
     type: "website",
@@ -33,13 +33,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Accept Payments & Send Invoices Online | Max Market Pros",
+    title: "Accept Payments & Send Invoices Online",
     description: "Text-to-pay, recurring billing, deposits. 59% faster collections.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

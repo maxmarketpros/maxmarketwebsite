@@ -9,7 +9,7 @@ import { calendarFaqs } from "@/components/solutions/calendar/calendar-faq-data"
 import { CalendarFinalCta } from "@/components/solutions/calendar/calendar-final-cta"
 
 export const metadata: Metadata = {
-  title: "Online Appointment Booking Software | Max Market Pros",
+  title: "Online Appointment Booking Software",
   description:
     "24/7 online booking for service businesses — round-robin scheduling, deposit-on-booking, Google & Outlook sync, SMS reminders. Cut no-shows. Fill your calendar.",
   keywords: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/solutions/calendar" },
   openGraph: {
-    title: "Online Appointment Booking Software | Max Market Pros",
+    title: "Online Appointment Booking Software",
     description:
       "Let clients book you 24/7. Round-robin scheduling, deposit-on-booking, Google & Outlook sync, and automatic reminders that cut no-shows 29%.",
     type: "website",
@@ -34,13 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Online Appointment Booking Software | Max Market Pros",
+    title: "Online Appointment Booking Software",
     description: "24/7 booking, round-robin, deposits, reminders. Built for service businesses.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

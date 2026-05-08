@@ -9,7 +9,7 @@ import { customWebAppsFaqs } from "@/components/solutions/custom-web-apps/custom
 import { CustomWebAppsFinalCta } from "@/components/solutions/custom-web-apps/custom-web-apps-final-cta"
 
 export const metadata: Metadata = {
-  title: "Custom Web App Development Agency | Max Market Pros",
+  title: "Custom Web App Development Agency",
   description:
     "Custom internal tools, client portals, and white-label SaaS built on modern stacks (Next.js + Postgres). Fixed scopes, live previews, and full code ownership.",
   keywords: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/solutions/custom-web-apps" },
   openGraph: {
-    title: "Custom Web App Development Agency | Max Market Pros",
+    title: "Custom Web App Development Agency",
     description:
       "Custom web apps, admin tools, and client portals built on Next.js + Postgres. Fixed scopes, predictable delivery, full code ownership.",
     type: "website",
@@ -33,13 +33,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Custom Web App Development Agency | Max Market Pros",
+    title: "Custom Web App Development Agency",
     description: "Custom web apps, admin tools, and SaaS — Next.js + Postgres. You own the code.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

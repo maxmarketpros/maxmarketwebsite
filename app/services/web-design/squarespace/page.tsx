@@ -13,7 +13,7 @@ import { SquarespaceFinalCta } from "@/components/web-design/squarespace/squares
 
 export const metadata: Metadata = {
   title:
-    "Squarespace Website Design Services — Custom Squarespace Designers | Max Market Pros",
+    "Squarespace Website Design",
   description:
     "Custom Squarespace website design that converts. Done-for-you Squarespace 7.1 + Fluid Engine builds with custom CSS, on-page SEO, schema markup, Lighthouse 90+ performance, and a 14-day delivery — for service businesses, ecommerce, and agencies.",
   keywords: [
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/web-design/squarespace" },
   openGraph: {
     title:
-      "Squarespace Website Design Services — Custom Squarespace Designers | Max Market Pros",
+      "Squarespace Website Design",
     description:
       "Done-for-you Squarespace website design with custom CSS, on-page SEO, schema markup, and Lighthouse 90+ performance. Live in 14 days.",
     type: "website",
@@ -67,20 +67,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Squarespace Website Design Services — Custom Squarespace Designers | Max Market Pros",
+      "Squarespace Website Design",
     description:
       "Custom Squarespace website design that converts. Lighthouse 90+, schema markup, custom CSS — live in 14 days.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

@@ -16,7 +16,7 @@ import { WebflowFinalCta } from "@/components/web-design/webflow/webflow-final-c
 
 export const metadata: Metadata = {
   title:
-    "Webflow Website Design Services — Custom Webflow Designers | Max Market Pros",
+    "Webflow Website Design",
   description:
     "Custom Webflow website design with hand-built Designer layouts, CMS Collections, and managed hosting. Lighthouse 95+, schema on every page, 14-day delivery.",
   keywords: [
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/web-design/webflow" },
   openGraph: {
     title:
-      "Webflow Website Design Services — Custom Webflow Designers | Max Market Pros",
+      "Webflow Website Design",
     description:
       "Done-for-you Webflow website design with hand-built Designer layouts, CMS Collections, animation engine, schema markup, and Lighthouse 95+ performance. Live in 14 days.",
     type: "website",
@@ -68,20 +68,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Webflow Website Design Services — Custom Webflow Designers | Max Market Pros",
+      "Webflow Website Design",
     description:
       "Custom Webflow website design with Designer layouts, CMS Collections, and managed hosting. Lighthouse 95+, 14-day delivery.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

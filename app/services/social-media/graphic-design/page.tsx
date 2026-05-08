@@ -15,7 +15,7 @@ import { GraphicDesignFinalCta } from "@/components/social-media/graphic-design/
 
 export const metadata: Metadata = {
   title:
-    "Social Media Graphic Design Services — Ad Creative, Carousels & Branding | Max Market Pros",
+    "Social Media Graphic Design",
   description:
     "Done-for-you social media graphic design — Instagram and Facebook ad design, carousel design, brand identity, print and web. Scroll-stopping creative for service businesses. 48-hour turnaround, unlimited revisions, source files included.",
   keywords: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/social-media/graphic-design" },
   openGraph: {
     title:
-      "Social Media Graphic Design Services — Ad Creative, Carousels & Branding | Max Market Pros",
+      "Social Media Graphic Design",
     description:
       "Done-for-you graphic design for service businesses. Ad creative, carousels, brand kits, vehicle wraps, web banners — designed in pro tools, delivered in 48 hours.",
     type: "website",
@@ -65,20 +65,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Social Media Graphic Design — Ad Creative, Carousels & Branding | Max Market Pros",
+      "Social Media Graphic Design — Ad Creative, Carousels & Branding",
     description:
       "Done-for-you graphic design for service businesses. Ad creative, carousels, brand kits — 48-hour turnaround, unlimited revisions, source files included.",
     images: ["/services/social-media.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

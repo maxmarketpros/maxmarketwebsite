@@ -4,12 +4,12 @@ import { AuditorShell } from "@/components/tools/seo-auditor/auditor-shell"
 
 export const metadata: Metadata = {
   title:
-    "Free SEO Audit Tool — Instant Website Analysis | Max Market Pros",
+    "Free SEO Auditor",
   description:
     "Get a free, instant SEO audit of your website. 100+ on-page checks plus Lighthouse-powered Core Web Vitals — no sign-up required.",
   alternates: { canonical: "/tools/seo-auditor" },
   openGraph: {
-    title: "Free SEO Audit Tool — Instant Website Analysis",
+    title: "Free SEO Auditor",
     description:
       "100+ on-page checks plus Google Lighthouse scores in under 30 seconds. Powered by Max Market Pros.",
     type: "website",
@@ -19,13 +19,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free SEO Audit Tool — Instant Website Analysis",
+    title: "Free SEO Auditor",
     description:
       "100+ on-page checks plus Google Lighthouse scores in under 30 seconds.",
-  },
-  robots: {
-    index: true,
-    follow: true,
   },
 }
 

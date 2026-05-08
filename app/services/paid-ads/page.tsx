@@ -12,7 +12,7 @@ import { paidAdsFaqs } from "@/components/paid-ads/paid-ads-faq-data"
 import { PaidAdsFinalCta } from "@/components/paid-ads/paid-ads-final-cta"
 
 export const metadata: Metadata = {
-  title: "Paid Ads Management — Google Ads, Meta Ads & PPC Agency | Max Market Pros",
+  title: "Paid Ads Management",
   description:
     "Done-for-you Google Ads, Facebook Ads, Instagram Ads & retargeting campaigns. Transparent ROAS reporting, 4.7× average return. Free ad audit for local service businesses.",
   keywords: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/services/paid-ads" },
   openGraph: {
-    title: "Paid Ads Management — Google Ads, Meta & Instagram | Max Market Pros",
+    title: "Paid Ads Management",
     description:
       "Google Ads, Facebook Ads, Instagram Ads and retargeting — done-for-you by a PPC agency built for local service businesses. 4.7× average ROAS.",
     type: "website",
@@ -49,20 +49,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Paid Ads Management — Google Ads, Meta & Instagram | Max Market Pros",
+    title: "Paid Ads Management",
     description:
       "Done-for-you PPC management built for local service businesses. 4.7× average ROAS. Free ad audit.",
     images: ["/services/social-media.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

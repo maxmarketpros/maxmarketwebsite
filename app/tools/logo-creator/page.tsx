@@ -1,10 +1,14 @@
-﻿import { Navbar } from "@/components/navbar"
+import type { Metadata } from "next"
+import { Navbar } from "@/components/navbar"
 import { UnderConstruction } from "@/components/under-construction"
+import { buildMetadata } from "@/lib/seo"
 
-export const metadata = {
-  title: "Logo Creator â€” Max Market Pros",
+export const metadata: Metadata = buildMetadata({
+  title: "Logo Creator",
   description: "AI-powered logo generation for your business brand.",
-}
+  path: "/tools/logo-creator",
+  noindex: true,
+})
 
 export default function Page() {
   return (

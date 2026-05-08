@@ -3,12 +3,12 @@ import { Navbar } from "@/components/navbar"
 import { SolutionsHub } from "@/components/solutions/solutions-hub"
 
 export const metadata: Metadata = {
-  title: "All Solutions — Lead Gen, AI, Scheduling, Payments & More | Max Market Pros",
+  title: "All Solutions",
   description:
     "The complete stack for modern service businesses: lead generation, AI agents, scheduling, payments, email/SMS marketing, analytics, QR codes, document signing, workflows, and custom web apps.",
   alternates: { canonical: "/solutions" },
   openGraph: {
-    title: "All Solutions — The Complete Stack for Service Businesses | Max Market Pros",
+    title: "All Solutions — The Complete Stack for Service Businesses",
     description:
       "Ten integrated solutions — lead gen, AI, scheduling, payments, marketing, analytics — built to run together.",
     type: "website",
@@ -18,13 +18,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "All Solutions | Max Market Pros",
+    title: "All Solutions",
     description: "Ten integrated solutions for service businesses.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

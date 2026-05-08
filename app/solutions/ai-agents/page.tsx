@@ -9,7 +9,7 @@ import { aiAgentsFaqs } from "@/components/solutions/ai-agents/ai-agents-faq-dat
 import { AIAgentsFinalCta } from "@/components/solutions/ai-agents/ai-agents-final-cta"
 
 export const metadata: Metadata = {
-  title: "AI Customer Service Agents for Small Business | Max Market Pros",
+  title: "AI Customer Service Agents for Small Business",
   description:
     "24/7 AI chat and voice agents that qualify leads, book appointments, and hand off to humans when it matters — trained specifically for service businesses.",
   keywords: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/solutions/ai-agents" },
   openGraph: {
-    title: "AI Customer Service Agents for Small Business | Max Market Pros",
+    title: "AI Customer Service Agents for Small Business",
     description:
       "A trained AI agent that answers chats, calls, SMS, and DMs — qualifies leads and books jobs 24/7.",
     type: "website",
@@ -33,13 +33,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Customer Service Agents for Small Business | Max Market Pros",
+    title: "AI Customer Service Agents for Small Business",
     description: "24/7 AI chat + voice. Qualifies leads, books jobs, hands off to humans.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

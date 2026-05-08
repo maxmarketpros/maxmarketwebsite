@@ -7,12 +7,12 @@ import { HubCatalog } from "@/components/industries/hub/hub-catalog"
 import { HubFinalCta } from "@/components/industries/hub/hub-final-cta"
 
 export const metadata: Metadata = {
-  title: "Industries We Serve \u2014 Six Vertical Playbooks, 80+ Business Types | Max Market Pros",
+  title: "Industries We Serve",
   description:
-    "Marketing stacks tuned to your vertical. Contractors, home services, local service businesses, restaurants, medical, automotive \u2014 plus every recurring, retail, and professional service in between. Pick your industry.",
+    "Marketing stacks tuned to your vertical. Contractors, home services, local service, restaurants, medical, automotive \u2014 and every service business in between.",
   alternates: { canonical: "/industries" },
   openGraph: {
-    title: "Industries We Serve | Max Market Pros",
+    title: "Industries We Serve",
     description:
       "One marketing stack \u2014 tuned to your industry. Six flagship vertical playbooks and 80+ specific business types across trades, home services, local service, food, medical, and automotive.",
     type: "website",
@@ -22,14 +22,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Industries We Serve | Max Market Pros",
+    title: "Industries We Serve",
     description:
       "Six vertical playbooks. 80+ business types. One marketing stack tuned to the way your industry actually books work.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

@@ -9,12 +9,12 @@ import { ContLifecycle } from "@/components/industries/contractors/cont-lifecycl
 import { ContFinalCta } from "@/components/industries/contractors/cont-final-cta"
 
 export const metadata: Metadata = {
-  title: "Contractor Marketing \u2014 Websites, Google, Ads & Lead Automation | Max Market Pros",
+  title: "Contractor Marketing",
   description:
     "Lead-capture websites, #1 Google rankings, tuned paid ads, and lead-to-invoice automation for roofing, HVAC, plumbing, electrical, GCs, remodelers, and outdoor-trade contractors.",
   alternates: { canonical: "/industries/contractors" },
   openGraph: {
-    title: "Contractor Marketing | Max Market Pros",
+    title: "Contractor Marketing",
     description:
       "Websites that capture the lead, Google dominance for 'near me' searches, and lead-to-invoice automation for every trade \u2014 roofing, HVAC, plumbing, electrical, GCs, and outdoor crews.",
     type: "website",
@@ -24,14 +24,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contractor Marketing | Max Market Pros",
+    title: "Contractor Marketing",
     description:
       "One stack from the Google search to the paid invoice \u2014 for roofers, HVAC, plumbers, electricians, GCs, and outdoor trades.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

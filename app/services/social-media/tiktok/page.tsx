@@ -14,7 +14,7 @@ import { TiktokFinalCta } from "@/components/social-media/tiktok/tiktok-final-ct
 
 export const metadata: Metadata = {
   title:
-    "TikTok Marketing Services — Done-For-You TikTok Management for Service Businesses | Max Market Pros",
+    "TikTok Marketing",
   description:
     "Done-for-you TikTok marketing services. We script, shoot, edit, post, and grow your TikTok with weekly trend monitoring and FYP-tuned content — built for service businesses.",
   keywords: [
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/social-media/tiktok" },
   openGraph: {
     title:
-      "TikTok Marketing Services — Done-For-You TikTok Management for Service Businesses | Max Market Pros",
+      "TikTok Marketing",
     description:
       "Full-service TikTok marketing services — strategy, hook library, on-site filming, vertical editing, daily posting, weekly trend radar, and FYP-tuned content. One team, one monthly invoice.",
     type: "website",
@@ -63,20 +63,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "TikTok Marketing Services — Done-For-You TikTok Management for Service Businesses | Max Market Pros",
+      "TikTok Marketing",
     description:
       "Done-for-you TikTok marketing services. 20–30 TikToks/mo, weekly trend radar, FYP scoring on every video, monthly performance report.",
     images: ["/services/social-media.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

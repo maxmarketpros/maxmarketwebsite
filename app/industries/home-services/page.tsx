@@ -9,12 +9,12 @@ import { HsProof } from "@/components/industries/home-services/hs-proof"
 import { HsFinalCta } from "@/components/industries/home-services/hs-final-cta"
 
 export const metadata: Metadata = {
-  title: "Home Services Marketing \u2014 AI Voice, Local SEO, Ads & Invoicing | Max Market Pros",
+  title: "Home Services Marketing",
   description:
-    "The complete marketing + operations stack for recurring home services \u2014 cleaners, pest control, pool, lawn, appliance repair, garage door, locksmiths, chimney, window cleaning, and handymen. Own the search. Answer every ring. Dispatch, collect, and retain.",
+    "The complete marketing + operations stack for recurring home services — cleaners, pest control, pool, lawn, garage door, locksmiths, and handymen.",
   alternates: { canonical: "/industries/home-services" },
   openGraph: {
-    title: "Home Services Marketing | Max Market Pros",
+    title: "Home Services Marketing",
     description:
       "Own the Google Map Pack, answer every after-hours ring with AI voice, and automate the dispatch-to-review loop for recurring home-service shops.",
     type: "website",
@@ -24,14 +24,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Home Services Marketing | Max Market Pros",
+    title: "Home Services Marketing",
     description:
       "One stack from the Google search to the Google review \u2014 for cleaners, pest, pool, lawn, appliance, garage, locksmith, chimney, window, and handyman pros.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

@@ -9,12 +9,12 @@ import { LsvcSolutions } from "@/components/industries/local-service/lsvc-soluti
 import { LsvcFinalCta } from "@/components/industries/local-service/lsvc-final-cta"
 
 export const metadata: Metadata = {
-  title: "Local Service Business Marketing \u2014 Google Ranking + Custom Website | Max Market Pros",
+  title: "Local Service Marketing",
   description:
     "Rank on Google and convert on your own site. Local SEO, Map Pack dominance, and custom-coded websites for salons, fitness, events, pets, professional services, and education \u2014 every local service business that lives on 'near me' searches.",
   alternates: { canonical: "/industries/local-service" },
   openGraph: {
-    title: "Local Service Marketing | Max Market Pros",
+    title: "Local Service Marketing",
     description:
       "Own every Google slot \u2014 Ads, AI Overview, Map Pack, Featured Snippet, Organic #1 \u2014 on a custom-coded site built to convert. Six verticals, thirty service types.",
     type: "website",
@@ -24,14 +24,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Local Service Marketing | Max Market Pros",
+    title: "Local Service Marketing",
     description:
       "Rank on Google. Convert on your site. One stack for every local service business.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

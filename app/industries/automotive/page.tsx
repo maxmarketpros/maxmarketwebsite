@@ -9,12 +9,12 @@ import { AutoPlaybook } from "@/components/industries/automotive/auto-playbook"
 import { AutoFinalCta } from "@/components/industries/automotive/auto-final-cta"
 
 export const metadata: Metadata = {
-  title: "Automotive Marketing — Auto Shops, Detailing, Rentals | Max Market Pros",
+  title: "Automotive Marketing",
   description:
     "Marketing built for auto detailing, mobile mechanics, repair shops, tire/body/glass specialty, and car rentals — SEO, ads, booking, AI agents, and review generation in one stack.",
   alternates: { canonical: "/industries/automotive" },
   openGraph: {
-    title: "Automotive Marketing | Max Market Pros",
+    title: "Automotive Marketing",
     description:
       "SEO, ads, booking, AI agents, and review generation tuned for auto detailing, mobile repair, service shops, specialty, and rentals.",
     type: "website",
@@ -24,14 +24,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Automotive Marketing | Max Market Pros",
+    title: "Automotive Marketing",
     description:
       "One stack for the local auto economy — detailing, mobile repair, shops, tire/body/glass, and rentals.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

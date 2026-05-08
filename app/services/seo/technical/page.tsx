@@ -11,7 +11,7 @@ import { TechnicalFinalCta } from "@/components/seo/technical/technical-final-ct
 
 export const metadata: Metadata = {
   title:
-    "Technical SEO Services \u2014 Core Web Vitals + Crawl | Max Market Pros",
+    "Technical SEO Services",
   description:
     "Technical SEO audits and fixes: Core Web Vitals, crawl budget, indexation, schema markup, robots.txt, and sitemaps. Free technical SEO audit with ship-ready fix list.",
   keywords: [
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/seo/technical" },
   openGraph: {
     title:
-      "Technical SEO Services \u2014 Core Web Vitals + Crawl | Max Market Pros",
+      "Technical SEO Services",
     description:
       "Done-for-you technical SEO: Core Web Vitals, crawl audits, indexation, schema, robots.txt + sitemap.xml. Free technical SEO audit with ship-ready fix list.",
     type: "website",
@@ -59,20 +59,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Technical SEO Services \u2014 Core Web Vitals + Crawl | Max Market Pros",
+      "Technical SEO Services",
     description:
       "Technical SEO that gets you indexed. Core Web Vitals, crawl, indexation, schema. Free audit.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

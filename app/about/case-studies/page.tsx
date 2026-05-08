@@ -1,10 +1,15 @@
-﻿import { Navbar } from "@/components/navbar"
+import type { Metadata } from "next"
+import { Navbar } from "@/components/navbar"
 import { UnderConstruction } from "@/components/under-construction"
+import { buildMetadata } from "@/lib/seo"
 
-export const metadata = {
-  title: "Case Studies â€” Max Market Pros",
-  description: "Real results and growth stories from businesses we've helped scale.",
-}
+export const metadata: Metadata = buildMetadata({
+  title: "Case Studies",
+  description:
+    "Real results and growth stories from businesses we've helped scale.",
+  path: "/about/case-studies",
+  noindex: true,
+})
 
 export default function Page() {
   return (

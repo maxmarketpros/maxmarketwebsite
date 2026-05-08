@@ -9,7 +9,7 @@ import { emailMarketingFaqs } from "@/components/solutions/email-marketing/email
 import { EmailMarketingFinalCta } from "@/components/solutions/email-marketing/email-marketing-final-cta"
 
 export const metadata: Metadata = {
-  title: "Email Marketing Automation for Small Business | Max Market Pros",
+  title: "Email Marketing Automation for Small Business",
   description:
     "Drip campaigns, segmentation, A/B testing, and cross-channel SMS — tied straight to your CRM. Drive 320% more revenue from automated email.",
   keywords: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/solutions/email-marketing" },
   openGraph: {
-    title: "Email Marketing Automation for Small Business | Max Market Pros",
+    title: "Email Marketing Automation for Small Business",
     description:
       "Drag-and-drop email campaigns, trigger-based drip sequences, and segmentation — hooked straight into your CRM.",
     type: "website",
@@ -34,13 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Email Marketing Automation for Small Business | Max Market Pros",
+    title: "Email Marketing Automation for Small Business",
     description: "Drip campaigns, segmentation, A/B testing, cross-channel SMS — built for service businesses.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 

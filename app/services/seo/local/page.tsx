@@ -12,7 +12,7 @@ import { LocalFinalCta } from "@/components/seo/local/local-final-cta"
 
 export const metadata: Metadata = {
   title:
-    "Local SEO Services \u2014 Dominate the Google Map Pack | Max Market Pros",
+    "Local SEO Services",
   description:
     "Local SEO for service businesses. Rank in the Google Map Pack, dominate \u201cnear me\u201d searches, and turn your Google Business Profile into your highest-ROI lead channel. Free audit.",
   keywords: [
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/seo/local" },
   openGraph: {
     title:
-      "Local SEO Services \u2014 Dominate the Google Map Pack | Max Market Pros",
+      "Local SEO Services",
     description:
       "Done-for-you Local SEO, Google Business Profile optimization, review velocity, and multi-city Map Pack rankings for service businesses. Free audit with 90-day forecast.",
     type: "website",
@@ -60,20 +60,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Local SEO Services \u2014 Dominate the Google Map Pack | Max Market Pros",
+      "Local SEO Services",
     description:
       "Local SEO built to rank service businesses in the Google Map Pack. Free audit, real plan, zero pressure.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

@@ -16,7 +16,7 @@ import { CustomCodedFinalCta } from "@/components/web-design/custom-coded/custom
 
 export const metadata: Metadata = {
   title:
-    "Custom Coded Websites — Hand-Built Web Design on Next.js & React | Max Market Pros",
+    "Custom Coded Websites",
   description:
     "Custom coded websites built from scratch on Next.js, React, TypeScript, and Tailwind. Lighthouse 100s, edge-deployed on Vercel, schema on every page, full code ownership. 6-week launches.",
   keywords: [
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/web-design/custom-coded" },
   openGraph: {
     title:
-      "Custom Coded Websites — Hand-Built Web Design on Next.js & React | Max Market Pros",
+      "Custom Coded Websites",
     description:
       "Done-for-you custom coded websites with hand-built React components, headless CMS, edge hosting, JSON-LD schema, and Lighthouse 100s. Live in 6 weeks.",
     type: "website",
@@ -69,20 +69,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Custom Coded Websites — Hand-Built Web Design on Next.js & React | Max Market Pros",
+      "Custom Coded Websites",
     description:
       "Custom coded websites built on Next.js, React, and TypeScript. Lighthouse 100s, edge-deployed on Vercel, full code ownership, 6-week launches.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

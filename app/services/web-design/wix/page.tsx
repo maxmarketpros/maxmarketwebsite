@@ -11,7 +11,7 @@ import { WixFinalCta } from "@/components/web-design/wix/wix-final-cta"
 
 export const metadata: Metadata = {
   title:
-    "Wix Website Design Services — Custom Wix Editor + Wix Studio Designers | Max Market Pros",
+    "Wix Website Design",
   description:
     "Custom Wix website design that ranks on Google. Done-for-you Wix Editor and Wix Studio builds with Velo code, App Market integration, schema markup, Lighthouse 90+ performance, and a 14-day delivery — for service businesses, ecommerce, and agencies.",
   keywords: [
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/web-design/wix" },
   openGraph: {
     title:
-      "Wix Website Design Services — Custom Wix Editor + Wix Studio Designers | Max Market Pros",
+      "Wix Website Design",
     description:
       "Done-for-you Wix website design with Velo code, App Market integration, schema markup, and Lighthouse 90+ performance. Live in 14 days.",
     type: "website",
@@ -69,20 +69,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Wix Website Design Services — Custom Wix Editor + Wix Studio Designers | Max Market Pros",
+      "Wix Website Design",
     description:
       "Custom Wix website design that ranks. Lighthouse 90+, schema markup, Velo code — live in 14 days.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

@@ -13,7 +13,7 @@ import { BacklinksFinalCta } from "@/components/seo/backlinks/backlinks-final-ct
 
 export const metadata: Metadata = {
   title:
-    "Buy Backlinks & Directory Submissions — Editorial Link Building | Max Market Pros",
+    "Backlinks & Link Building",
   description:
     "Buy backlinks the right way. Editorial backlinks on DR 40+ publishers, 50+ NAP-consistent local citations, niche edits, and digital-PR placements. Real reporting, zero PBNs, 90-day lift you can measure.",
   keywords: [
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/services/seo/backlinks" },
   openGraph: {
     title:
-      "Buy Backlinks & Directory Submissions — Editorial Link Building | Max Market Pros",
+      "Backlinks & Link Building",
     description:
       "Editorial backlinks on DR 40+ publishers, 50+ local citations, niche edits, digital-PR placements. Real reporting, zero PBNs, measurable 90-day lift.",
     type: "website",
@@ -63,20 +63,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Buy Backlinks & Directory Submissions — Editorial Link Building | Max Market Pros",
+      "Backlinks & Link Building",
     description:
       "Editorial backlinks, 50+ NAP-consistent citations, real reporting, zero PBNs. The link plan that actually moves rankings.",
     images: ["/services/seo-websites.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 }
 

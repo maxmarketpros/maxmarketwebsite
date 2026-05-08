@@ -8,12 +8,12 @@ import { RestStack } from "@/components/industries/restaurants/rest-stack"
 import { RestFinalCta } from "@/components/industries/restaurants/rest-final-cta"
 
 export const metadata: Metadata = {
-  title: "Restaurant Marketing \u2014 Websites, Reviews, Ordering & Ads | Max Market Pros",
+  title: "Restaurant Marketing",
   description:
     "Order-ready restaurant websites, Google/Yelp review engines, daypart-tuned ads, and delivery-stack consolidation for fast-casual, fine dining, cafes, bars, and catering.",
   alternates: { canonical: "/industries/restaurants" },
   openGraph: {
-    title: "Restaurant Marketing | Max Market Pros",
+    title: "Restaurant Marketing",
     description:
       "Websites that take the order, review engines on autopilot, daypart-tuned ad campaigns, and delivery-stack consolidation for restaurants of every shape.",
     type: "website",
@@ -23,14 +23,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Restaurant Marketing | Max Market Pros",
+    title: "Restaurant Marketing",
     description:
       "One stack from the POS to the parking lot \u2014 fast-casual, fine dining, cafes, bars, and catering.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 }
 
