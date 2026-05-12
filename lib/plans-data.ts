@@ -235,7 +235,7 @@ export const aLaCarteHighlights: ALaCarteItem[] = [
     label: "Review generation",
     description: "Automated post-job text & email asks that turn happy customers into 5-star Google reviews.",
     price: "$199",
-    priceUnit: "/mo",
+    priceUnit: "one-time",
     accent: "#F59E0B",
     popular: true,
   },

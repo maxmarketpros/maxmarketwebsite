@@ -25,5 +25,30 @@
     <input type="text" name="best-practices-score" />
     <textarea name="message"></textarea>
   </form>
+
+  <!--
+    À la carte estimate form. Submitted via fetch('/') from
+    components/plans/a-la-carte/estimate-form.tsx. Field names below must
+    match the React form exactly.
+  -->
+  <form
+    name="a-la-carte-estimate"
+    method="POST"
+    data-netlify="true"
+    data-netlify-honeypot="bot-field"
+    hidden
+  >
+    <input type="text" name="bot-field" />
+    <input type="text" name="name" />
+    <input type="text" name="business" />
+    <input type="tel" name="phone" />
+    <input type="email" name="email" />
+    <textarea name="notes"></textarea>
+    <input type="text" name="current-plan" />
+    <input type="text" name="monthly-total" />
+    <input type="text" name="one-time-total" />
+    <input type="text" name="custom-quote-count" />
+    <textarea name="selected-items"></textarea>
+  </form>
 </body>
 </html>
