@@ -10,6 +10,14 @@ import {
   resources,
   contact,
 } from "@/lib/site-map"
+import { BUSINESS, SITE_NAME } from "@/lib/seo"
+
+const socialLinks: { name: "facebook" | "instagram" | "linkedin" | "youtube"; href: string; label: string }[] = [
+  { name: "facebook", href: BUSINESS.socials[0], label: `${SITE_NAME} on Facebook` },
+  { name: "instagram", href: BUSINESS.socials[1], label: `${SITE_NAME} on Instagram` },
+  { name: "linkedin", href: BUSINESS.socials[2], label: `${SITE_NAME} on LinkedIn` },
+  { name: "youtube", href: BUSINESS.socials[3], label: `${SITE_NAME} on YouTube` },
+]
 
 /* ── Footer Link Groups ── */
 
@@ -95,23 +103,23 @@ export function Footer() {
 
             {/* Social links */}
             <div className="mt-6 flex items-center gap-3">
-              {["facebook", "instagram", "linkedin", "youtube"].map(
-                (social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="w-9 h-9 rounded-full flex items-center justify-center transition-colors duration-200"
-                    style={{
-                      background: "var(--bg)",
-                      border: "1px solid var(--border-color)",
-                      color: "var(--muted)",
-                    }}
-                    aria-label={social}
-                  >
-                    <SocialIcon name={social} />
-                  </a>
-                )
-              )}
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full flex items-center justify-center transition-colors duration-200 hover:opacity-80"
+                  style={{
+                    background: "var(--bg)",
+                    border: "1px solid var(--border-color)",
+                    color: "var(--muted)",
+                  }}
+                  aria-label={social.label}
+                >
+                  <SocialIcon name={social.name} />
+                </a>
+              ))}
             </div>
           </div>
 
