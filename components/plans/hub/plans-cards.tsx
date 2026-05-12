@@ -16,7 +16,7 @@ export function PlansCards() {
               </span>
             </span>
           }
-          paragraph="Every plan is month-to-month, fully managed in-house, and built around the same goal: more booked jobs in your service area."
+          paragraph="Every plan is fully managed in-house and built around the same goal: more booked jobs in your service area."
         />
 
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7 items-start">
