@@ -1,11 +1,9 @@
-import { ArrowRight, Check, Clock, FileText, ShieldCheck, Phone } from "lucide-react"
+import { ArrowRight, Check, Clock, FileText, ShieldCheck } from "lucide-react"
 import { FacebookLogo } from "./facebook-ads-hero"
 
 const guarantees = [
   { Icon: FileText, label: "Free 30-min Facebook Ads audit" },
   { Icon: Clock, label: "Loom walkthrough in 3 days" },
-  { Icon: ShieldCheck, label: "No sales pressure, no commitment" },
-  { Icon: Phone, label: "Month-to-month, cancel anytime" },
 ]
 
 const siblings = [

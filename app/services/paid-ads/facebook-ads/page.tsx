@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     title:
       "Facebook Ads Management",
     description:
-      "Done-for-you Facebook Ads management for local service businesses. Reels, Feed, Stories, lead forms & retargeting on Meta. Free 3-day audit, month-to-month.",
+      "Done-for-you Facebook Ads management for local service businesses. Reels, Feed, Stories, lead forms & retargeting on Meta. Free 3-day audit.",
     images: ["/services/social-media.png"],
   },
 }
@@ -108,7 +108,7 @@ function JsonLd() {
     serviceType: "Facebook Ads Management",
     name: "Facebook Ads Management Agency",
     description:
-      "Done-for-you Facebook Ads management for local service businesses including Facebook Feed Ads, Reels Ads, Stories Ads, Lead Form Ads, Meta retargeting with Pixel and Conversions API, and Marketplace Ads. Flat monthly retainer, transparent reporting, and no long-term contracts.",
+      "Done-for-you Facebook Ads management for local service businesses including Facebook Feed Ads, Reels Ads, Stories Ads, Lead Form Ads, Meta retargeting with Pixel and Conversions API, and Marketplace Ads. Flat monthly retainer with transparent reporting.",
     provider: {
       "@type": "Organization",
       name: "Max Market Pros",

@@ -6,7 +6,7 @@ export type GoogleAdsFaq = {
 export const googleAdsFaqs: GoogleAdsFaq[] = [
   {
     q: "How does Google Ads management pricing work?",
-    a: "Our Google Ads management fee is a flat monthly retainer billed separately from your ad spend &mdash; that money goes straight to Google on your card, not ours. Retainers scale with account complexity (number of campaigns, locations, and channels: Search, Local Services Ads, Performance Max, Maps, YouTube). On the free audit call we&rsquo;ll quote a fixed monthly fee with no setup fees, no percentage-of-spend markup, and no long-term contract.",
+    a: "Our Google Ads management fee is a flat monthly retainer billed separately from your ad spend &mdash; that money goes straight to Google on your card, not ours. Retainers scale with account complexity (number of campaigns, locations, and channels: Search, Local Services Ads, Performance Max, Maps, YouTube). On the free audit call we&rsquo;ll quote a fixed monthly fee with no setup fees and no percentage-of-spend markup.",
   },
   {
     q: "What&rsquo;s the minimum monthly ad spend for Google Ads management to make sense?",
@@ -35,9 +35,5 @@ export const googleAdsFaqs: GoogleAdsFaq[] = [
   {
     q: "Do you build landing pages for Google Ads campaigns?",
     a: "Landing-page CRO is included in your first month of Google Ads management &mdash; we&rsquo;ll diagnose conversion-rate issues on your existing service pages and recommend a list of fixes. Building a brand-new dedicated landing page is a separate engagement (usually paired with our <a href=\"/services/web-design\" style=\"color:var(--accent);font-weight:600\">web design</a> team) and quoted per page. About half our clients run paid traffic to their main site and never need a dedicated LP; the other half see meaningful CPL drops once we ship one.",
-  },
-  {
-    q: "Is there a contract, or can we cancel Google Ads management anytime?",
-    a: "Month-to-month, every engagement. No 6-month or 12-month lock-ins, no cancellation fees, no &ldquo;account fees&rdquo; if you leave. We earn the next month every month, by showing up in your inbox with leads cheaper than the month before. The other side of that is: if you cancel mid-month, your campaigns stay live in your account &mdash; we just stop optimizing them, and you keep everything we built.",
   },
 ]

@@ -108,7 +108,7 @@ export function CustomCodedFinalCta() {
             >
               A senior strategist scopes your build — pages, components, CMS,
               integrations, performance targets, and SEO foundation — and gives
-              you a fixed timeline and price. Free, no commitment.
+              you a fixed timeline and price. Free.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

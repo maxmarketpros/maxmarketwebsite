@@ -4,7 +4,6 @@ const guarantees = [
   "Delivered in 3 business days",
   "Zero sales pressure",
   "Real plan, even if we never work together",
-  "Month-to-month after 90-day setup",
 ]
 
 export function LocalFinalCta() {

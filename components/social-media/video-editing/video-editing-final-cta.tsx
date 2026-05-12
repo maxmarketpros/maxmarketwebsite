@@ -240,7 +240,6 @@ export function VideoEditingFinalCta() {
                   "<48hr median video editing turnaround",
                   "Unlimited revisions during the project",
                   "You own all source files & project files",
-                  "Month-to-month after 90 days",
                 ].map((g) => (
                   <li
                     key={g}

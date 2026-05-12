@@ -1,9 +1,8 @@
 import Link from "next/link"
-import { ArrowRight, Zap, Shield, Target } from "lucide-react"
+import { ArrowRight, Zap, Target } from "lucide-react"
 
 const trustChips = [
   { Icon: Zap,    label: "Go-live in 14 days" },
-  { Icon: Shield, label: "No long-term contract" },
   { Icon: Target, label: "Vertical-tuned playbook" },
 ]
 

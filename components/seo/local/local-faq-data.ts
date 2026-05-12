@@ -29,10 +29,6 @@ export const localFaqs: LocalFaq[] = [
     a: "For most service businesses: proximity + review signals. Proximity (how close you are to the searcher) is fixed; we solve it with service-area configuration and per-city landing pages. Review signals (count, velocity, keyword text, response rate) are the biggest lever we can actively move \u2014 and they compound every month. Categories and citations matter enormously for relevance and prominence, but they\u2019re one-time fixes, not growth engines.",
   },
   {
-    q: "Do you lock clients into long-term contracts?",
-    a: "No. First 90 days is a setup period so the work has room to land. After that it\u2019s month-to-month. If we\u2019re not moving Map Pack rank or booked-jobs revenue, fire us. We retain clients on results, not paperwork \u2014 our average client stays 28+ months because the rankings keep compounding.",
-  },
-  {
     q: "What happens if Google updates the Map Pack algorithm?",
     a: "Google updates local-ranking factors constantly \u2014 spam updates, helpful-content updates, core updates, GBP policy changes. Our playbook is built on the fundamentals Google has weighted for a decade (real proximity, real relevance, real prominence), so algorithm shifts tend to help the clients we\u2019ve built right. When a major update lands, you get a written impact note within the week and any adjustments are part of the retainer.",
   },

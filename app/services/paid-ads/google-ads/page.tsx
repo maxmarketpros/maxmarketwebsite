@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     title:
       "Google Ads Management",
     description:
-      "Done-for-you Google Ads management for local service businesses. LSA, Search, Performance Max. Free 3-day audit, month-to-month.",
+      "Done-for-you Google Ads management for local service businesses. LSA, Search, Performance Max. Free 3-day audit.",
     images: ["/services/social-media.png"],
   },
 }
@@ -108,7 +108,7 @@ function JsonLd() {
     serviceType: "Google Ads Management",
     name: "Google Ads Management Agency",
     description:
-      "Done-for-you Google Ads management for local service businesses including Local Services Ads with Google Guaranteed verification, Google Search, Performance Max, Google Maps Ads, Call-Only Ads, and YouTube Ads. Flat monthly retainer, transparent reporting, and no long-term contracts.",
+      "Done-for-you Google Ads management for local service businesses including Local Services Ads with Google Guaranteed verification, Google Search, Performance Max, Google Maps Ads, Call-Only Ads, and YouTube Ads. Flat monthly retainer with transparent reporting.",
     provider: {
       "@type": "Organization",
       name: "Max Market Pros",

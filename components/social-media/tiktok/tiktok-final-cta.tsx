@@ -240,7 +240,6 @@ export function TiktokFinalCta() {
                 style={{ borderColor: "var(--border-color)" }}
               >
                 {[
-                  "Month-to-month after 90 days",
                   "Approve every TikTok before it posts",
                   "You own all footage &amp; final cuts",
                 ].map((g) => (

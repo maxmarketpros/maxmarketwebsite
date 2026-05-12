@@ -243,7 +243,6 @@ export function YoutubeFinalCta() {
                 style={{ borderColor: "var(--border-color)" }}
               >
                 {[
-                  "Month-to-month after 90 days",
                   "Approve every video, title &amp; thumbnail before publish",
                   "You own all footage, final cuts &amp; thumbnail files",
                 ].map((g) => (

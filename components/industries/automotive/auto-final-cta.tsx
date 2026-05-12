@@ -1,9 +1,8 @@
 import Link from "next/link"
-import { ArrowRight, Zap, Shield, BarChart3 } from "lucide-react"
+import { ArrowRight, Zap, BarChart3 } from "lucide-react"
 
 const trustChips = [
   { Icon: Zap,       label: "14-day setup" },
-  { Icon: Shield,    label: "No long contracts" },
   { Icon: BarChart3, label: "Weekly reporting" },
 ]
 

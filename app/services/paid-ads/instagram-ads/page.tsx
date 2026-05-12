@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title:
     "Instagram Ads Management",
   description:
-    "Done-for-you Instagram Ads management for local service businesses. Reels, Stories, Feed, Explore + influencer whitelisting on Meta — managed to your cost-per-booked-job. Free 3-day audit, month-to-month.",
+    "Done-for-you Instagram Ads management for local service businesses. Reels, Stories, Feed, Explore + influencer whitelisting on Meta — managed to your cost-per-booked-job. Free 3-day audit.",
   keywords: [
     "Instagram Ads management",
     "Instagram Ads agency",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title:
       "Instagram Ads Management",
     description:
-      "Done-for-you Instagram Ads management for local service businesses. Reels, Stories, Feed, Explore + influencer whitelisting on Meta — managed to your cost-per-booked-job. Free 3-day audit, month-to-month.",
+      "Done-for-you Instagram Ads management for local service businesses. Reels, Stories, Feed, Explore + influencer whitelisting on Meta — managed to your cost-per-booked-job. Free 3-day audit.",
     type: "website",
     url: "/services/paid-ads/instagram-ads",
     siteName: "Max Market Pros",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     title:
       "Instagram Ads Management",
     description:
-      "Done-for-you Instagram Ads management for local service businesses. Reels, Stories, Feed, Explore & influencer whitelisting on Meta. Free 3-day audit, month-to-month.",
+      "Done-for-you Instagram Ads management for local service businesses. Reels, Stories, Feed, Explore & influencer whitelisting on Meta. Free 3-day audit.",
     images: ["/services/social-media.png"],
   },
 }
@@ -108,7 +108,7 @@ function JsonLd() {
     serviceType: "Instagram Ads Management",
     name: "Instagram Ads Management Agency",
     description:
-      "Done-for-you Instagram Ads management for local service businesses including Reels Ads, Stories Ads, Feed Ads, Explore Ads, influencer whitelisting, and in-house creative production. Flat monthly retainer, transparent reporting, no long-term contracts.",
+      "Done-for-you Instagram Ads management for local service businesses including Reels Ads, Stories Ads, Feed Ads, Explore Ads, influencer whitelisting, and in-house creative production. Flat monthly retainer with transparent reporting.",
     provider: {
       "@type": "Organization",
       name: "Max Market Pros",

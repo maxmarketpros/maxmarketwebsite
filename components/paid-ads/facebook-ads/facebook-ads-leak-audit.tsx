@@ -332,8 +332,7 @@ export function FacebookAdsLeakAudit() {
               style={{ color: "var(--muted)" }}
             >
               Loom video walkthrough delivered in 3 business days. Read-only
-              Meta Business Manager access only. No sales pressure, no
-              commitment.
+              Meta Business Manager access only. No sales pressure.
             </p>
           </div>
         </div>

@@ -32,11 +32,6 @@ const items: Item[] = [
     reason:
       "Reads terrible to real buyers and has been a ranking penalty since 2011. We write for the customer first, then check keyword coverage.",
   },
-  {
-    title: "No long-term contracts",
-    reason:
-      "Good Local SEO retains clients on results, not contracts. Month-to-month after the first 90 days. If we\u2019re not moving rank, fire us.",
-  },
 ]
 
 export function LocalPromise() {
@@ -92,7 +87,7 @@ export function LocalPromise() {
               className="text-[13.5px] sm:text-[14.5px] font-semibold"
               style={{ color: "var(--ink)" }}
             >
-              Google-compliant Local SEO. Month-to-month. Durable rankings.
+              Google-compliant Local SEO. Durable rankings.
             </span>
           </div>
         </div>

@@ -16,7 +16,6 @@ const guarantees = [
   { Icon: FileText, label: "Free 3-day Instagram Ads audit" },
   { Icon: Clock, label: "Loom walkthrough in 72 hours" },
   { Icon: Repeat, label: "60-day creative refresh, always" },
-  { Icon: ShieldCheck, label: "No long-term contracts, ever" },
   { Icon: Phone, label: "Cost-per-booked-job reported weekly" },
 ]
 

@@ -6,7 +6,7 @@ export type FacebookAdsFaq = {
 export const facebookAdsFaqs: FacebookAdsFaq[] = [
   {
     q: "How does Facebook Ads management pricing work?",
-    a: "Our Facebook Ads management fee is a flat monthly retainer billed separately from your ad spend &mdash; that money goes straight to Meta on your card, not ours. Retainers scale with the number of campaigns, creative assets we ship per month, and Pixel/CAPI complexity. On the free audit call we&rsquo;ll quote a fixed monthly fee with no setup fees, no percentage-of-spend markup, and no long-term contract.",
+    a: "Our Facebook Ads management fee is a flat monthly retainer billed separately from your ad spend &mdash; that money goes straight to Meta on your card, not ours. Retainers scale with the number of campaigns, creative assets we ship per month, and Pixel/CAPI complexity. On the free audit call we&rsquo;ll quote a fixed monthly fee with no setup fees and no percentage-of-spend markup.",
   },
   {
     q: "What&rsquo;s the minimum monthly ad spend for Facebook Ads management to make sense?",
@@ -35,9 +35,5 @@ export const facebookAdsFaqs: FacebookAdsFaq[] = [
   {
     q: "Do you set up Pixel, CAPI, and offline conversion uploads?",
     a: "Yes &mdash; this is the #1 thing most Meta accounts get wrong. We install the Meta Pixel via Google Tag Manager, deploy Conversions API server-side (Stape, Make, or direct depending on your stack), and wire offline conversion imports if you&rsquo;re tracking booked jobs in a CRM. Every form fill, every phone call, and every booked job gets a value attached so Advantage+ optimizes for booked revenue, not just lead-form opens.",
-  },
-  {
-    q: "Is there a contract, or can we cancel Facebook Ads management anytime?",
-    a: "Month-to-month, every engagement. No 6-month or 12-month lock-ins, no cancellation fees, no &ldquo;account fees&rdquo; if you leave. We earn the next month every month, by showing up in your inbox with leads cheaper than the month before. The other side of that is: if you cancel mid-month, your campaigns stay live in your account &mdash; we just stop optimizing them, and you keep everything we built (creative, audiences, Pixel events).",
   },
 ]

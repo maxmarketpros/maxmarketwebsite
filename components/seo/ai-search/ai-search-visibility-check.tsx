@@ -229,7 +229,7 @@ export function AiSearchVisibilityCheck() {
             Run my free AI audit
           </PrimaryButton>
           <span className="text-[13.5px]" style={{ color: "var(--muted)" }}>
-            No commitment · 5 business days · 25-query report
+            Free · 5 business days · 25-query report
           </span>
         </div>
       </div>

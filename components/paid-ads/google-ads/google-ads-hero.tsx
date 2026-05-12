@@ -13,7 +13,6 @@ const proofPills = [
   { label: "Google Partner agency" },
   { label: "Google Guaranteed verified" },
   { label: "4.7× avg ROAS" },
-  { label: "No long-term contracts" },
 ]
 
 export function GoogleAdsHero() {

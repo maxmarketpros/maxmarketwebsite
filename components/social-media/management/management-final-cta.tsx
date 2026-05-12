@@ -328,7 +328,6 @@ export function ManagementFinalCta() {
                 style={{ borderColor: "var(--border-color)" }}
               >
                 {[
-                  "Month-to-month after 90 days",
                   "Approve every post before it goes live",
                   "You own all content & raw footage",
                 ].map((g) => (

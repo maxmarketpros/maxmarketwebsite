@@ -91,11 +91,6 @@ export const youtubeFaqs: YoutubeFaq[] = [
     a: 'Plans start in the low-to-mid four figures monthly and scale based on filming frequency, video volume, thumbnail rounds, and whether community management is included. See <a href="/#pricing" style="color:var(--accent);font-weight:600">plans &amp; pricing</a> on the home page or book a strategy call for a custom quote in 24 hours.',
   },
   {
-    category: "Pricing",
-    q: "Are there long-term contracts?",
-    a: "We default to a 90-day initial term so the channel SEO and watch-time signal have time to compound, then it&rsquo;s month-to-month after that. No multi-year lock-ins, no early-termination fees. You own the channel, all raw footage, all final cuts, and every thumbnail file we ship.",
-  },
-  {
     category: "Results",
     q: "What does the monthly YouTube marketing services report include?",
     a: "Views, average view duration, watch hours, subscriber growth, top-performing videos and Shorts, average CTR per thumbnail variant, audience-retention trend lines, suggested-video pickup rate, and booked-job attribution where we can wire it. Plus a 1-page strategist summary on what&rsquo;s working and what to double down on next month, delivered as a Loom + PDF on the 3rd of every month.",

@@ -108,7 +108,7 @@ export function CustomDesignedFinalCta() {
             >
               A senior designer audits your current site, sketches the
               direction, and gives you a fixed scope and timeline for the
-              custom-designed rebuild. Free, no commitment.
+              custom-designed rebuild. Free.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

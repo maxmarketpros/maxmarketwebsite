@@ -16,7 +16,6 @@ const proofPills = [
   { label: "Meta Business Partner" },
   { label: "Pixel + CAPI implemented" },
   { label: "4.3× avg ROAS" },
-  { label: "No long-term contracts" },
 ]
 
 export function FacebookAdsHero() {

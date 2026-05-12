@@ -94,7 +94,7 @@ export function ContactHero() {
           >
             Call, email, or book a free 20-minute strategy call. We&rsquo;ll
             audit your current marketing, sketch a growth plan, and quote a
-            fixed monthly scope &mdash; no pressure, no auto-renewing contracts.
+            fixed monthly scope &mdash; no pressure, no agency runaround.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">

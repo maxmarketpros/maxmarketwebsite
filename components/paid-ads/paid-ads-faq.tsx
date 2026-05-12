@@ -26,7 +26,7 @@ export function PaidAdsFaq() {
               </span>
             </span>
           }
-          paragraph="No over-promising, no agency jargon, no 10-page contracts. If your question isn't here, just ask."
+          paragraph="No over-promising, no agency jargon. If your question isn't here, just ask."
         />
 
         <div

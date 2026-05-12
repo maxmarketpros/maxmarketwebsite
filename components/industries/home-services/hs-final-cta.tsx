@@ -1,10 +1,9 @@
 import Link from "next/link"
-import { ArrowRight, Zap, Radio, Calendar } from "lucide-react"
+import { ArrowRight, Zap, Radio } from "lucide-react"
 
 const trustChips = [
-  { Icon: Zap,      label: "Go-live in 14 days" },
-  { Icon: Radio,    label: "24/7 AI answer service" },
-  { Icon: Calendar, label: "No long-term contract" },
+  { Icon: Zap,   label: "Go-live in 14 days" },
+  { Icon: Radio, label: "24/7 AI answer service" },
 ]
 
 export function HsFinalCta() {

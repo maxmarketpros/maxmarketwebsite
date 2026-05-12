@@ -77,11 +77,6 @@ export const tiktokFaqs: TiktokFaq[] = [
     a: 'Plans start in the low four figures monthly and scale based on filming frequency, video volume, and whether community management is included. See <a href="/#pricing" style="color:var(--accent);font-weight:600">plans &amp; pricing</a> on the home page or book a strategy call for a custom quote in 24 hours.',
   },
   {
-    category: "Pricing",
-    q: "Are there long-term contracts?",
-    a: "We default to a 90-day initial term so the content engine has time to compound, then it's month-to-month after that. No multi-year lock-ins, no early termination fees. You own all TikToks, raw footage, and creative assets we produce.",
-  },
-  {
     category: "Results",
     q: "What does the monthly TikTok marketing services report include?",
     a: "Views, average watch time, follower growth, top-performing TikToks, share rate, comment volume, profile visits, and booked-job attribution where we can wire it. Plus a 1-page strategist summary on what's working and what to double down on next month, delivered as a Loom + PDF on the 3rd of every month.",

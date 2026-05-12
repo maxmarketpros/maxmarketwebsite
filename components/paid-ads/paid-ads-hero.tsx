@@ -121,8 +121,7 @@ export function PaidAdsHero() {
             >
               Done-for-you Google Ads, Facebook Ads, Instagram Ads and
               retargeting campaigns — built around your ROAS, not vanity
-              metrics. Transparent reporting, full account ownership, zero
-              long-term contracts.
+              metrics. Transparent reporting and full account ownership.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">

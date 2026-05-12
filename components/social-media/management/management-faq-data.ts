@@ -72,11 +72,6 @@ export const managementFaqs: ManagementFaq[] = [
     a: 'Pricing depends on platform count, video volume, and whether community management is included. Plans start in the low four figures monthly and scale up for video-heavy or multi-location service businesses. See <a href="/#pricing" style="color:var(--accent);font-weight:600">plans &amp; pricing</a> on the home page or book a strategy call for a custom quote in 24 hours.',
   },
   {
-    category: "Pricing",
-    q: "Are there long-term contracts or month-to-month plans?",
-    a: "We default to a 90-day initial term so the strategy + content engine has time to compound, then it's month-to-month after that. No multi-year lock-ins, no early termination fees. You own all content, raw footage, and creative assets we produce.",
-  },
-  {
     category: "Results",
     q: "What does the monthly social media management report include?",
     a: "Reach, impressions, follower growth, engagement rate, top-performing posts, DM volume, booked appointments attributed to social, and a 1-page strategist summary on what's working / what to double down on next month. Delivered as a Loom + PDF on the 3rd of every month.",

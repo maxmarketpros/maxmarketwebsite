@@ -1,7 +1,6 @@
 import { icons8Url } from "@/lib/icons8"
 import {
   ArrowRight,
-  CheckCircle2,
   ShieldCheck,
   Sparkles,
   Star,
@@ -75,7 +74,6 @@ const liveReviews: LiveReview[] = [
 ]
 
 const guarantees = [
-  { Icon: CheckCircle2, label: "Month-to-month after 90 days" },
   { Icon: ShieldCheck, label: "Compliant with Google + Yelp policies" },
   { Icon: Star, label: "We never write or buy fake reviews" },
   { Icon: ArrowRight, label: "You own all data + opt-outs" },
@@ -210,8 +208,7 @@ export function ReviewFinalCta() {
               >
                 A reputation strategist will audit your current review velocity,
                 rating spread across platforms, and Map Pack ranking — then map
-                out a 30-day plan to fix the gaps. Real plan, fixed monthly fee,
-                no contract beyond 90 days.
+                out a 30-day plan to fix the gaps. Real plan, fixed monthly fee.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-4">

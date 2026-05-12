@@ -76,9 +76,4 @@ export const reviewFaqs: ReviewFaq[] = [
     q: "How much does Review Generation cost?",
     a: 'Plans start at a fixed monthly fee that includes unlimited request volume, response drafting on every review, monthly reporting, and platform troubleshooting. There are no per-message charges and no SMS-cost surprises. See <a href="/#pricing" style="color:var(--accent);font-weight:600">plans &amp; pricing</a> or book a free reputation audit for a custom quote.',
   },
-  {
-    category: "Pricing",
-    q: "Is there a long-term contract?",
-    a: "We default to a 90-day initial term so the system has time to compound (most clients see meaningful rating lift between days 21–60). After that it's month-to-month with no early-termination fee. You own all your data and review history.",
-  },
 ]

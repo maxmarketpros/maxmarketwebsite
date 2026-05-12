@@ -30,7 +30,7 @@ export const aiSearchFaqs: AiSearchFaq[] = [
   },
   {
     q: "What does AI search optimization cost?",
-    a: "AI search visibility is priced as part of a bundled SEO program — we don&rsquo;t sell it as a standalone audit-only product because the levers (entity, schema, content, citations, authority) only compound when run together. Pricing depends on industry competitiveness, the number of service areas, and current site health. The free audit reveals exactly which levers will move your scorecard fastest, and a senior strategist scopes a fixed-fee program based on the audit. No retainer, no long contracts.",
+    a: "AI search visibility is priced as part of a bundled SEO program — we don&rsquo;t sell it as a standalone audit-only product because the levers (entity, schema, content, citations, authority) only compound when run together. Pricing depends on industry competitiveness, the number of service areas, and current site health. The free audit reveals exactly which levers will move your scorecard fastest, and a senior strategist scopes a fixed-fee program based on the audit.",
   },
   {
     q: "Can local service businesses (HVAC, plumbing, dentists) actually rank in AI?",

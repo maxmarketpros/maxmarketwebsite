@@ -15,7 +15,7 @@ export const wixFaqs: WixFaq[] = [
   },
   {
     q: "Will my Wix site be locked in to your agency?",
-    a: "No. You own the Wix account and we transfer admin to you at the end of every project. The site is yours — design files, copy, integrations, Velo code, and CMS collections — even if you fire us tomorrow. We don't use proprietary platforms or hold your domain hostage. Most clients stay on a support retainer because it's worth it, not because they have to.",
+    a: "No. You own the Wix account and we transfer admin to you at the end of every project. The site is yours — design files, copy, integrations, Velo code, and CMS collections — even if you fire us tomorrow. We don't use proprietary platforms or hold your domain hostage.",
   },
   {
     q: "Can you migrate my existing site to Wix?",

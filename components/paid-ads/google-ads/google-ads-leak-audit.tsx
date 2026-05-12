@@ -332,7 +332,7 @@ export function GoogleAdsLeakAudit() {
               style={{ color: "var(--muted)" }}
             >
               Loom video walkthrough delivered in 3 business days. Read-only
-              account access only. No sales pressure, no commitment.
+              account access only. No sales pressure.
             </p>
           </div>
         </div>
