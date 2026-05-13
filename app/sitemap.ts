@@ -35,7 +35,7 @@ const routes: { path: string; priority: number; changeFrequency: MetadataRoute.S
   { path: "/resources", priority: 0.6, changeFrequency: "monthly" },
   { path: "/resources/blog", priority: 0.7, changeFrequency: "weekly" },
   { path: "/resources/case-studies", priority: 0.6, changeFrequency: "monthly" },
-  { path: "/resources/faq", priority: 0.5, changeFrequency: "monthly" },
+  { path: "/resources/faq", priority: 0.7, changeFrequency: "weekly" },
   { path: "/resources/roi-calculator", priority: 0.6, changeFrequency: "monthly" },
 
   { path: "/services", priority: 0.9, changeFrequency: "monthly" },
