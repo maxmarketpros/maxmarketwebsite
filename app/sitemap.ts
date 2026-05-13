@@ -27,7 +27,6 @@ const routes: { path: string; priority: number; changeFrequency: MetadataRoute.S
 
   { path: "/plans", priority: 0.8, changeFrequency: "monthly" },
   { path: "/plans/a-la-carte", priority: 0.6, changeFrequency: "monthly" },
-  { path: "/plans/campaign", priority: 0.6, changeFrequency: "monthly" },
   { path: "/plans/custom-website", priority: 0.6, changeFrequency: "monthly" },
   { path: "/plans/localmark", priority: 0.6, changeFrequency: "monthly" },
   { path: "/plans/servicepro", priority: 0.6, changeFrequency: "monthly" },
