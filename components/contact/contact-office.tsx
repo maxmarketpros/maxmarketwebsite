@@ -126,11 +126,11 @@ export function ContactOffice() {
               </div>
             </div>
 
-            {/* Map embed */}
+            {/* Map embed — grows to fill the remaining card height */}
             <div
-              className="relative w-full"
+              className="relative w-full flex-1"
               style={{
-                aspectRatio: "16 / 10",
+                minHeight: 320,
                 borderTop: "1px solid var(--border-color)",
                 background: "var(--bg)",
               }}

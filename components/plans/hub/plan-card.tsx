@@ -10,16 +10,26 @@ import { getIcon } from "./icon-map"
 interface PlanCardProps {
   plan: Plan
   className?: string
+  isAnnual?: boolean
+  annualDiscount?: number
 }
 
 const VISIBLE_FEATURES = 8
 
-export function PlanCard({ plan, className }: PlanCardProps) {
+export function PlanCard({
+  plan,
+  className,
+  isAnnual = false,
+  annualDiscount = 0.2,
+}: PlanCardProps) {
   const [expanded, setExpanded] = useState(false)
   const PlanIcon = getIcon(plan.iconName)
   const hasMore = plan.features.length > VISIBLE_FEATURES
   const visible = expanded ? plan.features : plan.features.slice(0, VISIBLE_FEATURES)
   const hiddenCount = plan.features.length - VISIBLE_FEATURES
+  const displayPrice = isAnnual
+    ? `$${Math.round(plan.priceNumeric * (1 - annualDiscount)).toLocaleString()}`
+    : plan.price
 
   return (
     <div
@@ -72,7 +82,7 @@ export function PlanCard({ plan, className }: PlanCardProps) {
             className="text-[44px] sm:text-[48px] font-bold leading-none tracking-[-0.025em]"
             style={{ color: "var(--ink)" }}
           >
-            {plan.price}
+            {displayPrice}
           </span>
           <span className="text-[16px] font-medium" style={{ color: "var(--muted)" }}>
             /mo

@@ -47,8 +47,8 @@ export function HeroSection() {
             {/* Pill */}
             <Pill>
               <Sparkles className="w-3.5 h-3.5" />
-              <span className="sm:hidden">Trusted by 500+ businesses</span>
-              <span className="hidden sm:inline">Trusted by 500+ local service businesses</span>
+              <span className="sm:hidden">Trusted by 1,000+ businesses</span>
+              <span className="hidden sm:inline">Trusted by 1,000+ local service businesses</span>
             </Pill>
 
             {/* H1 */}

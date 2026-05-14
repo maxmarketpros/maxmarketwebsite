@@ -13,7 +13,7 @@ export const faqItems: FaqItem[] = [
     id: "what-does-max-market-pros-do",
     category: "getting-started",
     q: "What does Max Market Pros do?",
-    a: "Max Market Pros is a done-for-you local marketing agency for service businesses. We build the website, run the SEO, manage the Google and Meta ads, generate the reviews, and produce the social content — all under one roof, one strategist, and one monthly bill. Trusted by 500+ local service businesses. If you'd rather pick à la carte, our [calculator](/plans/a-la-carte) gives you a real estimate in seconds.",
+    a: "Max Market Pros is a done-for-you local marketing agency for service businesses. We build the website, run the SEO, manage the Google and Meta ads, generate the reviews, and produce the social content — all under one roof, one strategist, and one monthly bill. Trusted by 1,000+ local service businesses. If you'd rather pick à la carte, our [calculator](/plans/a-la-carte) gives you a real estimate in seconds.",
   },
   {
     id: "who-is-max-market-pros-best-for",

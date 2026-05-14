@@ -95,7 +95,6 @@ export const about: NavCategory = {
   children: [
     { label: "Our Story", href: "/about/our-story", icon: BookOpen, description: "How Max Market Pros started" },
     { label: "Meet The Team", href: "/about/team", icon: Users, description: "The people behind the results" },
-    { label: "Case Studies", href: "/about/case-studies", icon: Trophy, description: "Real results for real businesses" },
     { label: "Careers", href: "/about/careers", icon: Briefcase, description: "Join our growing team" },
     { label: "Our Practices", href: "/about/practices", icon: ClipboardList, description: "How we work and deliver" },
     { label: "Testimonials", href: "/about/testimonials", icon: MessageSquare, description: "What our clients say" },

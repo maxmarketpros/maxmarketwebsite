@@ -26,16 +26,26 @@ const trustBullets = [
   { Icon: MapPin, text: "Based in Irvine, CA · serving the U.S." },
 ]
 
-export function ContactGetInTouch() {
+export function ContactGetInTouch({
+  variant = "page",
+}: {
+  variant?: "page" | "section"
+}) {
   const [submitted, setSubmitted] = useState(false)
+  const isSection = variant === "section"
+  const headingId = isSection
+    ? "contact-cta-heading"
+    : "contact-get-in-touch-heading"
 
   return (
     <section
-      aria-labelledby="contact-get-in-touch-heading"
-      className="relative overflow-hidden"
+      id="contact"
+      aria-labelledby={headingId}
+      className="relative overflow-hidden scroll-mt-24"
       style={{
         background:
           "radial-gradient(140% 100% at 100% 0%, rgba(22,119,255,0.16) 0%, transparent 60%), radial-gradient(120% 100% at 0% 100%, rgba(116,211,255,0.16) 0%, transparent 65%), var(--bg)",
+        borderTop: isSection ? "1px solid var(--border-color)" : undefined,
       }}
     >
       <div className="absolute inset-0 pointer-events-none">
@@ -56,32 +66,42 @@ export function ContactGetInTouch() {
         <div className="absolute inset-0 noise-overlay" />
       </div>
 
-      <div className="section-container relative z-10 pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24">
-        <nav
-          aria-label="Breadcrumb"
-          className="text-[13px] font-medium"
-          style={{ color: "var(--muted)" }}
-        >
-          <ol className="flex items-center gap-1.5 flex-wrap">
-            <li>
-              <a href="/" className="hover:text-[var(--accent)]">
-                Home
-              </a>
-            </li>
-            <li aria-hidden>/</li>
-            <li aria-current="page" style={{ color: "var(--ink)" }}>
-              Contact
-            </li>
-          </ol>
-        </nav>
+      <div
+        className={`section-container relative z-10 pb-16 sm:pb-20 lg:pb-24 ${
+          isSection ? "pt-20 sm:pt-24 lg:pt-28" : "pt-16 sm:pt-20 lg:pt-24"
+        }`}
+      >
+        {!isSection && (
+          <nav
+            aria-label="Breadcrumb"
+            className="text-[13px] font-medium"
+            style={{ color: "var(--muted)" }}
+          >
+            <ol className="flex items-center gap-1.5 flex-wrap">
+              <li>
+                <a href="/" className="hover:text-[var(--accent)]">
+                  Home
+                </a>
+              </li>
+              <li aria-hidden>/</li>
+              <li aria-current="page" style={{ color: "var(--ink)" }}>
+                Contact
+              </li>
+            </ol>
+          </nav>
+        )}
 
-        <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-14 items-start">
+        <div
+          className={`${
+            isSection ? "" : "mt-8"
+          } grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-14 items-start`}
+        >
           {/* LEFT — sells the call */}
           <div style={{ animation: "fadeInUp 0.8s ease-out both" }}>
             <span
-              className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1 sm:py-1.5 text-[11px] sm:text-[13px] font-semibold uppercase tracking-[0.08em] rounded-full border"
+              className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-[13px] font-semibold uppercase tracking-[0.08em] rounded-full border shadow-sm"
               style={{
-                background: "rgba(255,255,255,0.95)",
+                background: "#FFFFFF",
                 borderColor: "rgba(22,119,255,0.30)",
                 color: "var(--accent)",
               }}
@@ -90,25 +110,47 @@ export function ContactGetInTouch() {
               Contact Max Market Pros
             </span>
 
-            <h1
-              id="contact-get-in-touch-heading"
-              className="mt-5 text-[40px] xs:text-[44px] sm:text-[52px] lg:text-[60px] font-bold leading-[1.05] tracking-[-0.03em] text-balance"
-              style={{ color: "var(--ink)" }}
-            >
-              Get in touch with{" "}
-              <span
-                className="relative inline-block"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(180deg, transparent 65%, rgba(22,119,255,0.30) 65%)",
-                  paddingLeft: 4,
-                  paddingRight: 4,
-                }}
+            {isSection ? (
+              <h2
+                id={headingId}
+                className="mt-5 text-[32px] xs:text-[36px] sm:text-[40px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-balance"
+                style={{ color: "var(--ink)" }}
               >
-                Max Market Pros
-              </span>
-              .
-            </h1>
+                Get in touch with{" "}
+                <span
+                  className="relative inline-block"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(180deg, transparent 65%, rgba(22,119,255,0.30) 65%)",
+                    paddingLeft: 4,
+                    paddingRight: 4,
+                  }}
+                >
+                  Max Market Pros
+                </span>
+                .
+              </h2>
+            ) : (
+              <h1
+                id={headingId}
+                className="mt-5 text-[40px] xs:text-[44px] sm:text-[52px] lg:text-[60px] font-bold leading-[1.05] tracking-[-0.03em] text-balance"
+                style={{ color: "var(--ink)" }}
+              >
+                Get in touch with{" "}
+                <span
+                  className="relative inline-block"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(180deg, transparent 65%, rgba(22,119,255,0.30) 65%)",
+                    paddingLeft: 4,
+                    paddingRight: 4,
+                  }}
+                >
+                  Max Market Pros
+                </span>
+                .
+              </h1>
+            )}
 
             <p
               className="mt-5 text-[16.5px] sm:text-[18px] leading-[1.6] max-w-[560px]"
@@ -118,7 +160,8 @@ export function ContactGetInTouch() {
               day.
             </p>
 
-            {/* Mini-process chips */}
+            {/* Mini-process chips — hero-only */}
+            {!isSection && (
             <ol className="mt-7 grid grid-cols-2 sm:grid-cols-4 gap-2.5">
               {processSteps.map((s, i) => (
                 <li
@@ -154,9 +197,14 @@ export function ContactGetInTouch() {
                 </li>
               ))}
             </ol>
+            )}
 
-            {/* Channel cards */}
-            <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {/* Channel cards — stacked in section mode so the email never truncates */}
+            <div
+              className={`mt-7 grid gap-3 ${
+                isSection ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"
+              }`}
+            >
               <a
                 href="tel:+19496030389"
                 className="card-surface card-surface-hover group flex items-center gap-3.5 p-4"
@@ -209,7 +257,7 @@ export function ContactGetInTouch() {
                     Email us
                   </div>
                   <div
-                    className="mt-0.5 text-[14px] font-bold truncate"
+                    className="mt-0.5 text-[14px] font-bold break-all sm:break-normal"
                     style={{ color: "var(--ink)" }}
                   >
                     info@maxmarketpros.com

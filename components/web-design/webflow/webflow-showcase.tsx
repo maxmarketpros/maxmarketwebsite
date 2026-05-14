@@ -157,7 +157,7 @@ export function WebflowShowcase() {
 
               <div className="mt-6 flex items-center gap-2">
                 <a
-                  href="/about/case-studies"
+                  href="/resources/case-studies"
                   className="inline-flex items-center gap-1.5 font-semibold text-[14.5px] group"
                   style={{ color: WF_BLUE }}
                 >
@@ -255,7 +255,7 @@ export function WebflowShowcase() {
 
         <div className="mt-10 flex items-center justify-center">
           <a
-            href="/about/case-studies"
+            href="/resources/case-studies"
             className="inline-flex items-center gap-1.5 text-[15px] font-semibold hover:underline"
             style={{ color: WF_BLUE }}
           >
@@ -309,7 +309,7 @@ function Metric({
 function SupportingCard({ p, index }: { p: Project; index: number }) {
   return (
     <a
-      href="/about/case-studies"
+      href="/resources/case-studies"
       className="group block rounded-[var(--radius-lg)] overflow-hidden"
       style={{
         background: "var(--surface)",

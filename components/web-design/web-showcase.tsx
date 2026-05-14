@@ -88,7 +88,7 @@ export function WebShowcase() {
 
         <div className="mt-10 flex items-center justify-center">
           <a
-            href="/about/case-studies"
+            href="/resources/case-studies"
             className="inline-flex items-center gap-1.5 text-[15px] font-semibold hover:underline"
             style={{ color: "var(--accent)" }}
           >
