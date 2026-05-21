@@ -117,18 +117,7 @@ export function ContactGetInTouch({
                 style={{ color: "var(--ink)" }}
               >
                 Get in touch with{" "}
-                <span
-                  className="relative inline-block"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(180deg, transparent 65%, rgba(22,119,255,0.30) 65%)",
-                    paddingLeft: 4,
-                    paddingRight: 4,
-                  }}
-                >
-                  Max Market Pros
-                </span>
-                .
+                <span className="accent-underline">Max Market Pros</span>.
               </h2>
             ) : (
               <h1
@@ -137,18 +126,7 @@ export function ContactGetInTouch({
                 style={{ color: "var(--ink)" }}
               >
                 Get in touch with{" "}
-                <span
-                  className="relative inline-block"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(180deg, transparent 65%, rgba(22,119,255,0.30) 65%)",
-                    paddingLeft: 4,
-                    paddingRight: 4,
-                  }}
-                >
-                  Max Market Pros
-                </span>
-                .
+                <span className="accent-underline">Max Market Pros</span>.
               </h1>
             )}
 
