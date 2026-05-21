@@ -18,6 +18,9 @@ export interface Plan {
   accent: string
   iconName: string
   features: PlanFeature[]
+  /** Conservative range of incremental jobs/month a typical customer sees on this plan
+   *  (months 3-6, organic + activations only, excludes seasonality). Used by the ROI calculator. */
+  jobEstimateRange: [number, number]
 }
 
 export const BOOK_HREF = "/contact/schedule"
@@ -33,6 +36,7 @@ export const plans: Plan[] = [
     ctaHref: BOOK_HREF,
     accent: "#1677FF",
     iconName: "Rocket",
+    jobEstimateRange: [2, 4],
     features: [
       { icon: "Globe",    label: "5-page custom SEO website" },
       { icon: "Search",   label: "10 local SEO keywords" },
@@ -53,6 +57,7 @@ export const plans: Plan[] = [
     ctaHref: BOOK_HREF,
     accent: "#22C55E",
     iconName: "MapPin",
+    jobEstimateRange: [5, 9],
     features: [
       { icon: "Globe",       label: "11-page custom SEO website" },
       { icon: "Search",      label: "15 local SEO keywords" },
@@ -75,6 +80,7 @@ export const plans: Plan[] = [
     recommended: true,
     accent: "#F59E0B",
     iconName: "Star",
+    jobEstimateRange: [10, 16],
     features: [
       { icon: "Globe",         label: "21-page custom SEO website" },
       { icon: "Search",        label: "25 local SEO keywords" },
@@ -104,6 +110,7 @@ export const plans: Plan[] = [
     ctaHref: BOOK_HREF,
     accent: "#EC4899",
     iconName: "Crown",
+    jobEstimateRange: [18, 30],
     features: [
       { icon: "Globe",         label: "51-page custom SEO website" },
       { icon: "Search",        label: "50 local SEO keywords" },
