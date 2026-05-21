@@ -81,8 +81,8 @@ export function StarterMarkHero() {
             className="mt-3 text-[40px] xs:text-[48px] sm:text-[58px] lg:text-[68px] font-bold leading-[1.03] tracking-[-0.03em] text-balance"
             style={{ color: "var(--ink)" }}
           >
-            <span className="block">Your first real website.</span>
-            <span className="block whitespace-nowrap">
+            Your first real website.{" "}
+            <span className="whitespace-nowrap">
               Done <span className="accent-underline">right</span>.
             </span>
           </h1>

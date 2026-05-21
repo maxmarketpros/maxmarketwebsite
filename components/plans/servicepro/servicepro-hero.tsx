@@ -87,10 +87,8 @@ export function ServiceProHero() {
             className="mt-3 text-[40px] xs:text-[48px] sm:text-[60px] lg:text-[72px] font-bold leading-[1.02] tracking-[-0.03em] text-balance"
             style={{ color: "var(--ink)" }}
           >
-            <span className="block">Booked solid.</span>
-            <span className="block whitespace-nowrap">
-              Without <span className="accent-underline">lifting a finger</span>.
-            </span>
+            Booked solid.{" "}
+            Without <span className="accent-underline">lifting a finger</span>.
           </h1>
 
           {/* Price block — multi-stop amber gradient with violet hint for richness */}

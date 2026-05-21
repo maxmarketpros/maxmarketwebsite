@@ -76,8 +76,8 @@ export function LocalMarkHero() {
             className="mt-6 text-[40px] xs:text-[48px] sm:text-[58px] lg:text-[68px] font-bold leading-[1.05] tracking-[-0.025em] sm:tracking-[-0.03em] text-balance"
             style={{ color: "var(--ink)" }}
           >
-            <span className="block">Get found in your</span>
-            <span className="block whitespace-nowrap">
+            Get found in your{" "}
+            <span className="whitespace-nowrap">
               <span className="accent-underline">service area</span>.
             </span>
           </h1>

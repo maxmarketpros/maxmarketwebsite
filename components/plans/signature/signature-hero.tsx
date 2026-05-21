@@ -103,8 +103,8 @@ export function SignatureHero() {
             className="mt-3 text-[40px] xs:text-[48px] sm:text-[60px] lg:text-[72px] font-bold leading-[1.02] tracking-[-0.03em] text-balance"
             style={{ color: "var(--ink)" }}
           >
-            <span className="block">Fully booked.</span>
-            <span className="block whitespace-nowrap">
+            Fully booked.{" "}
+            <span className="whitespace-nowrap">
               Fully <span className="accent-underline">managed</span>.
             </span>
           </h1>

@@ -42,11 +42,11 @@ export function ServicesHero() {
 
           <h1
             id="services-hero-heading"
-            className="mt-6 text-[40px] xs:text-[48px] sm:text-[58px] lg:text-[72px] font-bold leading-[1.05] tracking-[-0.025em] sm:tracking-[-0.03em]"
+            className="mt-6 text-[40px] xs:text-[48px] sm:text-[58px] lg:text-[72px] font-bold leading-[1.05] tracking-[-0.025em] sm:tracking-[-0.03em] text-balance"
             style={{ color: "var(--ink)" }}
           >
-            <span className="block">Every marketing service.</span>
-            <span className="block whitespace-nowrap">
+            Every marketing service.{" "}
+            <span className="whitespace-nowrap">
               Under <span className="accent-underline">one roof</span>.
             </span>
           </h1>

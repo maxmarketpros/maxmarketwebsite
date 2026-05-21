@@ -20,9 +20,9 @@ export function PlansHero() {
             className="mt-6 text-[40px] xs:text-[48px] sm:text-[56px] lg:text-[68px] font-bold leading-[1.05] tracking-[-0.025em] sm:tracking-[-0.03em] text-balance"
             style={{ color: "var(--ink)" }}
           >
-            <span className="block">Marketing plans built for</span>
-            <span className="block">
-              <span className="accent-underline">local service businesses</span>.
+            Marketing plans built for local service{" "}
+            <span className="whitespace-nowrap">
+              <span className="accent-underline">businesses</span>.
             </span>
           </h1>
 

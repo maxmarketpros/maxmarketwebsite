@@ -91,11 +91,10 @@ function SolutionsHero() {
             className="mt-6 text-[40px] xs:text-[44px] sm:text-[56px] lg:text-[68px] font-bold leading-[1.05] tracking-[-0.025em] sm:tracking-[-0.03em] text-balance"
             style={{ color: "var(--ink)" }}
           >
-            The{" "}
+            Every tool your service business needs to{" "}
             <span className="whitespace-nowrap">
-              <span className="accent-underline">complete stack</span>
+              <span className="accent-underline">grow</span>.
             </span>
-            {" "}for modern service businesses.
           </h1>
 
           <p className="mt-6 text-[17px] sm:text-[19px] leading-[1.6] max-w-[640px] mx-auto" style={{ color: "var(--muted)" }}>
