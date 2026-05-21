@@ -210,12 +210,3 @@
   background-clip: text;
 }
 
-/* iOS Safari mishandles text-wrap: balance at narrow viewports, producing
-   aggressive 3–4 line wraps on headings. Below the sm breakpoint, fall
-   back to text-wrap: pretty (iOS 17.4+) which avoids orphans without
-   the balancing pass. Older iOS ignores `pretty` and uses default wrap. */
-@media (max-width: 639px) {
-  .text-balance {
-    text-wrap: pretty;
-  }
-}
