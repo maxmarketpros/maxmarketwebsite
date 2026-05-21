@@ -137,6 +137,27 @@ export function faqSchema(items: { question: string; answer: string }[]) {
   }
 }
 
+export function howToSchema(args: {
+  name: string
+  description: string
+  totalTime?: string
+  steps: { name: string; text: string }[]
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: args.name,
+    description: args.description,
+    ...(args.totalTime ? { totalTime: args.totalTime } : {}),
+    step: args.steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  }
+}
+
 export function webApplicationSchema(args: {
   name: string
   description: string

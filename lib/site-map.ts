@@ -199,10 +199,9 @@ export const tools: NavCategory = {
   href: "/tools",
   icon: Wrench,
   children: [
-    { label: "Local Ranking Checker", href: "/tools/ranking-checker", icon: MapPin, description: "Check your Google Maps ranking" },
+    { label: "QR Code Generator", href: "/tools/qr-code-generator", icon: QrCode, description: "Free QR codes for any use case" },
     { label: "Website SEO Auditor", href: "/tools/seo-auditor", icon: Search, description: "Free instant SEO audit" },
     { label: "Directory Listing Checker", href: "/tools/directory-checker", icon: ClipboardList, description: "Audit your business listings" },
-    { label: "Logo Creator", href: "/tools/logo-creator", icon: PenTool, description: "AI-powered logo generation" },
   ],
 }
 

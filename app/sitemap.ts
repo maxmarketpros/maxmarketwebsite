@@ -88,9 +88,8 @@ const routes: { path: string; priority: number; changeFrequency: MetadataRoute.S
   { path: "/solutions/task-management", priority: 0.7, changeFrequency: "monthly" },
 
   { path: "/tools", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/tools/qr-code-generator", priority: 0.7, changeFrequency: "monthly" },
   { path: "/tools/directory-checker", priority: 0.6, changeFrequency: "monthly" },
-  { path: "/tools/logo-creator", priority: 0.6, changeFrequency: "monthly" },
-  { path: "/tools/ranking-checker", priority: 0.6, changeFrequency: "monthly" },
   { path: "/tools/seo-auditor", priority: 0.6, changeFrequency: "monthly" },
 ]
 
