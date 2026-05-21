@@ -85,8 +85,10 @@ export function AuditorIdleSections() {
             className="mt-5 text-[30px] sm:text-[38px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-balance"
             style={{ color: "var(--ink)" }}
           >
-            Every check Google cares about — and{" "}
-            <span className="accent-underline">a few they don't tell you about</span>.
+            Every check Google cares about — and a few they don&rsquo;t tell you{" "}
+            <span className="whitespace-nowrap">
+              <span className="accent-underline">about</span>.
+            </span>
           </h2>
           <p
             className="mt-4 text-[16px] sm:text-[17.5px] leading-[1.55]"
