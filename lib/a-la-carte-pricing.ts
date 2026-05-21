@@ -1,13 +1,23 @@
-import type { PlanSlug } from "./plans-data"
+import { plans, type PlanSlug } from "./plans-data"
 import {
   type ALaCarteItem,
   type PlanChoice,
   type Availability,
   PLAN_RANK,
   PLAN_LABEL,
+  PLAN_ACCENT,
+  PLAN_ICON,
   items as catalogItems,
   getItem,
 } from "./a-la-carte-catalog"
+
+const PLAN_MONTHLY: Record<PlanChoice, number> = {
+  none: 0,
+  startermark: plans.find((p) => p.slug === "startermark")?.priceNumeric ?? 0,
+  localmark: plans.find((p) => p.slug === "localmark")?.priceNumeric ?? 0,
+  servicepro: plans.find((p) => p.slug === "servicepro")?.priceNumeric ?? 0,
+  signature: plans.find((p) => p.slug === "signature")?.priceNumeric ?? 0,
+}
 
 // ── State ──
 
@@ -173,6 +183,21 @@ export function computeTotals(state: CalcState): Totals {
   let monthly = 0
   let oneTime = 0
   let customCount = 0
+
+  // Base plan monthly fee — show as the first line so the total reflects Step 1.
+  if (state.plan !== "none") {
+    const planAmount = PLAN_MONTHLY[state.plan]
+    monthly += planAmount
+    lines.push({
+      id: `plan-${state.plan}`,
+      label: `${PLAN_LABEL[state.plan]} plan`,
+      iconName: PLAN_ICON[state.plan],
+      accent: PLAN_ACCENT[state.plan],
+      display: formatLineDisplay("monthly", planAmount, 1),
+      bucket: "monthly",
+      amount: planAmount,
+    })
+  }
 
   for (const item of catalogItems) {
     if (!isItemSelected(item, state)) continue

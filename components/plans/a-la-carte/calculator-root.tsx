@@ -109,7 +109,7 @@ export function CalculatorRoot() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-[1fr_380px] xl:grid-cols-[1fr_400px] gap-8 lg:gap-10 items-start">
+          <div className="grid lg:grid-cols-[1fr_380px] xl:grid-cols-[1fr_400px] gap-8 lg:gap-10">
             {/* LEFT — categories */}
             <div className="flex flex-col gap-12 lg:gap-14 min-w-0">
               {categories.map((cat) => {

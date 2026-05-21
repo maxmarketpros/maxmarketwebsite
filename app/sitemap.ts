@@ -33,6 +33,10 @@ const routes: { path: string; priority: number; changeFrequency: MetadataRoute.S
 
   { path: "/resources", priority: 0.6, changeFrequency: "monthly" },
   { path: "/resources/blog", priority: 0.7, changeFrequency: "weekly" },
+  { path: "/resources/blog/ai-search-optimization-2026", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/resources/blog/google-reviews-conversion-lever-2026", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/resources/blog/google-ads-irvine-cost-2026", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/resources/blog/custom-coded-vs-wix-squarespace-irvine", priority: 0.7, changeFrequency: "monthly" },
   { path: "/resources/case-studies", priority: 0.6, changeFrequency: "monthly" },
   { path: "/resources/faq", priority: 0.7, changeFrequency: "weekly" },
   { path: "/resources/roi-calculator", priority: 0.6, changeFrequency: "monthly" },
