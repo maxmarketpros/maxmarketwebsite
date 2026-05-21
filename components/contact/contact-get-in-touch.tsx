@@ -116,8 +116,9 @@ export function ContactGetInTouch({
                 className="mt-5 text-[32px] xs:text-[36px] sm:text-[40px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-balance"
                 style={{ color: "var(--ink)" }}
               >
-                Get in touch with{" "}
-                <span className="accent-underline">Max Market Pros</span>.
+                Get in touch with
+                <br />
+                <span className="accent-underline">Max Market Pros</span>
               </h2>
             ) : (
               <h1
