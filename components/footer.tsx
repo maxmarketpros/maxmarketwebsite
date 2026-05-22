@@ -174,14 +174,14 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-6">
             <Link
-              href="#"
+              href="/privacy"
               className="text-[13px] hover:opacity-70 transition-opacity"
               style={{ color: "var(--muted)" }}
             >
               Privacy
             </Link>
             <Link
-              href="#"
+              href="/terms"
               className="text-[13px] hover:opacity-70 transition-opacity"
               style={{ color: "var(--muted)" }}
             >

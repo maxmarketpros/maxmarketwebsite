@@ -10,7 +10,7 @@ import {
 
 type Step = {
   hour: string
-  Icon: React.ComponentType<{ className?: string; strokeWidth?: number }>
+  Icon: React.ComponentType<{ className?: string; strokeWidth?: number; style?: React.CSSProperties }>
   title: string
   detail: string
   progress: number

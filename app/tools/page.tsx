@@ -38,7 +38,7 @@ function JsonLd() {
       "@type": "ListItem",
       position: idx + 1,
       name: t.name,
-      url: `https://maxmarketpros.com/tools/${t.slug}`,
+      url: `https://www.maxmarketpros.com/tools/${t.slug}`,
     })),
   }
 
@@ -46,8 +46,8 @@ function JsonLd() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://maxmarketpros.com" },
-      { "@type": "ListItem", position: 2, name: "Tools", item: "https://maxmarketpros.com/tools" },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.maxmarketpros.com" },
+      { "@type": "ListItem", position: 2, name: "Tools", item: "https://www.maxmarketpros.com/tools" },
     ],
   }
 

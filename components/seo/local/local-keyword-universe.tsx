@@ -9,7 +9,7 @@ import {
 import { Pill } from "@/components/ui/pill"
 
 type Cluster = {
-  Icon: React.ComponentType<{ className?: string; strokeWidth?: number }>
+  Icon: React.ComponentType<{ className?: string; strokeWidth?: number; style?: React.CSSProperties }>
   pill: string
   title: string
   accent: string

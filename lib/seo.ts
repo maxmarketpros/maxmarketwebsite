@@ -1,12 +1,14 @@
 import type { Metadata } from "next"
 
-export const SITE_URL = "https://maxmarketpros.com"
+export const SITE_URL = "https://www.maxmarketpros.com"
 export const SITE_NAME = "Max Market Pros"
 export const SITE_LOCALE = "en_US"
 export const TITLE_SUFFIX = " | Max Market Pros"
 
 export const IS_INDEXABLE =
   process.env.NEXT_PUBLIC_SEO_INDEXABLE === "true"
+
+export const GA_MEASUREMENT_ID = "G-JZJSSSSC48"
 
 export const BRAND = {
   primary: "#1677FF",

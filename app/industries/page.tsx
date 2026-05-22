@@ -33,8 +33,8 @@ function JsonLd() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://maxmarketpros.com" },
-      { "@type": "ListItem", position: 2, name: "Industries", item: "https://maxmarketpros.com/industries" },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.maxmarketpros.com" },
+      { "@type": "ListItem", position: 2, name: "Industries", item: "https://www.maxmarketpros.com/industries" },
     ],
   }
 
@@ -43,12 +43,12 @@ function JsonLd() {
     "@type": "ItemList",
     name: "Industries Max Market Pros serves",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Contractors",                 url: "https://maxmarketpros.com/industries/contractors" },
-      { "@type": "ListItem", position: 2, name: "Home Services",               url: "https://maxmarketpros.com/industries/home-services" },
-      { "@type": "ListItem", position: 3, name: "Local Service Businesses",    url: "https://maxmarketpros.com/industries/local-service" },
-      { "@type": "ListItem", position: 4, name: "Restaurants",                 url: "https://maxmarketpros.com/industries/restaurants" },
-      { "@type": "ListItem", position: 5, name: "Medical",                     url: "https://maxmarketpros.com/industries/medical" },
-      { "@type": "ListItem", position: 6, name: "Automotive",                  url: "https://maxmarketpros.com/industries/automotive" },
+      { "@type": "ListItem", position: 1, name: "Contractors",                 url: "https://www.maxmarketpros.com/industries/contractors" },
+      { "@type": "ListItem", position: 2, name: "Home Services",               url: "https://www.maxmarketpros.com/industries/home-services" },
+      { "@type": "ListItem", position: 3, name: "Local Service Businesses",    url: "https://www.maxmarketpros.com/industries/local-service" },
+      { "@type": "ListItem", position: 4, name: "Restaurants",                 url: "https://www.maxmarketpros.com/industries/restaurants" },
+      { "@type": "ListItem", position: 5, name: "Medical",                     url: "https://www.maxmarketpros.com/industries/medical" },
+      { "@type": "ListItem", position: 6, name: "Automotive",                  url: "https://www.maxmarketpros.com/industries/automotive" },
     ],
   }
 

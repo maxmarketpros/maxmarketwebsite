@@ -118,7 +118,7 @@ function JsonLd() {
     provider: {
       "@type": "Organization",
       name: "Max Market Pros",
-      url: "https://maxmarketpros.com",
+      url: "https://www.maxmarketpros.com",
       telephone: "+1-949-603-0389",
       address: {
         "@type": "PostalAddress",
@@ -151,25 +151,25 @@ function JsonLd() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://maxmarketpros.com",
+        item: "https://www.maxmarketpros.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Services",
-        item: "https://maxmarketpros.com/services",
+        item: "https://www.maxmarketpros.com/services",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Web Design",
-        item: "https://maxmarketpros.com/services/web-design",
+        item: "https://www.maxmarketpros.com/services/web-design",
       },
       {
         "@type": "ListItem",
         position: 4,
         name: "Squarespace Website Design",
-        item: "https://maxmarketpros.com/services/web-design/squarespace",
+        item: "https://www.maxmarketpros.com/services/web-design/squarespace",
       },
     ],
   }

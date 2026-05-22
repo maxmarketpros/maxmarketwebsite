@@ -30,7 +30,7 @@ function JsonLd() {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "Max Market Pros Directory Listing Checker",
-    url: "https://maxmarketpros.com/tools/directory-checker",
+    url: "https://www.maxmarketpros.com/tools/directory-checker",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     description:
@@ -43,7 +43,7 @@ function JsonLd() {
     creator: {
       "@type": "Organization",
       name: "Max Market Pros",
-      url: "https://maxmarketpros.com",
+      url: "https://www.maxmarketpros.com",
     },
   }
 
@@ -55,19 +55,19 @@ function JsonLd() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://maxmarketpros.com",
+        item: "https://www.maxmarketpros.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Tools",
-        item: "https://maxmarketpros.com/tools",
+        item: "https://www.maxmarketpros.com/tools",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Directory Listing Checker",
-        item: "https://maxmarketpros.com/tools/directory-checker",
+        item: "https://www.maxmarketpros.com/tools/directory-checker",
       },
     ],
   }

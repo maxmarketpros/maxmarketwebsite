@@ -69,7 +69,7 @@ export function TechnicalRobotsSitemap() {
               { num: 15, content: "", color: "ink" },
               {
                 num: 16,
-                content: "Sitemap: https://maxmarketpros.com/sitemap.xml",
+                content: "Sitemap: https://www.maxmarketpros.com/sitemap.xml",
                 color: "link",
               },
             ]}

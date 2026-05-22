@@ -29,6 +29,7 @@ const routes: { path: string; priority: number; changeFrequency: MetadataRoute.S
   { path: "/plans/localmark", priority: 0.6, changeFrequency: "monthly" },
   { path: "/plans/servicepro", priority: 0.6, changeFrequency: "monthly" },
   { path: "/plans/signature", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/plans/startermark", priority: 0.6, changeFrequency: "monthly" },
 
   { path: "/resources", priority: 0.8, changeFrequency: "weekly" },
   { path: "/resources/blog", priority: 0.7, changeFrequency: "weekly" },
@@ -90,6 +91,9 @@ const routes: { path: string; priority: number; changeFrequency: MetadataRoute.S
   { path: "/tools/qr-code-generator", priority: 0.7, changeFrequency: "monthly" },
   { path: "/tools/directory-checker", priority: 0.6, changeFrequency: "monthly" },
   { path: "/tools/seo-auditor", priority: 0.6, changeFrequency: "monthly" },
+
+  { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

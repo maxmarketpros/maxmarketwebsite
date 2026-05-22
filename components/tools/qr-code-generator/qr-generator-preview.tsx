@@ -72,7 +72,6 @@ export function QrGeneratorPreview({
             return
           }
           try {
-            // @ts-expect-error - ClipboardItem availability varies by browser
             await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })])
             resolve()
           } catch (err) {

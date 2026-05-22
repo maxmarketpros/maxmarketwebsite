@@ -69,9 +69,9 @@ function JsonLd() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://maxmarketpros.com" },
-      { "@type": "ListItem", position: 2, name: "Industries", item: "https://maxmarketpros.com/industries" },
-      { "@type": "ListItem", position: 3, name: "Medical", item: "https://maxmarketpros.com/industries/medical" },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.maxmarketpros.com" },
+      { "@type": "ListItem", position: 2, name: "Industries", item: "https://www.maxmarketpros.com/industries" },
+      { "@type": "ListItem", position: 3, name: "Medical", item: "https://www.maxmarketpros.com/industries/medical" },
     ],
   }
 

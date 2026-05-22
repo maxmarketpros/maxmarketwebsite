@@ -21,7 +21,7 @@ export type ContentValues = {
 }
 
 export const initialValues: ContentValues = {
-  url: { url: "https://maxmarketpros.com" },
+  url: { url: "https://www.maxmarketpros.com" },
   text: { text: "" },
   email: { to: "", subject: "", body: "" },
   phone: { phone: "" },

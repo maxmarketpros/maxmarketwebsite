@@ -124,9 +124,8 @@ export function TcoStackedBar() {
               >
                 {i === SERIES.length - 1 ? (
                   <LabelList
-                    dataKey={(d: (typeof DATA)[number]) =>
-                      d.platformFees + d.addons + d.designFixes + d.lostConversions
-                    }
+                    dataKey={((d: (typeof DATA)[number]) =>
+                      d.platformFees + d.addons + d.designFixes + d.lostConversions) as never}
                     position="top"
                     formatter={(v: number) => fmt(v)}
                     style={{

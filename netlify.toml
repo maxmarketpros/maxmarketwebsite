@@ -7,3 +7,9 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "https://maxmarketpros.com/*"
+  to = "https://www.maxmarketpros.com/:splat"
+  status = 301
+  force = true

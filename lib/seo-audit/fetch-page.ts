@@ -1,5 +1,5 @@
 const USER_AGENT =
-  "MaxMarketPros-SEO-Auditor/1.0 (+https://maxmarketpros.com/tools/seo-auditor)"
+  "MaxMarketPros-SEO-Auditor/1.0 (+https://www.maxmarketpros.com/tools/seo-auditor)"
 const FETCH_TIMEOUT_MS = 15000
 
 export interface FetchedPage {

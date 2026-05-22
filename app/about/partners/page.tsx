@@ -47,19 +47,19 @@ function JsonLd() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://maxmarketpros.com/",
+        item: "https://www.maxmarketpros.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "About",
-        item: "https://maxmarketpros.com/about",
+        item: "https://www.maxmarketpros.com/about",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Partners",
-        item: "https://maxmarketpros.com/about/partners",
+        item: "https://www.maxmarketpros.com/about/partners",
       },
     ],
   }

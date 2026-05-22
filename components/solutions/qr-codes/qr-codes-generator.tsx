@@ -7,7 +7,7 @@ import { SectionHeader } from "@/components/ui/section-header"
 import { PrimaryButton } from "@/components/ui/primary-button"
 import { MiniQR } from "./mini-qr"
 
-const DEFAULT_URL = "https://maxmarketpros.com"
+const DEFAULT_URL = "https://www.maxmarketpros.com"
 
 export function QRCodesGenerator() {
   const [url, setUrl] = useState<string>(DEFAULT_URL)

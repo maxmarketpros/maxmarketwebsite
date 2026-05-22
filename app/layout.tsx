@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { Outfit } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import { ContactSectionGlobal } from '@/components/contact-section-global'
 import { Footer } from '@/components/footer'
+import { GA4 } from '@/components/analytics/ga4'
 import { SITE_NAME, SITE_URL, robotsMeta } from '@/lib/seo'
 import {
   organizationSchema,
@@ -40,6 +40,9 @@ export const metadata: Metadata = {
   },
   twitter: { card: 'summary_large_image' },
   formatDetection: { email: false, address: false, telephone: false },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
 }
 
 export const viewport: Viewport = {
@@ -74,7 +77,7 @@ export default function RootLayout({
         {children}
         <ContactSectionGlobal />
         <Footer />
-        <Analytics />
+        <GA4 />
       </body>
     </html>
   )

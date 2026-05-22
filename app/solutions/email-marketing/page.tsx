@@ -59,7 +59,7 @@ function JsonLd() {
     provider: {
       "@type": "Organization",
       name: "Max Market Pros",
-      url: "https://maxmarketpros.com",
+      url: "https://www.maxmarketpros.com",
       telephone: "+1-949-603-0389",
       address: { "@type": "PostalAddress", addressLocality: "Irvine", addressRegion: "CA", addressCountry: "US" },
     },
@@ -79,9 +79,9 @@ function JsonLd() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://maxmarketpros.com" },
-      { "@type": "ListItem", position: 2, name: "Solutions", item: "https://maxmarketpros.com/solutions" },
-      { "@type": "ListItem", position: 3, name: "Email Marketing", item: "https://maxmarketpros.com/solutions/email-marketing" },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.maxmarketpros.com" },
+      { "@type": "ListItem", position: 2, name: "Solutions", item: "https://www.maxmarketpros.com/solutions" },
+      { "@type": "ListItem", position: 3, name: "Email Marketing", item: "https://www.maxmarketpros.com/solutions/email-marketing" },
     ],
   }
 
