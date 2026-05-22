@@ -8,6 +8,7 @@ export function TeamDepartments() {
         <TeamDepartmentSection
           key={d.id}
           department={d}
+          chapter={i + 1}
           isFirst={i === 0}
         />
       ))}

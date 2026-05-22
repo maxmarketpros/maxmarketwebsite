@@ -10,6 +10,7 @@ export interface TeamMember {
   role: string
   bio: string
   department: Department
+  emoji: string
 }
 
 export interface DepartmentMeta {
@@ -73,6 +74,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Co-Founder & Chief Executive Officer",
     bio: "Joseph co-founded Max Market Pros on March 19, 2020 and has spent the last five years scaling the firm into one of Orange County's most trusted full-stack marketing agencies. He sets the vision, owns every P&L decision, and personally signs off on every Signature engagement before it kicks off.",
     department: "leadership",
+    emoji: "🤵",
   },
   {
     slug: "lawrence-welsh",
@@ -80,6 +82,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Co-Founder & Head of Social Media",
     bio: "Lawrence built our social media practice from a single Instagram account into a content engine that now powers organic reach for hundreds of client brands. If a Max Market Pros post stops a thumb mid-scroll, his playbook is the reason.",
     department: "leadership",
+    emoji: "😎",
   },
 
   // Client Growth & Strategy
@@ -89,6 +92,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Client Account Manager",
     bio: "Lucas runs day-to-day strategy for a portfolio of Max Market Pros' most demanding accounts. He's the operator clients reach for when a campaign needs to move from ‘performing’ to ‘best month they've ever had’ — and his accounts are the ones that quietly renew year after year.",
     department: "client-growth",
+    emoji: "🧐",
   },
   {
     slug: "brandon-lopez",
@@ -96,6 +100,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Client Account Manager",
     bio: "Brandon is the steady hand managing day-to-day execution for a roster of long-tenured Max Market Pros clients. He doesn't send status updates — he sends results, and his accounts know the difference.",
     department: "client-growth",
+    emoji: "🧑‍💼",
   },
   {
     slug: "mike-stirling",
@@ -103,6 +108,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Client Relations Manager",
     bio: "Mike owns every client relationship from kickoff to long-term retention. He's personally onboarded hundreds of businesses since joining the firm and is most clients' first call when something needs to move fast.",
     department: "client-growth",
+    emoji: "👨‍💼",
   },
 
   // Web Development
@@ -112,6 +118,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Lead Web Developer, Signature Websites",
     bio: "Will leads the team behind our Signature Websites — the custom, conversion-tuned builds we ship for brands that need to win on first impression. He sets the bar every Signature engagement is held to, from first wireframe to launch day.",
     department: "web-development",
+    emoji: "🧑‍💻",
   },
   {
     slug: "hector-camacho",
@@ -119,6 +126,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Lead Web Developer, LocalMark & ServicePro",
     bio: "Hector leads the team behind our LocalMark and ServicePro platforms — the workhorses that put hundreds of small businesses online with speed, SEO, and lead capture baked in from day one. Under his direction, the team ships finished sites faster than most agencies can scope them.",
     department: "web-development",
+    emoji: "👨‍💻",
   },
 
   // Business Development
@@ -128,6 +136,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Business Development Specialist",
     bio: "Muzammil is one of three BD specialists driving new growth for the firm. He's the first conversation most prospective clients have with Max Market Pros — and clients consistently tell us it's the reason they signed.",
     department: "business-development",
+    emoji: "🤵‍♂️",
   },
   {
     slug: "myles-mendez",
@@ -135,6 +144,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Business Development Specialist",
     bio: "Myles brings sharp consultative instincts to the BD floor. He doesn't pitch services — he diagnoses the bottleneck inside a business and prescribes the play that fixes it.",
     department: "business-development",
+    emoji: "🤓",
   },
   {
     slug: "moustafa-ramzy",
@@ -142,6 +152,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Business Development Specialist",
     bio: "Moustafa specializes in identifying the unique growth lever inside each business and matching them to the right Max Market Pros playbook before the engagement even begins.",
     department: "business-development",
+    emoji: "🕵️",
   },
 ]
 

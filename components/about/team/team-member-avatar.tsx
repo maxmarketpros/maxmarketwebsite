@@ -1,46 +1,38 @@
-import { type TeamMember, type DepartmentMeta, getInitials } from "@/lib/team-data"
+import { type TeamMember, type DepartmentMeta } from "@/lib/team-data"
 
 interface TeamMemberAvatarProps {
   member: TeamMember
   department: DepartmentMeta
+  size?: number
 }
 
-/**
- * Placeholder avatar — gradient block + initials. Swap to next/image when
- * real photos arrive (path convention: /about/team/{slug}.jpg).
- */
-export function TeamMemberAvatar({ member, department }: TeamMemberAvatarProps) {
-  const initials = getInitials(member.name)
-
+export function TeamMemberAvatar({
+  member,
+  department,
+  size = 56,
+}: TeamMemberAvatarProps) {
   return (
-    <div
+    <span
       aria-hidden
-      className="absolute inset-0 flex items-center justify-center overflow-hidden"
+      className="rounded-full inline-flex items-center justify-center shrink-0 transition-shadow"
       style={{
-        background: `linear-gradient(135deg, ${department.accent} 0%, ${department.accentSoft} 100%)`,
+        width: size,
+        height: size,
+        background: "#fff",
+        border: `1px solid var(--border-color)`,
+        boxShadow: "0 1px 2px rgba(11,19,43,0.06)",
+        // dept-accent inner ring picked up via group-hover from parent
+        ["--dept-ring" as string]: department.accent,
       }}
     >
-      {/* Soft inner highlight */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(120% 90% at 30% 15%, rgba(255,255,255,0.35) 0%, transparent 55%)",
-        }}
-      />
-      {/* Noise texture */}
-      <div className="absolute inset-0 noise-overlay" />
-
       <span
-        className="relative font-bold leading-none tracking-[-0.04em]"
         style={{
-          color: "rgba(255,255,255,0.92)",
-          fontSize: "clamp(44px, 6vw, 72px)",
-          textShadow: "0 2px 16px rgba(11,19,43,0.18)",
+          fontSize: Math.round(size * 0.55),
+          lineHeight: 1,
         }}
       >
-        {initials}
+        {member.emoji}
       </span>
-    </div>
+    </span>
   )
 }

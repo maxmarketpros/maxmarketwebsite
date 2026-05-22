@@ -11,8 +11,8 @@ import { SecondaryButton } from "@/components/ui/secondary-button"
 import {
   DEPARTMENTS,
   TEAM_MEMBERS,
-  getInitials,
   type Department,
+  type TeamMember,
 } from "@/lib/team-data"
 
 const proofPills = [
@@ -75,7 +75,7 @@ export function TeamHero() {
           </ol>
         </nav>
 
-        <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-16 items-center">
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-14 items-center">
           <div style={{ animation: "fadeInUp 0.8s ease-out both" }}>
             <span
               className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1 sm:py-1.5 text-[11px] sm:text-[13px] font-semibold uppercase tracking-[0.08em] rounded-full border"
@@ -158,10 +158,10 @@ export function TeamHero() {
           </div>
 
           <div
-            className="relative"
+            className="relative w-full"
             style={{ animation: "fadeInUp 0.9s ease-out 0.1s both" }}
           >
-            <TeamAvatarCluster />
+            <BubbleCluster />
           </div>
         </div>
       </div>
@@ -178,149 +178,138 @@ const departmentByIdMap: Record<Department, (typeof DEPARTMENTS)[number]> =
     {} as Record<Department, (typeof DEPARTMENTS)[number]>
   )
 
-function TeamAvatarCluster() {
-  // 3x3 cluster of the first 9 members + an "All 10" tile in a corner overlap.
-  // Varied rotation/size gives the magazine feel without breaking the grid.
-  const ROTATIONS = [-3, 2, -2, 3, -1, 4, -2, 3, -3]
-  const tiles = TEAM_MEMBERS.slice(0, 9)
+// Hand-tuned positions (% center within the square wrapper).
+// Goal: leaders feel central + weighty; the 8 specialists distribute
+// evenly around them. All positions sit roughly inside the inscribed circle.
+const BUBBLE_POSITIONS: Record<string, { top: number; left: number }> = {
+  "joseph-stirling": { top: 38, left: 40 },
+  "lawrence-welsh": { top: 60, left: 62 },
+  "lucas-herman": { top: 22, left: 24 },
+  "brandon-lopez": { top: 12, left: 50 },
+  "mike-stirling": { top: 24, left: 78 },
+  "will-cruttenden": { top: 75, left: 80 },
+  "hector-camacho": { top: 76, left: 22 },
+  "muzammil-ilbrahim": { top: 50, left: 12 },
+  "myles-mendez": { top: 50, left: 88 },
+  "moustafa-ramzy": { top: 86, left: 50 },
+}
 
+function BubbleCluster() {
   return (
-    <div className="relative mx-auto w-full max-w-[480px] aspect-square">
-      {/* Backing panel */}
-      <div
-        className="absolute inset-0"
-        style={{
-          borderRadius: "var(--radius-xl)",
-          background:
-            "linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(235,244,255,0.85) 100%)",
-          border: "1px solid rgba(255,255,255,0.7)",
-          boxShadow:
-            "0 4px 24px rgba(11,19,43,0.08), 0 24px 60px rgba(11,19,43,0.10)",
-        }}
-      />
-
-      {/* Aura behind cluster */}
-      <div
-        aria-hidden
-        className="absolute pointer-events-none rounded-full"
-        style={{
-          top: "10%",
-          left: "10%",
-          right: "10%",
-          bottom: "10%",
-          background:
-            "radial-gradient(circle, rgba(22,119,255,0.20) 0%, transparent 65%)",
-        }}
-      />
-
-      {/* Avatar grid */}
-      <div className="absolute inset-6 grid grid-cols-3 grid-rows-3 gap-3 sm:gap-4 place-items-center">
-        {tiles.map((member, i) => {
-          const dept = departmentByIdMap[member.department]
-          const initials = getInitials(member.name)
-          // center tile a touch larger
-          const isCenter = i === 4
-          const sizeClass = isCenter
-            ? "w-[78px] h-[78px] sm:w-[120px] sm:h-[120px]"
-            : "w-[60px] h-[60px] sm:w-[96px] sm:h-[96px]"
-          return (
-            <div
-              key={member.slug}
-              className={`relative rounded-full overflow-hidden flex items-center justify-center ${sizeClass}`}
-              style={{
-                background: `linear-gradient(135deg, ${dept.accent} 0%, ${dept.accentSoft} 100%)`,
-                border: "3px solid #fff",
-                boxShadow:
-                  "0 4px 14px rgba(11,19,43,0.18), 0 1px 3px rgba(11,19,43,0.12)",
-                transform: `rotate(${ROTATIONS[i]}deg)`,
-                zIndex: isCenter ? 10 : 5,
-              }}
-              aria-label={`${member.name} — ${member.role}`}
-            >
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "radial-gradient(120% 90% at 30% 15%, rgba(255,255,255,0.4) 0%, transparent 55%)",
-                }}
-              />
-              <span
-                className="relative font-bold tracking-[-0.04em] leading-none"
-                style={{
-                  color: "rgba(255,255,255,0.95)",
-                  fontSize: isCenter
-                    ? "clamp(22px, 3.4vw, 34px)"
-                    : "clamp(16px, 2.6vw, 26px)",
-                  textShadow: "0 1px 8px rgba(11,19,43,0.25)",
-                }}
-              >
-                {initials}
-              </span>
-            </div>
-          )
-        })}
-      </div>
-
-      {/* Floating "Team of 10" badge */}
-      <div
-        className="absolute -bottom-5 -right-3 sm:-right-5 px-4 py-3 rounded-[var(--radius-md)] flex items-center gap-3"
-        style={{
-          background: "#fff",
-          border: "1px solid var(--border-color)",
-          boxShadow: "0 8px 24px rgba(11,19,43,0.18)",
-        }}
-      >
-        <span
-          className="text-[22px] sm:text-[24px] font-extrabold leading-none tracking-[-0.02em]"
+    <div className="relative w-full max-w-[520px] mx-auto">
+      {/* Square stage */}
+      <div className="relative w-full aspect-square">
+        {/* Containing circle */}
+        <div
+          aria-hidden
+          className="absolute inset-0 rounded-full"
           style={{
             background:
-              "linear-gradient(135deg, #74D3FF 0%, #1677FF 60%, #0D5FD9 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
+              "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.96) 0%, rgba(235,244,255,0.85) 70%, rgba(235,244,255,0.55) 100%)",
+            border: "1px solid var(--border-color)",
+            boxShadow:
+              "0 4px 24px rgba(11,19,43,0.08), 0 24px 60px rgba(11,19,43,0.10)",
           }}
-        >
-          10
-        </span>
-        <div className="flex flex-col">
-          <span
-            className="text-[9.5px] font-bold uppercase tracking-[0.12em]"
-            style={{ color: "var(--muted)" }}
-          >
-            Team
-          </span>
-          <span
-            className="text-[11.5px] font-semibold"
-            style={{ color: "var(--ink)" }}
-          >
-            Specialists in-house
-          </span>
-        </div>
+        />
+
+        {/* Inner blue aura */}
+        <div
+          aria-hidden
+          className="absolute inset-[12%] rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(22,119,255,0.18) 0%, transparent 65%)",
+          }}
+        />
+
+        {/* Bubbles */}
+        {TEAM_MEMBERS.map((member, i) => (
+          <Bubble key={member.slug} member={member} index={i} />
+        ))}
       </div>
 
-      {/* Floating "Irvine, CA" badge */}
+      {/* Editorial caption */}
+      <div className="mt-7 flex items-center gap-3">
+        <span
+          aria-hidden
+          className="h-px flex-1"
+          style={{ background: "var(--border-color)" }}
+        />
+        <span
+          className="text-[10px] sm:text-[10.5px] font-bold uppercase whitespace-nowrap"
+          style={{ color: "var(--muted)", letterSpacing: "0.22em" }}
+        >
+          The MMP Team &middot; Irvine, CA &middot; Est. 2020
+        </span>
+        <span
+          aria-hidden
+          className="h-px flex-1"
+          style={{ background: "var(--border-color)" }}
+        />
+      </div>
+    </div>
+  )
+}
+
+interface BubbleProps {
+  member: TeamMember
+  index: number
+}
+
+function Bubble({ member, index }: BubbleProps) {
+  const dept = departmentByIdMap[member.department]
+  const pos = BUBBLE_POSITIONS[member.slug]
+  const isLeader = member.department === "leadership"
+
+  // Sizes scale with the container width via clamp so they remain
+  // proportional on smaller breakpoints.
+  const sizeVar = isLeader
+    ? "clamp(92px, 22%, 120px)"
+    : "clamp(60px, 14.5%, 80px)"
+
+  const animName = isLeader ? "floatBubbleLg" : "floatBubble"
+  const animDuration = isLeader ? "5.6s" : "4.5s"
+  // Stagger so bubbles bob out of sync — looks organic.
+  const animDelay = `${((index * 0.37) % 2.6).toFixed(2)}s`
+
+  return (
+    <div
+      className="absolute"
+      style={{
+        top: `${pos.top}%`,
+        left: `${pos.left}%`,
+        transform: "translate(-50%, -50%)",
+        width: sizeVar,
+        height: sizeVar,
+        zIndex: isLeader ? 3 : 2,
+      }}
+    >
       <div
-        className="absolute -top-4 -left-3 sm:-left-5 px-3 py-2.5 rounded-[var(--radius-md)] hidden sm:flex flex-col gap-0.5"
+        className="w-full h-full"
         style={{
-          background: "#fff",
-          border: "1px solid var(--border-color)",
-          boxShadow: "0 8px 24px rgba(11,19,43,0.18)",
+          animation: `${animName} ${animDuration} ease-in-out infinite`,
+          animationDelay: animDelay,
         }}
       >
-        <span
-          className="text-[9.5px] font-bold uppercase tracking-[0.12em]"
-          style={{ color: "var(--muted)" }}
+        <div
+          title={`${member.name} — ${member.role}`}
+          aria-label={`${member.name}, ${member.role}`}
+          className="rounded-full flex items-center justify-center w-full h-full transition-transform duration-200 ease-out hover:scale-[1.08] cursor-default"
+          style={{
+            background: "#fff",
+            boxShadow: `0 0 0 3px ${dept.accent}, 0 4px 14px rgba(11,19,43,0.12), 0 1px 3px rgba(11,19,43,0.08)`,
+          }}
         >
-          Home base
-        </span>
-        <span
-          className="text-[13px] font-bold leading-tight"
-          style={{ color: "var(--ink)" }}
-        >
-          Irvine, CA
-          <br />
-          Office HQ
-        </span>
+          <span
+            aria-hidden
+            style={{
+              fontSize: `calc(${sizeVar} * 0.55)`,
+              lineHeight: 1,
+            }}
+          >
+            {member.emoji}
+          </span>
+        </div>
       </div>
     </div>
   )

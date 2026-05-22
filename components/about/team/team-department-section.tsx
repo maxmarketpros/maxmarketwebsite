@@ -1,25 +1,35 @@
 import {
   type DepartmentMeta,
+  TEAM_MEMBERS,
   getMembersByDepartment,
 } from "@/lib/team-data"
 import { TeamMemberCard } from "./team-member-card"
 
 interface TeamDepartmentSectionProps {
   department: DepartmentMeta
+  /** 1-based index used for the Roman numeral chapter number. */
+  chapter: number
   isFirst?: boolean
+}
+
+const ROMAN = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
+
+// One pull quote per dept, lifted from the subtitle copy.
+const PULL_QUOTES: Record<string, string> = {
+  leadership: "Owner-operators, not figureheads.",
+  "client-growth": "They own outcomes, not just inboxes.",
+  "web-development": "No offshoring, no outsourcing, no junior handoffs.",
+  "business-development":
+    "Our BD specialists don't pitch — they diagnose.",
 }
 
 export function TeamDepartmentSection({
   department,
+  chapter,
   isFirst = false,
 }: TeamDepartmentSectionProps) {
   const members = getMembersByDepartment(department.id)
-  const count = members.length
-
-  const gridCols =
-    count === 2
-      ? "grid-cols-1 sm:grid-cols-2"
-      : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+  const pullQuote = PULL_QUOTES[department.id]
 
   return (
     <section
@@ -29,31 +39,49 @@ export function TeamDepartmentSection({
       <div
         className={`section-container ${
           isFirst
-            ? "pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 lg:pb-24"
-            : "pb-16 sm:pb-20 lg:pb-24"
+            ? "pt-14 sm:pt-16 lg:pt-20 pb-4 sm:pb-6"
+            : "pt-10 sm:pt-12 pb-4 sm:pb-6"
         }`}
       >
-        <header
-          className="max-w-[760px]"
+        {/* Top hairline rule */}
+        <div
+          aria-hidden
+          style={{ borderTop: "1px solid var(--border-color)" }}
+        />
+
+        {/* Chapter eyebrow row */}
+        <div
+          className="flex items-center justify-between gap-4 pt-3 sm:pt-4"
           style={{ animation: "fadeInUp 0.6s ease-out both" }}
         >
           <span
-            className="inline-flex items-center gap-1.5 px-3 py-1 text-[11.5px] font-semibold uppercase tracking-[0.1em] rounded-full border"
+            className="text-[13px] sm:text-[14px] font-bold uppercase tabular-nums"
             style={{
-              background: `${department.accent}14`,
-              borderColor: `${department.accent}40`,
-              color: department.accent,
+              color: "var(--muted)",
+              letterSpacing: "0.18em",
             }}
           >
-            <span
-              className="w-1.5 h-1.5 rounded-full"
-              style={{ background: department.accent }}
-            />
+            Department&nbsp;{ROMAN[chapter] ?? chapter}
+          </span>
+          <span
+            className="text-[13px] sm:text-[14px] font-bold uppercase text-right"
+            style={{
+              color: department.accent,
+              letterSpacing: "0.18em",
+            }}
+          >
             {department.pill}
           </span>
+        </div>
+
+        {/* Heading + subtitle + pull quote */}
+        <header
+          className="max-w-[820px] pt-6 sm:pt-8"
+          style={{ animation: "fadeInUp 0.7s ease-out both" }}
+        >
           <h2
             id={`team-dept-${department.id}-heading`}
-            className="mt-4 text-[32px] sm:text-[40px] lg:text-[48px] font-bold leading-[1.05] tracking-[-0.025em] text-balance"
+            className="text-[30px] sm:text-[38px] lg:text-[44px] font-bold leading-[1.05] tracking-[-0.025em] text-balance"
             style={{ color: "var(--ink)" }}
           >
             {renderHeadingWithAccent(
@@ -63,22 +91,41 @@ export function TeamDepartmentSection({
             )}
           </h2>
           <p
-            className="mt-4 text-[16px] sm:text-[17px] leading-[1.6] max-w-[640px]"
+            className="mt-4 text-[16px] sm:text-[17px] leading-[1.65] max-w-[680px]"
             style={{ color: "var(--muted)" }}
           >
             {department.subtitle}
           </p>
+
+          {pullQuote ? (
+            <blockquote
+              className="mt-7 pl-5 max-w-[640px] italic text-[18px] sm:text-[20px] leading-[1.4] tracking-[-0.005em]"
+              style={{
+                color: "var(--ink)",
+                borderLeft: `3px solid ${department.accent}`,
+              }}
+            >
+              &ldquo;{pullQuote}&rdquo;
+            </blockquote>
+          ) : null}
         </header>
 
-        <div className={`mt-10 sm:mt-12 grid ${gridCols} gap-6`}>
-          {members.map((m, i) => (
-            <TeamMemberCard
-              key={m.slug}
-              member={m}
-              department={department}
-              index={i}
-            />
-          ))}
+        {/* Member entries — single-column editorial stack */}
+        <div className="mt-8 sm:mt-10">
+          {members.map((m, i) => {
+            const globalNumber =
+              TEAM_MEMBERS.findIndex((x) => x.slug === m.slug) + 1
+            return (
+              <TeamMemberCard
+                key={m.slug}
+                member={m}
+                department={department}
+                index={i}
+                isLast={i === members.length - 1}
+                globalNumber={globalNumber}
+              />
+            )
+          })}
         </div>
       </div>
     </section>
