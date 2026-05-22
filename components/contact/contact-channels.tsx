@@ -115,17 +115,11 @@ export function ContactChannels() {
           className="mt-10 text-center text-[14px]"
           style={{ color: "var(--muted)" }}
         >
-          Already a client? Head to{" "}
+          Already a client? Head to your{" "}
           <a
-            href="/contact/support"
-            className="font-semibold hover:underline"
-            style={{ color: "var(--accent)" }}
-          >
-            support
-          </a>{" "}
-          or your{" "}
-          <a
-            href="/client-portal"
+            href="https://launchpad.maxmarketpros.com/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-semibold hover:underline"
             style={{ color: "var(--accent)" }}
           >

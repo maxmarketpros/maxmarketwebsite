@@ -57,7 +57,6 @@ import {
   Calculator,
   HelpCircle,
   Phone,
-  HeadphonesIcon,
   LogIn,
   ChevronRight,
 } from "lucide-react"
@@ -237,13 +236,12 @@ export const contact: NavCategory = {
   icon: Phone,
   children: [
     { label: "Schedule a Call", href: "/contact/schedule", icon: Calendar, description: "Book a free strategy call" },
-    { label: "Support", href: "/contact/support", icon: HeadphonesIcon, description: "Get help with your account" },
   ],
 }
 
 export const clientPortal: NavCategory = {
   label: "Client Portal",
-  href: "/client-portal",
+  href: "https://launchpad.maxmarketpros.com/",
   icon: LogIn,
 }
 

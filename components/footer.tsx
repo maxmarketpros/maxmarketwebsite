@@ -71,7 +71,7 @@ const footerGroups = [
         label: c.label,
         href: c.href,
       })) || []),
-      { label: "Client Portal", href: "/client-portal" },
+      { label: "Client Portal", href: "https://launchpad.maxmarketpros.com/" },
     ],
   },
 ]
@@ -133,17 +133,32 @@ export function Footer() {
                 {group.title}
               </h4>
               <ul className="space-y-2.5">
-                {group.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-[13px] transition-colors duration-200 hover:opacity-70"
-                      style={{ color: "var(--muted)" }}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+                {group.links.map((link) => {
+                  const isExternal = link.href.startsWith("http")
+                  return (
+                    <li key={link.href}>
+                      {isExternal ? (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[13px] transition-colors duration-200 hover:opacity-70"
+                          style={{ color: "var(--muted)" }}
+                        >
+                          {link.label}
+                        </a>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          className="text-[13px] transition-colors duration-200 hover:opacity-70"
+                          style={{ color: "var(--muted)" }}
+                        >
+                          {link.label}
+                        </Link>
+                      )}
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           ))}

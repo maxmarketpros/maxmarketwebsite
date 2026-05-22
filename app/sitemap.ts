@@ -14,7 +14,6 @@ const routes: { path: string; priority: number; changeFrequency: MetadataRoute.S
 
   { path: "/contact", priority: 0.8, changeFrequency: "monthly" },
   { path: "/contact/schedule", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/contact/support", priority: 0.5, changeFrequency: "monthly" },
 
   { path: "/industries", priority: 0.7, changeFrequency: "monthly" },
   { path: "/industries/automotive", priority: 0.6, changeFrequency: "monthly" },
@@ -31,7 +30,7 @@ const routes: { path: string; priority: number; changeFrequency: MetadataRoute.S
   { path: "/plans/servicepro", priority: 0.6, changeFrequency: "monthly" },
   { path: "/plans/signature", priority: 0.6, changeFrequency: "monthly" },
 
-  { path: "/resources", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/resources", priority: 0.8, changeFrequency: "weekly" },
   { path: "/resources/blog", priority: 0.7, changeFrequency: "weekly" },
   { path: "/resources/blog/ai-search-optimization-2026", priority: 0.7, changeFrequency: "monthly" },
   { path: "/resources/blog/google-reviews-conversion-lever-2026", priority: 0.7, changeFrequency: "monthly" },

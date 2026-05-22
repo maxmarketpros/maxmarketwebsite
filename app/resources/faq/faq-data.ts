@@ -37,7 +37,7 @@ export const faqItems: FaqItem[] = [
     id: "where-is-max-market-pros-located",
     category: "getting-started",
     q: "Where is Max Market Pros located and do you work remotely?",
-    a: "We're headquartered in Irvine, California, and we work remotely with clients across the United States and Canada. Everything — kickoff, content reviews, monthly reporting, strategy calls — runs over Zoom and shared dashboards, so you get the same senior team whether you're down the street or three time zones away. Office hours are Mon–Fri, 8:30am–3:30pm Pacific, with [support](/contact/support) available outside that window.",
+    a: "We're headquartered in Irvine, California, and we work remotely with clients across the United States and Canada. Everything — kickoff, content reviews, monthly reporting, strategy calls — runs over Zoom and shared dashboards, so you get the same senior team whether you're down the street or three time zones away. Office hours are Mon–Fri, 8:30am–3:30pm Pacific.",
   },
 
   // ─────────── 2. Plans & pricing ───────────

@@ -177,13 +177,15 @@ export function Navbar() {
 
           {/* ── Desktop Right Actions ── */}
           <div className="hidden lg:flex items-center gap-4">
-            <Link
-              href="/client-portal"
+            <a
+              href="https://launchpad.maxmarketpros.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[14px] font-medium transition-colors duration-200 hover:opacity-80"
               style={{ color: "var(--muted)" }}
             >
               Client Portal
-            </Link>
+            </a>
             <PrimaryButton asLink href="/contact/schedule">
               Book a Call
             </PrimaryButton>
@@ -249,14 +251,16 @@ export function Navbar() {
                 className="mt-3 pt-4 flex flex-col gap-3"
                 style={{ borderTop: "1px solid var(--border-color)" }}
               >
-                <Link
-                  href="/client-portal"
+                <a
+                  href="https://launchpad.maxmarketpros.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-[15px] font-medium"
                   style={{ color: "var(--muted)" }}
                   onClick={() => setMobileOpen(false)}
                 >
                   Client Portal
-                </Link>
+                </a>
                 <PrimaryButton asLink href="/contact/schedule">
                   Book a Call
                 </PrimaryButton>
