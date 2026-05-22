@@ -109,6 +109,39 @@
     <input type="email" name="email" />
   </form>
 
+  <!--
+    Internal sales-team form for closing new deals and triggering ChargeDesk payments.
+    Source: components/pay-sign/pay-sign-form.tsx (page: /pay-sign-create-task, noindex)
+  -->
+  <form name="pay-sign-create-task" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="pay-sign-create-task" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="page-source" />
+    <input type="text" name="company-name" />
+    <input type="text" name="year-established" />
+    <input type="text" name="owner-contact" />
+    <input type="tel" name="business-phone" />
+    <input type="tel" name="contact-phone" />
+    <input type="email" name="email" />
+    <input type="text" name="address" />
+    <input type="text" name="city" />
+    <input type="text" name="state" />
+    <input type="text" name="zip" />
+    <input type="text" name="website" />
+    <textarea name="services"></textarea>
+    <input type="text" name="plan-selected" />
+    <input type="text" name="tasks-necessary" />
+    <input type="text" name="commitment-months" />
+    <input type="text" name="closer" />
+    <input type="text" name="opener" />
+    <input type="text" name="setup-fee" />
+    <input type="text" name="monthly-fee" />
+    <input type="text" name="todays-total" />
+    <input type="text" name="todays-day-of-month" />
+    <input type="text" name="commitment-total" />
+    <input type="text" name="payment-authorized" />
+  </form>
+
   <!-- =====================================================
        TOOL USAGE CAPTURE (silent, fire-and-forget)
        ===================================================== -->
