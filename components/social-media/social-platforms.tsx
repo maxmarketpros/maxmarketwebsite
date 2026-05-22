@@ -25,8 +25,8 @@ const platforms: Platform[] = [
     name: "TikTok",
     color: "#010101",
     angle: "Short-form video built to hook in the first 3 seconds.",
-    stat: "7.2M+",
-    statLabel: "views per client",
+    stat: "+412%",
+    statLabel: "reach lift",
   },
   {
     id: "13983",
@@ -65,8 +65,8 @@ const platforms: Platform[] = [
     name: "Pinterest",
     color: "#E60023",
     angle: "Evergreen pins that drive traffic to your site for months.",
-    stat: "12M+",
-    statLabel: "monthly viewers",
+    stat: "+286%",
+    statLabel: "monthly traffic",
   },
   {
     id: "23032",

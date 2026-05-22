@@ -5,13 +5,13 @@ import { TrendingUp, Users, Eye, Heart, MousePointerClick } from "lucide-react"
 const metrics = [
   {
     Icon: Users,
-    number: "+127K",
+    number: "+38K",
     label: "new followers added across client accounts in the last 12 months",
     color: "#1677FF",
   },
   {
     Icon: Eye,
-    number: "180M+",
+    number: "25M+",
     label: "organic impressions generated across TikTok, IG, and YouTube",
     color: "#E1306C",
   },

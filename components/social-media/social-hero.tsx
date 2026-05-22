@@ -18,8 +18,8 @@ const platformLogos = [
 ]
 
 const trustItems = [
-  "180M+ impressions generated",
-  "10K+ pieces of content shipped",
+  "25M+ impressions generated",
+  "5K+ pieces of content shipped",
   "4.9★ creator team",
 ]
 
