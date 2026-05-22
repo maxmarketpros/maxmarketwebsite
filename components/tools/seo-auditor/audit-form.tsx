@@ -1,8 +1,10 @@
 "use client"
 
 import { useState } from "react"
+import { usePathname } from "next/navigation"
 import { PrimaryButton } from "@/components/ui/primary-button"
 import { Search, ArrowRight } from "lucide-react"
+import { fireNetlifyForm } from "@/lib/netlify-forms"
 
 interface AuditFormProps {
   onSubmit: (url: string) => void
@@ -11,6 +13,7 @@ interface AuditFormProps {
 }
 
 export function AuditForm({ onSubmit, initialUrl = "", busy }: AuditFormProps) {
+  const pathname = usePathname()
   const [value, setValue] = useState(initialUrl)
   const [error, setError] = useState<string | null>(null)
 
@@ -24,6 +27,10 @@ export function AuditForm({ onSubmit, initialUrl = "", busy }: AuditFormProps) {
           return
         }
         setError(null)
+        fireNetlifyForm("tool-seo-audit-run", {
+          url: trimmed,
+          "page-source": pathname || "",
+        })
         onSubmit(trimmed)
       }}
       className="w-full"

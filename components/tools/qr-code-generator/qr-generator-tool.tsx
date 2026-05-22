@@ -1,6 +1,7 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
+import { usePathname } from "next/navigation"
 import {
   buildPayload,
   initialValues,
@@ -11,8 +12,10 @@ import { QrGeneratorContentTabs } from "./qr-generator-content-tabs"
 import { QrGeneratorContentForms } from "./qr-generator-content-forms"
 import { QrGeneratorStylePanel, type StyleState } from "./qr-generator-style-panel"
 import { QrGeneratorPreview } from "./qr-generator-preview"
+import { fireNetlifyForm } from "@/lib/netlify-forms"
 
 export function QrGeneratorTool() {
+  const pathname = usePathname()
   const [type, setType] = useState<ContentType>("url")
   const [values, setValues] = useState<ContentValues>(initialValues)
   const [style, setStyle] = useState<StyleState>({
@@ -24,6 +27,25 @@ export function QrGeneratorTool() {
   })
 
   const payload = useMemo(() => buildPayload(type, values[type]), [type, values])
+
+  // Fire a single fire-and-forget tool-usage capture per mount, the first
+  // time the user produces a meaningful payload. Debounced so we don't
+  // ping on every keystroke.
+  const captured = useRef(false)
+  useEffect(() => {
+    if (captured.current) return
+    if (!payload || payload.length < 4) return
+    const t = setTimeout(() => {
+      if (captured.current) return
+      captured.current = true
+      fireNetlifyForm("tool-qr-generate-run", {
+        "page-source": pathname || "",
+        "qr-type": type,
+        "content-summary": payload.slice(0, 200),
+      })
+    }, 1200)
+    return () => clearTimeout(t)
+  }, [payload, type, pathname])
 
   const updateContent = <K extends ContentType>(t: K, next: ContentValues[K]) => {
     setValues((prev) => ({ ...prev, [t]: next }))

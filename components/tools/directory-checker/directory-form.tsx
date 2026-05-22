@@ -1,8 +1,10 @@
 "use client"
 
 import { useState } from "react"
+import { usePathname } from "next/navigation"
 import { PrimaryButton } from "@/components/ui/primary-button"
 import { ArrowRight, Building2 } from "lucide-react"
+import { fireNetlifyForm } from "@/lib/netlify-forms"
 
 export interface DirectoryFormValues {
   businessName: string
@@ -33,6 +35,7 @@ export function DirectoryForm({
   onSubmit,
   busy,
 }: DirectoryFormProps) {
+  const pathname = usePathname()
   const [values, setValues] = useState<DirectoryFormValues>({
     ...EMPTY,
     ...initialValues,
@@ -69,6 +72,15 @@ export function DirectoryForm({
           return
         }
         setError(null)
+        fireNetlifyForm("tool-directory-check-run", {
+          "page-source": pathname || "",
+          "business-name": trimmed.businessName,
+          "street-address": trimmed.streetAddress,
+          city: trimmed.city,
+          state: trimmed.state,
+          zip: trimmed.zip,
+          phone: trimmed.phone,
+        })
         onSubmit(trimmed)
       }}
       className="w-full text-left"

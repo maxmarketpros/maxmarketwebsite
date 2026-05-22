@@ -1,22 +1,16 @@
 "use client"
 
 import { useState } from "react"
+import { usePathname } from "next/navigation"
 import { PrimaryButton } from "@/components/ui/primary-button"
 import { ArrowRight, CheckCircle, Sparkles } from "lucide-react"
 import type { AuditResult } from "@/lib/seo-audit/types"
+import { submitNetlifyForm } from "@/lib/netlify-forms"
 
 const FORM_NAME = "seo-audit-lead"
 
-function encodeForm(data: Record<string, string>): string {
-  return Object.entries(data)
-    .map(
-      ([k, v]) =>
-        `${encodeURIComponent(k)}=${encodeURIComponent(v ?? "")}`,
-    )
-    .join("&")
-}
-
 export function AuditCtaSection({ result }: { result: AuditResult }) {
+  const pathname = usePathname()
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -173,12 +167,11 @@ export function AuditCtaSection({ result }: { result: AuditResult }) {
                       setSubmitting(true)
                       setError(null)
                       const fd = new FormData(e.currentTarget)
-                      const data: Record<string, string> = {
-                        "form-name": FORM_NAME,
-                      }
+                      const data: Record<string, string> = {}
                       fd.forEach((v, k) => {
                         data[k] = String(v)
                       })
+                      data["page-source"] = pathname || ""
                       data["audited-url"] = result.snapshot.finalUrl
                       data["overall-score"] = String(result.overallScore)
                       data["performance-score"] = findScore("performance")
@@ -187,20 +180,12 @@ export function AuditCtaSection({ result }: { result: AuditResult }) {
                       data["best-practices-score"] = findScore("best-practices")
 
                       try {
-                        const res = await fetch("/", {
-                          method: "POST",
-                          headers: {
-                            "Content-Type": "application/x-www-form-urlencoded",
-                          },
-                          body: encodeForm(data),
-                        })
+                        const res = await submitNetlifyForm(FORM_NAME, data)
                         if (!res.ok && res.status !== 200) {
-                          // In dev (no Netlify) this will 404 — show success anyway
-                          // since the user did everything right.
                           if (process.env.NODE_ENV !== "production") {
                             console.log(
                               "[dev] Netlify form payload (would submit):",
-                              data,
+                              { form: FORM_NAME, ...data },
                             )
                             setSubmitted(true)
                           } else {
@@ -213,7 +198,7 @@ export function AuditCtaSection({ result }: { result: AuditResult }) {
                         if (process.env.NODE_ENV !== "production") {
                           console.log(
                             "[dev] Netlify form payload (would submit):",
-                            data,
+                            { form: FORM_NAME, ...data },
                           )
                           setSubmitted(true)
                         } else {
@@ -227,6 +212,11 @@ export function AuditCtaSection({ result }: { result: AuditResult }) {
                     }}
                   >
                     <input type="hidden" name="form-name" value={FORM_NAME} />
+                    <input
+                      type="hidden"
+                      name="page-source"
+                      value={pathname || ""}
+                    />
                     <p className="hidden">
                       <label>
                         Don't fill this out: <input name="bot-field" />

@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 import {
   AlertCircle,
   Briefcase,
@@ -15,6 +16,9 @@ import {
 } from "lucide-react"
 import { Pill } from "@/components/ui/pill"
 import { ROLES } from "@/lib/careers-data"
+import { submitNetlifyForm } from "@/lib/netlify-forms"
+
+const FORM_NAME = "careers-application"
 
 type Status = "idle" | "submitting" | "success" | "error"
 
@@ -29,6 +33,7 @@ interface FormState {
 }
 
 export function CareersApply() {
+  const pathname = usePathname()
   const [status, setStatus] = useState<Status>("idle")
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const [form, setForm] = useState<FormState>({
@@ -79,30 +84,34 @@ export function CareersApply() {
     setStatus("submitting")
     setErrorMsg(null)
 
-    const fd = new URLSearchParams()
-    fd.append("form-name", "careers-application")
-    fd.append("bot-field", "")
-    fd.append("name", form.name)
-    fd.append("email", form.email)
-    fd.append("phone", form.phone)
-    fd.append("role", form.role)
-    fd.append(
-      "role-label",
-      ROLES.find((r) => r.slug === form.role)?.title ?? form.role,
-    )
-    fd.append("linkedin", form.linkedin)
-    fd.append("portfolio", form.portfolio)
-    fd.append("message", form.message)
-
     try {
-      const res = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: fd.toString(),
+      const res = await submitNetlifyForm(FORM_NAME, {
+        "page-source": pathname || "",
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        role: form.role,
+        "role-label":
+          ROLES.find((r) => r.slug === form.role)?.title ?? form.role,
+        linkedin: form.linkedin,
+        portfolio: form.portfolio,
+        message: form.message,
       })
-      if (!res.ok) throw new Error(`Submission failed (${res.status})`)
+      if (!res.ok) {
+        if (process.env.NODE_ENV !== "production") {
+          console.log("[dev] Netlify form payload (would submit):", { form: FORM_NAME, ...form, "page-source": pathname })
+          setStatus("success")
+          return
+        }
+        throw new Error(`Submission failed (${res.status})`)
+      }
       setStatus("success")
     } catch (err) {
+      if (process.env.NODE_ENV !== "production") {
+        console.log("[dev] Netlify form payload (would submit):", { form: FORM_NAME, ...form, "page-source": pathname })
+        setStatus("success")
+        return
+      }
       const message = err instanceof Error ? err.message : "Something went wrong"
       setErrorMsg(message)
       setStatus("error")
@@ -295,7 +304,7 @@ export function CareersApply() {
                 </div>
               ) : (
                 <form
-                  name="careers-application"
+                  name={FORM_NAME}
                   method="POST"
                   data-netlify="true"
                   data-netlify-honeypot="bot-field"
@@ -305,7 +314,12 @@ export function CareersApply() {
                   <input
                     type="hidden"
                     name="form-name"
-                    value="careers-application"
+                    value={FORM_NAME}
+                  />
+                  <input
+                    type="hidden"
+                    name="page-source"
+                    value={pathname || ""}
                   />
                   <p className="hidden">
                     <label>

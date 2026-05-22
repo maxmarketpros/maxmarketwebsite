@@ -1,17 +1,22 @@
 "use client"
 
 import { useState } from "react"
+import { usePathname } from "next/navigation"
 import { PrimaryButton } from "@/components/ui/primary-button"
+import { submitNetlifyForm } from "@/lib/netlify-forms"
 import {
   Phone,
   Mail,
   CheckCircle,
+  AlertCircle,
   ArrowRight,
   Sparkles,
   ShieldCheck,
   Clock,
   MapPin,
 } from "lucide-react"
+
+const FORM_NAME = "contact-global"
 
 const processSteps = [
   { num: "01", label: "You submit" },
@@ -26,16 +31,85 @@ const trustBullets = [
   { Icon: MapPin, text: "Based in Irvine, CA · serving the U.S." },
 ]
 
+type Status = "idle" | "submitting" | "success" | "error"
+
+interface FormState {
+  name: string
+  business: string
+  email: string
+  phone: string
+  website: string
+  message: string
+}
+
+const EMPTY: FormState = {
+  name: "",
+  business: "",
+  email: "",
+  phone: "",
+  website: "",
+  message: "",
+}
+
 export function ContactGetInTouch({
   variant = "page",
 }: {
   variant?: "page" | "section"
 }) {
-  const [submitted, setSubmitted] = useState(false)
+  const pathname = usePathname()
+  const [status, setStatus] = useState<Status>("idle")
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
+  const [form, setForm] = useState<FormState>(EMPTY)
+  const submitted = status === "success"
   const isSection = variant === "section"
   const headingId = isSection
     ? "contact-cta-heading"
     : "contact-get-in-touch-heading"
+
+  const update =
+    <K extends keyof FormState>(k: K) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setForm((s) => ({ ...s, [k]: e.target.value }))
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (status === "submitting") return
+
+    setStatus("submitting")
+    setErrorMsg(null)
+
+    try {
+      const res = await submitNetlifyForm(FORM_NAME, {
+        "page-source": pathname || "",
+        name: form.name,
+        business: form.business,
+        email: form.email,
+        phone: form.phone,
+        website: form.website,
+        message: form.message,
+      })
+      if (!res.ok) {
+        if (process.env.NODE_ENV !== "production") {
+          // In local dev (no Netlify), POST /__forms.html may 404 — still show success.
+          console.log("[dev] Netlify form payload (would submit):", { form: FORM_NAME, ...form, "page-source": pathname })
+          setStatus("success")
+          return
+        }
+        throw new Error(`Submission failed (${res.status})`)
+      }
+      setStatus("success")
+    } catch (err) {
+      if (process.env.NODE_ENV !== "production") {
+        console.log("[dev] Netlify form payload (would submit):", { form: FORM_NAME, ...form, "page-source": pathname })
+        setStatus("success")
+        return
+      }
+      const message =
+        err instanceof Error ? err.message : "Something went wrong"
+      setErrorMsg(message)
+      setStatus("error")
+    }
+  }
 
   return (
     <section
@@ -339,12 +413,26 @@ export function ContactGetInTouch({
                   </div>
                 ) : (
                   <form
-                    onSubmit={(e) => {
-                      e.preventDefault()
-                      setSubmitted(true)
-                    }}
+                    name={FORM_NAME}
+                    method="POST"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
+                    onSubmit={onSubmit}
                     className="p-6 sm:p-8 lg:p-9"
                   >
+                    {/* Netlify required hidden inputs */}
+                    <input type="hidden" name="form-name" value={FORM_NAME} />
+                    <input
+                      type="hidden"
+                      name="page-source"
+                      value={pathname || ""}
+                    />
+                    <p className="hidden">
+                      <label>
+                        Don&rsquo;t fill this out: <input name="bot-field" />
+                      </label>
+                    </p>
+
                     {/* Form header */}
                     <div className="flex items-start justify-between gap-3">
                       <div>
@@ -393,12 +481,16 @@ export function ContactGetInTouch({
                         name="name"
                         placeholder="John Smith"
                         required
+                        value={form.name}
+                        onChange={update("name")}
                       />
                       <Field
                         label="Business name"
                         name="business"
                         placeholder="Smith Plumbing"
                         optional
+                        value={form.business}
+                        onChange={update("business")}
                       />
                     </div>
                     <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -408,6 +500,8 @@ export function ContactGetInTouch({
                         type="email"
                         placeholder="john@smithplumbing.com"
                         required
+                        value={form.email}
+                        onChange={update("email")}
                       />
                       <Field
                         label="Phone"
@@ -415,6 +509,8 @@ export function ContactGetInTouch({
                         type="tel"
                         placeholder="(555) 123-4567"
                         required
+                        value={form.phone}
+                        onChange={update("phone")}
                       />
                     </div>
                     <div className="mt-4">
@@ -423,6 +519,8 @@ export function ContactGetInTouch({
                         name="website"
                         placeholder="www.smithplumbing.com"
                         optional
+                        value={form.website}
+                        onChange={update("website")}
                       />
                     </div>
                     <div className="mt-4">
@@ -444,6 +542,8 @@ export function ContactGetInTouch({
                         name="message"
                         rows={3}
                         placeholder="What's the goal? More calls, more bookings, a rebuild…"
+                        value={form.message}
+                        onChange={update("message")}
                         className="w-full px-4 py-3 text-[15px] rounded-[var(--radius-sm)] transition-all duration-200 resize-none focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-[var(--accent)]"
                         style={{
                           background: "var(--bg)",
@@ -453,16 +553,43 @@ export function ContactGetInTouch({
                       />
                     </div>
 
+                    {status === "error" && errorMsg && (
+                      <div
+                        className="mt-4 flex items-start gap-2 px-3.5 py-2.5 rounded-[var(--radius-sm)] text-[13px]"
+                        style={{
+                          background: "rgba(229,62,62,0.08)",
+                          border: "1px solid rgba(229,62,62,0.3)",
+                          color: "#B91C1C",
+                        }}
+                      >
+                        <AlertCircle
+                          className="w-4 h-4 mt-0.5 shrink-0"
+                          strokeWidth={2.2}
+                        />
+                        <span>
+                          {errorMsg}. Please try again, or email
+                          info@maxmarketpros.com.
+                        </span>
+                      </div>
+                    )}
+
                     <PrimaryButton
                       type="submit"
                       size="lg"
                       className="w-full mt-6"
+                      disabled={status === "submitting"}
                     >
-                      Send my message
-                      <ArrowRight
-                        className="w-4 h-4 ml-2"
-                        strokeWidth={2.75}
-                      />
+                      {status === "submitting" ? (
+                        "Sending…"
+                      ) : (
+                        <>
+                          Send my message
+                          <ArrowRight
+                            className="w-4 h-4 ml-2"
+                            strokeWidth={2.75}
+                          />
+                        </>
+                      )}
                     </PrimaryButton>
 
                     <p
@@ -490,6 +617,8 @@ function Field({
   placeholder,
   required,
   optional,
+  value,
+  onChange,
 }: {
   label: string
   name: string
@@ -497,6 +626,8 @@ function Field({
   placeholder?: string
   required?: boolean
   optional?: boolean
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }) {
   return (
     <div>
@@ -521,6 +652,8 @@ function Field({
         type={type}
         placeholder={placeholder}
         required={required}
+        value={value}
+        onChange={onChange}
         className="w-full px-4 py-3 text-[15px] rounded-[var(--radius-sm)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:border-[var(--accent)]"
         style={{
           background: "var(--bg)",

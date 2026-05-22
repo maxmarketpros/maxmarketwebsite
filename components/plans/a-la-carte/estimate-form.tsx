@@ -1,10 +1,14 @@
 "use client"
 
 import { useState } from "react"
+import { usePathname } from "next/navigation"
 import { AlertCircle, Building2, CheckCircle2, Loader2, Mail, Phone, Send, User } from "lucide-react"
 import { Pill } from "@/components/ui/pill"
 import { PLAN_LABEL, type PlanChoice } from "@/lib/a-la-carte-catalog"
 import { type Totals } from "@/lib/a-la-carte-pricing"
+import { submitNetlifyForm } from "@/lib/netlify-forms"
+
+const FORM_NAME = "a-la-carte-estimate"
 
 interface EstimateFormProps {
   plan: PlanChoice
@@ -18,6 +22,7 @@ function formatUSD(n: number) {
 }
 
 export function EstimateForm({ plan, totals }: EstimateFormProps) {
+  const pathname = usePathname()
   const [status, setStatus] = useState<Status>("idle")
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const [form, setForm] = useState({
@@ -38,29 +43,35 @@ export function EstimateForm({ plan, totals }: EstimateFormProps) {
     setStatus("submitting")
     setErrorMsg(null)
 
-    const fd = new URLSearchParams()
-    fd.append("form-name", "a-la-carte-estimate")
-    fd.append("bot-field", "")
-    fd.append("name", form.name)
-    fd.append("business", form.business)
-    fd.append("phone", form.phone)
-    fd.append("email", form.email)
-    fd.append("notes", form.notes)
-    fd.append("current-plan", PLAN_LABEL[plan])
-    fd.append("monthly-total", totals.monthly.toString())
-    fd.append("one-time-total", totals.oneTime.toString())
-    fd.append("custom-quote-count", totals.customCount.toString())
-    fd.append("selected-items", totals.lines.map((l) => `- ${l.label} — ${l.display}`).join("\n"))
-
     try {
-      const res = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: fd.toString(),
+      const res = await submitNetlifyForm(FORM_NAME, {
+        "page-source": pathname || "",
+        name: form.name,
+        business: form.business,
+        phone: form.phone,
+        email: form.email,
+        notes: form.notes,
+        "current-plan": PLAN_LABEL[plan],
+        "monthly-total": totals.monthly.toString(),
+        "one-time-total": totals.oneTime.toString(),
+        "custom-quote-count": totals.customCount.toString(),
+        "selected-items": totals.lines.map((l) => `- ${l.label} — ${l.display}`).join("\n"),
       })
-      if (!res.ok) throw new Error(`Submission failed (${res.status})`)
+      if (!res.ok) {
+        if (process.env.NODE_ENV !== "production") {
+          console.log("[dev] Netlify form payload (would submit):", { form: FORM_NAME, ...form, "page-source": pathname })
+          setStatus("success")
+          return
+        }
+        throw new Error(`Submission failed (${res.status})`)
+      }
       setStatus("success")
     } catch (err) {
+      if (process.env.NODE_ENV !== "production") {
+        console.log("[dev] Netlify form payload (would submit):", { form: FORM_NAME, ...form, "page-source": pathname })
+        setStatus("success")
+        return
+      }
       const message = err instanceof Error ? err.message : "Something went wrong"
       setErrorMsg(message)
       setStatus("error")
@@ -208,7 +219,7 @@ export function EstimateForm({ plan, totals }: EstimateFormProps) {
             </div>
           ) : (
             <form
-              name="a-la-carte-estimate"
+              name={FORM_NAME}
               method="POST"
               data-netlify="true"
               data-netlify-honeypot="bot-field"
@@ -216,7 +227,8 @@ export function EstimateForm({ plan, totals }: EstimateFormProps) {
               className="flex flex-col gap-3.5"
             >
               {/* Netlify required hidden inputs */}
-              <input type="hidden" name="form-name" value="a-la-carte-estimate" />
+              <input type="hidden" name="form-name" value={FORM_NAME} />
+              <input type="hidden" name="page-source" value={pathname || ""} />
               <p className="hidden">
                 <label>
                   Don&rsquo;t fill this out: <input name="bot-field" />
