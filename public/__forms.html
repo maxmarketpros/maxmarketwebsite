@@ -110,36 +110,46 @@
   </form>
 
   <!--
-    Internal sales-team form for closing new deals and triggering ChargeDesk payments.
-    Source: components/pay-sign/pay-sign-form.tsx (page: /pay-sign-create-task, noindex)
+    Internal sales-team form for closing new deals (noindex).
+    Source: components/pay-sign/pay-sign-form.tsx (page: /pay-sign-create-task)
+
+    Field names match the original Webflow form 1:1 so the existing Zapier
+    automation (Webflow → Zendesk Sell → Zoho Sign) keeps working once the
+    trigger is swapped to a "Webhooks by Zapier" Catch Hook pointed at the
+    Netlify Outgoing Webhook URL.
   -->
   <form name="pay-sign-create-task" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
     <input type="hidden" name="form-name" value="pay-sign-create-task" />
     <input type="text" name="bot-field" />
     <input type="text" name="page-source" />
-    <input type="text" name="company-name" />
-    <input type="text" name="year-established" />
-    <input type="text" name="owner-contact" />
-    <input type="tel" name="business-phone" />
-    <input type="tel" name="contact-phone" />
-    <input type="email" name="email" />
-    <input type="text" name="address" />
-    <input type="text" name="city" />
-    <input type="text" name="state" />
-    <input type="text" name="zip" />
-    <input type="text" name="website" />
-    <textarea name="services"></textarea>
-    <input type="text" name="plan-selected" />
-    <input type="text" name="tasks-necessary" />
-    <input type="text" name="commitment-months" />
-    <input type="text" name="closer" />
-    <input type="text" name="opener" />
-    <input type="text" name="setup-fee" />
-    <input type="text" name="monthly-fee" />
-    <input type="text" name="todays-total" />
-    <input type="text" name="todays-day-of-month" />
-    <input type="text" name="commitment-total" />
-    <input type="text" name="payment-authorized" />
+    <input type="text" name="Business Name" />
+    <input type="text" name="Year Est" />
+    <input type="text" name="Contact Name" />
+    <input type="tel" name="Public Phone" />
+    <input type="tel" name="Private Contact Number" />
+    <input type="email" name="Email" />
+    <input type="text" name="Postal Address" />
+    <input type="text" name="City" />
+    <input type="text" name="State" />
+    <input type="text" name="Zip" />
+    <input type="text" name="Website" />
+    <textarea name="Client's Primary Services"></textarea>
+    <input type="text" name="Plan Selected" />
+    <input type="text" name="New Website" />
+    <input type="text" name="New Logo" />
+    <input type="text" name="Social Media Campaign" />
+    <input type="text" name="Google Verification" />
+    <input type="text" name="Directories" />
+    <input type="text" name="Payment Integration Processing Through Website" />
+    <input type="text" name="Minimum Commitment" />
+    <input type="text" name="Closer" />
+    <input type="text" name="Opener" />
+    <input type="text" name="Setup Fee" />
+    <input type="text" name="Monthly Fee" />
+    <input type="text" name="Today's Total" />
+    <input type="text" name="Recur Day" />
+    <input type="text" name="Commitment Total" />
+    <input type="text" name="Credit Card Confirmation" />
   </form>
 
   <!-- =====================================================

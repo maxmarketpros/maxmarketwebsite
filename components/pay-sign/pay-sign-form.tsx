@@ -22,14 +22,24 @@ const PLAN_OPTIONS = [
   "Website Only",
 ] as const
 
-const TASK_OPTIONS = [
-  "New Website",
-  "New Logo",
-  "Social Media Campaign",
-  "Google Verification",
-  "Maps & Directories",
-  "Payment Integration & Processing Through Website",
-] as const
+/**
+ * Task options — `label` is what the closer sees, `field` is the Netlify
+ * form field name that's sent on submit. Each task becomes its own
+ * "true"/"false" field in the payload so the existing Zapier mapping
+ * (which expects one boolean per task, matching the old Webflow form)
+ * keeps working with minimal rewiring.
+ */
+const TASKS: { label: string; field: string }[] = [
+  { label: "New Website", field: "New Website" },
+  { label: "New Logo", field: "New Logo" },
+  { label: "Social Media Campaign", field: "Social Media Campaign" },
+  { label: "Google Verification", field: "Google Verification" },
+  { label: "Maps & Directories", field: "Directories" },
+  {
+    label: "Payment Integration & Processing Through Website",
+    field: "Payment Integration Processing Through Website",
+  },
+]
 
 const COMMITMENT_OPTIONS = ["6", "12", "24"] as const
 
@@ -155,31 +165,39 @@ export function PaySignForm() {
     setStatus("submitting")
     setErrorMsg(null)
 
+    // Field names match the original Webflow form so the existing Zapier
+    // mapping (Webflow → Zendesk Sell → Zoho Sign) works with minimal
+    // rewiring once the trigger is swapped to "Webhooks by Zapier".
+    const tasksPayload: Record<string, string> = {}
+    for (const t of TASKS) {
+      tasksPayload[t.field] = form.tasks.includes(t.label) ? "true" : "false"
+    }
+
     const payload = {
       "page-source": pathname || "",
-      "company-name": form.companyName,
-      "year-established": form.yearEstablished,
-      "owner-contact": form.ownerContact,
-      "business-phone": form.businessPhone,
-      "contact-phone": form.contactPhone,
-      email: form.email,
-      address: form.address,
-      city: form.city,
-      state: form.state,
-      zip: form.zip,
-      website: form.website,
-      services: form.services,
-      "plan-selected": form.plan,
-      "tasks-necessary": form.tasks.join(", "),
-      "commitment-months": form.commitment,
-      closer: form.closer,
-      opener: form.opener,
-      "setup-fee": form.setupFee,
-      "monthly-fee": form.monthlyFee,
-      "todays-total": todaysTotal.toFixed(2),
-      "todays-day-of-month": form.todaysDayOfMonth,
-      "commitment-total": commitmentTotal.toFixed(2),
-      "payment-authorized": form.paymentAuthorized ? "Yes" : "No",
+      "Business Name": form.companyName,
+      "Year Est": form.yearEstablished,
+      "Contact Name": form.ownerContact,
+      "Public Phone": form.businessPhone,
+      "Private Contact Number": form.contactPhone,
+      Email: form.email,
+      "Postal Address": form.address,
+      City: form.city,
+      State: form.state,
+      Zip: form.zip,
+      Website: form.website,
+      "Client's Primary Services": form.services,
+      "Plan Selected": form.plan,
+      ...tasksPayload,
+      "Minimum Commitment": form.commitment ? `${form.commitment} Months` : "",
+      Closer: form.closer,
+      Opener: form.opener,
+      "Setup Fee": form.setupFee,
+      "Monthly Fee": form.monthlyFee,
+      "Today's Total": todaysTotal.toFixed(2),
+      "Recur Day": form.todaysDayOfMonth,
+      "Commitment Total": commitmentTotal.toFixed(2),
+      "Credit Card Confirmation": form.paymentAuthorized ? "true" : "false",
     }
 
     try {
@@ -364,7 +382,7 @@ export function PaySignForm() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <Field
                         label="Company name (for display on Google, etc.)"
-                        name="company-name"
+                        name="Business Name"
                         placeholder="Smith Plumbing"
                         required
                         value={form.companyName}
@@ -372,7 +390,7 @@ export function PaySignForm() {
                       />
                       <Field
                         label="Year established"
-                        name="year-established"
+                        name="Year Est"
                         optional
                         placeholder="2014"
                         value={form.yearEstablished}
@@ -383,7 +401,7 @@ export function PaySignForm() {
                     <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <Field
                         label="Business owner / primary contact"
-                        name="owner-contact"
+                        name="Contact Name"
                         placeholder="John Smith"
                         required
                         value={form.ownerContact}
@@ -391,7 +409,7 @@ export function PaySignForm() {
                       />
                       <Field
                         label="Email address (VERIFY)"
-                        name="email"
+                        name="Email"
                         type="email"
                         placeholder="john@smithplumbing.com"
                         required
@@ -403,7 +421,7 @@ export function PaySignForm() {
                     <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <Field
                         label="Business (public) phone number"
-                        name="business-phone"
+                        name="Public Phone"
                         type="tel"
                         placeholder="(555) 123-4567"
                         required
@@ -412,7 +430,7 @@ export function PaySignForm() {
                       />
                       <Field
                         label="Contact phone number"
-                        name="contact-phone"
+                        name="Private Contact Number"
                         type="tel"
                         optional
                         placeholder="(555) 987-6543"
@@ -430,7 +448,7 @@ export function PaySignForm() {
                     <div className="grid grid-cols-1 gap-4">
                       <Field
                         label="Postal address"
-                        name="address"
+                        name="Postal Address"
                         placeholder="123 Main St"
                         required
                         value={form.address}
@@ -440,7 +458,7 @@ export function PaySignForm() {
                     <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
                       <Field
                         label="City"
-                        name="city"
+                        name="City"
                         placeholder="Irvine"
                         required
                         value={form.city}
@@ -448,7 +466,7 @@ export function PaySignForm() {
                       />
                       <Field
                         label="State"
-                        name="state"
+                        name="State"
                         placeholder="CA"
                         required
                         value={form.state}
@@ -456,7 +474,7 @@ export function PaySignForm() {
                       />
                       <Field
                         label="Zip code"
-                        name="zip"
+                        name="Zip"
                         placeholder="92614"
                         required
                         value={form.zip}
@@ -472,7 +490,7 @@ export function PaySignForm() {
 
                     <Field
                       label="Client's website domain"
-                      name="website"
+                      name="Website"
                       optional
                       placeholder="www.smithplumbing.com"
                       value={form.website}
@@ -495,7 +513,7 @@ export function PaySignForm() {
                       </label>
                       <textarea
                         id="services"
-                        name="services"
+                        name="Client's Primary Services"
                         rows={3}
                         placeholder="Drain cleaning, water heater install, leak repair"
                         value={form.services}
@@ -517,7 +535,7 @@ export function PaySignForm() {
 
                     <RadioGroup
                       label="Plan selected"
-                      name="plan-selected"
+                      name="Plan Selected"
                       options={[...PLAN_OPTIONS]}
                       value={form.plan}
                       onChange={(v) => set("plan", v)}
@@ -538,11 +556,11 @@ export function PaySignForm() {
                         </span>
                       </label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                        {TASK_OPTIONS.map((t) => {
-                          const checked = form.tasks.includes(t)
+                        {TASKS.map((t) => {
+                          const checked = form.tasks.includes(t.label)
                           return (
                             <label
-                              key={t}
+                              key={t.label}
                               className="flex items-start gap-2.5 px-3.5 py-2.5 rounded-[var(--radius-sm)] cursor-pointer transition-colors"
                               style={{
                                 background: checked
@@ -557,15 +575,16 @@ export function PaySignForm() {
                             >
                               <input
                                 type="checkbox"
+                                name={t.field}
                                 checked={checked}
-                                onChange={() => toggleTask(t)}
+                                onChange={() => toggleTask(t.label)}
                                 className="mt-0.5 w-4 h-4 accent-[var(--accent)]"
                               />
                               <span
                                 className="text-[14px] font-medium leading-[1.35]"
                                 style={{ color: "var(--ink)" }}
                               >
-                                {t}
+                                {t.label}
                               </span>
                             </label>
                           )
@@ -576,7 +595,7 @@ export function PaySignForm() {
                     <RadioGroup
                       className="mt-6"
                       label="Minimum monthly commitment (months)"
-                      name="commitment-months"
+                      name="Minimum Commitment"
                       options={[...COMMITMENT_OPTIONS]}
                       value={form.commitment}
                       onChange={(v) => set("commitment", v)}
@@ -593,7 +612,7 @@ export function PaySignForm() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <SelectField
                         label="Closer"
-                        name="closer"
+                        name="Closer"
                         required
                         value={form.closer}
                         onChange={(e) => set("closer", e.target.value)}
@@ -601,7 +620,7 @@ export function PaySignForm() {
                       />
                       <SelectField
                         label="Opener"
-                        name="opener"
+                        name="Opener"
                         required
                         value={form.opener}
                         onChange={(e) => set("opener", e.target.value)}
@@ -619,7 +638,7 @@ export function PaySignForm() {
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       <Field
                         label="Setup (or annual) fee"
-                        name="setup-fee"
+                        name="Setup Fee"
                         type="number"
                         inputMode="decimal"
                         placeholder="500"
@@ -629,7 +648,7 @@ export function PaySignForm() {
                       />
                       <Field
                         label='Monthly ("N/A" if annual)'
-                        name="monthly-fee"
+                        name="Monthly Fee"
                         type="text"
                         placeholder="300"
                         required
@@ -638,7 +657,7 @@ export function PaySignForm() {
                       />
                       <Field
                         label="Today's day of month (N/A for annual)"
-                        name="todays-day-of-month"
+                        name="Recur Day"
                         type="text"
                         optional
                         placeholder="15"
@@ -678,6 +697,7 @@ export function PaySignForm() {
                       >
                         <input
                           type="checkbox"
+                          name="Credit Card Confirmation"
                           required
                           checked={form.paymentAuthorized}
                           onChange={(e) =>
