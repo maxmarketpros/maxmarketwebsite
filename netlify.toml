@@ -13,3 +13,143 @@
   to = "https://www.maxmarketpros.com/:splat"
   status = 301
   force = true
+
+# Legacy Webflow URL redirects (preserve SEO equity from old indexed URLs)
+
+[[redirects]]
+  from = "/custom-web-design-irvine-ca"
+  to = "/services/web-design"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/social-media-management-irvine-ca"
+  to = "/services/social-media/management"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/local-seo-irvine-ca"
+  to = "/services/seo/local"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/review-generation-reputation-management-irvine-ca"
+  to = "/services/social-media/review-generation"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/custom-backlink-campaigns-packages"
+  to = "/services/seo/backlinks"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/lead-generation-through-effective-digital-marketing-seo-smm"
+  to = "/solutions/lead-generation"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/email-marketing-with-maxmarketpros-irvine-ca"
+  to = "/solutions/email-marketing"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ai-chatbot-for-appointment-scheduling"
+  to = "/solutions/ai-agents"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/call-tracking-for-lead-management"
+  to = "/solutions/lead-generation"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/streamline-your-invoicing-process-with-our-custom-solution"
+  to = "/solutions/payments"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/analytics-reporting-for-seo-campaigns"
+  to = "/solutions/analytics"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/auto-missed-call-responder-call-tracking"
+  to = "/solutions/ai-agents"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/local-presence-for-better-conversions"
+  to = "/services/seo/local"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact-center-for-single-sign-on-messaging"
+  to = "/solutions"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/our-testimonials-reviews"
+  to = "/about/testimonials"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact-us-maxmarketpros"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/irvine-ca-seo-agency-contact-us-maxmarketpros"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/customer-support"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/plans-pricing-maxmarketpros"
+  to = "/plans"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy-policy-max-market-pros"
+  to = "/privacy"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/terms-and-conditions"
+  to = "/terms"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/detail_post"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/need-customers-call-now"
+  to = "/"
+  status = 301
+  force = true
