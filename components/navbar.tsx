@@ -289,6 +289,8 @@ function MegaPanel({
 }) {
   const hasSubSections = !!category.sections && category.sections.length > 0
   const children = category.children || []
+  const hubLabel =
+    category.label === "About" ? category.label : `View all ${category.label}`
 
   return (
     <div
@@ -316,7 +318,7 @@ function MegaPanel({
           onClick={onClose}
         >
           <category.icon className="w-4 h-4" style={{ color: "var(--accent)" }} />
-          {category.label}
+          {hubLabel}
           <ExternalLink className="w-3 h-3 opacity-40" />
         </Link>
       </div>
@@ -493,7 +495,7 @@ function MobileAccordion({
             style={{ color: "var(--accent)" }}
             onClick={onClose}
           >
-            View All {category.label}
+            {category.label === "About" ? "About" : `View all ${category.label}`}
             <ChevronRight className="w-3 h-3" />
           </Link>
 
