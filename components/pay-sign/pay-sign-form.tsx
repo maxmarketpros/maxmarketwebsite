@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useMemo, useState } from "react"
 import { usePathname } from "next/navigation"
 import { PrimaryButton } from "@/components/ui/primary-button"
 import { submitNetlifyForm } from "@/lib/netlify-forms"
@@ -9,68 +9,8 @@ import {
   AlertCircle,
   ArrowRight,
   ShieldCheck,
-  CreditCard,
   Lock,
 } from "lucide-react"
-
-const CHARGEDESK_EMBED_ID = "chargedesk-embed-pay"
-const CHARGEDESK_SRC = "https://chargedesk.com/client.js"
-
-declare global {
-  interface Window {
-    ChargeDesk?: {
-      embed: (config: {
-        id: string
-        company: string
-        embed?: string
-        options?: Record<string, unknown>
-      }) => void
-    }
-  }
-}
-
-function useChargeDesk(targetId: string) {
-  const initialised = useRef(false)
-
-  useEffect(() => {
-    if (initialised.current) return
-    initialised.current = true
-
-    const initEmbed = () => {
-      const el = document.getElementById(targetId)
-      if (!el || !window.ChargeDesk?.embed) return
-      try {
-        window.ChargeDesk.embed({
-          id: targetId,
-          company: "maxmarketpros",
-          embed: "pay",
-        })
-      } catch (err) {
-        console.error("[chargedesk] embed failed", err)
-      }
-    }
-
-    if (window.ChargeDesk?.embed) {
-      initEmbed()
-      return
-    }
-
-    const existing = document.querySelector<HTMLScriptElement>(
-      `script[src="${CHARGEDESK_SRC}"]`,
-    )
-    if (existing) {
-      existing.addEventListener("load", initEmbed, { once: true })
-      return
-    }
-
-    const s = document.createElement("script")
-    s.src = CHARGEDESK_SRC
-    s.async = true
-    s.crossOrigin = "anonymous"
-    s.addEventListener("load", initEmbed, { once: true })
-    document.body.appendChild(s)
-  }, [targetId])
-}
 
 const FORM_NAME = "pay-sign-create-task"
 
@@ -183,8 +123,6 @@ export function PaySignForm() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const [form, setForm] = useState<FormState>(EMPTY)
   const submitted = status === "success"
-
-  useChargeDesk(CHARGEDESK_EMBED_ID)
 
   const setupNum = toNumber(form.setupFee)
   const monthlyNum = toNumber(form.monthlyFee)
@@ -327,8 +265,7 @@ export function PaySignForm() {
               className="mt-4 text-[16.5px] sm:text-[18px] leading-[1.6] max-w-[640px] mx-auto"
               style={{ color: "var(--muted)" }}
             >
-              Capture the deal details, then process the client&rsquo;s payment
-              through ChargeDesk.
+              Capture the deal details and send them straight to the team.
             </p>
           </div>
 
@@ -382,9 +319,7 @@ export function PaySignForm() {
                       className="text-[15.5px] max-w-[440px]"
                       style={{ color: "var(--muted)" }}
                     >
-                      The team has been emailed. If you haven&rsquo;t already
-                      charged the card, head back and click <em>Process
-                      payment</em> to open ChargeDesk.
+                      The team has been emailed with all the deal details.
                     </p>
                     <button
                       type="button"
@@ -805,47 +740,8 @@ export function PaySignForm() {
                       style={{ color: "var(--muted)" }}
                     >
                       <ShieldCheck className="w-3.5 h-3.5" />
-                      After submitting, process the client&rsquo;s card in the
-                      ChargeDesk widget below.
+                      Submission goes to the team via Netlify.
                     </p>
-
-                    {/* ChargeDesk inline payment embed */}
-                    <div className="mt-10 pt-8" style={{ borderTop: "1px solid var(--border-color)" }}>
-                      <div className="flex items-center gap-3 mb-4">
-                        <span
-                          className="w-9 h-9 rounded-[var(--radius-xs)] inline-flex items-center justify-center shrink-0"
-                          style={{
-                            background: "var(--accent-bg)",
-                            color: "var(--accent)",
-                          }}
-                        >
-                          <CreditCard className="w-5 h-5" strokeWidth={2.25} />
-                        </span>
-                        <div>
-                          <h3
-                            className="text-[18px] sm:text-[20px] font-bold leading-[1.2] tracking-[-0.01em]"
-                            style={{ color: "var(--ink)" }}
-                          >
-                            Process payment
-                          </h3>
-                          <p
-                            className="text-[13px] mt-0.5"
-                            style={{ color: "var(--muted)" }}
-                          >
-                            Today&rsquo;s total: <strong>{formatMoney(todaysTotal)}</strong> &middot; enter card details below to charge.
-                          </p>
-                        </div>
-                      </div>
-                      <div
-                        id={CHARGEDESK_EMBED_ID}
-                        className="rounded-[var(--radius-sm)] overflow-hidden"
-                        style={{
-                          background: "var(--bg)",
-                          border: "1px solid var(--border-color)",
-                          minHeight: 320,
-                        }}
-                      />
-                    </div>
                   </form>
                 )}
               </div>
