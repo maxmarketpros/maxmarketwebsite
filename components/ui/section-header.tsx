@@ -17,14 +17,14 @@ export function SectionHeader({ pill, heading, paragraph, centered = true, class
         </div>
       )}
       <h2
-        className="text-[40px] sm:text-[46px] lg:text-[52px] font-bold leading-[1.1] tracking-[-0.02em]"
+        className="text-[32px] sm:text-[40px] lg:text-[48px] font-bold leading-[1.1] tracking-[-0.02em] text-balance"
         style={{ color: 'var(--ink)' }}
       >
         {heading}
       </h2>
       {paragraph && (
         <p
-          className="mt-5 text-[18px] sm:text-[20px] leading-[1.6] max-w-[640px]"
+          className="mt-5 text-[17px] sm:text-[19px] leading-[1.6] max-w-[640px]"
           style={{
             color: 'var(--muted)',
             margin: centered ? '20px auto 0' : '20px 0 0',

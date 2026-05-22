@@ -10,6 +10,14 @@ import {
   resources,
   contact,
 } from "@/lib/site-map"
+import { BUSINESS, SITE_NAME } from "@/lib/seo"
+
+const socialLinks: { name: "facebook" | "instagram" | "linkedin" | "youtube"; href: string; label: string }[] = [
+  { name: "facebook", href: BUSINESS.socials[0], label: `${SITE_NAME} on Facebook` },
+  { name: "instagram", href: BUSINESS.socials[1], label: `${SITE_NAME} on Instagram` },
+  { name: "linkedin", href: BUSINESS.socials[2], label: `${SITE_NAME} on LinkedIn` },
+  { name: "youtube", href: BUSINESS.socials[3], label: `${SITE_NAME} on YouTube` },
+]
 
 /* ── Footer Link Groups ── */
 
@@ -63,7 +71,7 @@ const footerGroups = [
         label: c.label,
         href: c.href,
       })) || []),
-      { label: "Client Portal", href: "/client-portal" },
+      { label: "Client Portal", href: "https://launchpad.maxmarketpros.com/" },
     ],
   },
 ]
@@ -81,7 +89,9 @@ export function Footer() {
               alt="Max Market Pros"
               width={160}
               height={40}
-              className="h-9 w-auto mb-5"
+              sizes="160px"
+              style={{ width: "auto", height: "36px" }}
+              className="mb-5"
             />
             <p
               className="text-[14px] leading-[1.65] max-w-[300px]"
@@ -93,23 +103,23 @@ export function Footer() {
 
             {/* Social links */}
             <div className="mt-6 flex items-center gap-3">
-              {["facebook", "instagram", "linkedin", "youtube"].map(
-                (social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="w-9 h-9 rounded-full flex items-center justify-center transition-colors duration-200"
-                    style={{
-                      background: "var(--bg)",
-                      border: "1px solid var(--border-color)",
-                      color: "var(--muted)",
-                    }}
-                    aria-label={social}
-                  >
-                    <SocialIcon name={social} />
-                  </a>
-                )
-              )}
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full flex items-center justify-center transition-colors duration-200 hover:opacity-80"
+                  style={{
+                    background: "var(--bg)",
+                    border: "1px solid var(--border-color)",
+                    color: "var(--muted)",
+                  }}
+                  aria-label={social.label}
+                >
+                  <SocialIcon name={social.name} />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -123,17 +133,32 @@ export function Footer() {
                 {group.title}
               </h4>
               <ul className="space-y-2.5">
-                {group.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-[13px] transition-colors duration-200 hover:opacity-70"
-                      style={{ color: "var(--muted)" }}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+                {group.links.map((link) => {
+                  const isExternal = link.href.startsWith("http")
+                  return (
+                    <li key={link.href}>
+                      {isExternal ? (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[13px] transition-colors duration-200 hover:opacity-70"
+                          style={{ color: "var(--muted)" }}
+                        >
+                          {link.label}
+                        </a>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          className="text-[13px] transition-colors duration-200 hover:opacity-70"
+                          style={{ color: "var(--muted)" }}
+                        >
+                          {link.label}
+                        </Link>
+                      )}
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           ))}

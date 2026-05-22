@@ -9,7 +9,7 @@
   --bg: #F7FAFC;
   --surface: #FFFFFF;
   --ink: #0B132B;
-  --muted: #5B6B84;
+  --muted: #4A5A75;
   --accent: #1677FF;
   --accent-hover: #0D5FD9;
   --cyan: #74D3FF;
@@ -53,6 +53,10 @@
   --input: var(--border-color);
   --ring: var(--accent);
   --radius: var(--radius-md);
+}
+
+@theme {
+  --breakpoint-xs: 30rem;
 }
 
 @theme inline {
@@ -99,6 +103,21 @@
   50% { opacity: 1; }
 }
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes floatBubble {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes floatBubbleLg {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
 /* ── Base ── */
 @layer base {
   * {
@@ -109,11 +128,13 @@
     color: var(--ink);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
   }
 
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   /* Scrollbar */
@@ -141,6 +162,18 @@
   padding-right: 24px;
 }
 
+/* Mobile-first vertical section padding: 80px default, 120px at lg+ */
+.section-y {
+  padding-top: var(--section-py-sm);
+  padding-bottom: var(--section-py-sm);
+}
+@media (min-width: 1024px) {
+  .section-y {
+    padding-top: var(--section-py);
+    padding-bottom: var(--section-py);
+  }
+}
+
 .card-surface {
   background: var(--surface);
   border: 1px solid var(--border-color);
@@ -164,20 +197,25 @@
 }
 
 .accent-underline {
-  position: relative;
-  display: inline-block;
+  background-image: linear-gradient(
+    to top,
+    transparent 2px,
+    rgba(116, 211, 255, 0.5) 2px,
+    rgba(116, 211, 255, 0.5) 8px,
+    transparent 8px
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
-.accent-underline::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 2px;
-  width: 100%;
-  height: 6px;
-  background: var(--cyan);
-  border-radius: 3px;
-  opacity: 0.5;
-  z-index: -1;
+
+/* Tailwind's text-balance utility compiles to text-wrap: balance, which
+   WebKit implements more aggressively than Chromium — producing extra
+   line breaks on iOS Safari that don't appear in Chrome. Override to
+   text-wrap: pretty so both engines render the same line counts. */
+.text-balance {
+  text-wrap: pretty;
 }
 
 .text-gradient {
@@ -186,3 +224,4 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+

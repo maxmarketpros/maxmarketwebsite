@@ -5,3 +5,7 @@ npx -y capture-website-cli https://gopherbustersus.com/ --width 1440 --height 90
 npx -y capture-website-cli https://gopherbustersus.com/ --width 375 --height 812 --output public/showcase/gopher-mobile.jpg
 npx -y capture-website-cli https://allexteriorsolutions.org/ --width 1440 --height 900 --output public/showcase/allexterior-desktop.jpg
 npx -y capture-website-cli https://allexteriorsolutions.org/ --width 375 --height 812 --output public/showcase/allexterior-mobile.jpg
+npx -y capture-website-cli https://www.spconstructionca.com/ --width 1440 --height 900 --output public/showcase/spc-desktop.jpg
+npx -y capture-website-cli https://www.spconstructionca.com/ --width 375 --height 812 --output public/showcase/spc-mobile.jpg
+npx -y capture-website-cli https://www.pooltilecleaning.com/ --width 1440 --height 900 --output public/showcase/precision-desktop.jpg
+npx -y capture-website-cli https://www.pooltilecleaning.com/ --width 375 --height 812 --output public/showcase/precision-mobile.jpg

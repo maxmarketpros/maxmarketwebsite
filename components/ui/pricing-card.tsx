@@ -32,7 +32,7 @@ export function PricingCard({
       className={cn(
         "relative flex flex-col overflow-hidden transition-all duration-300",
         "rounded-[var(--radius-xl)]",
-        recommended ? 'scale-[1.03] z-10' : '',
+        recommended ? 'md:scale-[1.03] z-10' : '',
         className
       )}
       style={{

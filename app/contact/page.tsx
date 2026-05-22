@@ -1,23 +1,32 @@
-﻿import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { UnderConstruction } from "@/components/under-construction"
+import type { Metadata } from "next"
+import { Navbar } from "@/components/navbar"
+import { ContactGetInTouch } from "@/components/contact/contact-get-in-touch"
+import { ContactOffice } from "@/components/contact/contact-office"
+import { buildMetadata } from "@/lib/seo"
+import { breadcrumbSchema, jsonLd } from "@/lib/schema"
 
-export const metadata = {
-  title: "Contact Us â€” Max Market Pros",
-  description: "Get in touch with our team for a free consultation or support.",
-}
+export const metadata: Metadata = buildMetadata({
+  title: "Contact",
+  description:
+    "Talk to a local growth strategist. Call (949) 603-0389, email info@maxmarketpros.com, or book a free 20-minute strategy call. Office in Irvine, CA.",
+  path: "/contact",
+})
+
+const breadcrumb = breadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "Contact", path: "/contact" },
+])
 
 export default function Page() {
   return (
     <main>
       <Navbar />
-      <UnderConstruction
-        title="Contact Us"
-        description="Get in touch with our team for a free consultation or support."
-        backHref="/"
-        backLabel="Back to Home"
+      <ContactGetInTouch />
+      <ContactOffice />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumb) }}
       />
-      <Footer />
     </main>
   )
 }

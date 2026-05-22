@@ -4,6 +4,7 @@ import { Pill } from "./ui/pill"
 import { PrimaryButton } from "./ui/primary-button"
 import { SecondaryButton } from "./ui/secondary-button"
 import { MockupPanel } from "./ui/mockup-panel"
+import { TrustStrip } from "./trust-strip"
 import { Shield, Sparkles, Wrench } from "lucide-react"
 
 export function HeroSection() {
@@ -13,21 +14,21 @@ export function HeroSection() {
       <div className="absolute inset-0 pointer-events-none">
         {/* Strong right-side blue glow */}
         <div
-          className="absolute top-[-10%] right-[-5%] w-[900px] h-[900px] rounded-full"
+          className="absolute top-[-10%] right-[-5%] w-[520px] h-[520px] sm:w-[900px] sm:h-[900px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(22,119,255,0.18) 0%, rgba(22,119,255,0.06) 40%, transparent 70%)',
           }}
         />
         {/* Secondary cyan glow right */}
         <div
-          className="absolute top-[20%] right-[5%] w-[600px] h-[600px] rounded-full"
+          className="absolute top-[20%] right-[5%] w-[360px] h-[360px] sm:w-[600px] sm:h-[600px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(116,211,255,0.15) 0%, transparent 60%)',
           }}
         />
         {/* Subtle left glow */}
         <div
-          className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full"
+          className="absolute bottom-[-20%] left-[-10%] w-[320px] h-[320px] sm:w-[500px] sm:h-[500px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(22,119,255,0.05) 0%, transparent 70%)',
           }}
@@ -36,7 +37,7 @@ export function HeroSection() {
         <div className="absolute inset-0 noise-overlay" />
       </div>
 
-      <div className="section-container relative z-10 py-16 sm:py-20 lg:py-28">
+      <div className="section-container relative z-10 pt-16 sm:pt-20 lg:pt-28 pb-10 sm:pb-12 lg:pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left side - Content */}
           <div
@@ -46,25 +47,29 @@ export function HeroSection() {
             {/* Pill */}
             <Pill>
               <Sparkles className="w-3.5 h-3.5" />
-              Trusted by 500+ local service businesses
+              <span className="sm:hidden">Trusted by 1,000+ businesses</span>
+              <span className="hidden sm:inline">Trusted by 1,000+ local service businesses</span>
             </Pill>
 
             {/* H1 */}
             <h1
-              className="mt-7 text-[48px] sm:text-[56px] lg:text-[68px] font-bold leading-[1.05] tracking-[-0.03em]"
+              className="mt-6 text-[42px] xs:text-[46px] sm:text-[54px] lg:text-[64px] font-bold leading-[1.05] tracking-[-0.025em] sm:tracking-[-0.03em] sm:text-balance"
               style={{ color: 'var(--ink)' }}
             >
-              Grow on{' '}
-              <span className="accent-underline">Google</span>.
-              <br />
-              Get more calls
-              <br />
-              & booked jobs.
+              <span className="whitespace-nowrap">
+                Grow on <span className="accent-underline">Google</span>.
+              </span>
+              <br className="sm:hidden" />
+              {' '}
+              <span className="whitespace-nowrap">Get more calls</span>
+              <br className="sm:hidden" />
+              {' '}
+              <span className="whitespace-nowrap">&amp; booked jobs.</span>
             </h1>
 
             {/* Paragraph */}
             <p
-              className="mt-6 text-[18px] sm:text-[20px] leading-[1.65] max-w-[480px]"
+              className="mt-6 text-[17px] sm:text-[19px] leading-[1.65] max-w-[480px]"
               style={{ color: 'var(--muted)' }}
             >
               Done‑for‑you local SEO, web design, and lead generation built for service businesses.
@@ -103,11 +108,14 @@ export function HeroSection() {
           {/* Right side - Mockup */}
           <div
             className="flex justify-center lg:justify-end"
-            style={{ animation: 'fadeInUp 0.8s ease-out 0.2s both' }}
+            style={{ animation: 'fadeInUp 0.8s ease-out 0.1s both' }}
           >
             <MockupPanel />
           </div>
         </div>
+
+        {/* Trust strip — full content width, below the grid */}
+        <TrustStrip />
       </div>
     </section>
   )

@@ -41,6 +41,7 @@ import {
   AppWindow,
   Tag,
   Zap,
+  Rocket,
   Crown,
   Megaphone,
   ShoppingCart,
@@ -56,7 +57,6 @@ import {
   Calculator,
   HelpCircle,
   Phone,
-  HeadphonesIcon,
   LogIn,
   ChevronRight,
 } from "lucide-react"
@@ -94,7 +94,6 @@ export const about: NavCategory = {
   children: [
     { label: "Our Story", href: "/about/our-story", icon: BookOpen, description: "How Max Market Pros started" },
     { label: "Meet The Team", href: "/about/team", icon: Users, description: "The people behind the results" },
-    { label: "Case Studies", href: "/about/case-studies", icon: Trophy, description: "Real results for real businesses" },
     { label: "Careers", href: "/about/careers", icon: Briefcase, description: "Join our growing team" },
     { label: "Our Practices", href: "/about/practices", icon: ClipboardList, description: "How we work and deliver" },
     { label: "Testimonials", href: "/about/testimonials", icon: MessageSquare, description: "What our clients say" },
@@ -185,10 +184,10 @@ export const plans: NavCategory = {
   href: "/plans",
   icon: Tag,
   children: [
-    { label: "LocalMark Plan", href: "/plans/localmark", icon: MapPin, description: "$399/month — Local visibility" },
-    { label: "ServicePro Plan", href: "/plans/servicepro", icon: Zap, description: "$699/month — Full-service growth" },
-    { label: "Signature Plan", href: "/plans/signature", icon: Crown, description: "$1,299/month — Premium package" },
-    { label: "Campaign Plan", href: "/plans/campaign", icon: Megaphone, description: "Project-based campaigns" },
+    { label: "StarterMark Plan", href: "/plans/startermark", icon: Rocket, description: "$199/month — Smallest starter package" },
+    { label: "LocalMark Plan", href: "/plans/localmark", icon: MapPin, description: "$499/month — Local visibility" },
+    { label: "ServicePro Plan", href: "/plans/servicepro", icon: Zap, description: "$899/month — Full-service growth" },
+    { label: "Signature Plan", href: "/plans/signature", icon: Crown, description: "$1,499/month — Premium package" },
     { label: "A La Carte", href: "/plans/a-la-carte", icon: ShoppingCart, description: "Pick exactly what you need" },
     { label: "Custom Website", href: "/plans/custom-website", icon: Monitor, description: "One-time website build" },
   ],
@@ -199,10 +198,9 @@ export const tools: NavCategory = {
   href: "/tools",
   icon: Wrench,
   children: [
-    { label: "Local Ranking Checker", href: "/tools/ranking-checker", icon: MapPin, description: "Check your Google Maps ranking" },
+    { label: "QR Code Generator", href: "/tools/qr-code-generator", icon: QrCode, description: "Free QR codes for any use case" },
     { label: "Website SEO Auditor", href: "/tools/seo-auditor", icon: Search, description: "Free instant SEO audit" },
     { label: "Directory Listing Checker", href: "/tools/directory-checker", icon: ClipboardList, description: "Audit your business listings" },
-    { label: "Logo Creator", href: "/tools/logo-creator", icon: PenTool, description: "AI-powered logo generation" },
   ],
 }
 
@@ -238,13 +236,12 @@ export const contact: NavCategory = {
   icon: Phone,
   children: [
     { label: "Schedule a Call", href: "/contact/schedule", icon: Calendar, description: "Book a free strategy call" },
-    { label: "Support", href: "/contact/support", icon: HeadphonesIcon, description: "Get help with your account" },
   ],
 }
 
 export const clientPortal: NavCategory = {
   label: "Client Portal",
-  href: "/client-portal",
+  href: "https://launchpad.maxmarketpros.com/",
   icon: LogIn,
 }
 

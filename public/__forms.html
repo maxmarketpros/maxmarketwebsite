@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hidden form definitions for Netlify</title>
+  <meta name="robots" content="noindex" />
+</head>
+<body>
+  <!--
+    Netlify scans this static file at build time to register every form on
+    the site. The React components submit via AJAX to /__forms.html (per the
+    Next.js Runtime v5 requirement). Field names below must exactly match
+    the names sent by the React forms.
+
+    Naming convention:
+      - lead forms          : descriptive kebab-case (e.g. contact-global)
+      - tool usage capture  : prefixed with "tool-" so they sort together
+  -->
+
+  <!-- =====================================================
+       LEAD FORMS
+       ===================================================== -->
+
+  <!--
+    Global "Contact Max Market Pros" form.
+    Rendered at the bottom of every non-/contact page via
+    components/contact-section-global.tsx, and on /contact itself.
+    Source: components/contact/contact-get-in-touch.tsx
+  -->
+  <form name="contact-global" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="contact-global" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="page-source" />
+    <input type="text" name="name" />
+    <input type="text" name="business" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <input type="url" name="website" />
+    <textarea name="message"></textarea>
+  </form>
+
+  <!--
+    SEO Auditor lead capture (after the user runs an audit).
+    Source: components/tools/seo-auditor/audit-cta-section.tsx
+  -->
+  <form name="seo-audit-lead" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="seo-audit-lead" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="page-source" />
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="text" name="business" />
+    <input type="tel" name="phone" />
+    <input type="url" name="website" />
+    <input type="url" name="audited-url" />
+    <input type="text" name="overall-score" />
+    <input type="text" name="performance-score" />
+    <input type="text" name="seo-score" />
+    <input type="text" name="accessibility-score" />
+    <input type="text" name="best-practices-score" />
+    <textarea name="message"></textarea>
+  </form>
+
+  <!--
+    À-la-carte estimate (from the plan-builder calculator).
+    Source: components/plans/a-la-carte/estimate-form.tsx
+  -->
+  <form name="a-la-carte-estimate" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="a-la-carte-estimate" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="page-source" />
+    <input type="text" name="name" />
+    <input type="text" name="business" />
+    <input type="tel" name="phone" />
+    <input type="email" name="email" />
+    <textarea name="notes"></textarea>
+    <input type="text" name="current-plan" />
+    <input type="text" name="monthly-total" />
+    <input type="text" name="one-time-total" />
+    <input type="text" name="custom-quote-count" />
+    <textarea name="selected-items"></textarea>
+  </form>
+
+  <!--
+    Careers application form.
+    Source: components/about/careers/careers-apply.tsx
+  -->
+  <form name="careers-application" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="careers-application" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="page-source" />
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <input type="text" name="role" />
+    <input type="text" name="role-label" />
+    <input type="url" name="linkedin" />
+    <input type="url" name="portfolio" />
+    <textarea name="message"></textarea>
+  </form>
+
+  <!--
+    Blog newsletter signup.
+    Source: components/blog/blog-newsletter-cta.tsx
+  -->
+  <form name="blog-newsletter" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="blog-newsletter" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="page-source" />
+    <input type="email" name="email" />
+  </form>
+
+  <!-- =====================================================
+       TOOL USAGE CAPTURE (silent, fire-and-forget)
+       ===================================================== -->
+
+  <!--
+    Fired when a visitor runs the SEO auditor.
+    Source: components/tools/seo-auditor/audit-form.tsx
+  -->
+  <form name="tool-seo-audit-run" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="tool-seo-audit-run" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="page-source" />
+    <input type="url" name="url" />
+  </form>
+
+  <!--
+    Fired when a visitor runs the directory checker.
+    Source: components/tools/directory-checker/directory-form.tsx
+  -->
+  <form name="tool-directory-check-run" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="tool-directory-check-run" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="page-source" />
+    <input type="text" name="business-name" />
+    <input type="text" name="street-address" />
+    <input type="text" name="city" />
+    <input type="text" name="state" />
+    <input type="text" name="zip" />
+    <input type="tel" name="phone" />
+  </form>
+
+  <!--
+    Fired the first time a visitor generates a QR code in a session.
+    Source: components/tools/qr-code-generator/qr-generator-content-forms.tsx
+  -->
+  <form name="tool-qr-generate-run" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="tool-qr-generate-run" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="page-source" />
+    <input type="text" name="qr-type" />
+    <input type="text" name="content-summary" />
+  </form>
+</body>
+</html>
