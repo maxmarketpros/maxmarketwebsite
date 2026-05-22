@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import { Check, Minus } from "lucide-react"
 import { SectionHeader } from "@/components/ui/section-header"
 import { plans, comparisonSections, type CellValue } from "@/lib/plans-data"
@@ -37,6 +40,10 @@ function Cell({ value, isFeatured }: { value: CellValue; isFeatured?: boolean })
 }
 
 export function PlansComparison() {
+  const recommendedIndex = plans.findIndex((p) => p.recommended)
+  const [selectedIndex, setSelectedIndex] = useState(recommendedIndex === -1 ? 0 : recommendedIndex)
+  const selectedPlan = plans[selectedIndex]
+
   return (
     <section id="compare" aria-labelledby="plans-compare-heading" className="relative scroll-mt-20">
       <div className="absolute inset-0 pointer-events-none">
@@ -60,8 +67,139 @@ export function PlansComparison() {
           paragraph="Every line item, every plan, no fine print. ServicePro is the most popular for a reason — but pick the plan that matches the stage you&rsquo;re actually in."
         />
 
+        {/* Mobile: plan selector + 2-column compact view */}
+        <div className="md:hidden mt-10">
+          <div
+            role="tablist"
+            aria-label="Select a plan to compare"
+            className="grid grid-cols-2 gap-2"
+          >
+            {plans.map((p, i) => {
+              const isActive = i === selectedIndex
+              return (
+                <button
+                  key={p.slug}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setSelectedIndex(i)}
+                  className="relative rounded-[12px] px-3 py-2.5 text-left transition-colors"
+                  style={{
+                    background: isActive ? "var(--accent-bg)" : "var(--surface)",
+                    border: `1px solid ${isActive ? "var(--accent)" : "var(--border-color)"}`,
+                  }}
+                >
+                  <div className="flex items-baseline justify-between gap-2">
+                    <span
+                      className="text-[13.5px] font-bold leading-tight"
+                      style={{ color: isActive ? "var(--accent)" : "var(--ink)" }}
+                    >
+                      {p.name}
+                    </span>
+                    <span
+                      className="text-[11.5px] font-medium tabular-nums"
+                      style={{ color: "var(--muted)" }}
+                    >
+                      {p.price}/mo
+                    </span>
+                  </div>
+                  {p.recommended && (
+                    <span
+                      className="mt-1.5 inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-[0.06em] text-white"
+                      style={{ background: "var(--accent)" }}
+                    >
+                      Most Popular
+                    </span>
+                  )}
+                </button>
+              )
+            })}
+          </div>
+
+          <div
+            className="mt-5 rounded-[var(--radius-lg)] overflow-hidden"
+            style={{
+              background: "var(--surface)",
+              border: "1px solid var(--border-color)",
+              boxShadow: "0 1px 3px var(--shadow-color), 0 12px 32px var(--shadow-color)",
+            }}
+          >
+            <div
+              className="flex items-center justify-between px-4 py-3"
+              style={{ borderBottom: "1px solid var(--border-color)" }}
+            >
+              <span
+                className="text-[11px] font-semibold uppercase tracking-[0.1em]"
+                style={{ color: "var(--muted)" }}
+              >
+                Feature
+              </span>
+              <span
+                className="text-[13px] font-bold"
+                style={{ color: selectedPlan.recommended ? "var(--accent)" : "var(--ink)" }}
+              >
+                {selectedPlan.name}
+              </span>
+            </div>
+
+            {comparisonSections.map((section) => {
+              const SectionIcon = getIcon(section.iconName)
+              return (
+                <div key={section.title}>
+                  <div
+                    className="flex items-center gap-2 px-4 py-2.5"
+                    style={{
+                      background: "var(--bg)",
+                      borderTop: "1px solid var(--border-color)",
+                      borderBottom: "1px solid var(--border-color)",
+                    }}
+                  >
+                    <span
+                      className="w-6 h-6 rounded-[7px] flex items-center justify-center shrink-0"
+                      style={{ background: "var(--accent-bg)", color: "var(--accent)" }}
+                    >
+                      <SectionIcon className="w-3.5 h-3.5" strokeWidth={2.3} />
+                    </span>
+                    <span
+                      className="text-[12px] font-bold uppercase tracking-[0.08em]"
+                      style={{ color: "var(--ink)" }}
+                    >
+                      {section.title}
+                    </span>
+                  </div>
+
+                  {section.rows.map((row, i) => (
+                    <div
+                      key={`${section.title}-${i}`}
+                      className="flex items-center justify-between gap-3 px-4 py-3"
+                      style={{
+                        borderBottom:
+                          i === section.rows.length - 1 ? "none" : "1px solid var(--border-color)",
+                      }}
+                    >
+                      <span
+                        className="text-[13.5px] font-medium leading-snug pr-2"
+                        style={{ color: "var(--ink)" }}
+                      >
+                        {row.label}
+                      </span>
+                      <span className="shrink-0">
+                        <Cell value={row.values[selectedIndex]} isFeatured={selectedPlan.recommended} />
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )
+            })}
+          </div>
+
+          <p className="mt-4 text-center text-[12.5px]" style={{ color: "var(--muted)" }}>
+            Tap a plan above to switch which column you&rsquo;re comparing.
+          </p>
+        </div>
+
+        {/* Desktop: full side-by-side table */}
         <div
-          className="mt-12 rounded-[var(--radius-lg)] overflow-hidden"
+          className="hidden md:block mt-12 rounded-[var(--radius-lg)] overflow-hidden"
           style={{
             background: "var(--surface)",
             border: "1px solid var(--border-color)",
@@ -164,10 +302,6 @@ export function PlansComparison() {
             </table>
           </div>
         </div>
-
-        <p className="mt-6 text-center text-[13px]" style={{ color: "var(--muted)" }}>
-          Scroll horizontally on smaller screens to see every column.
-        </p>
       </div>
     </section>
   )
