@@ -27,7 +27,7 @@ const processSteps = [
 
 const trustBullets = [
   { Icon: Clock, text: "Replies within one business day" },
-  { Icon: ShieldCheck, text: "Real strategists — not a call center" },
+  { Icon: ShieldCheck, text: "Real strategists, not a call center" },
   { Icon: MapPin, text: "Based in Irvine, CA · serving the U.S." },
 ]
 
@@ -597,7 +597,7 @@ export function ContactGetInTouch({
                       style={{ color: "var(--muted)" }}
                     >
                       By submitting you agree to be contacted by our team. We
-                      don&rsquo;t spam &mdash; ever.
+                      don&rsquo;t spam. Ever.
                     </p>
                   </form>
                 )}

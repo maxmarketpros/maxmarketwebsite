@@ -44,7 +44,7 @@ const solutions: Solution[] = [
     accent: "#8B5CF6",
     Icon: Bot,
     Mockup: ChatTranscriptMockup,
-    description: "24/7 AI receptionist that answers chat, SMS, DMs — and books appointments.",
+    description: "24/7 AI receptionist that answers chat, SMS, and DMs, then books appointments.",
   },
   {
     slug: "analytics",
@@ -76,7 +76,7 @@ const solutions: Solution[] = [
     accent: "#EF4444",
     Icon: Zap,
     Mockup: WorkflowMockup,
-    description: "Trigger-based routing, follow-ups, and payment chasing — fully automated.",
+    description: "Trigger-based routing, follow-ups, and payment chasing. Fully automated.",
   },
 ]
 

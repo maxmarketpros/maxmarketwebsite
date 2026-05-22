@@ -46,7 +46,7 @@ export default function Home() {
             of the search page.
           </>
         }
-        paragraph="Google shows 6+ placement types on a single results page — AI Overviews, the Map Pack, classic blue links, featured snippets, and more. Every one you own is a competitor you crowd out. Our full marketing stack is engineered to put your brand in as many placements as possible for the searches that drive revenue."
+        paragraph="Google shows 6+ placement types on a single results page: AI Overviews, the Map Pack, classic blue links, featured snippets, and more. Every one you own is a competitor you crowd out. Our full marketing stack is engineered to put your brand in as many placements as possible for the searches that drive revenue."
         primaryCta={{ label: "Book a free strategy call", href: "#contact" }}
       />
       <PlatformSection />

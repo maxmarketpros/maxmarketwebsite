@@ -95,7 +95,7 @@ export function IndustriesSection() {
             >
               From HVAC emergencies to dinner reservations, every industry has its own rhythm.
               We tune your websites, SEO, automation, and review systems to the way your
-              customers actually decide — so every lead you get is ready to buy.
+              customers actually decide, so every lead you get is ready to buy.
             </p>
             <Link
               href="/industries"

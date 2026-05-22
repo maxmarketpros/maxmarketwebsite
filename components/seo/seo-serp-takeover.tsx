@@ -93,7 +93,7 @@ export function SeoSerpTakeover({
             >
               {heading ?? (
                 <>
-                  The goal isn't one ranking —{" "}
+                  The goal isn't one ranking.{" "}
                   <span className="whitespace-nowrap">
                     it's{" "}
                     <span className="accent-underline">taking over the page</span>

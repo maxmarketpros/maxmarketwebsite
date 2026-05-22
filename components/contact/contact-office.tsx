@@ -223,8 +223,8 @@ export function ContactOffice() {
                   style={{ color: "var(--accent)" }}
                 >
                   message
-                </a>{" "}
-                — we&rsquo;ll respond by 9 AM the next business day.
+                </a>
+                {" "}and we&rsquo;ll respond by 9 AM the next business day.
               </p>
             </div>
 

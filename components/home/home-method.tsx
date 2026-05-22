@@ -22,7 +22,7 @@ const STEPS: Step[] = [
     accent: "#1677FF",
     title: "We start by finding the leaks",
     description:
-      "Full visibility audit — Lighthouse, GBP, citations, ad accounts, and CRM hygiene — so we know exactly where revenue is leaking.",
+      "Full visibility audit across Lighthouse, GBP, citations, ad accounts, and CRM hygiene, so we know exactly where revenue is leaking.",
     linkLabel: "How we audit",
   },
   {
@@ -40,7 +40,7 @@ const STEPS: Step[] = [
     accent: "#8B5CF6",
     title: "Our in-house Irvine team ships",
     description:
-      "Designers, engineers, SEOs, and ad buyers all under one roof — no offshore handoffs, no agency-of-agencies markup.",
+      "Designers, engineers, SEOs, and ad buyers all under one roof. No offshore handoffs, no agency-of-agencies markup.",
     linkLabel: "How we execute",
   },
   {
@@ -103,7 +103,7 @@ export function HomeMethod() {
               </span>
             </span>
           }
-          paragraph="A four-stage loop, repeated every month. The dial spins because the work never stops — audit, plan, execute, optimize, then back to the top."
+          paragraph="A four-stage loop, repeated every month. The dial spins because the work never stops: audit, plan, execute, optimize, then back to the top."
         />
 
         <div

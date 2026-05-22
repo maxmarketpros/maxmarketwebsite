@@ -165,7 +165,7 @@ export function PlatformSection() {
               <span className="whitespace-nowrap">local business.</span>
             </>
           }
-          paragraph="Everything you need to dominate local search and turn web traffic into booked jobs — all completely managed for you."
+          paragraph="Everything you need to dominate local search and turn web traffic into booked jobs, all completely managed for you."
         />
 
         <div

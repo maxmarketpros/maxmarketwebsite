@@ -56,7 +56,7 @@ const cards: InfraCard[] = [
     iconIds: "z9qAuS0WaMJk",
     title: "CRM & Missed Call Tracking",
     description:
-      "Auto‑text missed calls and track every lead — never lose a job again.",
+      "Auto‑text missed calls and track every lead. Never lose a job again.",
     bullets: [
       "Unified communications inbox",
       "Automated lead follow‑up",

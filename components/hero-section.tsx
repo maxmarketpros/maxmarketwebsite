@@ -73,7 +73,7 @@ export function HeroSection() {
               style={{ color: 'var(--muted)' }}
             >
               Done‑for‑you local SEO, web design, and lead generation built for service businesses.
-              Convert more leads with reviews, messaging, and fast follow‑up tools — all in one place.
+              Convert more leads with reviews, messaging, and fast follow‑up tools, all in one place.
             </p>
 
             {/* CTAs */}
