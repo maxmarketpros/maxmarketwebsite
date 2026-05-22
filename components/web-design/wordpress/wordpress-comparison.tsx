@@ -176,7 +176,7 @@ export function WordpressComparison() {
           style={{ animation: "fadeInUp 0.7s ease-out both" }}
         >
           <div
-            className="relative overflow-x-auto -mx-6 px-6 sm:mx-0 sm:px-0 pb-2"
+            className="relative overflow-x-auto -mx-6 px-6 sm:mx-0 sm:px-0 pb-2 hidden md:block"
             style={{ scrollbarWidth: "thin" }}
           >
             <div
@@ -303,6 +303,135 @@ export function WordpressComparison() {
                 />
               ))}
             </div>
+          </div>
+
+          <div className="md:hidden space-y-4">
+            {columns.map((c) => {
+              const recommended = !!c.recommended
+              return (
+                <article
+                  key={c.name}
+                  className="relative rounded-[var(--radius-lg)] overflow-hidden"
+                  style={{
+                    background: "var(--surface)",
+                    border: recommended
+                      ? `2px solid ${WP_BLUE}`
+                      : "1px solid var(--border-color)",
+                    boxShadow: recommended
+                      ? `0 4px 24px rgba(0,116,156,0.20), 0 1px 3px var(--shadow-color)`
+                      : "0 1px 3px var(--shadow-color), 0 4px 16px var(--shadow-color)",
+                  }}
+                >
+                  {recommended && (
+                    <div
+                      className="text-center text-[10px] font-extrabold uppercase tracking-[0.14em] py-1.5"
+                      style={{
+                        background: WP_BLUE,
+                        color: "#fff",
+                      }}
+                    >
+                      <span className="inline-flex items-center gap-1">
+                        <Star
+                          className="w-3 h-3"
+                          strokeWidth={2.75}
+                          fill="#fff"
+                        />
+                        Most complete
+                      </span>
+                    </div>
+                  )}
+                  <div className="px-4 pt-4 pb-3 flex items-center gap-3">
+                    <span
+                      className="shrink-0 w-11 h-11 rounded-[12px] flex items-center justify-center overflow-hidden"
+                      style={{
+                        background: "#fff",
+                        border: "1px solid var(--border-color)",
+                      }}
+                    >
+                      {c.logo.type === "favicon" ? (
+                        <img
+                          src={favicon(c.logo.domain, 128)}
+                          alt={`${c.name} logo`}
+                          width={24}
+                          height={24}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-6 h-6 object-contain"
+                        />
+                      ) : c.logo.type === "lucide" ? (
+                        <c.logo.Icon
+                          className="w-5 h-5"
+                          strokeWidth={2.25}
+                          style={{ color: "var(--muted)" }}
+                        />
+                      ) : (
+                        <span
+                          className="w-7 h-7 rounded-md flex items-center justify-center text-[11px] font-extrabold"
+                          style={{
+                            background: c.logo.bg,
+                            color: c.logo.color,
+                            fontFamily: "Outfit, sans-serif",
+                            letterSpacing: "-0.04em",
+                          }}
+                        >
+                          {c.logo.text}
+                        </span>
+                      )}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <h3
+                        className="text-[15px] font-bold leading-tight"
+                        style={{ color: "var(--ink)" }}
+                      >
+                        {c.name}
+                      </h3>
+                      <p
+                        className="mt-0.5 text-[12px] font-medium"
+                        style={{ color: "var(--muted)" }}
+                      >
+                        {c.subtitle}
+                      </p>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <div
+                        className="text-[14px] font-extrabold leading-tight"
+                        style={{
+                          color: recommended ? WP_BLUE : "var(--ink)",
+                        }}
+                      >
+                        {c.cost}
+                      </div>
+                      <div
+                        className="text-[10.5px]"
+                        style={{ color: "var(--muted)" }}
+                      >
+                        {c.costNote}
+                      </div>
+                    </div>
+                  </div>
+                  <ul
+                    className="border-t divide-y"
+                    style={{ borderColor: "var(--border-color)" }}
+                  >
+                    {capabilities.map((cap, i) => (
+                      <li
+                        key={cap}
+                        className="flex items-center gap-3 px-4 py-2.5"
+                        style={{ borderColor: "var(--border-color)" }}
+                      >
+                        <CellIcon cell={c.capabilities[i]} />
+                        <span
+                          className="text-[13.5px] font-medium leading-snug"
+                          style={{ color: "var(--ink)" }}
+                        >
+                          {cap}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              )
+            })}
           </div>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">

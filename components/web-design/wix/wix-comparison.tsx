@@ -146,7 +146,7 @@ export function WixComparison() {
           style={{ animation: "fadeInUp 0.7s ease-out both" }}
         >
           <div
-            className="relative overflow-x-auto -mx-6 px-6 sm:mx-0 sm:px-0 pb-2"
+            className="relative overflow-x-auto -mx-6 px-6 sm:mx-0 sm:px-0 pb-2 hidden md:block"
             style={{ scrollbarWidth: "thin" }}
           >
             <div
@@ -272,6 +272,134 @@ export function WixComparison() {
                 />
               ))}
             </div>
+          </div>
+
+          <div className="md:hidden space-y-4">
+            {columns.map((c) => {
+              const recommended = !!c.recommended
+              return (
+                <article
+                  key={c.name}
+                  className="relative rounded-[var(--radius-lg)] overflow-hidden"
+                  style={{
+                    background: "var(--surface)",
+                    border: recommended
+                      ? "2px solid #D6FF55"
+                      : "1px solid var(--border-color)",
+                    boxShadow: recommended
+                      ? "0 4px 24px rgba(214,255,85,0.36), 0 1px 3px var(--shadow-color)"
+                      : "0 1px 3px var(--shadow-color), 0 4px 16px var(--shadow-color)",
+                  }}
+                >
+                  {recommended && (
+                    <div
+                      className="text-center text-[10px] font-extrabold uppercase tracking-[0.14em] py-1.5"
+                      style={{
+                        background:
+                          "linear-gradient(180deg, #D6FF55 0%, #B8E840 100%)",
+                        color: "#0B0B0B",
+                      }}
+                    >
+                      <span className="inline-flex items-center gap-1">
+                        <Star
+                          className="w-3 h-3"
+                          strokeWidth={2.75}
+                          fill="#0B0B0B"
+                        />
+                        Most complete
+                      </span>
+                    </div>
+                  )}
+                  <div className="px-4 pt-4 pb-3 flex items-center gap-3">
+                    <span
+                      className="shrink-0 w-11 h-11 rounded-[12px] flex items-center justify-center overflow-hidden p-1"
+                      style={{
+                        background: "#fff",
+                        border: "1px solid var(--border-color)",
+                      }}
+                    >
+                      {c.logo.type === "favicon" ? (
+                        <img
+                          src={favicon(c.logo.domain, 128)}
+                          alt={`${c.name} logo`}
+                          width={24}
+                          height={24}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-6 h-6 object-contain"
+                        />
+                      ) : c.logo.type === "lucide" ? (
+                        <c.logo.Icon
+                          className="w-5 h-5"
+                          strokeWidth={2.25}
+                          style={{ color: "var(--muted)" }}
+                        />
+                      ) : (
+                        <img
+                          src={c.logo.src}
+                          alt={c.logo.alt}
+                          width={36}
+                          height={16}
+                          loading="lazy"
+                          decoding="async"
+                          className="h-4 w-auto object-contain"
+                        />
+                      )}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <h3
+                        className="text-[15px] font-bold leading-tight"
+                        style={{ color: "var(--ink)" }}
+                      >
+                        {c.name}
+                      </h3>
+                      <p
+                        className="mt-0.5 text-[12px] font-medium"
+                        style={{ color: "var(--muted)" }}
+                      >
+                        {c.subtitle}
+                      </p>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <div
+                        className="text-[14px] font-extrabold leading-tight"
+                        style={{
+                          color: recommended ? "#0B0B0B" : "var(--ink)",
+                        }}
+                      >
+                        {c.cost}
+                      </div>
+                      <div
+                        className="text-[10.5px]"
+                        style={{ color: "var(--muted)" }}
+                      >
+                        {c.costNote}
+                      </div>
+                    </div>
+                  </div>
+                  <ul
+                    className="border-t divide-y"
+                    style={{ borderColor: "var(--border-color)" }}
+                  >
+                    {capabilities.map((cap, i) => (
+                      <li
+                        key={cap}
+                        className="flex items-center gap-3 px-4 py-2.5"
+                        style={{ borderColor: "var(--border-color)" }}
+                      >
+                        <CellIcon cell={c.capabilities[i]} />
+                        <span
+                          className="text-[13.5px] font-medium leading-snug"
+                          style={{ color: "var(--ink)" }}
+                        >
+                          {cap}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              )
+            })}
           </div>
 
           {/* Cross-platform footer */}
