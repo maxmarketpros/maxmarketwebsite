@@ -92,31 +92,94 @@ export function QrGeneratorPreview({
     const canvas = canvasRef.current
     if (!canvas) return
     const dataUrl = canvas.toDataURL("image/png")
-    const win = window.open("", "_blank", "noopener,noreferrer,width=640,height=760")
-    if (!win) return
     const caption = payload.replace(/[&<>"']/g, (c) =>
       ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c] || c),
     )
-    win.document.open()
-    win.document.write(`<!doctype html>
+    const html = `<!doctype html>
 <html>
 <head>
+<meta charset="utf-8" />
 <title>QR Code — Max Market Pros</title>
 <style>
   *{box-sizing:border-box}
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px;color:#0B132B;background:#fff}
-  img{width:360px;height:360px;image-rendering:pixelated}
+  html,body{margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px;color:#0B132B;background:#fff}
+  img{width:360px;height:360px;image-rendering:pixelated;image-rendering:crisp-edges}
   p{margin:24px 0 0;font-size:14px;color:#5B6B84;max-width:360px;text-align:center;word-break:break-all}
-  @media print{p{color:#5B6B84}}
+  @media print{
+    @page{margin:0.5in}
+    body{padding:0;min-height:auto}
+    p{color:#5B6B84}
+  }
 </style>
 </head>
 <body>
 <img src="${dataUrl}" alt="QR code" />
 <p>${caption}</p>
-<script>window.addEventListener('load',function(){setTimeout(function(){window.print()},150)})</script>
 </body>
-</html>`)
-    win.document.close()
+</html>`
+
+    // Use a hidden same-origin iframe so we get a synchronous, popup-blocker-proof
+    // print surface. window.open + noopener returns null, which is why the old
+    // implementation never wrote to the popup.
+    const iframe = document.createElement("iframe")
+    iframe.setAttribute("aria-hidden", "true")
+    iframe.style.position = "fixed"
+    iframe.style.right = "0"
+    iframe.style.bottom = "0"
+    iframe.style.width = "0"
+    iframe.style.height = "0"
+    iframe.style.border = "0"
+    iframe.style.opacity = "0"
+    iframe.style.pointerEvents = "none"
+
+    const cleanup = () => {
+      try {
+        iframe.remove()
+      } catch {
+        // ignore
+      }
+    }
+
+    iframe.onload = () => {
+      const win = iframe.contentWindow
+      if (!win) {
+        cleanup()
+        return
+      }
+      const triggerPrint = () => {
+        try {
+          win.focus()
+          win.print()
+        } catch {
+          // ignore — some browsers throw if the user dismisses the dialog quickly
+        }
+        // Remove after the print dialog has had a chance to open and close.
+        // Chrome fires `afterprint` reliably; otherwise fall back to a timer.
+        let removed = false
+        const remove = () => {
+          if (removed) return
+          removed = true
+          cleanup()
+        }
+        win.addEventListener("afterprint", remove)
+        setTimeout(remove, 60000)
+      }
+      // Give the embedded <img> a tick to decode so it's actually rendered when
+      // the print dialog snapshots the page.
+      const img = win.document.querySelector("img")
+      if (img && !img.complete) {
+        img.addEventListener("load", () => setTimeout(triggerPrint, 50), { once: true })
+        img.addEventListener("error", () => setTimeout(triggerPrint, 50), { once: true })
+      } else {
+        setTimeout(triggerPrint, 50)
+      }
+    }
+
+    document.body.appendChild(iframe)
+    // srcdoc is more reliable than document.write for same-origin iframes and
+    // avoids quirks with about:blank load events.
+    iframe.srcdoc = html
   }
 
   return (
