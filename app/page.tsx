@@ -4,7 +4,9 @@ import { HeroSection } from "@/components/hero-section"
 import { InfrastructureSection } from "@/components/infrastructure-section"
 import { SeoSerpTakeover } from "@/components/seo/seo-serp-takeover"
 import { PlatformSection } from "@/components/platform-section"
+import { HomeSolutionsShowcase } from "@/components/home/home-solutions-showcase"
 import { IndustriesSection } from "@/components/industries-section"
+import { HomeMethod } from "@/components/home/home-method"
 import { PricingSection } from "@/components/pricing-section"
 import { buildMetadata } from "@/lib/seo"
 import { breadcrumbSchema, jsonLd } from "@/lib/schema"
@@ -48,7 +50,9 @@ export default function Home() {
         primaryCta={{ label: "Book a free strategy call", href: "#contact" }}
       />
       <PlatformSection />
+      <HomeSolutionsShowcase />
       <IndustriesSection />
+      <HomeMethod />
       <PricingSection />
     </main>
   )

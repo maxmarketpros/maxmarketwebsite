@@ -1,6 +1,7 @@
 "use client"
 
-import { Check } from "lucide-react"
+import Link from "next/link"
+import { ArrowRight, Check } from "lucide-react"
 import { SectionHeader } from "./ui/section-header"
 import { icons8Url } from "@/lib/icons8"
 
@@ -21,6 +22,8 @@ type PlatformCard = {
   chips?: string[]
   subCards?: SubCard[]
   chart?: boolean
+  href: string
+  ctaLabel: string
   /** Tailwind col-span classes for md and lg breakpoints */
   spanMd: string
   spanLg: string
@@ -48,6 +51,8 @@ const cards: PlatformCard[] = [
         description: "High‑intent leads ready to buy.",
       },
     ],
+    href: "/services/seo/local",
+    ctaLabel: "Explore Local SEO",
     spanMd: "md:col-span-2",
     spanLg: "lg:col-span-4",
   },
@@ -65,6 +70,8 @@ const cards: PlatformCard[] = [
       "Trust signals",
       "Mobile‑first design",
     ],
+    href: "/services/web-design/custom-coded",
+    ctaLabel: "Explore Custom Sites",
     spanMd: "md:col-span-1",
     spanLg: "lg:col-span-2",
   },
@@ -82,6 +89,8 @@ const cards: PlatformCard[] = [
       "Auto‑responses",
       "Multi‑platform collection",
     ],
+    href: "/services/social-media/review-generation",
+    ctaLabel: "Explore Review Generation",
     spanMd: "md:col-span-1",
     spanLg: "lg:col-span-2",
   },
@@ -107,6 +116,8 @@ const cards: PlatformCard[] = [
         description: "Data‑driven growth you can see.",
       },
     ],
+    href: "/solutions/analytics",
+    ctaLabel: "Explore Analytics & Attribution",
     spanMd: "md:col-span-2",
     spanLg: "lg:col-span-4",
   },
@@ -119,6 +130,8 @@ const cards: PlatformCard[] = [
     description:
       "Every SMS, email, form submission, and chat in one place. Never miss a conversation or let a lead slip through.",
     chips: ["Multi‑channel messages", "Team assignments", "Read receipts"],
+    href: "/solutions/lead-generation",
+    ctaLabel: "Explore Lead Generation",
     spanMd: "md:col-span-1",
     spanLg: "lg:col-span-3",
   },
@@ -131,6 +144,8 @@ const cards: PlatformCard[] = [
     description:
       "Instantly text back every missed call with a personalized message so potential customers never call a competitor instead.",
     chips: ["Instant text‑back", "Custom templates", "Call tracking"],
+    href: "/solutions/ai-agents",
+    ctaLabel: "Explore AI Agents",
     spanMd: "md:col-span-1",
     spanLg: "lg:col-span-3",
   },
@@ -169,7 +184,7 @@ export function PlatformSection() {
 function BentoCard({ card }: { card: PlatformCard }) {
   return (
     <div
-      className={`${card.spanMd} ${card.spanLg} card-surface card-surface-hover relative overflow-hidden p-6`}
+      className={`${card.spanMd} ${card.spanLg} card-surface card-surface-hover group relative overflow-hidden p-6 flex flex-col`}
     >
       {/* Aura — from top-left corner behind icon */}
       <div
@@ -180,7 +195,7 @@ function BentoCard({ card }: { card: PlatformCard }) {
         }}
       />
 
-      <div className="relative">
+      <div className="relative flex flex-col flex-1">
         {/* Icon + pill row */}
         <div className="flex items-start gap-3">
           <img
@@ -265,38 +280,113 @@ function BentoCard({ card }: { card: PlatformCard }) {
         {/* Chart visualization (CRM only) */}
         {card.chart && (
           <div
-            className="mt-4 rounded-[var(--radius-sm)] px-3.5 py-3 bg-white border relative overflow-hidden"
+            className="mt-4 rounded-[var(--radius-sm)] px-3.5 py-2.5 bg-white border relative overflow-hidden"
             style={{ borderColor: "var(--border-color)" }}
           >
-            <div className="flex items-center gap-1 mb-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E5E7EB]" />
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E5E7EB]" />
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E5E7EB]" />
+            <div className="flex items-center justify-between mb-1.5">
+              <span
+                className="text-[10px] font-bold uppercase tracking-[0.12em]"
+                style={{ color: "var(--muted)" }}
+              >
+                Pipeline value · 90 days
+              </span>
+              <span
+                className="inline-flex items-center gap-1 text-[10.5px] font-bold px-1.5 py-0.5 rounded-full tabular-nums"
+                style={{ background: "rgba(34,197,94,0.12)", color: "#16A34A" }}
+              >
+                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden>
+                  <path
+                    d="M4 1.5L7 5H1L4 1.5Z"
+                    fill="currentColor"
+                  />
+                </svg>
+                +47% MoM
+              </span>
             </div>
-            <svg
-              viewBox="0 0 300 50"
-              className="w-full h-[48px]"
-              preserveAspectRatio="none"
-              aria-hidden
-            >
-              <defs>
-                <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#1677FF" stopOpacity="0.22" />
-                  <stop offset="100%" stopColor="#1677FF" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M0,38 C30,34 55,36 80,30 C110,22 140,26 170,16 C200,4 230,10 260,12 C280,13 295,11 300,10 L300,50 L0,50 Z"
-                fill="url(#chartFill)"
-              />
-              <path
-                d="M0,38 C30,34 55,36 80,30 C110,22 140,26 170,16 C200,4 230,10 260,12 C280,13 295,11 300,10"
-                fill="none"
-                stroke="#1677FF"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              />
-            </svg>
+            <div className="relative">
+              <svg
+                viewBox="0 0 300 40"
+                className="w-full h-[38px] block"
+                preserveAspectRatio="none"
+                aria-hidden
+              >
+                <defs>
+                  <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#1677FF" stopOpacity="0.28" />
+                    <stop offset="100%" stopColor="#1677FF" stopOpacity="0" />
+                  </linearGradient>
+                  <linearGradient id="chartStroke" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#1677FF" />
+                    <stop offset="100%" stopColor="#74D3FF" />
+                  </linearGradient>
+                </defs>
+                {/* Dashed baseline */}
+                <line
+                  x1="0"
+                  y1="34"
+                  x2="300"
+                  y2="34"
+                  stroke="#E5E7EB"
+                  strokeWidth="1"
+                  strokeDasharray="3 3"
+                  vectorEffect="non-scaling-stroke"
+                />
+                {/* Area fill */}
+                <path
+                  d="M0,30 C30,27 55,28 80,23 C110,18 140,20 170,12 C200,3 230,7 260,8 C280,9 295,7 300,6 L300,40 L0,40 Z"
+                  fill="url(#chartFill)"
+                />
+                {/* Line stroke */}
+                <path
+                  d="M0,30 C30,27 55,28 80,23 C110,18 140,20 170,12 C200,3 230,7 260,8 C280,9 295,7 300,6"
+                  fill="none"
+                  stroke="url(#chartStroke)"
+                  strokeWidth="2.25"
+                  strokeLinecap="round"
+                  vectorEffect="non-scaling-stroke"
+                />
+                {/* Mid data dots */}
+                {[
+                  { x: 80, y: 23 },
+                  { x: 170, y: 12 },
+                ].map((p) => (
+                  <circle
+                    key={p.x}
+                    cx={p.x}
+                    cy={p.y}
+                    r="2"
+                    fill="#fff"
+                    stroke="#1677FF"
+                    strokeWidth="1.5"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                ))}
+              </svg>
+              {/* End-cap dot with halo — HTML overlay so it stays circular */}
+              <span
+                aria-hidden
+                className="absolute"
+                style={{
+                  right: 0,
+                  top: "calc((6 / 40) * 100% - 5px)",
+                  width: 10,
+                  height: 10,
+                }}
+              >
+                <span
+                  className="absolute inset-0 rounded-full"
+                  style={{ background: "#74D3FF", opacity: 0.32 }}
+                />
+                <span
+                  className="absolute rounded-full"
+                  style={{
+                    inset: 2,
+                    background: "#1677FF",
+                    boxShadow: "0 0 0 1.5px #fff",
+                  }}
+                />
+              </span>
+            </div>
           </div>
         )}
 
@@ -345,6 +435,26 @@ function BentoCard({ card }: { card: PlatformCard }) {
             ))}
           </div>
         )}
+
+        {/* CTA — link out to the matching service / solution page */}
+        <Link
+          href={card.href}
+          className="mt-auto inline-flex items-center justify-between gap-2 text-[13.5px] font-semibold"
+          style={{
+            color: card.pillColor,
+            marginTop: "auto",
+            paddingTop: 20,
+            marginInline: -2,
+          }}
+        >
+          <span className="inline-flex items-center gap-1.5">
+            {card.ctaLabel}
+            <ArrowRight
+              className="w-4 h-4 transition-transform group-hover:translate-x-1"
+              strokeWidth={2.5}
+            />
+          </span>
+        </Link>
       </div>
     </div>
   )
