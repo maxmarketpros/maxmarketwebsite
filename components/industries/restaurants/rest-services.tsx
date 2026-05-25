@@ -356,6 +356,21 @@ export function RestServices() {
             </article>
           ))}
         </div>
+
+        <p
+          className="mt-10 text-center text-[14.5px] leading-[1.6] max-w-[640px] mx-auto"
+          style={{ color: "var(--muted)" }}
+        >
+          Further reading:{" "}
+          <Link
+            href="/resources/blog/restaurant-seo-irvine-uci-spectrum"
+            className="font-semibold hover:underline"
+            style={{ color: "var(--accent)" }}
+          >
+            the hyperlocal restaurant SEO playbook for UCI, the Spectrum, and Diamond Jamboree
+          </Link>{" "}
+          covers cluster-specific tactics and the AI Overview citation play.
+        </p>
       </div>
     </section>
   )

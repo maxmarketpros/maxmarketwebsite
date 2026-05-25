@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { ChevronDown } from "lucide-react"
 import { SectionHeader } from "@/components/ui/section-header"
 import { SecondaryButton } from "@/components/ui/secondary-button"
@@ -73,7 +74,22 @@ export function ServicesFaq() {
             })}
           </ul>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
+          <p
+            className="mt-8 text-center text-[14.5px] leading-[1.6]"
+            style={{ color: "var(--muted)" }}
+          >
+            Shopping other agencies too? See{" "}
+            <Link
+              href="/resources/blog/best-digital-marketing-agencies-irvine"
+              className="font-semibold hover:underline"
+              style={{ color: "var(--accent)" }}
+            >
+              how Max Market Pros stacks up against Irvine&rsquo;s top digital marketing agencies
+            </Link>{" "}
+            for a sourced, side-by-side comparison.
+          </p>
+
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
             <span
               className="text-[15.5px]"
               style={{ color: "var(--muted)" }}

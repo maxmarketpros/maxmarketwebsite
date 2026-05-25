@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { SectionHeader } from "@/components/ui/section-header"
 import { SecondaryButton } from "@/components/ui/secondary-button"
 import { Plus } from "lucide-react"
@@ -103,6 +104,21 @@ export function LocalFaq() {
               )
             })}
           </ul>
+
+          <p
+            className="mt-8 text-center text-[14.5px] leading-[1.6]"
+            style={{ color: "var(--muted)" }}
+          >
+            Further reading:{" "}
+            <Link
+              href="/resources/blog/irvine-med-spa-seo-map-pack"
+              className="font-semibold hover:underline"
+              style={{ color: "var(--accent)" }}
+            >
+              the 90-day Map Pack playbook for Irvine med spas
+            </Link>{" "}
+            walks through the same mechanics applied to one of the most competitive verticals in the city.
+          </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
             <span className="text-[15.5px]" style={{ color: "var(--muted)" }}>

@@ -93,7 +93,7 @@ export function BlogIndexHero({ featured }: BlogIndexHeroProps) {
                   className="text-[22px] sm:text-[28px] lg:text-[32px] font-bold leading-[1.15] tracking-[-0.018em] text-balance group-hover:underline"
                   style={{ color: "var(--ink)" }}
                 >
-                  {featured.title}
+                  {featured.shortTitle ?? featured.title}
                 </h2>
                 <p
                   className="mt-4 text-[15.5px] sm:text-[16.5px] leading-[1.6]"

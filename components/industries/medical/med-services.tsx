@@ -248,6 +248,21 @@ export function MedServices() {
             )
           })}
         </div>
+
+        <p
+          className="mt-10 text-center text-[14.5px] leading-[1.6] max-w-[640px] mx-auto"
+          style={{ color: "var(--muted)" }}
+        >
+          Further reading:{" "}
+          <Link
+            href="/resources/blog/dental-seo-irvine-map-pack"
+            className="font-semibold hover:underline"
+            style={{ color: "var(--accent)" }}
+          >
+            the 6-month roadmap to beat 60+ Irvine dental practices in the Map Pack
+          </Link>{" "}
+          breaks down the same mechanics for dental clinics.
+        </p>
       </div>
     </section>
   )

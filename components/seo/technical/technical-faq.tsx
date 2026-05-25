@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { SectionHeader } from "@/components/ui/section-header"
 import { SecondaryButton } from "@/components/ui/secondary-button"
 import { Plus, Minus } from "lucide-react"
@@ -125,6 +126,21 @@ export function TechnicalFaq() {
               )
             })}
           </ul>
+
+          <p
+            className="mt-8 text-center text-[14.5px] leading-[1.6]"
+            style={{ color: "var(--muted)" }}
+          >
+            Further reading:{" "}
+            <Link
+              href="/resources/blog/bilingual-local-seo-irvine"
+              className="font-semibold hover:underline"
+              style={{ color: "var(--accent)" }}
+            >
+              the hreflang and bilingual local SEO playbook
+            </Link>{" "}
+            is the technical implementation that pays off for Irvine&apos;s 51% non-English-speaking households.
+          </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
             <span

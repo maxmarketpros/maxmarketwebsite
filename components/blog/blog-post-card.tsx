@@ -48,7 +48,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
           className="text-[17px] sm:text-[19px] font-bold leading-snug tracking-[-0.012em] group-hover:underline"
           style={{ color: "var(--ink)" }}
         >
-          {post.title}
+          {post.shortTitle ?? post.title}
         </h3>
         <p
           className="mt-2.5 text-[14.5px] leading-[1.55]"
