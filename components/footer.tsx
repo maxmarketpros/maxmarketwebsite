@@ -187,6 +187,15 @@ export function Footer() {
             >
               Terms
             </Link>
+            <a
+              href="https://icons8.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] opacity-40 hover:opacity-70 transition-opacity"
+              style={{ color: "var(--muted)" }}
+            >
+              Icons by Icons8
+            </a>
           </div>
         </div>
       </div>
