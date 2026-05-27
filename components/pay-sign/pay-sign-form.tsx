@@ -637,11 +637,11 @@ export function PaySignForm() {
                         onChange={(e) => set("monthlyFee", e.target.value)}
                       />
                       <Field
-                        label="Today's day of month (N/A for annual)"
+                        label="Billing day"
                         name="todays-day-of-month"
                         type="text"
-                        optional
-                        placeholder="15"
+                        required
+                        placeholder="21st or N/A"
                         value={form.todaysDayOfMonth}
                         onChange={(e) =>
                           set("todaysDayOfMonth", e.target.value)
