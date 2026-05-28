@@ -131,8 +131,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
 
   // Business Development
   {
-    slug: "muzammil-ilbrahim",
-    name: "Muzammil Ilbrahim",
+    slug: "muzammil-ibrahim",
+    name: "Muzammil Ibrahim",
     role: "Business Development Specialist",
     bio: "Muzammil is one of three BD specialists driving new growth for the firm. He's the first conversation most prospective clients have with Max Market Pros — and clients consistently tell us it's the reason they signed.",
     department: "business-development",

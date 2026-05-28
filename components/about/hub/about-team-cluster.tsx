@@ -26,7 +26,7 @@ const BUBBLE_POSITIONS: Record<string, { top: number; left: number }> = {
   "mike-stirling": { top: 24, left: 78 },
   "will-cruttenden": { top: 75, left: 80 },
   "hector-camacho": { top: 76, left: 22 },
-  "muzammil-ilbrahim": { top: 50, left: 12 },
+  "muzammil-ibrahim": { top: 50, left: 12 },
   "myles-mendez": { top: 50, left: 88 },
   "moustafa-ramzy": { top: 86, left: 50 },
 }
