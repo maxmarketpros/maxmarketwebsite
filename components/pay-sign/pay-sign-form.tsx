@@ -373,7 +373,7 @@ export function PaySignForm() {
                       <Field
                         label="Year established"
                         name="year-established"
-                        optional
+                        required
                         placeholder="2014"
                         value={form.yearEstablished}
                         onChange={(e) => set("yearEstablished", e.target.value)}
@@ -414,7 +414,7 @@ export function PaySignForm() {
                         label="Contact phone number"
                         name="contact-phone"
                         type="tel"
-                        optional
+                        required
                         placeholder="(555) 987-6543"
                         value={form.contactPhone}
                         onChange={(e) => set("contactPhone", e.target.value)}
@@ -473,7 +473,7 @@ export function PaySignForm() {
                     <Field
                       label="Client's website domain"
                       name="website"
-                      optional
+                      required
                       placeholder="www.smithplumbing.com"
                       value={form.website}
                       onChange={(e) => set("website", e.target.value)}
@@ -490,13 +490,14 @@ export function PaySignForm() {
                           className="font-medium"
                           style={{ color: "var(--muted)" }}
                         >
-                          (top three or less, optional)
+                          (top three or less)
                         </span>
                       </label>
                       <textarea
                         id="services"
                         name="services"
                         rows={3}
+                        required
                         placeholder="Drain cleaning, water heater install, leak repair"
                         value={form.services}
                         onChange={(e) => set("services", e.target.value)}
