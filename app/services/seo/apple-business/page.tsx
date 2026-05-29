@@ -1,0 +1,202 @@
+import type { Metadata } from "next"
+import { Navbar } from "@/components/navbar"
+import { AppleBusinessHero } from "@/components/seo/apple-business/apple-business-hero"
+import { AppleBusinessWhy } from "@/components/seo/apple-business/apple-business-why"
+import { AppleBusinessPlaceCard } from "@/components/seo/apple-business/apple-business-place-card"
+import { AppleBusinessActions } from "@/components/seo/apple-business/apple-business-actions"
+import { AppleBusinessMapsAds } from "@/components/seo/apple-business/apple-business-maps-ads"
+import { AppleBusinessProcess } from "@/components/seo/apple-business/apple-business-process"
+import { AppleBusinessResults } from "@/components/seo/apple-business/apple-business-results"
+import {
+  AppleBusinessFaq,
+  AppleBusinessFaqJsonLd,
+} from "@/components/seo/apple-business/apple-business-faq"
+import { AppleBusinessFinalCta } from "@/components/seo/apple-business/apple-business-final-cta"
+
+export const metadata: Metadata = {
+  title: "Apple Business Profile Management",
+  description:
+    "Done-for-you Apple Business profile management. We claim and optimize your Apple Maps listing, build Showcases and one-tap Actions, and launch Apple Maps Ads — so iPhone customers find you first. Free Apple Maps audit.",
+  keywords: [
+    "Apple Business",
+    "Apple Business Connect",
+    "Apple Business profile management",
+    "Apple Maps for business",
+    "Apple Maps listing",
+    "get on Apple Maps",
+    "claim Apple Maps listing",
+    "Apple Maps SEO",
+    "Apple Maps marketing",
+    "Apple Maps Ads",
+    "Apple Maps advertising",
+    "Apple Business Connect agency",
+    "Apple Maps Ads management",
+    "Apple Showcases",
+    "Apple Business place card",
+    "Apple Maps local SEO",
+    "Apple Maps optimization",
+    "Apple Business profile setup",
+    "list business on Apple Maps",
+    "Apple Maps for contractors",
+    "Apple Maps for restaurants",
+    "Siri business listing",
+  ],
+  alternates: { canonical: "/services/seo/apple-business" },
+  openGraph: {
+    title: "Apple Business Profile Management",
+    description:
+      "Claim and optimize your Apple Maps listing, manage Showcases and one-tap Actions, and launch Apple Maps Ads. Done-for-you Apple Business management for local businesses. Free Apple Maps audit.",
+    type: "website",
+    url: "/services/seo/apple-business",
+    siteName: "Max Market Pros",
+    locale: "en_US",
+    images: [
+      {
+        url: "/services/seo-websites.png",
+        width: 1200,
+        height: 630,
+        alt: "Max Market Pros Apple Business profile management — get found on Apple Maps and launch Apple Maps Ads",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Apple Business Profile Management",
+    description:
+      "Get found on Apple Maps, Siri, and Spotlight — and be first with Apple Maps Ads. Done-for-you Apple Business management. Free Apple Maps audit.",
+    images: ["/services/seo-websites.png"],
+  },
+}
+
+const offerCatalogItems = [
+  {
+    name: "Apple Business Profile Setup",
+    description:
+      "Claim and verify your Apple Maps location (including listings migrated from old Apple Business Connect), set up your Brand Profile, and build out a complete, ranking-ready place card.",
+  },
+  {
+    name: "Apple Maps Profile Optimization",
+    description:
+      "NAP reconciliation across Google, Yelp, and Tripadvisor, primary and secondary categories, attributes, hours, high-resolution photos, and Look Around imagery so Apple trusts and ranks your listing.",
+  },
+  {
+    name: "Showcases Management",
+    description:
+      "Monthly evergreen and seasonal Showcase tiles for offers, new products, and announcements that display on your Apple Maps place card and lift visibility in category searches.",
+  },
+  {
+    name: "Custom Actions & Integrations",
+    description:
+      "One-tap Book, Order, Reserve, and Pay action links deep-linked to OpenTable, Resy, Toast, Square, Shopify, Mindbody, Booksy and more — UTM-tagged for GA4 attribution.",
+  },
+  {
+    name: "Apple Maps Ads Management",
+    description:
+      "Auction-based Apple Maps Ads management across search results and Suggested Places — automated or advanced campaigns managed to your cost-per-lead, launching summer 2026 in the US and Canada.",
+  },
+  {
+    name: "Location Insights Reporting",
+    description:
+      "Monthly plain-English reporting from Apple Business Location Insights — place card views, searches, direction taps, calls, and action-link conversions.",
+  },
+]
+
+function JsonLd() {
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Apple Business Profile and Apple Maps Management",
+    name: "Apple Business Profile Management",
+    description:
+      "Done-for-you Apple Business profile management for local businesses — claiming and optimizing Apple Maps listings, Brand Profiles, Showcases, one-tap Custom Actions, and Apple Maps Ads. Flat monthly retainer with transparent Location Insights reporting.",
+    provider: {
+      "@type": "Organization",
+      name: "Max Market Pros",
+      url: "https://www.maxmarketpros.com",
+      telephone: "+1-949-603-0389",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Irvine",
+        addressRegion: "CA",
+        addressCountry: "US",
+      },
+    },
+    areaServed: { "@type": "Country", name: "United States" },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Apple Business Services",
+      itemListElement: offerCatalogItems.map((item, idx) => ({
+        "@type": "Offer",
+        position: idx + 1,
+        itemOffered: {
+          "@type": "Service",
+          name: item.name,
+          description: item.description,
+        },
+      })),
+    },
+  }
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.maxmarketpros.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: "https://www.maxmarketpros.com/services",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "SEO",
+        item: "https://www.maxmarketpros.com/services/seo",
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: "Apple Business",
+        item: "https://www.maxmarketpros.com/services/seo/apple-business",
+      },
+    ],
+  }
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <AppleBusinessFaqJsonLd />
+    </>
+  )
+}
+
+export default function Page() {
+  return (
+    <main>
+      <Navbar />
+      <AppleBusinessHero />
+      <AppleBusinessWhy />
+      <AppleBusinessPlaceCard />
+      <AppleBusinessActions />
+      <AppleBusinessMapsAds />
+      <AppleBusinessProcess />
+      <AppleBusinessResults />
+      <AppleBusinessFaq />
+      <AppleBusinessFinalCta />
+      <JsonLd />
+    </main>
+  )
+}

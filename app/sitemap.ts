@@ -51,6 +51,7 @@ const routes: { path: string; priority: number; changeFrequency: MetadataRoute.S
 
   { path: "/services/seo", priority: 0.9, changeFrequency: "weekly" },
   { path: "/services/seo/local", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/services/seo/apple-business", priority: 0.8, changeFrequency: "monthly" },
   { path: "/services/seo/on-page", priority: 0.7, changeFrequency: "monthly" },
   { path: "/services/seo/technical", priority: 0.7, changeFrequency: "monthly" },
   { path: "/services/seo/off-page", priority: 0.7, changeFrequency: "monthly" },

@@ -9,6 +9,7 @@ import {
   Handshake,
   Search,
   MapPin,
+  MapPinned,
   FileText,
   Link2,
   Bot,
@@ -112,6 +113,7 @@ export const services: NavCategory = {
       icon: Search,
       children: [
         { label: "Local SEO", href: "/services/seo/local", icon: MapPin, description: "Dominate your local market" },
+        { label: "Apple Business", href: "/services/seo/apple-business", icon: MapPinned, description: "Get found on Apple Maps + Maps Ads" },
         { label: "On-Page SEO", href: "/services/seo/on-page", icon: FileText, description: "Optimize every page" },
         { label: "Off-Page SEO", href: "/services/seo/off-page", icon: Link2, description: "Build authority & backlinks" },
         { label: "Technical SEO", href: "/services/seo/technical", icon: Code, description: "Site speed, crawlability & more" },
