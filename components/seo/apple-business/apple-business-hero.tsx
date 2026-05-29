@@ -1,5 +1,9 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
 import { PrimaryButton } from "@/components/ui/primary-button"
 import { SecondaryButton } from "@/components/ui/secondary-button"
+import { Reveal } from "@/components/ui/reveal"
 import {
   Smartphone,
   MapPin,
@@ -12,6 +16,8 @@ import {
   Zap,
   Wrench,
   BadgeCheck,
+  Gift,
+  CalendarClock,
 } from "lucide-react"
 
 const proofPills = [
@@ -26,8 +32,51 @@ function favicon(domain: string, size = 128) {
 }
 
 export function AppleBusinessHero() {
+  const rootRef = useRef<HTMLDivElement>(null)
+  const tiltRef = useRef<HTMLDivElement>(null)
+
+  // Parallax tilt (desktop / hover devices only)
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    if (window.matchMedia("(hover: none)").matches) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+
+    const coords = { x: 0, y: 0 }
+    let rafId = 0
+    let pending = false
+
+    const onMove = (e: MouseEvent) => {
+      if (!rootRef.current) return
+      const rect = rootRef.current.getBoundingClientRect()
+      const cx = rect.left + rect.width / 2
+      const cy = rect.top + rect.height / 2
+      coords.x = -(e.clientY - cy) / 55
+      coords.y = (e.clientX - cx) / 55
+      // clamp to a tasteful range
+      coords.x = Math.max(-6, Math.min(6, coords.x))
+      coords.y = Math.max(-6, Math.min(6, coords.y))
+      if (!pending) {
+        pending = true
+        rafId = requestAnimationFrame(apply)
+      }
+    }
+    const apply = () => {
+      pending = false
+      if (tiltRef.current) {
+        tiltRef.current.style.transform = `rotateX(${coords.x}deg) rotateY(${coords.y}deg)`
+      }
+    }
+
+    window.addEventListener("mousemove", onMove, { passive: true })
+    return () => {
+      window.removeEventListener("mousemove", onMove)
+      if (rafId) cancelAnimationFrame(rafId)
+    }
+  }, [])
+
   return (
     <section
+      ref={rootRef}
       aria-labelledby="apple-business-hero-heading"
       className="relative overflow-hidden"
     >
@@ -89,13 +138,15 @@ export function AppleBusinessHero() {
 
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-16 items-center">
           {/* Left: copy */}
-          <div style={{ animation: "fadeInUp 0.8s ease-out both" }}>
+          <Reveal>
             <span
               className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1 sm:py-1.5 text-[11px] sm:text-[13px] font-semibold uppercase tracking-[0.08em] rounded-full border"
               style={{
-                background: "rgba(29,29,31,0.06)",
-                borderColor: "rgba(29,29,31,0.18)",
+                background: "rgba(29,29,31,0.05)",
+                borderColor: "rgba(29,29,31,0.16)",
                 color: "#1D1D1F",
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
               }}
             >
               <img
@@ -113,20 +164,19 @@ export function AppleBusinessHero() {
               className="mt-6 text-[40px] xs:text-[44px] sm:text-[52px] lg:text-[64px] font-bold leading-[1.05] tracking-[-0.03em] text-balance"
               style={{ color: "var(--ink)" }}
             >
-              Apple Business profile{" "}
-              <span className="accent-underline">management.</span>
+              Get found <span className="accent-underline">first</span> on Apple{" "}
+              <span className="whitespace-nowrap">Maps.</span>
             </h1>
 
             <p
               className="mt-6 text-[17px] sm:text-[19px] leading-[1.6] max-w-[600px]"
               style={{ color: "var(--muted)" }}
             >
-              We get your business found on{" "}
+              We claim, optimize, and manage your business across{" "}
               <span style={{ color: "var(--ink)", fontWeight: 600 }}>
                 Apple Maps, Siri, Spotlight, and CarPlay
               </span>{" "}
-              — claimed, optimized, and kept fresh — then put you first with the
-              all-new{" "}
+              — then put you first with the all-new{" "}
               <span style={{ color: "var(--ink)", fontWeight: 600 }}>
                 Apple Maps Ads
               </span>{" "}
@@ -152,6 +202,8 @@ export function AppleBusinessHero() {
                     background: "rgba(255,255,255,0.72)",
                     borderColor: "var(--border-color)",
                     color: "var(--ink)",
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
                   }}
                 >
                   <span
@@ -167,15 +219,26 @@ export function AppleBusinessHero() {
                 </span>
               ))}
             </div>
-          </div>
+          </Reveal>
 
           {/* Right: Apple Maps place-card mockup */}
-          <div
-            className="relative"
-            style={{ animation: "fadeInUp 0.9s ease-out 0.1s both" }}
-          >
-            <MapsPlaceCardMock />
-          </div>
+          <Reveal delay={0.12} className="relative">
+            <div
+              className="relative"
+              style={{ perspective: "1100px" }}
+            >
+              <div
+                ref={tiltRef}
+                style={{
+                  transformStyle: "preserve-3d",
+                  willChange: "transform",
+                  transition: "transform 0.2s ease-out",
+                }}
+              >
+                <MapsPlaceCardMock />
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -188,7 +251,69 @@ const photoTints = [
   "linear-gradient(135deg, #2B8AFF 0%, #1D4ED8 100%)",
 ]
 
+const searchTerms = ["plumber near me", "hvac repair near me", "emergency plumber"]
+
+const showcaseTiles = [
+  { Icon: Zap, tag: "Showcase", title: "$59 drain cleaning — this month" },
+  { Icon: Gift, tag: "Offer", title: "Free camera inspection w/ repair" },
+  { Icon: CalendarClock, tag: "Seasonal", title: "Book your fall water-heater flush" },
+]
+
 function MapsPlaceCardMock() {
+  // Typewriter search query
+  const [typed, setTyped] = useState(searchTerms[0])
+  const [showcaseIdx, setShowcaseIdx] = useState(0)
+  const [reduce, setReduce] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const r = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    setReduce(r)
+    if (r) return
+
+    let termIdx = 0
+    let charIdx = searchTerms[0].length
+    let deleting = false
+    let timer: ReturnType<typeof setTimeout>
+
+    const step = () => {
+      const term = searchTerms[termIdx]
+      if (!deleting) {
+        charIdx++
+        if (charIdx >= term.length) {
+          deleting = true
+          timer = setTimeout(step, 1900)
+          setTyped(term)
+          return
+        }
+      } else {
+        charIdx--
+        if (charIdx <= 0) {
+          deleting = false
+          termIdx = (termIdx + 1) % searchTerms.length
+          charIdx = 0
+        }
+      }
+      setTyped(searchTerms[termIdx].slice(0, charIdx))
+      timer = setTimeout(step, deleting ? 45 : 95)
+    }
+
+    timer = setTimeout(step, 1900)
+    return () => clearTimeout(timer)
+  }, [])
+
+  // Rotating showcase tile
+  useEffect(() => {
+    if (reduce) return
+    const t = setInterval(
+      () => setShowcaseIdx((i) => (i + 1) % showcaseTiles.length),
+      3200
+    )
+    return () => clearInterval(t)
+  }, [reduce])
+
+  const showcase = showcaseTiles[showcaseIdx]
+
   return (
     <div className="relative max-w-[360px] mx-auto">
       {/* iPhone frame */}
@@ -205,6 +330,12 @@ function MapsPlaceCardMock() {
           className="relative rounded-[37px] overflow-hidden"
           style={{ background: "#EAEFF5", aspectRatio: "9 / 18" }}
         >
+          {/* Dynamic Island */}
+          <div
+            className="absolute top-2 left-1/2 -translate-x-1/2 z-30 w-[86px] h-[26px] rounded-full"
+            style={{ background: "#000" }}
+          />
+
           {/* Map layer */}
           <div className="absolute inset-0">
             <svg
@@ -214,18 +345,12 @@ function MapsPlaceCardMock() {
               preserveAspectRatio="xMidYMid slice"
             >
               <rect width="360" height="720" fill="#E7EEF6" />
-              {/* parks */}
               <path
                 d="M0 470 Q90 430 150 480 T360 460 L360 560 L0 560 Z"
                 fill="#D7EBDA"
               />
               <circle cx="300" cy="180" r="70" fill="#D7EBDA" />
-              {/* water */}
-              <path
-                d="M-20 60 Q80 130 60 240 T120 460 L-40 480 Z"
-                fill="#C7E0F4"
-              />
-              {/* roads */}
+              <path d="M-20 60 Q80 130 60 240 T120 460 L-40 480 Z" fill="#C7E0F4" />
               <g stroke="#FFFFFF" strokeWidth="9" fill="none" opacity="0.95">
                 <path d="M-10 250 L370 300" />
                 <path d="M40 -10 L120 730" />
@@ -238,29 +363,39 @@ function MapsPlaceCardMock() {
             </svg>
           </div>
 
-          {/* Search bar */}
-          <div className="absolute top-3 left-3 right-3">
+          {/* Search bar (glass) */}
+          <div className="absolute top-9 left-3 right-3 z-20">
             <div
               className="flex items-center gap-2 px-3.5 py-2.5 rounded-full"
               style={{
-                background: "rgba(255,255,255,0.94)",
+                background: "rgba(255,255,255,0.82)",
                 boxShadow: "0 2px 10px rgba(17,35,68,0.14)",
-                backdropFilter: "blur(6px)",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
               }}
             >
               <Search
-                className="w-4 h-4"
+                className="w-4 h-4 shrink-0"
                 strokeWidth={2.5}
                 style={{ color: "var(--muted)" }}
               />
               <span
-                className="text-[13px] font-medium"
+                className="text-[13px] font-medium whitespace-nowrap overflow-hidden"
                 style={{ color: "var(--ink)" }}
               >
-                plumber near me
+                {typed}
+                {!reduce && (
+                  <span
+                    className="inline-block w-[2px] h-[14px] align-middle ml-0.5"
+                    style={{
+                      background: "var(--accent)",
+                      animation: "caretBlink 1s step-end infinite",
+                    }}
+                  />
+                )}
               </span>
               <span
-                className="ml-auto w-6 h-6 rounded-full flex items-center justify-center"
+                className="ml-auto w-6 h-6 rounded-full flex items-center justify-center shrink-0"
                 style={{ background: "rgba(22,119,255,0.12)" }}
               >
                 <Mic
@@ -272,18 +407,18 @@ function MapsPlaceCardMock() {
             </div>
           </div>
 
-          {/* Sponsored pin with blue halo */}
-          <div
-            className="absolute"
-            style={{ top: "30%", left: "52%" }}
-          >
-            <div className="relative flex flex-col items-center">
+          {/* Sponsored pin with halo */}
+          <div className="absolute z-10" style={{ top: "30%", left: "52%" }}>
+            <div
+              className="relative flex flex-col items-center"
+              style={{ animation: reduce ? undefined : "pinDrop 0.7s var(--ease-spring) both" }}
+            >
               <span
                 aria-hidden
                 className="absolute w-12 h-12 rounded-full"
                 style={{
-                  background: "rgba(22,119,255,0.22)",
-                  animation: "subtlePulse 1.8s ease-in-out infinite",
+                  background: "rgba(22,119,255,0.30)",
+                  animation: reduce ? undefined : "haloPulse 2s ease-in-out infinite",
                   left: "50%",
                   top: "10px",
                   transform: "translate(-50%, -50%)",
@@ -315,7 +450,7 @@ function MapsPlaceCardMock() {
 
           {/* secondary pins */}
           <span
-            className="absolute w-4 h-4 rounded-full"
+            className="absolute w-4 h-4 rounded-full z-10"
             style={{
               top: "44%",
               left: "26%",
@@ -325,7 +460,7 @@ function MapsPlaceCardMock() {
             }}
           />
           <span
-            className="absolute w-4 h-4 rounded-full"
+            className="absolute w-4 h-4 rounded-full z-10"
             style={{
               top: "24%",
               left: "76%",
@@ -335,13 +470,14 @@ function MapsPlaceCardMock() {
             }}
           />
 
-          {/* Place card sheet */}
+          {/* Place card sheet (glass) */}
           <div
-            className="absolute left-0 right-0 bottom-0 rounded-t-[26px] px-4 pt-2.5 pb-5"
+            className="absolute left-0 right-0 bottom-0 rounded-t-[26px] px-4 pt-2.5 pb-5 z-20"
             style={{
-              background: "rgba(255,255,255,0.98)",
+              background: "rgba(255,255,255,0.92)",
               boxShadow: "0 -8px 30px rgba(17,35,68,0.16)",
-              backdropFilter: "blur(8px)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
             }}
           >
             <div
@@ -434,33 +570,35 @@ function MapsPlaceCardMock() {
               </span>
             </div>
 
-            {/* Showcase tile */}
+            {/* Rotating Showcase tile */}
             <div
+              key={showcaseIdx}
               className="mt-3 flex items-center gap-2.5 px-3 py-2.5 rounded-[12px]"
               style={{
                 background:
                   "linear-gradient(90deg, rgba(22,119,255,0.10) 0%, rgba(116,211,255,0.10) 100%)",
                 border: "1px solid rgba(22,119,255,0.22)",
+                animation: reduce ? undefined : "fadeInUp 0.45s var(--ease-spring) both",
               }}
             >
               <span
                 className="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
                 style={{ background: "var(--accent)", color: "#fff" }}
               >
-                <Zap className="w-3.5 h-3.5" strokeWidth={2.5} />
+                <showcase.Icon className="w-3.5 h-3.5" strokeWidth={2.5} />
               </span>
               <div className="flex-1 min-w-0">
                 <div
                   className="text-[9px] font-extrabold uppercase tracking-[0.12em]"
                   style={{ color: "var(--accent)" }}
                 >
-                  Showcase
+                  {showcase.tag}
                 </div>
                 <div
                   className="text-[12px] font-bold leading-tight truncate"
                   style={{ color: "var(--ink)" }}
                 >
-                  $59 drain cleaning — this month
+                  {showcase.title}
                 </div>
               </div>
             </div>
@@ -468,14 +606,16 @@ function MapsPlaceCardMock() {
         </div>
       </div>
 
-      {/* Floating: Verified on Apple Business */}
+      {/* Floating: Verified on Apple Business (glass) */}
       <div
         className="absolute -top-4 -left-4 z-20 hidden sm:flex items-center gap-2 px-3 py-2 rounded-[14px]"
         style={{
-          background: "rgba(255,255,255,0.96)",
+          background: "rgba(255,255,255,0.85)",
           border: "1px solid var(--border-color)",
           boxShadow: "0 2px 6px rgba(17,35,68,0.12), 0 14px 32px rgba(17,35,68,0.16)",
           transform: "rotate(-4deg)",
+          backdropFilter: "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)",
         }}
       >
         <img
@@ -502,15 +642,17 @@ function MapsPlaceCardMock() {
         </div>
       </div>
 
-      {/* Floating: Maps Ad live */}
+      {/* Floating: Maps Ad live (glass) */}
       <div
         className="absolute -bottom-4 -right-3 z-20 hidden sm:flex items-center gap-2 px-3 py-2 rounded-[12px]"
         style={{
-          background: "linear-gradient(180deg, #fff 0%, #F0F7FF 100%)",
+          background: "rgba(240,247,255,0.9)",
           border: "1px solid rgba(22,119,255,0.3)",
           boxShadow:
             "0 2px 6px rgba(22,119,255,0.18), 0 12px 28px rgba(22,119,255,0.16)",
           transform: "rotate(3deg)",
+          backdropFilter: "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)",
         }}
       >
         <span

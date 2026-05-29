@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/ui/reveal"
 import {
   ArrowRight,
   MapPin,
@@ -30,7 +31,7 @@ export function AppleBusinessFinalCta() {
       aria-labelledby="apple-business-final-cta-heading"
       className="relative"
     >
-      <div className="section-container pb-20 sm:pb-24 lg:pb-28">
+      <Reveal className="section-container pb-20 sm:pb-24 lg:pb-28">
         <div
           className="relative overflow-hidden"
           style={{
@@ -41,6 +42,21 @@ export function AppleBusinessFinalCta() {
               "0 10px 30px rgba(11,19,43,0.22), 0 30px 80px rgba(11,19,43,0.18)",
           }}
         >
+          {/* Shimmer sweep */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 overflow-hidden"
+            style={{ borderRadius: "var(--radius-xl)" }}
+          >
+            <div
+              className="absolute top-0 bottom-0 w-1/3"
+              style={{
+                background:
+                  "linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.07) 50%, transparent 100%)",
+                animation: "shimmer 6s ease-in-out infinite",
+              }}
+            />
+          </div>
           {/* Blue glow */}
           <div
             aria-hidden
@@ -170,11 +186,20 @@ export function AppleBusinessFinalCta() {
               >
                 What&rsquo;s included
               </div>
-              <ul className="space-y-3.5">
+              <ul className="space-y-2.5">
                 {guarantees.map((g) => (
-                  <li key={g.label} className="flex items-start gap-3">
+                  <li
+                    key={g.label}
+                    className="flex items-center gap-3 px-3.5 py-3 rounded-[14px]"
+                    style={{
+                      background: "rgba(255,255,255,0.06)",
+                      border: "1px solid rgba(255,255,255,0.12)",
+                      backdropFilter: "blur(8px)",
+                      WebkitBackdropFilter: "blur(8px)",
+                    }}
+                  >
                     <span
-                      className="mt-[2px] w-[22px] h-[22px] rounded-full flex items-center justify-center shrink-0"
+                      className="w-[24px] h-[24px] rounded-full flex items-center justify-center shrink-0"
                       style={{
                         background:
                           "linear-gradient(180deg, #2B8AFF 0%, #1677FF 100%)",
@@ -184,19 +209,17 @@ export function AppleBusinessFinalCta() {
                     >
                       <Check className="w-3 h-3" strokeWidth={3.5} />
                     </span>
-                    <div className="flex items-center gap-2">
-                      <g.Icon
-                        className="w-4 h-4 shrink-0"
-                        strokeWidth={2.25}
-                        style={{ color: "rgba(255,255,255,0.6)" }}
-                      />
-                      <span
-                        className="text-[15px] leading-[1.5]"
-                        style={{ color: "rgba(255,255,255,0.92)" }}
-                      >
-                        {g.label}
-                      </span>
-                    </div>
+                    <g.Icon
+                      className="w-4 h-4 shrink-0"
+                      strokeWidth={2.25}
+                      style={{ color: "rgba(255,255,255,0.6)" }}
+                    />
+                    <span
+                      className="text-[14.5px] leading-[1.4]"
+                      style={{ color: "rgba(255,255,255,0.92)" }}
+                    >
+                      {g.label}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -234,7 +257,7 @@ export function AppleBusinessFinalCta() {
             </div>
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

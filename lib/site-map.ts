@@ -113,13 +113,13 @@ export const services: NavCategory = {
       icon: Search,
       children: [
         { label: "Local SEO", href: "/services/seo/local", icon: MapPin, description: "Dominate your local market" },
-        { label: "Apple Business", href: "/services/seo/apple-business", icon: MapPinned, description: "Get found on Apple Maps + Maps Ads" },
         { label: "On-Page SEO", href: "/services/seo/on-page", icon: FileText, description: "Optimize every page" },
         { label: "Off-Page SEO", href: "/services/seo/off-page", icon: Link2, description: "Build authority & backlinks" },
         { label: "Technical SEO", href: "/services/seo/technical", icon: Code, description: "Site speed, crawlability & more" },
         { label: "Press Releases", href: "/services/seo/press-releases", icon: Megaphone, description: "Get featured in the news" },
         { label: "Backlinks & Directories", href: "/services/seo/backlinks", icon: Link2, description: "Citations & directory listings" },
         { label: "AI Search Visibility", href: "/services/seo/ai-search", icon: Bot, description: "Be found by AI assistants" },
+        { label: "Apple Business", href: "/services/seo/apple-business", icon: MapPinned, description: "Get found on Apple Maps + Maps Ads" },
       ],
     },
     {

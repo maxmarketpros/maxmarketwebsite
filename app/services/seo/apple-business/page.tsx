@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Navbar } from "@/components/navbar"
 import { AppleBusinessHero } from "@/components/seo/apple-business/apple-business-hero"
 import { AppleBusinessWhy } from "@/components/seo/apple-business/apple-business-why"
+import { AppleBusinessCompare } from "@/components/seo/apple-business/apple-business-compare"
 import { AppleBusinessPlaceCard } from "@/components/seo/apple-business/apple-business-place-card"
 import { AppleBusinessActions } from "@/components/seo/apple-business/apple-business-actions"
 import { AppleBusinessMapsAds } from "@/components/seo/apple-business/apple-business-maps-ads"
@@ -189,6 +190,7 @@ export default function Page() {
       <Navbar />
       <AppleBusinessHero />
       <AppleBusinessWhy />
+      <AppleBusinessCompare />
       <AppleBusinessPlaceCard />
       <AppleBusinessActions />
       <AppleBusinessMapsAds />

@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { SectionHeader } from "@/components/ui/section-header"
 import { SecondaryButton } from "@/components/ui/secondary-button"
+import { Reveal } from "@/components/ui/reveal"
 import { Plus } from "lucide-react"
 import { appleBusinessFaqs } from "./apple-business-faq-data"
 
@@ -43,17 +44,16 @@ export function AppleBusinessFaq() {
           paragraph="The questions local businesses ask most about Apple Business, Apple Maps listings, and the new Apple Maps Ads — answered straight, with no hype."
         />
 
-        <div
-          className="mt-12 max-w-[860px] mx-auto"
-          style={{ animation: "fadeInUp 0.7s ease-out both" }}
-        >
+        <Reveal className="mt-12 max-w-[860px] mx-auto">
           <ul
             className="divide-y rounded-[var(--radius-lg)] border overflow-hidden"
             style={{
-              background: "var(--surface)",
+              background: "rgba(255,255,255,0.72)",
               borderColor: "var(--border-color)",
               boxShadow:
-                "0 1px 3px var(--shadow-color), 0 4px 16px var(--shadow-color)",
+                "0 1px 3px var(--shadow-color), 0 8px 32px var(--shadow-color)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
             }}
           >
             {appleBusinessFaqs.map((faq, idx) => {
@@ -86,7 +86,7 @@ export function AppleBusinessFaq() {
                     </span>
                   </button>
                   <div
-                    className={`grid transition-all duration-300 ease-out ${
+                    className={`grid transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                       isOpen
                         ? "grid-rows-[1fr] opacity-100"
                         : "grid-rows-[0fr] opacity-0"
@@ -113,7 +113,7 @@ export function AppleBusinessFaq() {
               Talk to an Apple Maps strategist
             </SecondaryButton>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )
